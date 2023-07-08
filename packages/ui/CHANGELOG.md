@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 0.0.3
+
+### Patch Changes
+
+- Forgot to build dist for previous version
+
 ## 0.0.1
 
 ### Patch Changes
