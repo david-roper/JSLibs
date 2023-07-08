@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 0.1.2
+
+### Patch Changes
+
+- Added files array to package.json
+
 ## 0.1.1
 
 ### Patch Changes
