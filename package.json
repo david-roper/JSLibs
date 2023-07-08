@@ -11,6 +11,7 @@
     "dev": "turbo run dev",
     "format": "turbo run format",
     "lint": "turbo run lint",
+    "push": "turbo run build lint test && changeset version && changeset publish",
     "ws": "bash -c 'yarn workspace \"@douglasneuroinformatics/$0\" \"${@:1}\"'"
   },
   "dependencies": {
