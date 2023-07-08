@@ -1,4 +1,4 @@
-import { FormFields, FormInstrumentContent, FormInstrumentData } from '@douglasneuroinformatics/common';
+import { FormFields, FormInstrumentContent, FormInstrumentData } from '@douglasneuroinformatics/form-types';
 
 import { FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types';
 

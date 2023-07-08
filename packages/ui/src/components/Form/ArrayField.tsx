@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { ArrayFormField } from '@douglasneuroinformatics/common';
+import { ArrayFormField } from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '../Button';
@@ -47,7 +47,7 @@ export const ArrayField = ({ label, fieldset, error, value: arrayValue, setValue
                 setArrayValue(newArrayValue);
               },
               ...fieldProps
-            } ;
+            } as PrimitiveFormFieldProps;
             return <PrimitiveFormField key={fieldName} {...props} />;
           })}
         </div>

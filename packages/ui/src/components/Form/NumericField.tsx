@@ -1,9 +1,8 @@
 'use client';
 
-
 import React from 'react';
 
-import { NumericFormField } from '@douglasneuroinformatics/common';
+import { NumericFormField } from '@douglasneuroinformatics/form-types';
 import { clsx } from 'clsx';
 
 import { FormFieldContainer } from './FormFieldContainer';

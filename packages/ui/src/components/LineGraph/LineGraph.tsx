@@ -4,7 +4,7 @@
 
 import React from 'react';
 
-import { ConditionalKeys, toBasicISOString } from '@douglasneuroinformatics/utils';
+import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { useTranslation } from 'react-i18next';
 import {
   CartesianGrid,
@@ -19,6 +19,7 @@ import {
   XAxis,
   YAxis
 } from 'recharts';
+import { ConditionalKeys } from 'type-fest';
 
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 

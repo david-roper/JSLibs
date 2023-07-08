@@ -1,6 +1,5 @@
 'use client';
 
-
 import React, { useMemo, useState } from 'react';
 
 import {
@@ -9,7 +8,7 @@ import {
   FormInstrumentContent,
   FormInstrumentData,
   PrimitiveFieldValue
-} from '@douglasneuroinformatics/common';
+} from '@douglasneuroinformatics/form-types';
 import { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -116,7 +115,7 @@ const FormComponent = <T extends FormInstrumentData>({
       onSubmit(values as T);
     } else {
       console.error(validate.errors);
-      setValidationErrors(validate.errors ?? null)
+      setValidationErrors(validate.errors ?? null);
     }
   };
 
@@ -133,9 +132,9 @@ const FormComponent = <T extends FormInstrumentData>({
         ...fields[fieldName]
       };
       if (props.kind === 'array') {
-        formFields.push(<ArrayField key={fieldName} {...(props )} />);
+        formFields.push(<ArrayField key={fieldName} {...(props as ArrayFieldProps)} />);
       } else {
-        formFields.push(<PrimitiveFormField key={fieldName} {...(props )} />);
+        formFields.push(<PrimitiveFormField key={fieldName} {...(props as PrimitiveFormFieldProps)} />);
       }
     }
     return formFields;

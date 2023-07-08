@@ -1,9 +1,8 @@
 'use client';
 
-
 import React from 'react';
 
-import { OptionsFormField } from '@douglasneuroinformatics/common';
+import { OptionsFormField } from '@douglasneuroinformatics/form-types';
 import { Listbox, Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 

@@ -1,4 +1,4 @@
-import { ArrayFieldValue, FormInstrumentData, PrimitiveFieldValue } from '@douglasneuroinformatics/common';
+import { ArrayFieldValue, FormInstrumentData, PrimitiveFieldValue } from '@douglasneuroinformatics/form-types';
 
 export type NullablePrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = T | null;
 

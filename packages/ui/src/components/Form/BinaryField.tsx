@@ -1,9 +1,8 @@
 'use client';
 
-
 import React from 'react';
 
-import { BinaryFormField } from '@douglasneuroinformatics/common';
+import { BinaryFormField } from '@douglasneuroinformatics/form-types';
 import { RadioGroup, Switch } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from 'react-i18next';

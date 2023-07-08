@@ -24,8 +24,8 @@ module.exports = {
         pathGroupsExcludedImportTypes: ['react', 'react-dom/**']
       }
     ],
-    'no-alert': 'warn',
-    'no-console': ['warn', { allow: ['warn', 'error'] }],
+    'no-alert': 'error',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
     'react/function-component-definition': [
       'error',
       {
@@ -51,5 +51,14 @@ module.exports = {
     react: {
       version: 'detect'
     }
-  }
+  },
+  overrides: [
+    {
+      files: ['**/*.stories.jsx', '**/*.stories.tsx'],
+      rules: {
+        'no-alert': 'off',
+        'import/exports-last': 'off'
+      }
+    }
+  ]
 };

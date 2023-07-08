@@ -2,15 +2,14 @@
   "extends": ["../../tsconfig.base.json"],
   "compilerOptions": {
     "baseUrl": "src",
-    "jsx": "react-jsx",
+    "jsx": "react",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "moduleResolution": "Node",
     "outDir": "dist",
     "paths": {
       "@/*": ["*"]
     },
-    "resolveJsonModule": true,
-    "typeRoots": ["node_modules/@types", "typings"]
+    "resolveJsonModule": true
   },
   "include": ["src/**/*"]
 }
