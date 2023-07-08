@@ -8,6 +8,10 @@
   ],
   "license": "LGPL-3.0",
   "main": "index.cjs",
+  "files": [
+    "lib",
+    "index.cjs"
+  ],
   "scripts": {
     "format": "prettier --write index.cjs lib/*"
   },
