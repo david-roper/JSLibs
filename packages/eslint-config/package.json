@@ -8,6 +8,9 @@
   ],
   "license": "LGPL-3.0",
   "main": "index.cjs",
+  "scripts": {
+    "format": "prettier --write index.cjs lib/*"
+  },
   "dependencies": {
     "eslint-config-prettier": "^8.8.0",
     "eslint-import-resolver-typescript": "^3.5.5"
@@ -21,9 +24,6 @@
     "eslint": "8.x",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-react": "^7.32.2"
-  },
-  "scripts": {
-    "format": "prettier --write index.cjs lib/*"
   },
   "peerDependenciesMeta": {
     "eslint-plugin-react": {
