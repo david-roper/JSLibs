@@ -1,4 +1,4 @@
-# ESLintConfig
+# @douglasneuroinformatics/eslint-config
 
 This repository contains linting configurations for DNP projects written in TypeScript/JavaScript.
 
