@@ -1,6 +1,5 @@
 'use client';
 
-
 import React from 'react';
 
 import { XMarkIcon } from '@heroicons/react/24/solid';
@@ -11,8 +10,6 @@ import { useNotificationsStore } from '../../stores/notifications-store';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 
 import { NotificationIcon } from './NotificationIcon';
-
-
 
 interface NotificationHubProps {
   /** The number of milliseconds before the notification is automatically cleared */

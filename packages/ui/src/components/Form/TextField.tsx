@@ -20,7 +20,7 @@ export const TextField = ({ description, name, label, variant, error, value, set
       {variant === 'short' || variant === 'password' ? (
         <input
           autoComplete="off"
-          className="peer field-input"
+          className="field-input peer"
           name={name}
           type={variant === 'short' ? 'text' : 'password'}
           value={value ?? ''}
@@ -29,7 +29,7 @@ export const TextField = ({ description, name, label, variant, error, value, set
       ) : (
         <textarea
           autoComplete="off"
-          className="peer field-input"
+          className="field-input peer"
           rows={5}
           value={value ?? ''}
           onChange={handleChange}

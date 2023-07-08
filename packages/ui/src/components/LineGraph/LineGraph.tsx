@@ -1,4 +1,4 @@
-'use client'; 
+'use client';
 
 // Once the migration is over, should try to render on the server if possible as this is huge
 

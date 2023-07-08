@@ -9,7 +9,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format": "turbo run format",
     "lint": "turbo run lint",
     "ws": "bash -c 'yarn workspace \"@douglasneuroinformatics/$0\" \"${@:1}\"'"
   },

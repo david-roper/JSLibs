@@ -77,7 +77,9 @@ export type PrimitiveFormField<TValue extends PrimitiveFieldValue = PrimitiveFie
 export type ArrayFieldset<T extends ArrayFieldValue[number]> = {
   [K in keyof T]:
     | PrimitiveFormField<T[K]>
-    | ((fieldset: { [K in keyof T]?: T[K] | null | undefined }) => PrimitiveFormField<T[K]> | null);
+    | ((fieldset: {
+        [K in keyof T]?: T[K] | null | undefined;
+      }) => PrimitiveFormField<T[K]> | null);
 };
 
 export type ArrayFormField<TValue extends ArrayFieldValue = ArrayFieldValue> = FormFieldMixin<{

@@ -36,7 +36,7 @@ export const NumericField = ({
       {variant === 'default' && (
         <>
           <input
-            className="peer field-input"
+            className="field-input peer"
             max={max}
             min={min}
             name={name}

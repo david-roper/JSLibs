@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 import { FaceSmileIcon } from '@heroicons/react/24/solid';

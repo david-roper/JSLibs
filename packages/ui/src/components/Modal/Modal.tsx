@@ -4,7 +4,6 @@ import React from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
 
-
 export interface ModalProps {
   open: boolean;
   title: string;

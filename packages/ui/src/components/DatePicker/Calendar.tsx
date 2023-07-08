@@ -1,6 +1,5 @@
 'use client';
 
-
 import React from 'react';
 
 import { range } from '@douglasneuroinformatics/utils';
@@ -34,7 +33,9 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(function
         <div className="grid w-72 grid-cols-7 gap-3" ref={ref}>
           {range(7).map((i) => (
             <div className="flex items-center justify-center" key={i}>
-              {(t(`datetime.days.${i as 0}`) ).charAt(0).toUpperCase()}
+              {t(`datetime.days.${i as 0}`)
+                .charAt(0)
+                .toUpperCase()}
             </div>
           ))}
           <div style={{ gridColumn: `span ${firstDay} / span ${firstDay}` }} />

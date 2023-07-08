@@ -2,7 +2,6 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
 
-
 /** Coerces the value in a cell to a string for consistant display purposes */
 function defaultFormatter(value: unknown): string {
   if (typeof value === 'string') {
@@ -55,7 +54,7 @@ export const Table = <T extends TableEntry>({ columns, data, onEntryClick }: Tab
       className="h-full w-full border-separate overflow-scroll rounded-md shadow-md ring-1 ring-black ring-opacity-5"
       ref={ref}
     >
-      <div className="sticky top-0 flex w-fit border-b border-slate-300 dark:border-0 bg-slate-50 dark:bg-slate-700">
+      <div className="sticky top-0 flex w-fit border-b border-slate-300 bg-slate-50 dark:border-0 dark:bg-slate-700">
         {columns.map((column) => (
           <div
             className="flex-shrink-0 p-4 text-sm font-semibold text-slate-800 dark:text-slate-200"
