@@ -26,7 +26,7 @@ const preview: Preview = {
 
       return (
         <div className="h-screen w-screen">
-          <div className="right-6 absolute top-0 z-50 flex w-fit gap-2 py-2">
+          <div className="absolute right-6 top-0 z-50 flex w-fit gap-2 py-2">
             <button
               className="w-full rounded-full bg-slate-600 p-2 text-white transition-transform hover:bg-slate-500"
               onClick={toggleTheme}
@@ -47,7 +47,15 @@ const preview: Preview = {
       );
     }
   ],
+  globals: {
+    locale: 'en',
+    locales: {
+      en: 'English',
+      fr: 'Français'
+    }
+  },
   parameters: {
+    i18n,
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
