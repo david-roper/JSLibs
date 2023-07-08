@@ -13,12 +13,14 @@ const srcDir = path.resolve(module.path, 'src');
 // When installed from npm, src will not be included
 const isDev = fs.existsSync(srcDir);
 
-const baseContentPath = isDev ? path.join(srcDir, '**/*.{js,ts,jsx,tsx}') : path.join(distDir, '**/*.js');
+const content = isDev
+  ? [path.join(__dirname, '.storybook', 'preview-body.html'), path.join(srcDir, '**/*.{js,ts,jsx,tsx}')]
+  : [path.join(distDir, '**/*.js')];
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [baseContentPath],
-  darkMode: 'class',
+  content,
+  darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
       container: {
