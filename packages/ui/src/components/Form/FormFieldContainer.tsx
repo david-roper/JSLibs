@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { FormFieldDescription } from './FormFieldDescription';
+import { FormFieldDescription } from './FormFieldDescription.js';
 
 export interface FormFieldContainerProps {
   children: React.ReactNode;

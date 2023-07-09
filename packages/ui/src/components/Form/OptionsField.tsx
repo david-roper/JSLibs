@@ -6,8 +6,8 @@ import { OptionsFormField } from '@douglasneuroinformatics/form-types';
 import { Listbox, Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
-import { FormFieldContainer } from './FormFieldContainer';
-import { BaseFieldProps } from './types';
+import { FormFieldContainer } from './FormFieldContainer.js';
+import { BaseFieldProps } from './types.js';
 
 export type OptionsFieldProps<T extends string = string> = BaseFieldProps<T | null> & OptionsFormField<T>;
 

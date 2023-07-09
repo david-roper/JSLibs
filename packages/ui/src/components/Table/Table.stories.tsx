@@ -3,7 +3,7 @@ import React from 'react';
 import { randomInt, range } from '@douglasneuroinformatics/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Table, TableColumn } from './Table';
+import { Table, TableColumn } from './Table.js';
 
 type ExampleItem = {
   id: string;
@@ -46,7 +46,7 @@ const data: ExampleItem[] = range(25).map((i) => {
   return item as ExampleItem;
 });
 
-export default {
+const meta: Meta<typeof Table> = {
   component: Table,
   decorators: [
     (Story) => (
@@ -55,7 +55,9 @@ export default {
       </div>
     )
   ]
-} as Meta<typeof Table>;
+};
+
+export default meta;
 
 export const Default: StoryObj<typeof Table<ExampleItem>> = {
   args: {

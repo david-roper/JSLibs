@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ArrowToggle } from './ArrowToggle';
+import { ArrowToggle } from './ArrowToggle.js';
 
 type Story = StoryObj<typeof ArrowToggle>;
 
-export default { component: ArrowToggle } as Meta<typeof ArrowToggle>;
+export default { component: ArrowToggle } satisfies Meta<typeof ArrowToggle>;
 
 export const UpToDown: Story = {
   args: {

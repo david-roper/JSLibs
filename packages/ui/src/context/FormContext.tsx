@@ -4,7 +4,7 @@ import React, { createContext } from 'react';
 
 import { FormInstrumentData } from '@douglasneuroinformatics/form-types';
 
-import type { FormErrors, FormValues } from '../components';
+import type { FormErrors, FormValues } from '@/components/Form/types.js';
 
 export interface FormState<T extends FormInstrumentData = FormInstrumentData> {
   errors: FormErrors<T>;

@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DatePicker } from './DatePicker';
+import { DatePicker } from './DatePicker.js';
 
 type Story = StoryObj<typeof DatePicker>;
 
-export default { component: DatePicker } as Meta<typeof DatePicker>;
+export default { component: DatePicker } satisfies Meta<typeof DatePicker>;
 
 export const Default: Story = {
   args: {

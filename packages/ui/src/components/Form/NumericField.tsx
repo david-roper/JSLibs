@@ -5,9 +5,9 @@ import React from 'react';
 import { NumericFormField } from '@douglasneuroinformatics/form-types';
 import { clsx } from 'clsx';
 
-import { FormFieldContainer } from './FormFieldContainer';
-import { FormFieldDescription } from './FormFieldDescription';
-import { BaseFieldProps } from './types';
+import { FormFieldContainer } from './FormFieldContainer.js';
+import { FormFieldDescription } from './FormFieldDescription.js';
+import { BaseFieldProps } from './types.js';
 
 export type NumericFieldProps = BaseFieldProps<number | null> & NumericFormField;
 

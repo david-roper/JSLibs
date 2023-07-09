@@ -2,9 +2,9 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Form } from './Form';
+import { Form } from './Form.js';
 
-export default {
+const meta: Meta<typeof Form> = {
   component: Form,
   decorators: [
     (Story) => (
@@ -14,7 +14,9 @@ export default {
       </div>
     )
   ]
-} as Meta<typeof Form>;
+};
+
+export default meta;
 
 type BasicFormValues = {
   textShort: string;

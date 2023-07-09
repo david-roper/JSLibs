@@ -2,14 +2,14 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { useNotificationsStore } from '../../stores/notifications-store';
-import { Button } from '../Button';
+import { NotificationHub } from './NotificationHub.js';
 
-import { NotificationHub } from './NotificationHub';
+import { Button } from '@/components/Button/Button.js';
+import { useNotificationsStore } from '@/stores/notifications-store.js';
 
 type Story = StoryObj<typeof NotificationHub>;
 
-export default {
+const meta: Meta<typeof NotificationHub> = {
   component: NotificationHub,
   decorators: [
     (Story) => {
@@ -31,7 +31,9 @@ export default {
       );
     }
   ]
-} as Meta<typeof NotificationHub>;
+};
+
+export default meta;
 
 export const Default: Story = {
   args: {

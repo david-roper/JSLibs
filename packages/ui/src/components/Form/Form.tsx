@@ -13,15 +13,15 @@ import { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { FormProvider } from '../../context/FormContext';
-import { ajv } from '../../services/ajv';
-import { withI18nProvider } from '../../utils/with-i18n-provider';
-import { Button } from '../Button';
+import { ArrayField, ArrayFieldProps } from './ArrayField.js';
+import { PrimitiveFormField, PrimitiveFormFieldProps } from './PrimitiveFormField.js';
+import { FormErrors, FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types.js';
+import { getDefaultValues } from './utils.js';
 
-import { ArrayField, ArrayFieldProps } from './ArrayField';
-import { PrimitiveFormField, PrimitiveFormFieldProps } from './PrimitiveFormField';
-import { FormErrors, FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types';
-import { getDefaultValues } from './utils';
+import { Button } from '@/components/Button/Button.js';
+import { FormProvider } from '@/context/FormContext.js';
+import { ajv } from '@/services/ajv.js';
+import { withI18nProvider } from '@/utils/with-i18n-provider.js';
 
 /** Custom error messages to be supplied for each field */
 type ErrorMessages<T extends FormInstrumentData> = {

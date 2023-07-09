@@ -7,8 +7,8 @@ import { RadioGroup, Switch } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from 'react-i18next';
 
-import { FormFieldContainer } from './FormFieldContainer';
-import { BaseFieldProps } from './types';
+import { FormFieldContainer } from './FormFieldContainer.js';
+import { BaseFieldProps } from './types.js';
 
 type BinaryFieldProps = BaseFieldProps<boolean | null> & BinaryFormField;
 

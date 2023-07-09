@@ -2,10 +2,10 @@
 
 import React, { useReducer } from 'react';
 
-import { StepperContext } from '../../context/StepperContext';
+import { StepperDivider } from './StepperDivider.js';
+import { StepperIcon } from './StepperIcon.js';
 
-import { StepperDivider } from './StepperDivider';
-import { StepperIcon } from './StepperIcon';
+import { StepperContext } from '@/context/StepperContext.js';
 
 interface Step {
   label: string;

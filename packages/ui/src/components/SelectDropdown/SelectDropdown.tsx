@@ -6,7 +6,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';
 
-import { Button, type ButtonProps } from '../Button';
+import { Button, type ButtonProps } from '@/components/Button/Button.js';
 
 export interface SelectOption {
   key: string;

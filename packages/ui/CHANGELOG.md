@@ -1,5 +1,16 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.0
+
+### Minor Changes
+
+- Use Node16 module resolution
+
+### Patch Changes
+
+- Updated dependencies
+  - @douglasneuroinformatics/ajv@0.0.1
+
 ## 0.0.3
 
 ### Patch Changes

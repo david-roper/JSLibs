@@ -1,7 +1,5 @@
 'use client';
 
-// Once the migration is over, should try to render on the server if possible as this is huge
-
 import React from 'react';
 
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
@@ -21,7 +19,7 @@ import {
 } from 'recharts';
 import { ConditionalKeys } from 'type-fest';
 
-import { withI18nProvider } from '../../utils/with-i18n-provider';
+import { withI18nProvider } from '@/utils/with-i18n-provider.js';
 
 /** An array of arbitrary objects with data to graph  */
 type LineGraphData = readonly Record<string, any>[];

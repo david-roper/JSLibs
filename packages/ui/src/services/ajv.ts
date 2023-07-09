@@ -1,9 +1,3 @@
-import Ajv from 'ajv';
-import addErrors from 'ajv-errors';
-import addFormats from 'ajv-formats';
+import { AjvFactory } from '@douglasneuroinformatics/ajv';
 
-const ajv = new Ajv({ allErrors: true, coerceTypes: false, strict: true });
-addErrors(ajv);
-addFormats(ajv);
-
-export { ajv };
+export const ajv = AjvFactory.create();

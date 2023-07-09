@@ -3,11 +3,13 @@ import React from 'react';
 import { FaceSmileIcon } from '@heroicons/react/24/solid';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { type Step, Stepper } from './Stepper';
+import { type Step, Stepper } from './Stepper.js';
 
 type Story = StoryObj<typeof Stepper>;
 
-export default { component: Stepper } as Meta<typeof Stepper>;
+const meta: Meta<typeof Stepper> = { component: Stepper };
+
+export default meta;
 
 const steps: Step[] = [];
 for (let i = 1; i < 4; i++) {

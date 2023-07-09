@@ -5,8 +5,8 @@ import React from 'react';
 import { TextFormField } from '@douglasneuroinformatics/form-types';
 import { clsx } from 'clsx';
 
-import { FormFieldContainer } from './FormFieldContainer';
-import { BaseFieldProps } from './types';
+import { FormFieldContainer } from './FormFieldContainer.js';
+import { BaseFieldProps } from './types.js';
 
 export type TextFieldProps = BaseFieldProps<string | null> & TextFormField;
 

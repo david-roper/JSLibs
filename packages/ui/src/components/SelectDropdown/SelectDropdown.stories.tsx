@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { SelectDropdown } from './SelectDropdown';
+import { SelectDropdown } from './SelectDropdown.js';
 
 type Story = StoryObj<typeof SelectDropdown>;
 
-export default { component: SelectDropdown } as Meta<typeof SelectDropdown>;
+const meta: Meta<typeof SelectDropdown> = { component: SelectDropdown };
+
+export default meta;
 
 const options = [
   {
