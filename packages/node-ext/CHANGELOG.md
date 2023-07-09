@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/node-ext
 
+## 0.0.3
+
+### Patch Changes
+
+- Make readJSON sync
+
 ## 0.0.2
 
 ### Patch Changes
