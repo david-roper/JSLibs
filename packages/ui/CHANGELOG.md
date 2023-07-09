@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.2
+
+### Patch Changes
+
+- Remove import alias
+
 ## 0.1.1
 
 ### Patch Changes

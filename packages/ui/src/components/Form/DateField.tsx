@@ -7,10 +7,10 @@ import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
+import { DatePicker } from '../DatePicker/DatePicker.js';
+
 import { FormFieldContainer } from './FormFieldContainer.js';
 import { BaseFieldProps } from './types.js';
-
-import { DatePicker } from '@/components/DatePicker/DatePicker.js';
 
 export type DateFieldProps = BaseFieldProps<string | null> & DateFormField;
 

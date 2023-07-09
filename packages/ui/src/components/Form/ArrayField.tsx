@@ -5,10 +5,10 @@ import React from 'react';
 import { ArrayFormField } from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 
+import { Button } from '../Button/Button.js';
+
 import { PrimitiveFormField, PrimitiveFormFieldProps } from './PrimitiveFormField.js';
 import type { BaseFieldProps, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types.js';
-
-import { Button } from '@/components/Button/Button.js';
 
 export type ArrayFieldProps = BaseFieldProps<NullableArrayFieldValue> & ArrayFormField;
 

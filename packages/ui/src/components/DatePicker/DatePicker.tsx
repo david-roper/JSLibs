@@ -6,11 +6,12 @@ import { clsx } from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
+import { withI18nProvider } from '../../utils/with-i18n-provider.js';
+import { ArrowToggle } from '../ArrowToggle/ArrowToggle.js';
+
 import { CALENDAR_ANIMATION_DURATION, Calendar } from './Calendar.js';
 import { YearSelector } from './YearSelector.js';
 
-import { ArrowToggle } from '@/components/ArrowToggle/ArrowToggle.js';
-import { withI18nProvider } from '@/utils/with-i18n-provider.js';
 
 interface IncrementAction {
   type: 'increment';

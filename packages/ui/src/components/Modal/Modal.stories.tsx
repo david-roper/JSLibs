@@ -2,9 +2,9 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Modal } from './Modal.js';
+import { Button } from '../Button/Button.js';
 
-import { Button } from '@/components/Button/Button.js';
+import { Modal } from './Modal.js';
 
 type Story = StoryObj<typeof Modal>;
 

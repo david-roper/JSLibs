@@ -4,7 +4,7 @@ import React from 'react';
 
 import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 
-import { type NotificationInterface } from '@/stores/notifications-store.js';
+import { type NotificationInterface } from '../../stores/notifications-store.js';
 
 export interface NotificationIconProps {
   type: NotificationInterface['type'];
