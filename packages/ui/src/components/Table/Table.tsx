@@ -67,6 +67,7 @@ export const Table = <T extends TableEntry>({ columns, data, onEntryClick }: Tab
       </div>
       <div className="w-fit min-w-full divide-y divide-solid divide-slate-200 bg-white dark:divide-slate-600 dark:bg-slate-800">
         {data.map((entry, i) => (
+          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
           <div className="flex" key={i} onClick={() => onEntryClick && onEntryClick(entry)}>
             {columns.map(({ field, formatter }, i) => {
               const value = typeof field === 'function' ? field(entry) : entry[field];

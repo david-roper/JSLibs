@@ -19,7 +19,7 @@
     "build": "tsc -p tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "eslint --fix src",
-    "test": "node --loader ts-node/esm --no-warnings --test src/*.test.ts"
+    "test": "node --loader @swc-node/register/esm --no-warnings --test src/*.test.ts"
   },
   "devDependencies": {
     "typedoc": "^0.24.7"
