@@ -1,0 +1,30 @@
+{
+  "name": "@douglasneuroinformatics/stats",
+  "version": "0.0.1",
+  "description": "Very basic statistics",
+  "license": "LGPL-3.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write src",
+    "lint": "eslint --fix src",
+    "test": "node --loader ts-node/esm --no-warnings --test src/*.test.ts"
+  },
+  "devDependencies": {
+    "typedoc": "^0.24.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
