@@ -29,7 +29,7 @@ export class Stats {
     return Math.sqrt(variance);
   }
 
-  linearRegression(arr: Array<[number, number]>): { intercept: number; slope: number; stdErr: number } {
+  static linearRegression(arr: Array<[number, number]>): { intercept: number; slope: number; stdErr: number } {
     const n = arr.length;
 
     // Extract the x and y values into separate arrays
