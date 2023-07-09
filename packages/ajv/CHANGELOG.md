@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ajv
 
+## 0.0.4
+
+### Patch Changes
+
+- Export AJV default as type
+
 ## 0.0.3
 
 ### Patch Changes

@@ -16,3 +16,5 @@ export class AjvFactory {
     return ajv;
   }
 }
+
+export type { Ajv };
