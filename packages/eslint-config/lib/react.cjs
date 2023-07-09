@@ -1,67 +1,68 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: [
-    "@douglasneuroinformatics/eslint-config/lib/base.cjs",
-    "plugin:react/recommended",
+    '@douglasneuroinformatics/eslint-config/lib/base.cjs',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended'
   ],
   env: {
-    browser: true,
+    browser: true
   },
-  plugins: ["import", "react"],
+  plugins: ['import', 'react', 'jsx-a11y'],
   rules: {
-    "import/order": [
-      "error",
+    'import/order': [
+      'error',
       {
         alphabetize: {
           caseInsensitive: true,
-          order: "asc",
+          order: 'asc'
         },
-        "newlines-between": "always",
+        'newlines-between': 'always',
         pathGroups: [
           {
-            group: "external",
-            pattern: "{react,react-dom/**}",
-            position: "before",
-          },
+            group: 'external',
+            pattern: '{react,react-dom/**}',
+            position: 'before'
+          }
         ],
-        pathGroupsExcludedImportTypes: ["react", "react-dom/**"],
-      },
+        pathGroupsExcludedImportTypes: ['react', 'react-dom/**']
+      }
     ],
-    "no-alert": "error",
-    "no-console": ["error", { allow: ["warn", "error"] }],
-    "react/function-component-definition": [
-      "error",
+    'no-alert': 'error',
+    'no-console': ['error', { allow: ['warn', 'error'] }],
+    'react/function-component-definition': [
+      'error',
       {
-        namedComponents: "arrow-function",
-        unnamedComponents: "arrow-function",
-      },
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function'
+      }
     ],
-    "react/react-in-jsx-scope": "off",
-    "react/jsx-sort-props": [
-      "error",
+    'react/react-in-jsx-scope': 'off',
+    'react/jsx-sort-props': [
+      'error',
       {
         callbacksLast: true,
-        shorthandFirst: true,
-      },
+        shorthandFirst: true
+      }
     ],
-    "react/prop-types": "off",
+    'react/prop-types': 'off'
   },
   settings: {
-    "import/extensions": [".ts", ".tsx"],
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"],
+    'import/extensions': ['.ts', '.tsx'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
     },
     react: {
-      version: "detect",
-    },
+      version: 'detect'
+    }
   },
   overrides: [
     {
-      files: ["**/*.stories.jsx", "**/*.stories.tsx"],
+      files: ['**/*.stories.jsx', '**/*.stories.tsx'],
       rules: {
-        "no-alert": "off",
-        "import/exports-last": "off",
-      },
-    },
-  ],
+        'no-alert': 'off',
+        'import/exports-last': 'off'
+      }
+    }
+  ]
 };

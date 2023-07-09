@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 0.1.3
+
+### Patch Changes
+
+- Add nestjs config and a11y to react
+
 ## 0.1.2
 
 ### Patch Changes
