@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/node-ext",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utilities for Node.js APIs",
   "license": "LGPL-3.0",
   "type": "module",
