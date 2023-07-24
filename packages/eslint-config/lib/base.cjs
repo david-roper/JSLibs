@@ -33,7 +33,14 @@ module.exports = {
   overrides: [
     {
       extends: ['eslint:recommended', 'prettier'],
-      files: ['**/*.js', '**/*.cjs', '**/*.mjs'],
+      files: ['**/*.js', '**/*.mjs'],
+      env: {
+        node: true
+      }
+    },
+    {
+      extends: ['eslint:recommended', 'prettier'],
+      files: ['**/*.cjs'],
       env: {
         commonjs: true,
         node: true
