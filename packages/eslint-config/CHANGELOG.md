@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 0.1.4
+
+### Patch Changes
+
+- 05eff22: Add node to all JS files
+
 ## 0.1.3
 
 ### Patch Changes
