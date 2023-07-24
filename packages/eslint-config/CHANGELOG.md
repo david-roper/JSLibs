@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 0.1.5
+
+### Patch Changes
+
+- Remove CJS from MJS files
+
 ## 0.1.4
 
 ### Patch Changes

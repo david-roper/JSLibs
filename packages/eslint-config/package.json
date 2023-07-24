@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/eslint-config",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Linting configurations for DNP projects written in TypeScript/JavaScript",
   "keywords": [
     "eslint",
