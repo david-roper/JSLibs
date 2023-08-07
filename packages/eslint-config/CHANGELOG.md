@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 0.1.6
+
+### Patch Changes
+
+- Update peer deps
+
 ## 0.1.5
 
 ### Patch Changes
