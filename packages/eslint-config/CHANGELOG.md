@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 1.0.0
+
+### Major Changes
+
+- Update typescript linting config to strict mode with v6 breaking changes
+
 ## 0.1.7
 
 ### Patch Changes
