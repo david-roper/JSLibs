@@ -1,5 +1,19 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.3
+
+### Patch Changes
+
+- 3071452: Update for new ts lint rules
+- fd5cfa6: Update dependencies
+- 5ee289c: Update deps
+- Updated dependencies [3071452]
+- Updated dependencies [fd5cfa6]
+- Updated dependencies [5ee289c]
+  - @douglasneuroinformatics/utils@0.4.1
+  - @douglasneuroinformatics/form-types@0.0.3
+  - @douglasneuroinformatics/ajv@0.0.5
+
 ## 0.1.2
 
 ### Patch Changes

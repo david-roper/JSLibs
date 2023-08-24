@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ajv
 
+## 0.0.5
+
+### Patch Changes
+
+- 5ee289c: Update deps
+
 ## 0.0.4
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/stats",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Very basic statistics",
   "license": "LGPL-3.0",
   "type": "module",

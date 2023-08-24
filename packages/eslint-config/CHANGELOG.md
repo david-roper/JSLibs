@@ -1,5 +1,12 @@
 # @douglasneuroinformatics/eslint-config
 
+## 1.0.1
+
+### Patch Changes
+
+- fd5cfa6: Update dependencies
+- 5ee289c: Update deps
+
 ## 1.0.0
 
 ### Major Changes

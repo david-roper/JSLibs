@@ -1,5 +1,12 @@
 # @douglasneuroinformatics/node-ext
 
+## 0.0.5
+
+### Patch Changes
+
+- fd5cfa6: Update dependencies
+- 5ee289c: Update deps
+
 ## 0.0.4
 
 ### Patch Changes
