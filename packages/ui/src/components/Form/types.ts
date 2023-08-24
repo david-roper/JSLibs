@@ -2,9 +2,9 @@ import { ArrayFieldValue, FormInstrumentData, PrimitiveFieldValue } from '@dougl
 
 export type NullablePrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = T | null;
 
-export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = Array<{
+export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = {
   [K in keyof T[number]]: NullablePrimitiveFieldValue<T[number][K]>;
-}>;
+}[];
 
 /** Common props for all field components */
 export interface BaseFieldProps<T> {

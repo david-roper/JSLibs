@@ -75,7 +75,7 @@ export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ..
             position="up"
             rotation={180}
             tabIndex={-1}
-            onClick={() => setShowYearSelector(!showYearSelector)}
+            onClick={() => { setShowYearSelector(!showYearSelector); }}
           />
         </div>
         <div className={clsx('flex', { hidden: showYearSelector })}>
@@ -88,7 +88,7 @@ export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ..
               if (canSetMonth) {
                 setCanSetMonth(false);
                 dispatch({ type: 'decrement' });
-                setTimeout(() => setCanSetMonth(true), CALENDAR_ANIMATION_DURATION * 2000);
+                setTimeout(() => { setCanSetMonth(true); }, CALENDAR_ANIMATION_DURATION * 2000);
               }
             }}
           />
@@ -101,7 +101,7 @@ export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ..
               if (canSetMonth) {
                 setCanSetMonth(false);
                 dispatch({ type: 'increment' });
-                setTimeout(() => setCanSetMonth(true), CALENDAR_ANIMATION_DURATION * 2000);
+                setTimeout(() => { setCanSetMonth(true); }, CALENDAR_ANIMATION_DURATION * 2000);
               }
             }}
           />

@@ -75,7 +75,7 @@ export function useSessionStorage<T>(key: string, initialValue: T): [T, SetValue
 
   const handleStorageChange = useCallback(
     (event: StorageEvent | CustomEvent) => {
-      if ((event as StorageEvent)?.key && (event as StorageEvent).key !== key) {
+      if ((event as StorageEvent).key && (event as StorageEvent).key !== key) {
         return;
       }
       setStoredValue(readValue());

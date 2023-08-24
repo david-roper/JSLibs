@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/unified-signatures */
+
 /** Return an array of integers between 0 (inclusive) and `end` (not inclusive) */
 export function range(end: number): readonly number[];
 

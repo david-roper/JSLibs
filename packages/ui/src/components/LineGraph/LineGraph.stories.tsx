@@ -4,13 +4,13 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { LineGraph } from './LineGraph.js';
 
-type GraphData = ReadonlyArray<{
+type GraphData = readonly {
   time: number;
   m1: number;
   sd1: number;
   m2: number;
   sd2: number;
-}>;
+}[];
 
 type Story = StoryObj<typeof LineGraph<GraphData>>;
 

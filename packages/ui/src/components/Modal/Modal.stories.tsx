@@ -13,7 +13,7 @@ const meta: Meta<typeof Modal> = {
   args: {
     open: true,
     title: 'Terms and Conditions',
-    onClose: () => alert('Close!')
+    onClose: () => { alert('Close!'); }
   }
 };
 

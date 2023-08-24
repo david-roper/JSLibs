@@ -33,7 +33,7 @@ export const YearSelector = (props: YearSelectorProps) => {
             ref={year === props.selected.getFullYear() ? selectedRef : null}
             tabIndex={-1}
             type="button"
-            onClick={() => props.onSelection(new Date(year, 0))}
+            onClick={() => { props.onSelection(new Date(year, 0)); }}
           >
             {year}
           </button>

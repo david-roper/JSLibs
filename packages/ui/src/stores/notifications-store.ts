@@ -19,11 +19,11 @@ export interface NotificationsStore {
 export const useNotificationsStore = create<NotificationsStore>((set) => ({
   notifications: [],
   addNotification: (notification) =>
-    set((state) => ({
+    { set((state) => ({
       notifications: [...state.notifications, { id: Date.now(), ...notification }]
-    })),
+    })); },
   dismissNotification: (id) =>
-    set((state) => ({
+    { set((state) => ({
       notifications: state.notifications.filter((notification) => notification.id !== id)
-    }))
+    })); }
 }));

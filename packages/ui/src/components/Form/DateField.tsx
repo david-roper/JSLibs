@@ -40,9 +40,9 @@ export const DateField = ({ description, name, label, error, value, setValue }: 
         autoComplete="off"
         className="field-input"
         value={value ?? ''}
-        onBlur={() => setInputFocused(false)}
-        onChange={(event) => handleChange(event.target.value)}
-        onFocus={() => setInputFocused(true)}
+        onBlur={() => { setInputFocused(false); }}
+        onChange={(event) => { handleChange(event.target.value); }}
+        onFocus={() => { setInputFocused(true); }}
       />
       <label
         className={clsx('field-label-floating', {
@@ -64,8 +64,8 @@ export const DateField = ({ description, name, label, error, value, setValue }: 
       >
         <div className="absolute">
           <DatePicker
-            onMouseEnter={() => setMouseInDatePicker(true)}
-            onMouseLeave={() => setMouseInDatePicker(false)}
+            onMouseEnter={() => { setMouseInDatePicker(true); }}
+            onMouseLeave={() => { setMouseInDatePicker(false); }}
             onSelection={handleDatePickerSelection}
           />
         </div>

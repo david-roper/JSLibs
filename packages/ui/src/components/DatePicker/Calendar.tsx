@@ -8,11 +8,11 @@ import { useTranslation } from 'react-i18next';
 
 export const CALENDAR_ANIMATION_DURATION = 0.2; // seconds
 
-export type CalendarProps = {
+export interface CalendarProps {
   year: number;
   month: number;
   onSelection: (date: Date) => void;
-};
+}
 
 export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(function Calendar(props, ref) {
   const { t } = useTranslation();
@@ -45,7 +45,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(function
               key={day}
               tabIndex={-1}
               type="button"
-              onClick={() => props.onSelection(new Date(props.year, props.month, day))}
+              onClick={() => { props.onSelection(new Date(props.year, props.month, day)); }}
             >
               {day}
             </button>

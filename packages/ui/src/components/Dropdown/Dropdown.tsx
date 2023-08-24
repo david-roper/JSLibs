@@ -79,7 +79,7 @@ export function Dropdown<const T extends DropdownOptions>({
               <button
                 className="p-2 text-left hover:bg-slate-200 dark:hover:bg-slate-700"
                 style={{ minWidth: 100 }}
-                onClick={() => onSelection(option as DropdownOptionKey<T>)}
+                onClick={() => { onSelection(option as DropdownOptionKey<T>); }}
               >
                 {Array.isArray(options) ? option : (options[option as keyof T] as string)}
               </button>

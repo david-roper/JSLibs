@@ -8,6 +8,6 @@ export default { component: DatePicker } satisfies Meta<typeof DatePicker>;
 
 export const Default: Story = {
   args: {
-    onSelection: (date) => alert(date)
+    onSelection: (date) => { alert(date); }
   }
 };

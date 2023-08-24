@@ -18,7 +18,7 @@ const meta: Meta<typeof Form> = {
 
 export default meta;
 
-type BasicFormValues = {
+interface BasicFormValues {
   textShort: string;
   textLong: string;
   textPassword: string;
@@ -28,7 +28,7 @@ type BasicFormValues = {
   date: string;
   binaryCheck: boolean;
   binaryRadio: boolean;
-};
+}
 
 export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
   args: {
@@ -93,17 +93,17 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
       type: 'object',
       required: []
     },
-    onSubmit: (data) => alert(JSON.stringify(data, null, 2))
+    onSubmit: (data) => { alert(JSON.stringify(data, null, 2)); }
   }
 };
 
-type ArrayFormValues = {
+interface ArrayFormValues {
   f0: string;
-  array: Array<{
+  array: {
     f1: string;
     f2: number;
-  }>;
-};
+  }[];
+}
 
 export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
   args: {
@@ -167,16 +167,16 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
       },
       required: ['f0', 'array']
     },
-    onSubmit: (data) => alert(JSON.stringify(data, null, 2))
+    onSubmit: (data) => { alert(JSON.stringify(data, null, 2)); }
   }
 };
 
-type GroupedFormValues = {
+interface GroupedFormValues {
   f1: string;
   f2: string;
   f3: string;
   f4: string;
-};
+}
 
 export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
   args: {
@@ -238,6 +238,6 @@ export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
       },
       required: ['f1', 'f2', 'f3', 'f4']
     },
-    onSubmit: (data) => alert(JSON.stringify(data, null, 2))
+    onSubmit: (data) => { alert(JSON.stringify(data, null, 2)); }
   }
 };

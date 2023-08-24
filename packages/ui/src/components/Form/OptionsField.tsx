@@ -28,7 +28,7 @@ export const OptionsField = <T extends string = string>({
             <Listbox.Button className="field-input capitalize">{value ? options[value] : ''}</Listbox.Button>
             <Listbox.Label
               className={clsx('field-label-floating', {
-                'field-label-floating--active': value || open
+                'field-label-floating--active': value ?? open
               })}
             >
               {label}

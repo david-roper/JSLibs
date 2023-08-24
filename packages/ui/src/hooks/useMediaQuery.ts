@@ -32,7 +32,7 @@ export function useMediaQuery(query: string): boolean {
     // Triggered at the first client-side load and if query changes
     handleChange();
 
-    // Listen matchMedia
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (matchMedia.addListener) {
       matchMedia.addListener(handleChange);
     } else {
@@ -40,6 +40,7 @@ export function useMediaQuery(query: string): boolean {
     }
 
     return () => {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (matchMedia.removeListener) {
         matchMedia.removeListener(handleChange);
       } else {
