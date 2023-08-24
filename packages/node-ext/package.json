@@ -21,7 +21,7 @@
     "lint": "eslint --fix src"
   },
   "devDependencies": {
-    "typedoc": "^0.24.7"
+    "typedoc": "^0.24.8"
   },
   "publishConfig": {
     "access": "public"

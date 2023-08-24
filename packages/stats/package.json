@@ -22,7 +22,7 @@
     "test": "node --loader @swc-node/register/esm --no-warnings --test src/*.test.ts"
   },
   "devDependencies": {
-    "typedoc": "^0.24.7"
+    "typedoc": "^0.24.8"
   },
   "publishConfig": {
     "access": "public"
