@@ -5,7 +5,7 @@ This repository houses generic, reusable React components for DNP projects.
 ## Install
 
 ```shell
-yarn add @douglasneuroinformatics/ui
+npm install @douglasneuroinformatics/ui
 ```
 
 ## Usage
@@ -26,5 +26,5 @@ export default createConfig({
 ### Compile Library
 
 ```shell
-yarn build
+npm run build
 ```

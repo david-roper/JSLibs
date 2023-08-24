@@ -3,5 +3,5 @@
 ## Install
 
 ```shell
-yarn add @douglasneuroinformatics/stats
+npm install @douglasneuroinformatics/stats
 ```

@@ -3,5 +3,5 @@
 ## Install
 
 ```shell
-yarn add @douglasneuroinformatics/utils
+npm install @douglasneuroinformatics/utils
 ```

@@ -3,5 +3,5 @@
 ## Install
 
 ```shell
-yarn add @douglasneuroinformatics/node-ext
+npm install @douglasneuroinformatics/node-ext
 ```
