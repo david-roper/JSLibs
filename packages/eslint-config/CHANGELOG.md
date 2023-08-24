@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 1.0.2
+
+### Patch Changes
+
+- Remove extraneous-class for Nest
+
 ## 1.0.1
 
 ### Patch Changes

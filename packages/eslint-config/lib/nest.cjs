@@ -5,6 +5,7 @@ module.exports = {
     node: true
   },
   rules: {
+    '@typescript-eslint/no-extraneous-class': 'off',
     'import/order': [
       'error',
       {
