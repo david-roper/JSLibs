@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.4
+
+### Patch Changes
+
+- Update peers
+
 ## 0.1.3
 
 ### Patch Changes
