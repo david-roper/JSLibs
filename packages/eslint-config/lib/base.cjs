@@ -56,6 +56,7 @@ module.exports = {
       ],
       parser: '@typescript-eslint/parser',
       rules: {
+        '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/restrict-plus-operands': 'off',
