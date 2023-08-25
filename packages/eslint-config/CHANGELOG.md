@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 1.1.0
+
+### Minor Changes
+
+- Force type instead of interface
+
 ## 1.0.2
 
 ### Patch Changes
