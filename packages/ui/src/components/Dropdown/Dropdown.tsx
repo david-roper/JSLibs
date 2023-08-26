@@ -22,7 +22,7 @@ const ICON_SIZE = {
   lg: 18
 };
 
-export interface DropdownProps<T extends DropdownOptions> {
+export type DropdownProps<T extends DropdownOptions> = {
   /** The text content for the dropdown toggle */
   title: string;
 

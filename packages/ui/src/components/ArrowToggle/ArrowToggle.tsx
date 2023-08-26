@@ -5,7 +5,7 @@ import React, { useMemo, useState } from 'react';
 import { ChevronUpIcon } from '@heroicons/react/24/solid';
 import { twMerge } from 'tailwind-merge';
 
-export interface ArrowToggleProps extends Omit<React.ComponentPropsWithoutRef<'button'>, 'content'> {
+export type ArrowToggleProps = {
   /** The starting position of the arrow (i.e., which direction does it point to) */
   position: 'up' | 'right' | 'down' | 'left';
 
@@ -20,7 +20,7 @@ export interface ArrowToggleProps extends Omit<React.ComponentPropsWithoutRef<'b
 
   /** The size of the arrow in pixels (default is 16px) */
   arrowSize?: number;
-}
+} & Omit<React.ComponentPropsWithoutRef<'button'>, 'content'>
 
 export const ArrowToggle = React.forwardRef<HTMLButtonElement, ArrowToggleProps>(function ArrowToggle(
   { className, position, rotation, onClick, content, contentPosition, arrowSize, ...props },

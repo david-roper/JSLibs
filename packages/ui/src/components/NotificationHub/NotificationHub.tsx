@@ -11,7 +11,7 @@ import { withI18nProvider } from '../../utils/with-i18n-provider.js';
 
 import { NotificationIcon } from './NotificationIcon.js';
 
-interface NotificationHubProps {
+type NotificationHubProps = {
   /** The number of milliseconds before the notification is automatically cleared */
   timeout?: number;
 }

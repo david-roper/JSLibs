@@ -8,12 +8,12 @@ import { clsx } from 'clsx';
 
 import { Button, type ButtonProps } from '../Button/Button.js';
 
-export interface SelectOption {
+export type SelectOption = {
   key: string;
   label: string;
 }
 
-export interface SelectDropdownProps<T extends SelectOption> {
+export type SelectDropdownProps<T extends SelectOption> = {
   title: string;
   options: T[];
   selected: T[];

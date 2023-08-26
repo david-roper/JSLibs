@@ -35,7 +35,7 @@ type ErrorMessages<T extends FormInstrumentData> = {
     : never;
 };
 
-interface FormProps<T extends FormInstrumentData> {
+type FormProps<T extends FormInstrumentData> = {
   content: FormInstrumentContent<T>;
   className?: string;
   initialValues?: FormValues<T> | null;

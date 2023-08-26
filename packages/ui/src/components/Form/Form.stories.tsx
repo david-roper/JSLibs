@@ -18,7 +18,7 @@ const meta: Meta<typeof Form> = {
 
 export default meta;
 
-interface BasicFormValues {
+type BasicFormValues = {
   textShort: string;
   textLong: string;
   textPassword: string;
@@ -97,7 +97,7 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
   }
 };
 
-interface ArrayFormValues {
+type ArrayFormValues = {
   f0: string;
   array: {
     f1: string;
@@ -171,7 +171,7 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
   }
 };
 
-interface GroupedFormValues {
+type GroupedFormValues = {
   f1: string;
   f2: string;
   f3: string;

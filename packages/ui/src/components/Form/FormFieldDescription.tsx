@@ -5,7 +5,7 @@ import React from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
-interface FormFieldDescriptionProps {
+type FormFieldDescriptionProps = {
   description?: string;
 }
 

@@ -11,6 +11,7 @@ export * from './components/Form/PrimitiveFormField.js';
 export * from './components/Form/TextField.js';
 export * from './components/Form/Form.js';
 export * from './components/Form/types.js';
+export * from './components/LanguageToggle/LanguageToggle.js'
 export * from './components/LineGraph/LineGraph.js';
 export * from './components/Modal/Modal.js';
 export * from './components/NotificationHub/NotificationHub.js';
@@ -18,7 +19,7 @@ export * from './components/SearchBar/SearchBar.js';
 export * from './components/SelectDropdown/SelectDropdown.js';
 export * from './components/Stepper/Stepper.js';
 export * from './components/Table/Table.js';
-
+export * from './components/ThemeToggle/ThemeToggle.js';
 export * from './hooks/useDownload.js';
 export * from './hooks/useEventCallback.js';
 export * from './hooks/useEventListener.js';

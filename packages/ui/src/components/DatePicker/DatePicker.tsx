@@ -13,15 +13,15 @@ import { CALENDAR_ANIMATION_DURATION, Calendar } from './Calendar.js';
 import { YearSelector } from './YearSelector.js';
 
 
-interface IncrementAction {
+type IncrementAction = {
   type: 'increment';
 }
 
-interface DecrementAction {
+type DecrementAction = {
   type: 'decrement';
 }
 
-interface SetYearAction {
+type SetYearAction = {
   type: 'set-year';
   value: number;
 }
@@ -43,7 +43,7 @@ const reducer = (previousDate: Date, action: ReducerAction) => {
   return newDate;
 };
 
-export interface DatePickerProps {
+export type DatePickerProps = {
   onSelection: (value: Date) => void;
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;

@@ -7,13 +7,13 @@ import { StepperContext } from '../../context/StepperContext.js';
 import { StepperDivider } from './StepperDivider.js';
 import { StepperIcon } from './StepperIcon.js';
 
-interface Step {
+type Step = {
   label: string;
   icon: React.ReactElement;
   element: React.ReactElement;
 }
 
-interface StepperProps {
+type StepperProps = {
   steps: Step[];
 }
 

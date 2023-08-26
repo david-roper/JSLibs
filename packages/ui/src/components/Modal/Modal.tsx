@@ -4,7 +4,7 @@ import React from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
 
-export interface ModalProps {
+export type ModalProps = {
   open: boolean;
   title: string;
   children: React.ReactNode;

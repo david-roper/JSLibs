@@ -4,14 +4,14 @@ import React, { ForwardedRef } from 'react';
 
 import { twMerge } from 'tailwind-merge';
 
-export interface ButtonProps extends Omit<React.ComponentPropsWithoutRef<'button'>, 'children'> {
+export type ButtonProps = {
   disabled?: boolean;
   icon?: React.ReactElement;
   iconPosition?: 'left' | 'right';
   label: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'primary' | 'secondary' | 'danger';
-}
+} & Omit<React.ComponentPropsWithoutRef<'button'>, 'children'>
 
 export const Button = React.forwardRef(function Button(
   { disabled, className, icon, label, iconPosition = 'left', size = 'md', variant = 'primary', ...props }: ButtonProps,

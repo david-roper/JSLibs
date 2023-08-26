@@ -7,7 +7,7 @@ export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue>
 }[];
 
 /** Common props for all field components */
-export interface BaseFieldProps<T> {
+export type BaseFieldProps<T> = {
   name: string;
   value: T;
   setValue: (value: T) => void;

@@ -21,7 +21,7 @@ export type TableEntry = Record<string, unknown>;
 
 export type FieldFactory = (entry: TableEntry) => string;
 
-export interface TableColumn<T extends TableEntry> {
+export type TableColumn<T extends TableEntry> = {
   /** The label to be displayed on the header */
   label: string;
 
@@ -32,7 +32,7 @@ export interface TableColumn<T extends TableEntry> {
   formatter?: (value: any) => string;
 }
 
-export interface TableProps<T extends TableEntry> {
+export type TableProps<T extends TableEntry> = {
   columns: TableColumn<T>[];
   data: T[];
   onEntryClick?: (entry: T) => void;

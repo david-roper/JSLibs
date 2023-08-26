@@ -4,7 +4,7 @@ import React from 'react';
 
 import { clsx } from 'clsx';
 
-export interface StepperIconProps {
+export type StepperIconProps = {
   icon: React.ReactElement;
   label: string;
   variant: 'dark' | 'light';

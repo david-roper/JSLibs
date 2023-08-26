@@ -6,7 +6,7 @@ import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XCircleI
 
 import { type NotificationInterface } from '../../stores/notifications-store.js';
 
-export interface NotificationIconProps {
+export type NotificationIconProps = {
   type: NotificationInterface['type'];
 }
 

@@ -4,7 +4,7 @@ import React from 'react';
 
 import { clsx } from 'clsx';
 
-interface StepperDividerProps {
+type StepperDividerProps = {
   variant: 'dark' | 'light';
 }
 

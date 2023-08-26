@@ -5,7 +5,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Table, TableColumn } from './Table.js';
 
-interface ExampleItem {
+type ExampleItem = {
   id: string;
   c1: number;
   c2: number;
