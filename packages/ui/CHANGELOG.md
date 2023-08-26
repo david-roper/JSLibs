@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.12
+
+### Patch Changes
+
+- Use tw merge for theme toggle
+
 ## 0.1.11
 
 ### Patch Changes

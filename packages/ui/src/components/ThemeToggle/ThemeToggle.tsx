@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { MoonIcon, SunIcon } from '@heroicons/react/24/outline';
-import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 import { useTheme } from '../../hooks/useTheme.js';
 
@@ -18,7 +18,7 @@ export const ThemeToggle = ({ className }: ThemeToggleProps) => {
 
   return (
     <button
-      className={clsx(
+      className={twMerge(
         'rounded-md p-2 transition-transform hover:backdrop-brightness-95 dark:hover:backdrop-brightness-150',
         className
       )}
