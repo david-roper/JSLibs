@@ -1,5 +1,12 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.5
+
+### Patch Changes
+
+- Add theme and lang toggles
+- comply with new lint rules
+
 ## 0.1.4
 
 ### Patch Changes
