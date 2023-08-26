@@ -11,7 +11,8 @@ export * from './components/Form/PrimitiveFormField.js';
 export * from './components/Form/TextField.js';
 export * from './components/Form/Form.js';
 export * from './components/Form/types.js';
-export * from './components/LanguageToggle/LanguageToggle.js'
+export * from './components/FormPageWrapper/FormPageWrapper.js';
+export * from './components/LanguageToggle/LanguageToggle.js';
 export * from './components/LineGraph/LineGraph.js';
 export * from './components/Modal/Modal.js';
 export * from './components/NotificationHub/NotificationHub.js';
