@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.11
+
+### Patch Changes
+
+- Export theme
+
 ## 0.1.10
 
 ### Patch Changes
