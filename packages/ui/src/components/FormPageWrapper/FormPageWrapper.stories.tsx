@@ -17,6 +17,36 @@ const meta: Meta<typeof FormPageWrapper> = {
           distinctio, porro pariatur aperiam consectetur veritatis ad itaque doloremque ex corporis reiciendis non quod
           esse cum.
         </p>
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatibus harum et, facilis aut
+          distinctio, porro pariatur aperiam consectetur veritatis ad itaque doloremque ex corporis reiciendis non quod
+          esse cum.
+        </p>
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatibus harum et, facilis aut
+          distinctio, porro pariatur aperiam consectetur veritatis ad itaque doloremque ex corporis reiciendis non quod
+          esse cum.
+        </p>
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatibus harum et, facilis aut
+          distinctio, porro pariatur aperiam consectetur veritatis ad itaque doloremque ex corporis reiciendis non quod
+          esse cum.
+        </p>
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatibus harum et, facilis aut
+          distinctio, porro pariatur aperiam consectetur veritatis ad itaque doloremque ex corporis reiciendis non quod
+          esse cum.
+        </p>
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatibus harum et, facilis aut
+          distinctio, porro pariatur aperiam consectetur veritatis ad itaque doloremque ex corporis reiciendis non quod
+          esse cum.
+        </p>
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptatibus harum et, facilis aut
+          distinctio, porro pariatur aperiam consectetur veritatis ad itaque doloremque ex corporis reiciendis non quod
+          esse cum.
+        </p>
       </div>
     ),
     languageOptions: ['en', 'fr'],

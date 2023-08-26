@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.8
+
+### Patch Changes
+
+- Update wrapper style
+
 ## 0.1.7
 
 ### Patch Changes
