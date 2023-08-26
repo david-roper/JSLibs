@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 0.1.10
+
+### Patch Changes
+
+- Allow dropdown dir change
+
 ## 0.1.9
 
 ### Patch Changes

@@ -65,7 +65,10 @@ const meta: Meta<typeof FormPageWrapper> = {
         }}
       />
     ),
-    languageOptions: ['en', 'fr'],
+    languageToggle: {
+      options: ['en', 'fr'],
+      dropdownDirection: 'up'
+    },
     logo: 'https://placehold.co/400'
   }
 };

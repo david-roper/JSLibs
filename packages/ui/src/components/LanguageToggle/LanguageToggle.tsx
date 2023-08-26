@@ -5,7 +5,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-type LanguageToggleProps<T extends string> = {
+export type LanguageToggleProps<T extends string> = {
   dropdownDirection?: 'up' | 'down';
   options: T[];
 };

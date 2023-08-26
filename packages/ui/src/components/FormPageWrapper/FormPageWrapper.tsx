@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { LanguageToggle } from '../LanguageToggle/LanguageToggle.js';
+import { LanguageToggle, LanguageToggleProps } from '../LanguageToggle/LanguageToggle.js';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle.js';
 
 export type FormPageWrapperProps = {
   title: string;
   children: React.ReactNode;
   logo: string;
-  languageOptions: string[];
+  languageToggle: LanguageToggleProps<string>;
   widthMultiplier?: number;
 };
 
@@ -16,7 +16,7 @@ export const FormPageWrapper = ({
   children,
   title,
   logo,
-  languageOptions,
+  languageToggle,
   widthMultiplier = 1
 }: FormPageWrapperProps) => (
   <div className="flex min-h-screen items-center justify-center">
@@ -28,7 +28,7 @@ export const FormPageWrapper = ({
       <h1 className="text-2xl mb-3 font-bold tracking-tight first-letter:capitalize">{title}</h1>
       {children}
       <div className="mt-5 flex w-full justify-between bg-inherit">
-        <LanguageToggle options={languageOptions} />
+        <LanguageToggle {...languageToggle} />
         <ThemeToggle />
       </div>
     </div>
