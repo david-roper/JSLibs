@@ -21,13 +21,13 @@ export const FormPageWrapper = ({
 }: FormPageWrapperProps) => (
   <div className="flex min-h-screen items-center justify-center">
     <div
-      className="flex flex-col items-center rounded-2xl bg-white p-8 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800"
+      className="flex flex-col m-5 items-center rounded-2xl bg-white p-8 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800"
       style={{ width: `${24 * widthMultiplier}rem` }}
     >
       <img alt="logo" className="m-2 h-auto w-16" src={logo} />
       <h1 className="text-2xl mb-3 font-bold tracking-tight first-letter:capitalize">{title}</h1>
       {children}
-      <div className="mt-3 flex w-full justify-between bg-inherit">
+      <div className="mt-5 flex w-full justify-between bg-inherit">
         <LanguageToggle options={languageOptions} />
         <ThemeToggle />
       </div>
