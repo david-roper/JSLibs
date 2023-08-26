@@ -12,7 +12,7 @@ export type CalendarProps = {
   year: number;
   month: number;
   onSelection: (date: Date) => void;
-}
+};
 
 export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(function Calendar(props, ref) {
   const { t } = useTranslation();
@@ -41,11 +41,13 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(function
           <div style={{ gridColumn: `span ${firstDay} / span ${firstDay}` }} />
           {days.map((day) => (
             <button
-              className="flex h-9 w-9 items-center justify-center rounded-full text-sm hover:bg-slate-200"
+              className="flex h-9 w-9 items-center justify-center rounded-full text-sm hover:bg-slate-200 dark:hover:bg-slate-700"
               key={day}
               tabIndex={-1}
               type="button"
-              onClick={() => { props.onSelection(new Date(props.year, props.month, day)); }}
+              onClick={() => {
+                props.onSelection(new Date(props.year, props.month, day));
+              }}
             >
               {day}
             </button>
