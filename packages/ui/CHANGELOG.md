@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.1
+
+### Patch Changes
+
+- Update table
+
 ## 1.0.0
 
 ### Major Changes

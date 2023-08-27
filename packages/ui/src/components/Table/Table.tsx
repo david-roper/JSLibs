@@ -1,6 +1,7 @@
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React from 'react';
 
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
+import { clsx } from 'clsx';
 
 /** Coerces the value in a cell to a string for consistant display purposes */
 function defaultFormatter(value: unknown): string {
@@ -30,60 +31,55 @@ export type TableColumn<T extends TableEntry> = {
 
   /** Override the default formatter for this field */
   formatter?: (value: any) => string;
-}
+};
 
 export type TableProps<T extends TableEntry> = {
   columns: TableColumn<T>[];
   data: T[];
   onEntryClick?: (entry: T) => void;
-}
+};
 
 export const Table = <T extends TableEntry>({ columns, data, onEntryClick }: TableProps<T>) => {
-  // const [ref, { width, height }] = useElementSize();
-  const ref = useRef<HTMLDivElement>(null);
-  const [columnWidth, setColumnWidth] = useState<number>();
-
-  useLayoutEffect(() => {
-    if (ref.current) {
-      setColumnWidth(ref.current.offsetWidth / 4);
-    }
-  }, []);
-
   return (
-    <div
-      className="h-full w-full border-separate overflow-scroll rounded-md shadow-md ring-1 ring-black ring-opacity-5"
-      ref={ref}
-    >
-      <div className="sticky top-0 flex w-fit border-b border-slate-300 bg-slate-50 dark:border-0 dark:bg-slate-700">
-        {columns.map((column) => (
-          <div
-            className="flex-shrink-0 p-4 text-sm font-semibold text-slate-800 dark:text-slate-200"
-            key={column.label}
-            style={{ width: columnWidth }}
-          >
-            {column.label}
-          </div>
-        ))}
-      </div>
-      <div className="w-fit min-w-full divide-y divide-solid divide-slate-200 bg-white dark:divide-slate-600 dark:bg-slate-800">
-        {data.map((entry, i) => (
-          // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-          <div className="flex" key={i} onClick={() => { onEntryClick && onEntryClick(entry); }}>
-            {columns.map(({ field, formatter }, i) => {
-              const value = typeof field === 'function' ? field(entry) : entry[field];
-              const formattedValue = formatter ? formatter(value) : defaultFormatter(value);
-              return (
-                <div
-                  className="flex-shrink-0 whitespace-nowrap p-4 text-sm text-slate-600 dark:text-slate-300"
+    <div className="min-w-full overflow-hidden">
+      <div className="overflow-x-scroll w-full rounded-md shadow-md ring-1 ring-black ring-opacity-5">
+        <table className="w-full table-auto">
+          <thead className="border-b border-slate-300 bg-slate-50 dark:border-0 dark:bg-slate-700">
+            <tr>
+              {columns.map((column, i) => (
+                <th
+                  className="whitespace-nowrap px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 text-left"
                   key={i}
-                  style={{ width: columnWidth }}
                 >
-                  {formattedValue}
-                </div>
-              );
-            })}
-          </div>
-        ))}
+                  {column.label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="bg-slate-50 dark:divide-slate-600 divide-y dark:bg-slate-800">
+            {data.map((entry, i) => (
+              <tr
+                className={clsx('whitespace-nowrap p-4 text-sm text-slate-600 dark:text-slate-300', {
+                  'cursor-pointer hover:backdrop-brightness-95': typeof onEntryClick === 'function'
+                })}
+                key={i}
+                onClick={() => {
+                  onEntryClick && onEntryClick(entry);
+                }}
+              >
+                {columns.map(({ field, formatter }, j) => {
+                  const value = typeof field === 'function' ? field(entry) : entry[field];
+                  const formattedValue = formatter ? formatter(value) : defaultFormatter(value);
+                  return (
+                    <td className="whitespace-nowrap px-6 py-3" key={j}>
+                      <span>{formattedValue}</span>
+                    </td>
+                  );
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

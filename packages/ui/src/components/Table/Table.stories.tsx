@@ -22,7 +22,7 @@ type ExampleItem = {
   c13: number;
   c14: number;
   c15: number;
-}
+};
 
 const columns: TableColumn<ExampleItem>[] = [
   {
@@ -62,6 +62,9 @@ export default meta;
 export const Default: StoryObj<typeof Table<ExampleItem>> = {
   args: {
     columns,
-    data
+    data,
+    onEntryClick: (entry) => {
+      alert(entry.id);
+    }
   }
 };
