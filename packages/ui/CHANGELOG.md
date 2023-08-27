@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.3
+
+### Patch Changes
+
+- Fix i18n table
+
 ## 1.0.2
 
 ### Patch Changes
