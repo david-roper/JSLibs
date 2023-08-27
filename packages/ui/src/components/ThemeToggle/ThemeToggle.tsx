@@ -13,7 +13,7 @@ export const ThemeToggle = ({ className }: ThemeToggleProps) => {
   const [theme, setTheme] = useTheme();
 
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'dark' ? 'light' : 'dark'));
+    setTheme(theme === 'dark' ? 'light' : 'dark');
   };
 
   return (
