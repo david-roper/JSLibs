@@ -1,5 +1,6 @@
 export * from './components/ArrowToggle/ArrowToggle.js';
 export * from './components/Button/Button.js';
+export * from './components/Card/Card.js';
 export * from './components/DatePicker/DatePicker.js';
 export * from './components/Dropdown/Dropdown.js';
 export * from './components/Form/ArrayField.js';

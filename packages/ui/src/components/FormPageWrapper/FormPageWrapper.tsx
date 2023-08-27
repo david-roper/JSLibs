@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Card } from '../Card/Card.js';
 import { LanguageToggle, LanguageToggleProps } from '../LanguageToggle/LanguageToggle.js';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle.js';
 
@@ -20,8 +21,8 @@ export const FormPageWrapper = ({
   widthMultiplier = 1
 }: FormPageWrapperProps) => (
   <div className="flex min-h-screen items-center justify-center">
-    <div
-      className="flex flex-col m-5 items-center rounded-2xl bg-white p-8 shadow-xl ring-1 ring-slate-900/5 dark:bg-slate-800"
+    <Card
+      className="flex flex-col m-5 items-center rounded-2xl bg-white p-8"
       style={{ width: `${24 * widthMultiplier}rem` }}
     >
       <img alt="logo" className="m-2 h-auto w-16" src={logo} />
@@ -31,6 +32,6 @@ export const FormPageWrapper = ({
         <LanguageToggle {...languageToggle} />
         <ThemeToggle />
       </div>
-    </div>
+    </Card>
   </div>
 );

@@ -19,7 +19,9 @@ import {
 } from 'recharts';
 import { ConditionalKeys } from 'type-fest';
 
+import { Theme, useTheme } from '../../hooks/useTheme.js';
 import { withI18nProvider } from '../../utils/with-i18n-provider.js';
+import { Card } from '../Card/Card.js';
 
 /** An array of arbitrary objects with data to graph  */
 type LineGraphData = readonly Record<string, any>[];
@@ -34,6 +36,24 @@ type LineGraphLine<T extends LineGraphData = Record<string, any>[]> = Pick<
   name: string;
   val: ExtractValidKeys<T, number>;
   err?: ExtractValidKeys<T, number>;
+};
+
+const strokeColors = {
+  light: '#475569', // slate-600
+  dark: '#cbd5e1' // slate-300
+};
+
+const tooltipStyles: Record<Theme, React.CSSProperties> = {
+  light: {
+    backgroundColor: '#f1f5f9', // slate-100
+    borderColor: strokeColors.dark,
+    borderRadius: '2px'
+  },
+  dark: {
+    backgroundColor: '#0f172a', // slate-900
+    borderColor: strokeColors.light,
+    borderRadius: '2px'
+  }
 };
 
 // eslint-disable-next-line react/function-component-definition
@@ -51,42 +71,64 @@ function LineGraphComponent<const T extends LineGraphData>({
   };
 }) {
   const { i18n } = useTranslation();
+  const [theme] = useTheme();
+
   return (
-    <ResponsiveContainer height={400} width="100%">
-      <LineChart data={[...data]} margin={{ left: 10, right: 10, bottom: 5, top: 5 }}>
-        <CartesianGrid stroke={'#ccc'} strokeDasharray="5 5" />
-        <XAxis
-          dataKey={xAxis?.key}
-          domain={['auto', 'auto']}
-          height={50}
-          interval="preserveStartEnd"
-          padding={{ left: 20, right: 20 }}
-          tickFormatter={(time: number) => toBasicISOString(new Date(time))}
-          tickMargin={5}
-          tickSize={8}
-          type={'number'}
-        >
-          <Label offset={5} position="insideBottom" value={xAxis?.label} />
-        </XAxis>
-        <YAxis tickMargin={5} tickSize={8} width={40} />
-        <Tooltip
-          labelFormatter={(time: number) => {
-            const date = new Date(time);
-            return new Intl.DateTimeFormat(i18n.resolvedLanguage, {
-              dateStyle: 'full',
-              timeStyle: 'medium'
-            }).format(date);
-          }}
-          labelStyle={{ whiteSpace: 'pre-wrap' }}
-        />
-        {lines.map(({ name, val, err, stroke, type, ...props }) => (
-          <Line dataKey={val} key={val} name={name} stroke={stroke ?? 'black'} type={type ?? 'linear'} {...props}>
-            {err && <ErrorBar dataKey={err} />}
-          </Line>
-        ))}
-        <Legend wrapperStyle={{ paddingLeft: 40, paddingTop: 10 }} />
-      </LineChart>
-    </ResponsiveContainer>
+    <Card className="rounded-md">
+      <ResponsiveContainer height={400} width="100%">
+        <LineChart data={[...data]} margin={{ left: 15, right: 15, bottom: 5, top: 5 }}>
+          <CartesianGrid stroke="#64748b" strokeDasharray="5 5" />
+          <XAxis
+            axisLine={{ stroke: '#64748b' }}
+            dataKey={xAxis?.key}
+            domain={['auto', 'auto']}
+            height={50}
+            interval="preserveStartEnd"
+            padding={{ left: 20, right: 20 }}
+            stroke={strokeColors[theme]}
+            tickFormatter={(time: number) => toBasicISOString(new Date(time))}
+            tickLine={{ stroke: '#64748b' }}
+            tickMargin={8}
+            tickSize={8}
+            type={'number'}
+          >
+            <Label fill={strokeColors[theme]} offset={0} position="insideBottom" value={xAxis?.label} />
+          </XAxis>
+          <YAxis
+            axisLine={{ stroke: '#64748b' }}
+            stroke={strokeColors[theme]}
+            tickLine={{ stroke: '#64748b' }}
+            tickMargin={5}
+            tickSize={8}
+            width={40}
+          />
+          <Tooltip
+            contentStyle={tooltipStyles[theme]}
+            labelFormatter={(time: number) => {
+              const date = new Date(time);
+              return new Intl.DateTimeFormat(i18n.resolvedLanguage, {
+                dateStyle: 'full',
+                timeStyle: 'medium'
+              }).format(date);
+            }}
+            labelStyle={{ color: strokeColors[theme], fontWeight: 500, whiteSpace: 'pre-wrap' }}
+          />
+          {lines.map(({ name, val, err, stroke, type, ...props }) => (
+            <Line
+              dataKey={val}
+              key={val}
+              name={name}
+              stroke={stroke ?? strokeColors[theme]}
+              type={type ?? 'linear'}
+              {...props}
+            >
+              {err && <ErrorBar dataKey={err} stroke="#64748b" />}
+            </Line>
+          ))}
+          <Legend wrapperStyle={{ paddingLeft: 40, paddingTop: 10 }} />
+        </LineChart>
+      </ResponsiveContainer>
+    </Card>
   );
 }
 
