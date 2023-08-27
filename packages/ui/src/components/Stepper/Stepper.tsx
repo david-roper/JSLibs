@@ -11,11 +11,11 @@ type Step = {
   label: string;
   icon: React.ReactElement;
   element: React.ReactElement;
-}
+};
 
 type StepperProps = {
   steps: Step[];
-}
+};
 
 const Stepper = ({ steps }: StepperProps) => {
   const [index, updateIndex] = useReducer((prevIndex: number, action: 'increment' | 'decrement') => {
@@ -32,12 +32,12 @@ const Stepper = ({ steps }: StepperProps) => {
       <div className="mb-16 flex items-center print:hidden">
         {steps.map((step, i) => (
           <React.Fragment key={i}>
-            <StepperIcon icon={step.icon} label={step.label} variant={i === index ? 'dark' : 'light'} />
-            {i < steps.length - 1 && <StepperDivider variant={i < index ? 'dark' : 'light'} />}
+            <StepperIcon icon={step.icon} isActive={i === index} label={step.label} />
+            {i < steps.length - 1 && <StepperDivider isActive={i < index} />}
           </React.Fragment>
         ))}
       </div>
-      <h3 className="mb-5 text-2xl font-semibold text-slate-900">{steps[index].label}</h3>
+      <h3 className="mb-5 text-2xl font-semibold text-slate-900 dark:text-slate-100">{steps[index].label}</h3>
       <div>{steps[index].element}</div>
     </StepperContext.Provider>
   );
