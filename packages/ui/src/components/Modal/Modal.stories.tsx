@@ -13,7 +13,9 @@ const meta: Meta<typeof Modal> = {
   args: {
     open: true,
     title: 'Terms and Conditions',
-    onClose: () => { alert('Close!'); }
+    onClose: () => {
+      alert('Close!');
+    }
   }
 };
 
@@ -24,7 +26,9 @@ export const Default: Story = {
     children: (
       <>
         <div className="mt-2">
-          <p className="text-sm text-gray-500">Please indicate whether you accept our terms and conditions</p>
+          <p className="text-sm text-slate-600 dark:text-slate-300">
+            Please indicate whether you accept our terms and conditions
+          </p>
         </div>
 
         <div className="mt-4 flex">

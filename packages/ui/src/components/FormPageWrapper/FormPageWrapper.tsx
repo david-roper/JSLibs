@@ -22,7 +22,7 @@ export const FormPageWrapper = ({
 }: FormPageWrapperProps) => (
   <div className="flex min-h-screen items-center justify-center">
     <Card
-      className="flex flex-col m-5 items-center rounded-2xl bg-white p-8"
+      className="flex flex-col m-5 items-center rounded-2xl p-8"
       style={{ width: `${24 * widthMultiplier}rem` }}
     >
       <img alt="logo" className="m-2 h-auto w-16" src={logo} />
