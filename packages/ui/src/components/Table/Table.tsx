@@ -20,14 +20,14 @@ function defaultFormatter(value: unknown): string {
 
 export type TableEntry = Record<string, unknown>;
 
-export type FieldFactory = (entry: TableEntry) => string;
+export type FieldFactory<T extends TableEntry = TableEntry> = (entry: T) => string;
 
 export type TableColumn<T extends TableEntry> = {
   /** The label to be displayed on the header */
   label: string;
 
   /** How to determine the values for column */
-  field: keyof T | FieldFactory;
+  field: keyof T | FieldFactory<T>;
 
   /** Override the default formatter for this field */
   formatter?: (value: any) => string;
