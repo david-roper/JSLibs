@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.0
+
+### Major Changes
+
+- Update for dark mode
+
 ## 0.1.12
 
 ### Patch Changes
