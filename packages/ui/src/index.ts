@@ -20,6 +20,7 @@ export * from './components/SearchBar/SearchBar.js';
 export * from './components/SelectDropdown/SelectDropdown.js';
 export * from './components/Stepper/Stepper.js';
 export * from './components/Table/Table.js';
+export * from './components/Table/ClientTable.js';
 export * from './components/ThemeToggle/ThemeToggle.js';
 export * from './hooks/useDownload.js';
 export * from './hooks/useEventCallback.js';

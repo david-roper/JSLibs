@@ -33,7 +33,10 @@ const resources = {
       'notifications.types.info': 'Info',
       'notifications.types.success': 'Success',
       'notifications.types.warning': 'Warning',
-      'searchBar.placeholder': 'Search...'
+      'searchBar.placeholder': 'Search...',
+      'table.pagination.info': 'Showing {{first}} to {{last}} of {{total}} results',
+      'table.pagination.previous': 'Previous',
+      'table.pagination.next': 'Next'
     }
   },
   fr: {
@@ -65,7 +68,10 @@ const resources = {
       'notifications.types.info': 'Attention',
       'notifications.types.success': 'Succès',
       'notifications.types.warning': 'Avertissement',
-      'searchBar.placeholder': 'Rechercher...'
+      'searchBar.placeholder': 'Rechercher...',
+      'table.pagination.info': 'Affichage de {{first}} à {{last}} sur {{total}} résultats',
+      'table.pagination.previous': 'Précédente',
+      'table.pagination.next': 'Suivante'
     }
   }
 } as const;

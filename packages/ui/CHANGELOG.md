@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.2
+
+### Patch Changes
+
+- Add client table
+
 ## 1.0.1
 
 ### Patch Changes
