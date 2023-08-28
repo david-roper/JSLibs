@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.5
+
+### Patch Changes
+
+- Fix table rounding issue
+
 ## 1.0.4
 
 ### Patch Changes
