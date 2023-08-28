@@ -35,7 +35,7 @@ module.exports = {
     }
   },
   plugins: [
-    plugin(({ addBase, addComponents, theme }) => {
+    plugin(({ addBase, addComponents, addUtilities, theme }) => {
       addBase({
         'html.dark': {
           backgroundColor: theme('colors.slate.900'),
@@ -64,6 +64,15 @@ module.exports = {
         },
         '.field-label-floating--active': {
           '@apply -translate-y-5 text-sm text-sky-800 dark:text-sky-500': {}
+        }
+      });
+      addUtilities({
+        '.scrollbar-none': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+          '&::-webkit-scrollbar': {
+            display: 'none'
+          }
         }
       });
     }),

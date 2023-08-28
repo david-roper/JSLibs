@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.4
+
+### Patch Changes
+
+- Add scrollbar-none
+
 ## 1.0.3
 
 ### Patch Changes

@@ -42,7 +42,7 @@ export type TableProps<T extends TableEntry> = {
 export const Table = <T extends TableEntry>({ columns, data, onEntryClick }: TableProps<T>) => {
   return (
     <div className="min-w-full overflow-hidden">
-      <div className="overflow-x-scroll w-full rounded-md shadow-md ring-1 ring-black ring-opacity-5">
+      <div className="overflow-x-scroll w-full scrollbar-none rounded-md shadow-md ring-1 ring-black ring-opacity-5">
         <table className="w-full table-auto">
           <thead className="border-b border-slate-300 bg-slate-50 dark:border-0 dark:bg-slate-700">
             <tr>
