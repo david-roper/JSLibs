@@ -28,7 +28,7 @@ type BasicFormValues = {
   date: string;
   binaryCheck: boolean;
   binaryRadio: boolean;
-}
+};
 
 export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
   args: {
@@ -37,7 +37,8 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
         kind: 'text',
         label: 'Short Text',
         variant: 'short',
-        description: 'Test'
+        description:
+          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae natus eaque dolor sequi qui dolore aut at amet fugit, porro, est et maiores, id esse! Esse doloribus laudantium laborum aperiam.'
       },
       textLong: {
         kind: 'text',
@@ -93,7 +94,9 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
       type: 'object',
       required: []
     },
-    onSubmit: (data) => { alert(JSON.stringify(data, null, 2)); }
+    onSubmit: (data) => {
+      alert(JSON.stringify(data, null, 2));
+    }
   }
 };
 
@@ -103,7 +106,7 @@ type ArrayFormValues = {
     f1: string;
     f2: number;
   }[];
-}
+};
 
 export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
   args: {
@@ -167,7 +170,9 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
       },
       required: ['f0', 'array']
     },
-    onSubmit: (data) => { alert(JSON.stringify(data, null, 2)); }
+    onSubmit: (data) => {
+      alert(JSON.stringify(data, null, 2));
+    }
   }
 };
 
@@ -176,7 +181,7 @@ type GroupedFormValues = {
   f2: string;
   f3: string;
   f4: string;
-}
+};
 
 export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
   args: {
@@ -238,6 +243,8 @@ export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
       },
       required: ['f1', 'f2', 'f3', 'f4']
     },
-    onSubmit: (data) => { alert(JSON.stringify(data, null, 2)); }
+    onSubmit: (data) => {
+      alert(JSON.stringify(data, null, 2));
+    }
   }
 };

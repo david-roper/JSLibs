@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.8
+
+### Patch Changes
+
+- Fix sizing for popover
+
 ## 1.0.7
 
 ### Patch Changes
