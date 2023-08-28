@@ -61,7 +61,7 @@ export const SelectDropdown = <T extends SelectOption>({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Listbox.Options className="scrollbar-hidden absolute z-10 mt-2 flex max-h-80 min-w-full flex-col overflow-scroll border border-slate-200 dark:border-slate-700">
+        <Listbox.Options className="scrollbar-none absolute z-10 mt-2 flex max-h-80 min-w-full flex-col overflow-scroll border border-slate-200 dark:border-slate-700">
           {options.map((option) => (
             <Listbox.Option
               className="flex w-full items-center whitespace-nowrap bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 p-2 hover:bg-slate-200 "

@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/ui",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Common React components and tailwind config for DNP projects",
   "license": "LGPL-3.0",
   "type": "module",
