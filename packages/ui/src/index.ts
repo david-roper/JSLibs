@@ -23,6 +23,7 @@ export * from './components/Stepper/Stepper.js';
 export * from './components/Table/Table.js';
 export * from './components/Table/ClientTable.js';
 export * from './components/ThemeToggle/ThemeToggle.js';
+export * from './context/StepperContext.js';
 export * from './hooks/useDownload.js';
 export * from './hooks/useEventCallback.js';
 export * from './hooks/useEventListener.js';
@@ -30,7 +31,6 @@ export * from './hooks/useIsomorphicLayoutEffect.js';
 export * from './hooks/useMediaQuery.js';
 export * from './hooks/useOnClickOutside.js';
 export * from './hooks/useSessionStorage.js';
-export * from './hooks/useStepper.js';
 export * from './hooks/useTheme.js';
 
 export { default as i18n } from './services/i18n.js';

@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.10
+
+### Patch Changes
+
+- Export stepper
+
 ## 1.0.9
 
 ### Patch Changes
