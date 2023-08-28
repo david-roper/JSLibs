@@ -21,6 +21,20 @@ export default createConfig({
 
 ```
 
+**i18n.ts**
+```typescript
+import { i18n as i18nLib } from '@douglasneuroinformatics/ui';
+import i18n from 'i18next';
+
+i18n.init();
+
+i18n.on('languageChanged', (lang) => {
+  i18nLib.changeLanguage(lang).catch(console.error);
+});
+
+export default i18n;
+
+```
 ## Development
 
 ### Compile Library
