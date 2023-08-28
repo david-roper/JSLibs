@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.7
+
+### Patch Changes
+
+- Fix error with entries count
+
 ## 1.0.6
 
 ### Patch Changes

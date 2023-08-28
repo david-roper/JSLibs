@@ -11,11 +11,11 @@ export const ClientTableComponent = <T extends TableEntry>({ data, ...props }: T
   const [entriesPerPage] = useState(10);
   const { t } = useTranslation();
 
-  const indexOfLastEntry = currentPage * entriesPerPage;
-  const indexOfFirstEntry = indexOfLastEntry - entriesPerPage;
-
-  const currentEntries = data.slice(indexOfFirstEntry, indexOfLastEntry);
   const pageCount = Math.ceil(data.length / entriesPerPage);
+
+  const firstEntry = (currentPage - 1) * entriesPerPage + 1;
+  const lastEntry = Math.min(firstEntry + entriesPerPage - 1, data.length);
+  const currentEntries = data.slice(firstEntry - 1, lastEntry);
 
   return (
     <div>
@@ -24,8 +24,8 @@ export const ClientTableComponent = <T extends TableEntry>({ data, ...props }: T
         <div className="hidden sm:block">
           <p className="text-sm font-medium text-slate-600 dark:text-slate-300">
             {t('table.pagination.info', {
-              first: indexOfFirstEntry + 1,
-              last: Math.min(indexOfLastEntry + 1, data.length),
+              first: firstEntry,
+              last: lastEntry,
               total: data.length
             })}
           </p>
