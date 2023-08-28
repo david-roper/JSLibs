@@ -3,10 +3,12 @@
 import React from 'react';
 
 import { NumericFormField } from '@douglasneuroinformatics/form-types';
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 
+import { PopoverIcon } from '../PopoverIcon/PopoverIcon.js';
+
 import { FormFieldContainer } from './FormFieldContainer.js';
-import { FormFieldDescription } from './FormFieldDescription.js';
 import { BaseFieldProps } from './types.js';
 
 export type NumericFieldProps = BaseFieldProps<number | null> & NumericFormField;
@@ -70,7 +72,11 @@ export const NumericField = ({
               onChange={handleChange}
             />
             <div className="flex items-center justify-center text-slate-600 dark:text-slate-300">{value ?? min}</div>
-            <FormFieldDescription description={description} />
+            {description && (
+              <div className="flex items-center justify-center">
+                <PopoverIcon icon={QuestionMarkCircleIcon} position="right" text={description} />
+              </div>
+            )}
           </div>
         </>
       )}

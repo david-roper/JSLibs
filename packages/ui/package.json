@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/ui",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Common React components and tailwind config for DNP projects",
   "license": "LGPL-3.0",
   "type": "module",
@@ -34,6 +34,7 @@
     "react-i18next": "^13.2.0",
     "recharts": "^2.7.3",
     "tailwind-merge": "^1.14.0",
+    "ts-pattern": "^5.0.5",
     "type-fest": "^4.2.0",
     "zustand": "^4.4.1"
   },

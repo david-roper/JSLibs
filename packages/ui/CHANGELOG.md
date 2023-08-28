@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.6
+
+### Patch Changes
+
+- Add hide to password
+
 ## 1.0.5
 
 ### Patch Changes

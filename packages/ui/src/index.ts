@@ -16,6 +16,7 @@ export * from './components/LanguageToggle/LanguageToggle.js';
 export * from './components/LineGraph/LineGraph.js';
 export * from './components/Modal/Modal.js';
 export * from './components/NotificationHub/NotificationHub.js';
+export * from './components/PopoverIcon/PopoverIcon.js';
 export * from './components/SearchBar/SearchBar.js';
 export * from './components/SelectDropdown/SelectDropdown.js';
 export * from './components/Stepper/Stepper.js';
