@@ -6,7 +6,7 @@ import { withI18nProvider } from '../../utils/with-i18n-provider.js';
 
 import { Table, type TableEntry, type TableProps } from './Table.js';
 
-export const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TableProps<T>) => {
+const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TableProps<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage] = useState(10);
   const { t } = useTranslation();
