@@ -6,9 +6,8 @@ export function useTheme() {
   // Initial theme value is based on the value saved in local storage or the system theme
   const [theme, setTheme] = useState<Theme>(() => {
     const initialTheme: Theme =
-      window.localStorage.getItem('theme') ?? window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light';
+      (window.localStorage.getItem('theme') as Theme | null) ??
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.setAttribute('data-mode', initialTheme);
     return initialTheme;
   });
