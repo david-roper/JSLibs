@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.11
+
+### Patch Changes
+
+- Fix issue where graph always uses system theme
+
 ## 1.0.10
 
 ### Patch Changes
