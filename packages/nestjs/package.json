@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/nestjs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",
@@ -16,7 +16,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc",
     "format": "prettier --write src",
     "lint": "eslint --fix src"
   },
