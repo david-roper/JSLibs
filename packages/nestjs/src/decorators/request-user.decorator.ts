@@ -11,7 +11,10 @@ type UserKey = keyof User;
 type CustomRequest = Request & {
   user?: User;
 };
-
+/**
+ * Extract the user from the request object
+ * @param key - the key of the user object to extract, or omit for the entire user
+ */
 export const RequestUser = createParamDecorator<UserKey, ExecutionContext>((key, context) => {
   const request = context.switchToHttp().getRequest<CustomRequest>();
   if (key) {
