@@ -1,7 +1,7 @@
 {
-  "name": "@douglasneuroinformatics/node-ext",
-  "version": "0.0.5",
-  "description": "Utilities for Node.js APIs",
+  "name": "@douglasneuroinformatics/nestjs",
+  "version": "0.0.1",
+  "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",
   "exports": {
@@ -20,10 +20,11 @@
     "format": "prettier --write src",
     "lint": "eslint --fix src"
   },
-  "devDependencies": {
-    "typedoc": "^0.24.8"
-  },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "10.2.3",
+    "@nestjs/core": "^10.2.3"
   }
 }
