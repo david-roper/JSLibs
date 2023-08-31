@@ -19,6 +19,7 @@ export * from './components/NotificationHub/NotificationHub.js';
 export * from './components/PopoverIcon/PopoverIcon.js';
 export * from './components/SearchBar/SearchBar.js';
 export * from './components/SelectDropdown/SelectDropdown.js';
+export * from './components/Spinner/Spinner.js';
 export * from './components/Stepper/Stepper.js';
 export * from './components/Table/Table.js';
 export * from './components/Table/ClientTable.js';
