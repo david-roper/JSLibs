@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { twMerge } from 'tailwind-merge';
+
 import { Card } from '../Card/Card.js';
 import { LanguageToggle, LanguageToggleProps } from '../LanguageToggle/LanguageToggle.js';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle.js';
@@ -9,6 +11,7 @@ export type FormPageWrapperProps = {
   children: React.ReactNode;
   logo: string;
   languageToggle: LanguageToggleProps<string>;
+  className?: string;
   widthMultiplier?: number;
 };
 
@@ -18,13 +21,11 @@ export const FormPageWrapper = ({
   title,
   logo,
   languageToggle,
+  className,
   widthMultiplier = 1
 }: FormPageWrapperProps) => (
-  <div className="flex min-h-screen items-center justify-center">
-    <Card
-      className="flex flex-col m-5 items-center rounded-2xl p-8"
-      style={{ width: `${24 * widthMultiplier}rem` }}
-    >
+  <div className={twMerge('flex min-h-screen items-center justify-center', className)}>
+    <Card className="flex flex-col m-5 items-center rounded-2xl p-8" style={{ width: `${24 * widthMultiplier}rem` }}>
       <img alt="logo" className="m-2 h-auto w-16" src={logo} />
       <h1 className="text-2xl mb-3 font-bold tracking-tight first-letter:capitalize">{title}</h1>
       {children}

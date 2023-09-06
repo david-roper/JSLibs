@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.12
+
+### Patch Changes
+
+- Add tw merge to FormPageWrapper
+
 ## 1.0.11
 
 ### Patch Changes
