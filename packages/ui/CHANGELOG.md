@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 1.0.13
+
+### Patch Changes
+
+- Add width to modal props
+
 ## 1.0.12
 
 ### Patch Changes

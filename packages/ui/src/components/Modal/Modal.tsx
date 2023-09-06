@@ -3,15 +3,17 @@
 import React from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
+import { clsx } from 'clsx';
 
 export type ModalProps = {
   open: boolean;
   title: string;
   children: React.ReactNode;
   onClose: () => void;
+  width?: 'sm' | 'md' | 'lg' | 'xl';
 };
 
-export const Modal = ({ open, title, children, onClose }: ModalProps) => {
+export const Modal = ({ open, title, children, onClose, width = 'md' }: ModalProps) => {
   return (
     <Transition appear as={React.Fragment} show={open}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -37,7 +39,17 @@ export const Modal = ({ open, title, children, onClose }: ModalProps) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-visible rounded-2xl bg-slate-100 dark:bg-slate-800 p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel
+                className={clsx(
+                  'w-full transform overflow-visible rounded-2xl bg-slate-100 dark:bg-slate-800 p-6 text-left align-middle shadow-xl transition-all',
+                  {
+                    'max-w-sm': width === 'sm',
+                    'max-w-md': width === 'md',
+                    'max-w-lg': width === 'lg',
+                    'max-w-xl': width === 'xl'
+                  }
+                )}
+              >
                 <Dialog.Title as="h3" className="text-xl font-bold leading-6 text-slate-900 dark:text-slate-100">
                   {title}
                 </Dialog.Title>
