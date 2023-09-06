@@ -3,6 +3,7 @@
 import React from 'react';
 
 import { Dialog, Transition } from '@headlessui/react';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';
 
 export type ModalProps = {
@@ -11,9 +12,10 @@ export type ModalProps = {
   children: React.ReactNode;
   onClose: () => void;
   width?: 'sm' | 'md' | 'lg' | 'xl';
+  showCloseButton?: boolean;
 };
 
-export const Modal = ({ open, title, children, onClose, width = 'md' }: ModalProps) => {
+export const Modal = ({ open, title, children, onClose, showCloseButton, width = 'md' }: ModalProps) => {
   return (
     <Transition appear as={React.Fragment} show={open}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -41,7 +43,7 @@ export const Modal = ({ open, title, children, onClose, width = 'md' }: ModalPro
             >
               <Dialog.Panel
                 className={clsx(
-                  'w-full transform overflow-visible rounded-2xl bg-slate-100 dark:bg-slate-800 p-6 text-left align-middle shadow-xl transition-all',
+                  'w-full transform relative overflow-visible rounded-2xl text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800 p-6 text-left align-middle shadow-xl transition-all',
                   {
                     'max-w-sm': width === 'sm',
                     'max-w-md': width === 'md',
@@ -50,9 +52,20 @@ export const Modal = ({ open, title, children, onClose, width = 'md' }: ModalPro
                   }
                 )}
               >
-                <Dialog.Title as="h3" className="text-xl font-bold leading-6 text-slate-900 dark:text-slate-100">
-                  {title}
-                </Dialog.Title>
+                <div className="flex justify-between items-center">
+                  <Dialog.Title as="h3" className="text-xl font-bold p-0.5 leading-6">
+                    {title}
+                  </Dialog.Title>
+                  {showCloseButton && (
+                    <button
+                      className="flex justify-center p-0.5 items-center rounded-md hover:bg-slate-200 dark:hover:bg-slate-700"
+                      type="button"
+                      onClick={onClose}
+                    >
+                      <XMarkIcon height={24} width={24} />
+                    </button>
+                  )}
+                </div>
                 <div className="my-3">{children}</div>
               </Dialog.Panel>
             </Transition.Child>

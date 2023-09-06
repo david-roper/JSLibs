@@ -15,7 +15,8 @@ const meta: Meta<typeof Modal> = {
     title: 'Terms and Conditions',
     onClose: () => {
       alert('Close!');
-    }
+    },
+    showCloseButton: false
   }
 };
 
