@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/utils
 
+## 0.5.0
+
+### Minor Changes
+
+- Add string utils
+
 ## 0.4.1
 
 ### Patch Changes
