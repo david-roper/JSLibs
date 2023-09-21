@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.0.0
+
+### Major Changes
+
+- Remove all build tooling to use exclusively bun
+
 ## 0.1.0
 
 ### Minor Changes

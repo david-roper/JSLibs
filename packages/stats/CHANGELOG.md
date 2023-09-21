@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/stats
 
+## 2.0.0
+
+### Major Changes
+
+- Remove all build tooling to use exclusively bun
+
 ## 1.0.0
 
 ### Major Changes

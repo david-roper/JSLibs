@@ -1,5 +1,18 @@
 # @douglasneuroinformatics/ui
 
+## 2.0.0
+
+### Major Changes
+
+- Remove all build tooling to use exclusively bun
+
+### Patch Changes
+
+- Updated dependencies
+  - @douglasneuroinformatics/ajv@1.0.0
+  - @douglasneuroinformatics/form-types@1.0.0
+  - @douglasneuroinformatics/utils@1.0.0
+
 ## 1.0.14
 
 ### Patch Changes

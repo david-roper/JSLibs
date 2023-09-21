@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 1.0.0
+
+### Major Changes
+
+- Remove all build tooling to use exclusively bun
+
 ## 0.0.3
 
 ### Patch Changes
