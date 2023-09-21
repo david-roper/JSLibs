@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import { BinaryField, BinaryFieldProps } from './BinaryField.js';
-import { DateField, DateFieldProps } from './DateField.js';
-import { NumericField, NumericFieldProps } from './NumericField.js';
-import { OptionsField, OptionsFieldProps } from './OptionsField.js';
-import { TextField, TextFieldProps } from './TextField.js';
+import { BinaryField, type BinaryFieldProps } from './BinaryField';
+import { DateField, type DateFieldProps } from './DateField';
+import { NumericField, type NumericFieldProps } from './NumericField';
+import { OptionsField, type OptionsFieldProps } from './OptionsField';
+import { TextField, type TextFieldProps } from './TextField';
 
 export type PrimitiveFormFieldProps =
   | TextFieldProps

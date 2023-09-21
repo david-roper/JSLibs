@@ -2,9 +2,9 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Form } from '../Form/Form.js';
+import { Form } from '../Form/Form';
 
-import { FormPageWrapper } from './FormPageWrapper.js';
+import { FormPageWrapper } from './FormPageWrapper';
 
 type Story = StoryObj<typeof FormPageWrapper>;
 

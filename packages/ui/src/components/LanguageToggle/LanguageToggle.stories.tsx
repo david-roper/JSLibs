@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { withI18nProvider } from '../../utils/with-i18n-provider.js';
+import { withI18nProvider } from '../../utils/with-i18n-provider';
 
-import { LanguageToggle } from './LanguageToggle.js';
+import { LanguageToggle } from './LanguageToggle';
 
 type Story = StoryObj<typeof LanguageToggle>;
 

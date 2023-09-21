@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { SelectDropdown } from './SelectDropdown.js';
+import { SelectDropdown } from './SelectDropdown';
 
 type Story = StoryObj<typeof SelectDropdown>;
 

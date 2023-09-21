@@ -1,7 +1,7 @@
 import { FaceSmileIcon } from '@heroicons/react/24/outline';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { PopoverIcon } from './PopoverIcon.js';
+import { PopoverIcon } from './PopoverIcon';
 
 type Story = StoryObj<typeof PopoverIcon>;
 

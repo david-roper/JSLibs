@@ -2,10 +2,10 @@
 
 import React, { useReducer } from 'react';
 
-import { StepperContext } from '../../context/StepperContext.js';
+import { StepperContext } from '../../context/StepperContext';
 
-import { StepperDivider } from './StepperDivider.js';
-import { StepperIcon } from './StepperIcon.js';
+import { StepperDivider } from './StepperDivider';
+import { StepperIcon } from './StepperIcon';
 
 type Step = {
   label: string;
@@ -37,10 +37,10 @@ const Stepper = ({ steps }: StepperProps) => {
           </React.Fragment>
         ))}
       </div>
-      <h3 className="mb-5 text-2xl font-semibold text-slate-900 dark:text-slate-100">{steps[index].label}</h3>
-      <div>{steps[index].element}</div>
+      <h3 className="mb-5 text-2xl font-semibold text-slate-900 dark:text-slate-100">{steps[index]?.label}</h3>
+      <div>{steps[index]?.element}</div>
     </StepperContext.Provider>
   );
 };
 
-export { Stepper, type StepperProps, type Step };
+export { Stepper, type Step, type StepperProps };

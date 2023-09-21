@@ -6,7 +6,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { twMerge } from 'tailwind-merge';
 
-import { Button, type ButtonProps } from '../Button/Button.js';
+import { Button, type ButtonProps } from '../Button/Button';
 
 type DropdownOptions = readonly string[] | Record<string, string>;
 

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { twMerge } from 'tailwind-merge';
 
-import { Card } from '../Card/Card.js';
-import { LanguageToggle, LanguageToggleProps } from '../LanguageToggle/LanguageToggle.js';
-import { ThemeToggle } from '../ThemeToggle/ThemeToggle.js';
+import { Card } from '../Card/Card';
+import { LanguageToggle, type LanguageToggleProps } from '../LanguageToggle/LanguageToggle';
+import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 
 export type FormPageWrapperProps = {
   title: string;

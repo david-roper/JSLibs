@@ -2,14 +2,14 @@
 
 import React from 'react';
 
-import { NumericFormField } from '@douglasneuroinformatics/form-types';
+import { type NumericFormField } from '@douglasneuroinformatics/form-types';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 
-import { PopoverIcon } from '../PopoverIcon/PopoverIcon.js';
+import { PopoverIcon } from '../PopoverIcon/PopoverIcon';
 
-import { FormFieldContainer } from './FormFieldContainer.js';
-import { BaseFieldProps } from './types.js';
+import { FormFieldContainer } from './FormFieldContainer';
+import { type BaseFieldProps } from './types';
 
 export type NumericFieldProps = BaseFieldProps<number | null> & NumericFormField;
 

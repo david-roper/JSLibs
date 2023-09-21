@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useNotificationsStore } from '../stores/notifications-store.js';
+import { useNotificationsStore } from '../stores/notifications-store';
 
 /**
  * Used to trigger downloads of arbitrary data to the client

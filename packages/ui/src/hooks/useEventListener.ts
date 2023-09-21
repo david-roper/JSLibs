@@ -1,6 +1,6 @@
 'use client';
 
-import { RefObject, useEffect, useLayoutEffect, useRef } from 'react';
+import { type RefObject, useEffect, useLayoutEffect, useRef } from 'react';
 
 // MediaQueryList Event based useEventListener interface
 export function useEventListener<K extends keyof MediaQueryListEventMap>(

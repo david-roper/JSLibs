@@ -2,13 +2,13 @@
 
 import React from 'react';
 
-import { ArrayFormField } from '@douglasneuroinformatics/form-types';
+import { type ArrayFormField } from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 
-import { Button } from '../Button/Button.js';
+import { Button } from '../Button/Button';
 
-import { PrimitiveFormField, PrimitiveFormFieldProps } from './PrimitiveFormField.js';
-import type { BaseFieldProps, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types.js';
+import { PrimitiveFormField, type PrimitiveFormFieldProps } from './PrimitiveFormField';
+import type { BaseFieldProps, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types';
 
 export type ArrayFieldProps = BaseFieldProps<NullableArrayFieldValue> & ArrayFormField;
 
@@ -43,7 +43,7 @@ export const ArrayField = ({ label, fieldset, error, value: arrayValue, setValue
               value: fields[fieldName],
               setValue: (value: NullablePrimitiveFieldValue) => {
                 const newArrayValue = [...arrayValue];
-                newArrayValue[i][fieldName] = value;
+                newArrayValue[i]![fieldName] = value;
                 setArrayValue(newArrayValue);
               },
               ...fieldProps

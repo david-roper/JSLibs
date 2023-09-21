@@ -6,11 +6,11 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-import { useNotificationsStore } from '../../stores/notifications-store.js';
-import { withI18nProvider } from '../../utils/with-i18n-provider.js';
-import { Card } from '../Card/Card.js';
+import { useNotificationsStore } from '../../stores/notifications-store';
+import { withI18nProvider } from '../../utils/with-i18n-provider';
+import { Card } from '../Card/Card';
 
-import { NotificationIcon } from './NotificationIcon.js';
+import { NotificationIcon } from './NotificationIcon';
 
 type NotificationHubProps = {
   /** The number of milliseconds before the notification is automatically cleared */

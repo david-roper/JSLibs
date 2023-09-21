@@ -2,13 +2,13 @@
 
 import React, { useState } from 'react';
 
-import { TextFormField } from '@douglasneuroinformatics/form-types';
+import { type TextFormField } from '@douglasneuroinformatics/form-types';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 import { match } from 'ts-pattern';
 
-import { FormFieldContainer } from './FormFieldContainer.js';
-import { BaseFieldProps } from './types.js';
+import { FormFieldContainer } from './FormFieldContainer';
+import { type BaseFieldProps } from './types';
 
 type TextFieldProps = BaseFieldProps<string | null> & TextFormField;
 

@@ -3,7 +3,7 @@ import React from 'react';
 import { randomInt, range } from '@douglasneuroinformatics/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Table, TableColumn } from './Table.js';
+import { Table, type TableColumn } from './Table';
 
 type ExampleItem = {
   id: string;

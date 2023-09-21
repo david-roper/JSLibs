@@ -1,12 +1,12 @@
-import { FormFields, FormInstrumentContent, FormInstrumentData } from '@douglasneuroinformatics/form-types';
+import type { FormFields, FormInstrumentContent, FormInstrumentData } from '@douglasneuroinformatics/form-types';
 
-import { FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types.js';
+import type { FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
 export function getFormFields<T extends FormInstrumentData>(content: FormInstrumentContent<T>): FormFields<T> {
   let fields: FormFields<T>;
   if (Array.isArray(content)) {
-    fields = content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0].fields) as FormFields<T>;
+    fields = content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as FormFields<T>;
   } else {
     fields = content;
   }

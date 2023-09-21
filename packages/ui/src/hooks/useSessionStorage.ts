@@ -1,9 +1,9 @@
 'use client';
 
-import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
+import { type Dispatch, type SetStateAction, useCallback, useEffect, useState } from 'react';
 
-import { useEventCallback } from './useEventCallback.js';
-import { useEventListener } from './useEventListener.js';
+import { useEventCallback } from './useEventCallback';
+import { useEventListener } from './useEventListener';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

@@ -5,7 +5,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 
-import { withI18nProvider } from '../../utils/with-i18n-provider.js';
+import { withI18nProvider } from '../../utils/with-i18n-provider';
 
 export type SearchBarProps = Omit<React.ComponentPropsWithoutRef<'input'>, 'size' | 'type'> & {
   size: 'xs' | 'sm' | 'md' | 'lg';

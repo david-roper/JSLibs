@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { withI18nProvider } from '../../utils/with-i18n-provider.js';
+import { withI18nProvider } from '../../utils/with-i18n-provider';
 
-import { Table, type TableEntry, type TableProps } from './Table.js';
+import { Table, type TableEntry, type TableProps } from './Table';
 
 const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TableProps<T>) => {
   const [currentPage, setCurrentPage] = useState(1);

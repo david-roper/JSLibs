@@ -2,7 +2,7 @@ import React from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Card } from './Card.js';
+import { Card } from './Card';
 
 type Story = StoryObj<typeof Card>;
 

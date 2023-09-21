@@ -1,8 +1,8 @@
 'use client';
 
-import { RefObject } from 'react';
+import { type RefObject } from 'react';
 
-import { useEventListener } from './useEventListener.js';
+import { useEventListener } from './useEventListener';
 
 type Handler = (event: MouseEvent) => void;
 

@@ -11,17 +11,17 @@ import {
   Legend,
   Line,
   LineChart,
-  LineProps,
+  type LineProps,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis
 } from 'recharts';
-import { ConditionalKeys } from 'type-fest';
+import { type ConditionalKeys } from 'type-fest';
 
-import { Theme, useTheme } from '../../hooks/useTheme.js';
-import { withI18nProvider } from '../../utils/with-i18n-provider.js';
-import { Card } from '../Card/Card.js';
+import { type Theme, useTheme } from '../../hooks/useTheme';
+import { withI18nProvider } from '../../utils/with-i18n-provider';
+import { Card } from '../Card/Card';
 
 /** An array of arbitrary objects with data to graph  */
 type LineGraphData = readonly Record<string, any>[];

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ForwardedRef } from 'react';
+import React, { type ForwardedRef } from 'react';
 
 import { twMerge } from 'tailwind-merge';
 

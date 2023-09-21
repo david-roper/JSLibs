@@ -6,7 +6,7 @@ describe('camelToSnakeCase', () => {
   it('should convert from camel to snake case ', () => {
     expect(camelToSnakeCase('toSnakeCase')).toBe('to_snake_case');
     expect(camelToSnakeCase('foo')).toBe('foo');
-    expect(camelToSnakeCase('')).toBe('')
+    expect(camelToSnakeCase('')).toBe('');
   });
 });
 

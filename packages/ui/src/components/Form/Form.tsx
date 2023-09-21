@@ -2,26 +2,26 @@
 
 import React, { useMemo, useState } from 'react';
 
-import {
+import type {
   ArrayFieldValue,
   FormFields,
   FormInstrumentContent,
   FormInstrumentData,
   PrimitiveFieldValue
 } from '@douglasneuroinformatics/form-types';
-import { ErrorObject, JSONSchemaType } from 'ajv';
+import type { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
-import { FormProvider } from '../../context/FormContext.js';
-import { ajv } from '../../services/ajv.js';
-import { withI18nProvider } from '../../utils/with-i18n-provider.js';
-import { Button } from '../Button/Button.js';
+import { FormProvider } from '../../context/FormContext';
+import { ajv } from '../../services/ajv';
+import { withI18nProvider } from '../../utils/with-i18n-provider';
+import { Button } from '../Button/Button';
 
-import { ArrayField, ArrayFieldProps } from './ArrayField.js';
-import { PrimitiveFormField, PrimitiveFormFieldProps } from './PrimitiveFormField.js';
-import { FormErrors, FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types.js';
-import { getDefaultValues } from './utils.js';
+import { ArrayField, type ArrayFieldProps } from './ArrayField';
+import { PrimitiveFormField, type PrimitiveFormFieldProps } from './PrimitiveFormField';
+import type { FormErrors, FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types';
+import { getDefaultValues } from './utils';
 
 /** Custom error messages to be supplied for each field */
 type ErrorMessages<T extends FormInstrumentData> = {
@@ -71,10 +71,10 @@ const FormComponent = <T extends FormInstrumentData>({
       const [k1, k2]: [string?, string?] = [path[0], path[2]];
       if (typeof errorMessages === 'string') {
         return errorMessages;
-      } else if (typeof errorMessages?.[k1] === 'string') {
-        return errorMessages[k1] as string;
-      } else if (errorMessages?.[k1] instanceof Object) {
-        return (errorMessages[k1] as Record<string, string | undefined>)[k2] ?? defaultMessage;
+      } else if (typeof errorMessages?.[k1!] === 'string') {
+        return errorMessages[k1!] as string;
+      } else if (errorMessages?.[k1!] instanceof Object) {
+        return (errorMessages[k1!] as Record<string, string | undefined>)[k2!] ?? defaultMessage;
       }
       return defaultMessage;
     };
@@ -91,11 +91,11 @@ const FormComponent = <T extends FormInstrumentData>({
         (formErrors[baseField] as Record<string, string>[]) = [];
       }
       const arrayErrors = formErrors[baseField] as Record<string, string>[];
-      const [index, item] = [parseInt(path[1]), path[2]];
+      const [index, item] = [parseInt(path[1]!), path[2]];
       if (!arrayErrors[index]) {
         arrayErrors[index] = {};
       }
-      arrayErrors[index][item] = getErrorMessage(error, path);
+      arrayErrors[index]![item!] = getErrorMessage(error, path);
     }
     return formErrors;
   }, [validationErrors, i18n.resolvedLanguage]);

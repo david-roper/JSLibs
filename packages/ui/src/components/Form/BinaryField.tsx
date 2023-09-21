@@ -2,13 +2,13 @@
 
 import React from 'react';
 
-import { BinaryFormField } from '@douglasneuroinformatics/form-types';
+import { type BinaryFormField } from '@douglasneuroinformatics/form-types';
 import { RadioGroup, Switch } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from 'react-i18next';
 
-import { FormFieldContainer } from './FormFieldContainer.js';
-import { BaseFieldProps } from './types.js';
+import { FormFieldContainer } from './FormFieldContainer';
+import { type BaseFieldProps } from './types';
 
 type BinaryFieldProps = BaseFieldProps<boolean | null> & BinaryFormField;
 

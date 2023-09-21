@@ -2,15 +2,15 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { DateFormField } from '@douglasneuroinformatics/form-types';
+import { type DateFormField } from '@douglasneuroinformatics/form-types';
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
-import { DatePicker } from '../DatePicker/DatePicker.js';
+import { DatePicker } from '../DatePicker/DatePicker';
 
-import { FormFieldContainer } from './FormFieldContainer.js';
-import { BaseFieldProps } from './types.js';
+import { FormFieldContainer } from './FormFieldContainer';
+import { type BaseFieldProps } from './types';
 
 export type DateFieldProps = BaseFieldProps<string | null> & DateFormField;
 

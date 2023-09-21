@@ -3,8 +3,8 @@ import React from 'react';
 import { randomInt, range } from '@douglasneuroinformatics/utils';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ClientTable } from './ClientTable.js';
-import { TableColumn } from './Table.js';
+import { ClientTable } from './ClientTable';
+import { type TableColumn } from './Table';
 
 type ExampleItem = {
   id: string;
