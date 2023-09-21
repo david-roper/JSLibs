@@ -42,8 +42,8 @@ export function linearRegression(arr: [number, number][]): { intercept: number; 
   let xySum = 0;
   let xSquaredSum = 0;
   for (let i = 0; i < n; i++) {
-    xySum += x[i] * y[i];
-    xSquaredSum += x[i] * x[i];
+    xySum += x[i]! * y[i]!;
+    xSquaredSum += x[i]! * x[i]!;
   }
 
   // Calculate the slope and intercept
@@ -54,7 +54,7 @@ export function linearRegression(arr: [number, number][]): { intercept: number; 
   const residuals = [];
   let residualsSquaredSum = 0;
   for (let i = 0; i < n; i++) {
-    const residual = y[i] - (slope * x[i] + intercept);
+    const residual = y[i]! - (slope * x[i]! + intercept);
     residuals.push(residual);
     residualsSquaredSum += residual * residual;
   }

@@ -5,21 +5,15 @@
   "license": "LGPL-3.0",
   "type": "module",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+    ".": "./src/index.ts"
   },
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "src"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "check-types": "tsc",
     "format": "prettier --write src",
-    "lint": "eslint --fix src",
-    "test": "node --loader @swc-node/register/esm --no-warnings --test src/*.test.ts"
+    "lint": "eslint --fix src"
   },
   "devDependencies": {
     "typedoc": "^0.25.1"
