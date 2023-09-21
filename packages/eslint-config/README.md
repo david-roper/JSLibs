@@ -5,7 +5,7 @@ This repository contains linting configurations for DNP projects written in Type
 ## Install
 
 ```
-npm install --save-dev @douglasneuroinformatics/eslint-config eslint eslint-plugin-import @typescript-eslint/eslint-plugin @typescript-eslint/parser
+bun add --dev @douglasneuroinformatics/eslint-config eslint eslint-plugin-import @typescript-eslint/eslint-plugin @typescript-eslint/parser
 ```
 
 ## Usage

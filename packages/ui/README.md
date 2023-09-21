@@ -5,7 +5,7 @@ This repository houses generic, reusable React components for DNP projects.
 ## Install
 
 ```shell
-npm install @douglasneuroinformatics/ui
+bun add @douglasneuroinformatics/ui
 ```
 
 ## Usage
@@ -34,11 +34,4 @@ i18n.on('languageChanged', (lang) => {
 
 export default i18n;
 
-```
-## Development
-
-### Compile Library
-
-```shell
-npm run build
 ```

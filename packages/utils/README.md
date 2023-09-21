@@ -3,5 +3,5 @@
 ## Install
 
 ```shell
-npm install @douglasneuroinformatics/utils
+bun add @douglasneuroinformatics/utils
 ```
