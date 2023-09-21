@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.1.0
+
+### Minor Changes
+
+- Add ParseIdPipe
+
 ## 1.0.0
 
 ### Major Changes
