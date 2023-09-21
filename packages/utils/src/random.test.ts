@@ -1,31 +1,30 @@
-import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, expect, it } from 'bun:test';
 
-import { randomDate, randomInt } from './random.js';
+import { randomDate, randomInt } from './random';
 
 describe('randomInt', () => {
   it('should return an integer value within the range', () => {
     const min = 5;
     const max = 8;
     const result = randomInt(min, max);
-    assert(result >= min);
-    assert(result < max);
-    assert(Number.isInteger(result));
+    expect(result).toBeGreaterThanOrEqual(min);
+    expect(result).toBeLessThan(8);
+    expect(Number.isInteger(result)).toBeTrue();
   });
   it('should throw if the min value is larger than the max', () => {
-    assert.throws(() => randomInt(10, 5));
+    expect(() => randomInt(10, 5)).toThrow();
   });
   it('should throw if the min value equals the max', () => {
-    assert.throws(() => randomInt(10, 10));
+    expect(() => randomInt(10, 10)).toThrow();
   });
   it('should handle negative values', () => {
     const min = -5;
     const max = -3;
     const result = randomInt(min, max);
-    assert(result >= min);
-    assert(result < max);
-    assert(Number.isInteger(result));
-    assert.throws(() => randomInt(max, min));
+    expect(result).toBeGreaterThanOrEqual(min);
+    expect(result).toBeLessThan(8);
+    expect(Number.isInteger(result)).toBeTrue();
+    expect(() => randomInt(max, min)).toThrow();
   });
 });
 
@@ -34,10 +33,10 @@ describe('randomDate', () => {
     const start = new Date(2000, 0, 1);
     const end = new Date();
     const random = randomDate(start, end);
-    assert(random.getTime() >= start.getTime());
-    assert(random.getTime() <= end.getTime());
+    expect(random.getTime() >= start.getTime()).toBeTrue();
+    expect(random.getTime() <= end.getTime()).toBeTrue();
   });
   it('should throw if the end is before the start', () => {
-    assert.throws(() => randomDate(new Date(), new Date(2000, 0, 1)));
+    expect(() => randomDate(new Date(), new Date(2000, 0, 1))).toThrow();
   });
 });

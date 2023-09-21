@@ -1,20 +1,19 @@
-import assert from 'node:assert/strict';
-import { describe, it } from 'node:test';
+import { describe, expect, it } from 'bun:test';
 
-import { camelToSnakeCase, snakeToCamelCase } from './string.js';
+import { camelToSnakeCase, snakeToCamelCase } from './string';
 
 describe('camelToSnakeCase', () => {
   it('should convert from camel to snake case ', () => {
-    assert.strictEqual(camelToSnakeCase('toSnakeCase'), 'to_snake_case');
-    assert.strictEqual(camelToSnakeCase('foo'), 'foo');
-    assert.strictEqual(camelToSnakeCase(''), '');
+    expect(camelToSnakeCase('toSnakeCase')).toBe('to_snake_case');
+    expect(camelToSnakeCase('foo')).toBe('foo');
+    expect(camelToSnakeCase('')).toBe('')
   });
 });
 
 describe('snakeToCamelCase', () => {
   it('should convert from snake to camel case ', () => {
-    assert.strictEqual(snakeToCamelCase('to_camel_case'), 'toCamelCase');
-    assert.strictEqual(camelToSnakeCase('foo'), 'foo');
-    assert.strictEqual(camelToSnakeCase(''), '');
+    expect(snakeToCamelCase('to_camel_case')).toBe('toCamelCase');
+    expect(camelToSnakeCase('foo')).toBe('foo');
+    expect(camelToSnakeCase('')).toBe('');
   });
 });
