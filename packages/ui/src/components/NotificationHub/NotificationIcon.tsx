@@ -8,7 +8,7 @@ import { type NotificationInterface } from '../../stores/notifications-store.js'
 
 export type NotificationIconProps = {
   type: NotificationInterface['type'];
-}
+};
 
 export const NotificationIcon = ({ type }: NotificationIconProps) => {
   switch (type) {

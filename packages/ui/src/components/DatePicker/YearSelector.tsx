@@ -27,9 +27,12 @@ export const YearSelector = (props: YearSelectorProps) => {
       {years.map((year) => (
         <div className="flex h-9 items-center justify-center" key={year}>
           <button
-            className={clsx('h-full w-full rounded-lg border dark:border-slate-700 shadow-sm hover:bg-slate-200 dark:hover:bg-slate-700', {
-              'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-600': year === props.selected.getFullYear()
-            })}
+            className={clsx(
+              'h-full w-full rounded-lg border dark:border-slate-700 shadow-sm hover:bg-slate-200 dark:hover:bg-slate-700',
+              {
+                'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-600': year === props.selected.getFullYear()
+              }
+            )}
             ref={year === props.selected.getFullYear() ? selectedRef : null}
             tabIndex={-1}
             type="button"

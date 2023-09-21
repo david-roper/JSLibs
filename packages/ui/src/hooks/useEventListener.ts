@@ -61,7 +61,9 @@ export function useEventListener<
     if (!(targetElement && targetElement.addEventListener)) return;
 
     // Create event listener that calls handler function stored in ref
-    const listener: typeof handler = (event) => { savedHandler.current(event); };
+    const listener: typeof handler = (event) => {
+      savedHandler.current(event);
+    };
 
     targetElement.addEventListener(eventName, listener, options);
 

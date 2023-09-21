@@ -20,7 +20,7 @@ export type ArrowToggleProps = {
 
   /** The size of the arrow in pixels (default is 16px) */
   arrowSize?: number;
-} & Omit<React.ComponentPropsWithoutRef<'button'>, 'content'>
+} & Omit<React.ComponentPropsWithoutRef<'button'>, 'content'>;
 
 export const ArrowToggle = React.forwardRef<HTMLButtonElement, ArrowToggleProps>(function ArrowToggle(
   { className, position, rotation, onClick, content, contentPosition, arrowSize, ...props },

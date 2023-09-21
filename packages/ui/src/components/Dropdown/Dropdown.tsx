@@ -38,7 +38,7 @@ export type DropdownProps<T extends DropdownOptions> = {
   variant?: ButtonProps['variant'];
 
   className?: string;
-}
+};
 
 // eslint-disable-next-line react/function-component-definition
 export function Dropdown<const T extends DropdownOptions>({
@@ -79,7 +79,9 @@ export function Dropdown<const T extends DropdownOptions>({
               <button
                 className="p-2 text-left hover:bg-slate-200 dark:hover:bg-slate-700"
                 style={{ minWidth: 100 }}
-                onClick={() => { onSelection(option as DropdownOptionKey<T>); }}
+                onClick={() => {
+                  onSelection(option as DropdownOptionKey<T>);
+                }}
               >
                 {Array.isArray(options) ? option : (options[option as keyof T] as string)}
               </button>

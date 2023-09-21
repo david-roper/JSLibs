@@ -18,7 +18,7 @@ export const StepperIcon = ({ icon, label, isActive = false }: StepperIconProps)
           className={clsx(
             'h-12 w-12 rounded-full text-white bg-sky-700 border-2 border-sky-700 py-3 transition duration-500 ease-in-out [&>*]:h-full [&>*]:w-full',
             {
-              'opacity-25': !isActive,
+              'opacity-25': !isActive
             }
           )}
         >

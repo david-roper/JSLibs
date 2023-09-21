@@ -23,7 +23,6 @@ import { PrimitiveFormField, PrimitiveFormFieldProps } from './PrimitiveFormFiel
 import { FormErrors, FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types.js';
 import { getDefaultValues } from './utils.js';
 
-
 /** Custom error messages to be supplied for each field */
 type ErrorMessages<T extends FormInstrumentData> = {
   [K in keyof T]?: T[K] extends PrimitiveFieldValue
@@ -44,7 +43,7 @@ type FormProps<T extends FormInstrumentData> = {
   errorMessages?: string | ErrorMessages<T>;
   validationSchema: JSONSchemaType<T>;
   onSubmit: (data: T) => void;
-}
+};
 
 const FormComponent = <T extends FormInstrumentData>({
   content,

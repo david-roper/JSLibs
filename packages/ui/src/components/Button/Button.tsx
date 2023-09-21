@@ -11,7 +11,7 @@ export type ButtonProps = {
   label: string;
   size?: 'sm' | 'md' | 'lg';
   variant?: 'primary' | 'secondary' | 'danger';
-} & Omit<React.ComponentPropsWithoutRef<'button'>, 'children'>
+} & Omit<React.ComponentPropsWithoutRef<'button'>, 'children'>;
 
 export const Button = React.forwardRef(function Button(
   { disabled, className, icon, label, iconPosition = 'left', size = 'md', variant = 'primary', ...props }: ButtonProps,
@@ -25,7 +25,8 @@ export const Button = React.forwardRef(function Button(
         size === 'md' && 'text-md px-6 py-2',
         size === 'lg' && 'px-8 py-3 text-lg',
         variant === 'primary' && 'bg-slate-800 text-slate-100 hover:bg-slate-700 dark:bg-sky-700 dark:hover:bg-sky-600',
-        variant === 'secondary' && 'border border-slate-300 dark:border-slate-600 hover:backdrop-brightness-95 dark:hover:backdrop-brightness-150 bg-inherit',
+        variant === 'secondary' &&
+          'border border-slate-300 dark:border-slate-600 hover:backdrop-brightness-95 dark:hover:backdrop-brightness-150 bg-inherit',
         variant === 'danger' && 'bg-red-600 text-white hover:bg-opacity-90',
         className
       )}

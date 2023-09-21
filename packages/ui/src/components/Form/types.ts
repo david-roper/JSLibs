@@ -16,7 +16,7 @@ export type BaseFieldProps<T> = {
     : T extends NullablePrimitiveFieldValue
     ? string
     : never;
-}
+};
 
 /** An object mapping field names to error messages, if applicable */
 export type FormErrors<T extends FormInstrumentData = FormInstrumentData> = {
