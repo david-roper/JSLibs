@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, Optional, PipeTransform } from '@nestjs/common';
+import { BadRequestException, Injectable, Optional, type PipeTransform } from '@nestjs/common';
 import { Types, isValidObjectId } from 'mongoose';
 
 @Injectable()
