@@ -2,8 +2,12 @@ const path = require('path');
 
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
-  extends: ['@douglasneuroinformatics'],
+  extends: ['@douglasneuroinformatics/eslint-config/lib/nest.cjs'],
+  ignorePatterns: ['dist/**/*'],
   parserOptions: {
     project: path.resolve(__dirname, 'tsconfig.json')
+  },
+  rules: {
+    '@typescript-eslint/consistent-type-definitions': 'off'
   }
 };
