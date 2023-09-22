@@ -5,7 +5,9 @@
   "license": "LGPL-3.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./core": "./src/core/index.ts",
+    "./modules": "./src/modules/index.ts"
   },
   "files": [
     "src"
@@ -19,7 +21,10 @@
     "@nestjs/common": "10.2.3",
     "@nestjs/core": "^10.2.3",
     "@nestjs/mongoose": "^10.0.1",
-    "mongoose": "^7.5.2"
+    "@nestjs/testing": "^10.2.5",
+    "mongoose": "^7.5.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.8.1"
   },
   "publishConfig": {
     "access": "public"
