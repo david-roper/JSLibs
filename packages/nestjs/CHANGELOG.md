@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.4.0
+
+### Minor Changes
+
+- add create mock
+
 ## 1.3.1
 
 ### Patch Changes
