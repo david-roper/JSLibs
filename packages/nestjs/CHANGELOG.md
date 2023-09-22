@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.3.1
+
+### Patch Changes
+
+- Add minimal exception filter
+
 ## 1.3.0
 
 ### Minor Changes
