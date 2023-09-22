@@ -7,7 +7,8 @@
   "exports": {
     ".": "./src/index.ts",
     "./core": "./src/core/index.ts",
-    "./modules": "./src/modules/index.ts"
+    "./modules": "./src/modules/index.ts",
+    "./testing": "./src/testing/index.ts"
   },
   "files": [
     "src"
@@ -28,5 +29,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "type-fest": "^4.3.1"
   }
 }
