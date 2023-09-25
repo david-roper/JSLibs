@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.4.5
+
+### Patch Changes
+
+- Use jest.fn instead of impl mock
+
 ## 1.4.4
 
 ### Patch Changes

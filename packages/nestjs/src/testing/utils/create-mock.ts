@@ -1,11 +1,9 @@
 import type { AnyFunction } from 'bun';
-import { type Mock, mock } from 'bun:test';
+import { type Mock, jest } from 'bun:test';
 import type { Constructor } from 'type-fest';
 
 export type MockedInstance<T extends object> = {
-  [K in keyof T as T[K] extends (...args: any) => any ? K : never]: T[K] extends (...args: any) => any
-    ? Mock<T[K]>
-    : never;
+  [K in keyof T as T[K] extends (...args: any) => any ? K : never]: Mock<AnyFunction>;
 };
 
 export function createMock<T extends Constructor<any>>(constructor: T) {
@@ -19,7 +17,7 @@ export function createMock<T extends Constructor<any>>(constructor: T) {
     .forEach((prop) => {
       const value = prototype[prop];
       if (typeof value === 'function') {
-        obj[prop] = mock(value as AnyFunction);
+        obj[prop] = jest.fn();
       } else {
         throw new Error(`Unexpected type for property '${prop}': ${typeof prototype[prop]}`);
       }
