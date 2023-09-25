@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/nestjs",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",

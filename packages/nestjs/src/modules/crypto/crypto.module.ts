@@ -14,7 +14,8 @@ export class CryptoModule {
           provide: CRYPTO_CONFIG_TOKEN,
           useValue: config
         }
-      ]
+      ],
+      exports: [CryptoService]
     };
   }
 }
