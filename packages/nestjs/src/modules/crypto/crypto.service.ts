@@ -6,12 +6,12 @@ import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from './crypto.
 
 @Injectable()
 export class CryptoService {
-  constructor(@Inject(CRYPTO_MODULE_OPTIONS_TOKEN) private readonly config: CryptoModuleOptions) {}
+  constructor(@Inject(CRYPTO_MODULE_OPTIONS_TOKEN) private readonly options: CryptoModuleOptions) {}
 
   hash(source: string) {
     return crypto
       .createHash('sha256')
-      .update(source + this.config.secretKey)
+      .update(source + this.options.secretKey)
       .digest('hex');
   }
 

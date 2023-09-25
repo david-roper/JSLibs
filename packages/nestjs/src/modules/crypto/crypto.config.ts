@@ -4,13 +4,15 @@ interface CryptoModuleOptions {
   secretKey: string;
 }
 
-const { ConfigurableModuleClass: ConfigurableCryptoModule, MODULE_OPTIONS_TOKEN: CRYPTO_MODULE_OPTIONS_TOKEN } =
-  new ConfigurableModuleBuilder<CryptoModuleOptions>()
-    .setClassMethodName('forRoot')
-    .setExtras({ isGlobal: false }, (definition, extras) => ({
-      ...definition,
-      global: extras.isGlobal
-    }))
-    .build();
+const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new ConfigurableModuleBuilder<CryptoModuleOptions>()
+  .setExtras({ isGlobal: false }, (definition, extras) => ({
+    ...definition,
+    global: extras.isGlobal
+  }))
+  .build();
 
-export { type CryptoModuleOptions, ConfigurableCryptoModule, CRYPTO_MODULE_OPTIONS_TOKEN };
+export {
+  type CryptoModuleOptions,
+  ConfigurableModuleClass as ConfigurableCryptoModule,
+  MODULE_OPTIONS_TOKEN as CRYPTO_MODULE_OPTIONS_TOKEN
+};
