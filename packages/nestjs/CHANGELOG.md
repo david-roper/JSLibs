@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.4.6
+
+### Patch Changes
+
+- Add global option to crypto
+
 ## 1.4.5
 
 ### Patch Changes
