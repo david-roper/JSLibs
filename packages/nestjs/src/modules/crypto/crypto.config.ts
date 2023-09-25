@@ -1,5 +1,10 @@
-export const CRYPTO_CONFIG_TOKEN = 'CRYPTO_CONFIG';
+import { ConfigurableModuleBuilder } from '@nestjs/common';
 
-export interface CryptoConfig {
+interface CryptoModuleOptions {
   secretKey: string;
 }
+
+const { ConfigurableModuleClass: ConfigurableCryptoModule, MODULE_OPTIONS_TOKEN: CRYPTO_MODULE_OPTIONS_TOKEN } =
+  new ConfigurableModuleBuilder<CryptoModuleOptions>().build();
+
+export { type CryptoModuleOptions, ConfigurableCryptoModule, CRYPTO_MODULE_OPTIONS_TOKEN };

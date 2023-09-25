@@ -2,11 +2,11 @@ import crypto from 'node:crypto';
 
 import { Inject, Injectable } from '@nestjs/common';
 
-import { CRYPTO_CONFIG_TOKEN, type CryptoConfig } from './crypto.config';
+import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from './crypto.config';
 
 @Injectable()
 export class CryptoService {
-  constructor(@Inject(CRYPTO_CONFIG_TOKEN) private readonly config: CryptoConfig) {}
+  constructor(@Inject(CRYPTO_MODULE_OPTIONS_TOKEN) private readonly config: CryptoModuleOptions) {}
 
   hash(source: string) {
     return crypto

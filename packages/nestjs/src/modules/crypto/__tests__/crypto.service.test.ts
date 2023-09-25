@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 
 import { beforeEach, describe, expect, it } from 'bun:test';
 
-import { CRYPTO_CONFIG_TOKEN, type CryptoConfig } from '..';
+import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from '..';
 import { CryptoService } from '../crypto.service';
 
 describe('CryptoService', () => {
@@ -13,10 +13,10 @@ describe('CryptoService', () => {
       providers: [
         CryptoService,
         {
-          provide: CRYPTO_CONFIG_TOKEN,
+          provide: CRYPTO_MODULE_OPTIONS_TOKEN,
           useValue: {
             secretKey: 'testing'
-          } satisfies CryptoConfig
+          } satisfies CryptoModuleOptions
         }
       ]
     }).compile();
