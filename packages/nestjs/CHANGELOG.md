@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.5.0
+
+### Minor Changes
+
+- Add database module
+
 ## 1.4.6
 
 ### Patch Changes
