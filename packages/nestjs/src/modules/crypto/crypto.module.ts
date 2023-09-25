@@ -5,7 +5,7 @@ import { CryptoService } from './crypto.service';
 
 @Module({})
 export class CryptoModule {
-  register(config: CryptoConfig): DynamicModule {
+  static register(config: CryptoConfig): DynamicModule {
     return {
       module: CryptoModule,
       providers: [
