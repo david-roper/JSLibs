@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.1.2
+
+### Patch Changes
+
+- Add react to export
+
 ## 2.1.1
 
 ### Patch Changes
