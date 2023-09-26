@@ -9,3 +9,25 @@ This repository contains the source code for the following NPM packages:
 - [@douglasneuroinformatics/stats](https://www.npmjs.com/package/@douglasneuroinformatics/stats)
 - [@douglasneuroinformatics/ui](https://www.npmjs.com/package/@douglasneuroinformatics/ui)
 - [@douglasneuroinformatics/utils](https://www.npmjs.com/package/@douglasneuroinformatics/utils)
+
+## Development Setup
+
+### Install Dependencies
+
+```shell
+bun install
+```
+
+### Update Package(s)
+
+#### Create Changelogs
+
+```shell
+bunx changeset
+```
+
+#### Push Changes to NPM (Admin Only)
+
+```shell
+bun push
+```
