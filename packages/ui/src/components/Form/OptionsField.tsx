@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { type OptionsFormField } from '@douglasneuroinformatics/form-types';
+import type { OptionsFormField } from '@douglasneuroinformatics/form-types';
 import { Listbox, Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 

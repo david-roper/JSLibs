@@ -17,7 +17,7 @@ import {
   XAxis,
   YAxis
 } from 'recharts';
-import { type ConditionalKeys } from 'type-fest';
+import type { ConditionalKeys } from 'type-fest';
 
 import { type Theme, useTheme } from '../../hooks/useTheme';
 import { withI18nProvider } from '../../utils/with-i18n-provider';

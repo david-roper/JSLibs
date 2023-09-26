@@ -1,4 +1,4 @@
-import { Simplify } from 'type-fest';
+import type { Simplify } from 'type-fest';
 
 /** Discriminator key to determine the structure of a specific form field */
 export type FormFieldKind = 'text' | 'numeric' | 'options' | 'date' | 'binary' | 'array';

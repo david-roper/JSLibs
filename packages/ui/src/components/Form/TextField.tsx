@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 
-import { type TextFormField } from '@douglasneuroinformatics/form-types';
+import type { TextFormField } from '@douglasneuroinformatics/form-types';
 import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 import { match } from 'ts-pattern';

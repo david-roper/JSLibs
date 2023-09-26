@@ -1,6 +1,6 @@
 'use client';
 
-import { type ArrayFormField } from '@douglasneuroinformatics/form-types';
+import type { ArrayFormField } from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '../Button/Button';

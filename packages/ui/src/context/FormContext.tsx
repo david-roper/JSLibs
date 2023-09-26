@@ -2,7 +2,7 @@
 
 import React, { createContext } from 'react';
 
-import { type FormInstrumentData } from '@douglasneuroinformatics/form-types';
+import type { FormInstrumentData } from '@douglasneuroinformatics/form-types';
 
 import type { FormErrors, FormValues } from '../components/Form/types';
 

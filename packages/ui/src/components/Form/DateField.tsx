@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { type DateFormField } from '@douglasneuroinformatics/form-types';
+import type { DateFormField } from '@douglasneuroinformatics/form-types';
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { Transition } from '@headlessui/react';
 import { clsx } from 'clsx';

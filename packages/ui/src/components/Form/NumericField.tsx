@@ -1,6 +1,6 @@
 'use client';
 
-import { type NumericFormField } from '@douglasneuroinformatics/form-types';
+import type { NumericFormField } from '@douglasneuroinformatics/form-types';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 
