@@ -16,5 +16,8 @@ export function randomDate(start: Date, end: Date) {
 
 /** Returns a random value from the array */
 export function randomValue<T>(arr: T[]) {
-  return arr[randomInt(0, arr.length)];
+  if (arr.length === 0) {
+    throw new Error('Cannot select random value from array of length zero');
+  }
+  return arr[randomInt(0, arr.length)] as T;
 }

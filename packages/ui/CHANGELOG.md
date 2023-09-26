@@ -1,5 +1,12 @@
 # @douglasneuroinformatics/ui
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @douglasneuroinformatics/utils@1.0.1
+
 ## 2.0.0
 
 ### Major Changes

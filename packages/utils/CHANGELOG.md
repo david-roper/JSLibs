@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/utils
 
+## 1.0.1
+
+### Patch Changes
+
+- Adjust typing for random value
+
 ## 1.0.0
 
 ### Major Changes
