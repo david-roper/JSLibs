@@ -11,17 +11,17 @@ export const LoadingFallback = <T extends object>({ children, data }: LoadingFal
   const [isDelayComplete, setIsDelayComplete] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => setIsDelayComplete(true), 200);
+    setTimeout(() => { setIsDelayComplete(true); }, 200);
   }, []);
 
   return (
     <AnimatePresence mode="wait">
       {!isDelayComplete ? null : data === null ? (
-        <motion.div key="loading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }} initial={{ opacity: 0 }} key="loading">
           <p>Loading...</p>
         </motion.div>
       ) : (
-        <motion.div key="callback" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+        <motion.div animate={{ opacity: 1 }} exit={{ opacity: 0 }} initial={{ opacity: 0 }} key="callback">
           {children(data)}
         </motion.div>
       )}

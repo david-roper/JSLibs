@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.6.0
+
+### Minor Changes
+
+- remove uselsss mock
+
 ## 1.5.0
 
 ### Minor Changes
