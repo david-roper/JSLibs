@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { BinaryField, type BinaryFieldProps } from './BinaryField';
 import { DateField, type DateFieldProps } from './DateField';
 import { NumericField, type NumericFieldProps } from './NumericField';

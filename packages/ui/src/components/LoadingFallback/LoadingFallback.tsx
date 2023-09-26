@@ -11,7 +11,9 @@ export const LoadingFallback = <T extends object>({ children, data }: LoadingFal
   const [isDelayComplete, setIsDelayComplete] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => { setIsDelayComplete(true); }, 200);
+    setTimeout(() => {
+      setIsDelayComplete(true);
+    }, 200);
   }, []);
 
   return (

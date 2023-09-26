@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { twMerge } from 'tailwind-merge';
 
 import { Card } from '../Card/Card';

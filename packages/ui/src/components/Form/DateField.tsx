@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { type DateFormField } from '@douglasneuroinformatics/form-types';
 import { toBasicISOString } from '@douglasneuroinformatics/utils';

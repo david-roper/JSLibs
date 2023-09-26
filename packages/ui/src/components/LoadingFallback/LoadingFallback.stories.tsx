@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
@@ -34,7 +34,9 @@ export const Default: Story = {
       const [data, setData] = useState<User[] | null>(null);
 
       useEffect(() => {
-        setTimeout(() => { setData(users); }, 2000);
+        setTimeout(() => {
+          setData(users);
+        }, 2000);
       }, []);
 
       return (

@@ -13,11 +13,14 @@ bun add @douglasneuroinformatics/ui
 **tailwind.config.js**
 
 ```javascript
-import { createConfig } from '@douglasneuroinformatics/ui/tailwind.utils.cjs';
+import config from '@douglasneuroinformatics/ui/tailwind.config';
 
-export default createConfig({
-  content: ['./src/**/*.{ts,tsx}']
-});
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [...config.content, './src/**/*.{js,ts,jsx,tsx}'],
+  presets: [config]
+};
 
 ```
 

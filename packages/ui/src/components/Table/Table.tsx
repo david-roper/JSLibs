@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { clsx } from 'clsx';
 

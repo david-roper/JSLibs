@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
 import { PopoverIcon } from '../PopoverIcon/PopoverIcon';

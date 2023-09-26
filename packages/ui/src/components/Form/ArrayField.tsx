@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { type ArrayFormField } from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 

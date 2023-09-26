@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';

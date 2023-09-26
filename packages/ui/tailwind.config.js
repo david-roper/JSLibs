@@ -1,25 +1,20 @@
 // @ts-check
 
-const fs = require('fs');
-const path = require('path');
+import path from 'path';
+import plugin from 'tailwindcss/plugin';
 
-const plugin = require('tailwindcss/plugin');
+import tailwindcss from '@headlessui/tailwindcss';
+import containerQueries from '@tailwindcss/container-queries';
 
-// @ts-expect-error
-const distDir = path.resolve(module.path, 'dist');
-// @ts-expect-error
-const srcDir = path.resolve(module.path, 'src');
-
-// When installed from npm, src will not be included
-const isDev = fs.existsSync(srcDir);
-
-const content = isDev
-  ? [path.join(__dirname, '.storybook', 'preview-body.html'), path.join(srcDir, '**/*.{js,ts,jsx,tsx}')]
-  : [path.join(distDir, '**/*.js')];
+/**
+ * Note, using `__dirname` is a hack which will work when run with bun (e.g., vite dev server)
+ * and also when resolved as a CommonJS module by storybook. Once Bun has implemented the
+ * necessary Node libraries, this can be replaced by `import.meta.dir`.
+ */
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content,
+export default {
+  content: [path.resolve(__dirname, './src/**/*.{js,jsx,ts,tsx}')],
   darkMode: ['class', '[data-mode="dark"]'],
   theme: {
     extend: {
@@ -35,6 +30,8 @@ module.exports = {
     }
   },
   plugins: [
+    containerQueries,
+    tailwindcss,
     plugin(({ addBase, addComponents, addUtilities, theme }) => {
       addBase({
         'html.dark': {
@@ -75,8 +72,6 @@ module.exports = {
           }
         }
       });
-    }),
-    require('@headlessui/tailwindcss'),
-    require('@tailwindcss/container-queries')
+    })
   ]
 };

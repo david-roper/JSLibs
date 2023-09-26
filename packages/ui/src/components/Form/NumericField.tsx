@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { type NumericFormField } from '@douglasneuroinformatics/form-types';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
