@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.1.5
+
+### Patch Changes
+
+- Add built files for UI library
+
 ## 2.1.4
 
 ### Patch Changes
