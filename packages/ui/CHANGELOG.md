@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.1.4
+
+### Patch Changes
+
+- Adjust key order
+
 ## 2.1.3
 
 ### Patch Changes

@@ -46,7 +46,7 @@ export const ArrayField = ({ label, fieldset, error, value: arrayValue, setValue
               },
               ...fieldProps
             } as PrimitiveFormFieldProps;
-            return <PrimitiveFormField key={fieldName} {...props} />;
+            return <PrimitiveFormField {...props} key={fieldName} />;
           })}
         </div>
       ))}

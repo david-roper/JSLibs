@@ -16,14 +16,14 @@ export type PrimitiveFormFieldProps =
 export const PrimitiveFormField = (props: PrimitiveFormFieldProps) => {
   switch (props.kind) {
     case 'text':
-      return <TextField key={props.name} {...props} />;
+      return <TextField {...props} key={props.name} />;
     case 'numeric':
-      return <NumericField key={props.name} {...props} />;
+      return <NumericField {...props} key={props.name} />;
     case 'options':
-      return <OptionsField key={props.name} {...props} />;
+      return <OptionsField {...props} key={props.name} />;
     case 'date':
-      return <DateField key={props.name} {...props} />;
+      return <DateField {...props} key={props.name} />;
     case 'binary':
-      return <BinaryField key={props.name} {...props} />;
+      return <BinaryField {...props} key={props.name} />;
   }
 };

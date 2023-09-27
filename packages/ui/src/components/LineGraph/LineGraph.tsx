@@ -115,12 +115,12 @@ function LineGraphComponent<const T extends LineGraphData>({
           />
           {lines.map(({ name, val, err, stroke, type, ...props }) => (
             <Line
+              {...props}
               dataKey={val}
               key={val}
               name={name}
               stroke={stroke ?? strokeColors[theme]}
               type={type ?? 'linear'}
-              {...props}
             >
               {err && <ErrorBar dataKey={err} stroke="#64748b" />}
             </Line>

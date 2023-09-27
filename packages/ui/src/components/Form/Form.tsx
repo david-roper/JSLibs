@@ -132,9 +132,9 @@ const FormComponent = <T extends FormInstrumentData>({
         ...fields[fieldName]
       };
       if (props.kind === 'array') {
-        formFields.push(<ArrayField key={fieldName} {...(props as ArrayFieldProps)} />);
+        formFields.push(<ArrayField {...(props as ArrayFieldProps)} key={fieldName} />);
       } else {
-        formFields.push(<PrimitiveFormField key={fieldName} {...(props as PrimitiveFormFieldProps)} />);
+        formFields.push(<PrimitiveFormField {...(props as PrimitiveFormFieldProps)} key={fieldName} />);
       }
     }
     return formFields;
