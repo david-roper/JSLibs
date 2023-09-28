@@ -13,6 +13,10 @@ export type ArrayFieldProps = BaseFieldComponentProps<Types.NullableArrayFieldVa
 export const ArrayField = ({ label, fieldset, error, value: arrayValue, setValue: setArrayValue }: ArrayFieldProps) => {
   const { t } = useTranslation();
 
+  if (!arrayValue) {
+    return null
+  }
+
   // Creates a new object with all values mapped to null and appends it to the previous arrayValue
   const appendField = () => {
     setArrayValue([...arrayValue, Object.fromEntries(Object.keys(fieldset).map((fieldName) => [fieldName, null]))]);

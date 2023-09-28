@@ -12,7 +12,7 @@ import { DatePicker } from '../DatePicker/DatePicker';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-export type DateFieldProps = BaseFieldComponentProps<string | null> & DateFormField;
+export type DateFieldProps = BaseFieldComponentProps<string> & DateFormField;
 
 export const DateField = ({ description, name, label, error, value, setValue }: DateFieldProps) => {
   const [inputFocused, setInputFocused] = useState(false);

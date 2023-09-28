@@ -10,7 +10,7 @@ import { match } from 'ts-pattern';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-type TextFieldProps = BaseFieldComponentProps<string | null> & TextFormField;
+type TextFieldProps = BaseFieldComponentProps<string> & TextFormField;
 
 type PasswordInputProps = Pick<TextFieldProps, 'name' | 'value' | 'description'> & {
   onChange: React.ChangeEventHandler<HTMLInputElement>;

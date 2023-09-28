@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-type BinaryFieldProps = BaseFieldComponentProps<boolean | null> & BinaryFormField;
+type BinaryFieldProps = BaseFieldComponentProps<boolean> & BinaryFormField;
 
 type InnerProps = Pick<BinaryFieldProps, 'name' | 'label' | 'value' | 'setValue'>;
 

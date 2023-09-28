@@ -9,7 +9,7 @@ import { PopoverIcon } from '../PopoverIcon/PopoverIcon';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-export type NumericFieldProps = BaseFieldComponentProps<number | null> & NumericFormField;
+export type NumericFieldProps = BaseFieldComponentProps<number> & NumericFormField;
 
 export const NumericField = ({
   description,
