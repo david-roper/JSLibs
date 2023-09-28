@@ -115,7 +115,7 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
         label: 'Doctor Name',
         variant: 'short'
       },
-      array: {
+      array: ({ array }) => ({
         kind: 'array',
         label: 'Patient',
         fieldset: {
@@ -133,17 +133,12 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
               f: 'Not yet'
             }
           },
-          dateOfDeath: (fieldset) => {
-            if (!fieldset.isDead) {
-              return null;
-            }
-            return {
-              kind: 'date',
-              label: 'Date of Death'
-            };
+          dateOfDeath: {
+            kind: 'date',
+            label: 'Date of Death'
           }
         }
-      }
+      })
     },
     errorMessages: 'F0 is a required field',
     validationSchema: {

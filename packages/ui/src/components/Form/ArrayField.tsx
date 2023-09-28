@@ -1,10 +1,6 @@
 'use client';
 
-import type {
-  ArrayFormField,
-  NullableArrayFieldValue,
-  NullablePrimitiveFieldValue
-} from '@douglasneuroinformatics/form-types';
+import type Types from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '../Button/Button';
@@ -12,7 +8,7 @@ import { Button } from '../Button/Button';
 import { PrimitiveFormField, type PrimitiveFormFieldProps } from './PrimitiveFormField';
 import type { BaseFieldComponentProps } from './types';
 
-export type ArrayFieldProps = BaseFieldComponentProps<NullableArrayFieldValue> & ArrayFormField;
+export type ArrayFieldProps = BaseFieldComponentProps<Types.NullableArrayFieldValue> & Types.ArrayFormField;
 
 export const ArrayField = ({ label, fieldset, error, value: arrayValue, setValue: setArrayValue }: ArrayFieldProps) => {
   const { t } = useTranslation();
@@ -36,20 +32,16 @@ export const ArrayField = ({ label, fieldset, error, value: arrayValue, setValue
           <span className="font-medium text-slate-600 dark:text-slate-300">{label + ' ' + (i + 1)}</span>
           {Object.keys(fields).map((fieldName) => {
             const field = fieldset[fieldName];
-            const fieldProps = field instanceof Function ? field(fields) : field;
-            if (!fieldProps) {
-              return null;
-            }
             const props = {
               name: fieldName + i,
               error: error?.[i]?.[fieldName],
               value: fields[fieldName],
-              setValue: (value: NullablePrimitiveFieldValue) => {
+              setValue: (value: Types.NullablePrimitiveFieldValue) => {
                 const newArrayValue = [...arrayValue];
                 newArrayValue[i]![fieldName] = value;
                 setArrayValue(newArrayValue);
               },
-              ...fieldProps
+              ...field
             } as PrimitiveFormFieldProps;
             return <PrimitiveFormField {...props} key={fieldName} />;
           })}
