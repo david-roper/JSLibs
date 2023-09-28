@@ -123,7 +123,7 @@ export type StaticFormField<TValue extends ArrayFieldValue | PrimitiveFieldValue
 
 export type DynamicFormField<TData extends FormInstrumentData, TValue extends ArrayFieldValue | PrimitiveFieldValue> = (
   data: NullableFormInstrumentData<TData>
-) => StaticFormField<TValue>;
+) => StaticFormField<TValue> | null;
 
 export type UnknownFormField<TData extends FormInstrumentData, TKey extends keyof TData = keyof TData> =
   | StaticFormField<TData[TKey]>

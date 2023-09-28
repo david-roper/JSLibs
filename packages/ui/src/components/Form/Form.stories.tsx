@@ -242,11 +242,17 @@ export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
         label: 'Should Show B?',
         variant: 'radio'
       },
-      b: {
-        kind: 'text',
-        label: 'Example',
-        variant: 'short'
+      b: ({ a }) => {
+        if (a) {
+          return {
+            kind: 'text',
+            label: 'Example',
+            variant: 'short'
+          };
+        }
+        return null;
       }
-    }
+    },
+    onSubmit: (data) => alert(JSON.stringify(data))
   }
 };

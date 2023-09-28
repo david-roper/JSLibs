@@ -24,6 +24,9 @@ export const FormFieldsComponent = <T extends FormInstrumentData>({ fields }: Fo
       {Object.keys(fields).map((fieldName: keyof T) => {
         const field: UnknownFormField<T> = fields[fieldName];
         const staticField = field instanceof Function ? field(values) : field;
+        if (!staticField) {
+          return null;
+        }
         const value: UnknownNullableFieldValue = values[fieldName];
         const baseProps: BaseFieldComponentProps = {
           name: fieldName as string,
