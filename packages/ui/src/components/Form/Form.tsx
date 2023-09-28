@@ -18,9 +18,9 @@ import { ajv } from '../../services/ajv';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 
+import { FormFieldsComponent } from './FormFieldsComponent';
 import type { FormErrors, FormValues } from './types';
 import { getDefaultValues } from './utils';
-import { FormFieldsComponent } from './FormFieldsComponent';
 
 /** Custom error messages to be supplied for each field */
 type ErrorMessages<T extends FormInstrumentData> = {

@@ -1,10 +1,10 @@
-import type { ArrayFieldValue, FormInstrumentData, PrimitiveFieldValue } from '@douglasneuroinformatics/form-types';
-
-export type NullablePrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = T | null;
-
-export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = {
-  [K in keyof T[number]]: NullablePrimitiveFieldValue<T[number][K]>;
-}[];
+import type {
+  ArrayFieldValue,
+  FormInstrumentData,
+  NullableArrayFieldValue,
+  NullablePrimitiveFieldValue,
+  PrimitiveFieldValue
+} from '@douglasneuroinformatics/form-types';
 
 /** Common props for all field components */
 export type BaseFieldProps<T> = {

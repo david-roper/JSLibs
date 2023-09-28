@@ -1,12 +1,16 @@
 'use client';
 
-import type { ArrayFormField } from '@douglasneuroinformatics/form-types';
+import type {
+  ArrayFormField,
+  NullableArrayFieldValue,
+  NullablePrimitiveFieldValue
+} from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 
 import { Button } from '../Button/Button';
 
 import { PrimitiveFormField, type PrimitiveFormFieldProps } from './PrimitiveFormField';
-import type { BaseFieldProps, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types';
+import type { BaseFieldProps } from './types';
 
 export type ArrayFieldProps = BaseFieldProps<NullableArrayFieldValue> & ArrayFormField;
 

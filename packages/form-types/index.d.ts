@@ -6,11 +6,19 @@ export type FormFieldKind = 'text' | 'numeric' | 'options' | 'date' | 'binary' |
 /** The type of the data associated with a primitive field */
 export type PrimitiveFieldValue = string | number | boolean;
 
+export type NullablePrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = T | null;
+
 /** The type of the data associated with an array field */
 export type ArrayFieldValue = Record<string, PrimitiveFieldValue>[];
 
+export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = {
+  [K in keyof T[number]]: NullablePrimitiveFieldValue<T[number][K]>;
+}[];
+
 /** The type of the data associated with the entire instrument (i.e., the values for all fields) */
 export type FormInstrumentData = Record<string, PrimitiveFieldValue | ArrayFieldValue>;
+
+export type NullableFormInstrumentData = Record<string, NullablePrimitiveFieldValue | NullablePrimitiveFieldValue>;
 
 /** The basic properties common to all field kinds */
 export type BaseFormField = {
@@ -99,7 +107,9 @@ export type FormField<TValue extends ArrayFieldValue | PrimitiveFieldValue> = [T
   ? PrimitiveFormField<TValue>
   : [TValue] extends [ArrayFieldValue]
   ? ArrayFormField<TValue>
-  : never;
+  : PrimitiveFormField | ArrayFormField;
+
+// export type DynamicFormField<TData extends FormInstrumentData, TValue extends ArrayFieldValue | PrimitiveFieldValue> = (data: TData)
 
 export type FormFields<TData extends FormInstrumentData = FormInstrumentData> = {
   [K in keyof TData]: FormField<TData[K]>;

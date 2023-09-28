@@ -1,8 +1,16 @@
-import type { FormFields, FormInstrumentData } from '@douglasneuroinformatics/form-types';
 import { useContext } from 'react';
+
+import type {
+  FormFields,
+  FormInstrumentData,
+  NullableArrayFieldValue,
+  NullablePrimitiveFieldValue
+} from '@douglasneuroinformatics/form-types';
+
 import { FormContext, type FormState } from '../../context/FormContext';
+
 import { ArrayField, PrimitiveFormField } from '.';
-import type { ArrayFieldProps, PrimitiveFormFieldProps, NullablePrimitiveFieldValue, NullableArrayFieldValue } from '.';
+import type { ArrayFieldProps, PrimitiveFormFieldProps } from '.';
 
 export type FormFieldsComponentProps<T extends FormInstrumentData> = {
   fields: FormFields<T>;
