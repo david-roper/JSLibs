@@ -99,74 +99,56 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
 };
 
 type ArrayFormValues = {
-  f0: string;
+  doctorName: string;
   array: {
-    f1: string;
-    f2: number;
+    patientName: string;
+    isDead: boolean;
+    dateOfDeath?: string;
   }[];
 };
 
 export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
   args: {
     content: {
-      f0: {
+      doctorName: {
         kind: 'text',
-        label: 'Field 0',
+        label: 'Doctor Name',
         variant: 'short'
       },
       array: {
         kind: 'array',
-        label: 'Array Field',
+        label: 'Patient',
         fieldset: {
-          f1: {
+          patientName: {
             kind: 'text',
-            label: 'Field 1',
+            label: 'Patient Name',
             variant: 'short'
           },
-          f2: {
-            kind: 'numeric',
-            label: 'Field 2',
-            min: 0,
-            max: 10,
-            variant: 'slider'
+          isDead: {
+            kind: 'binary',
+            label: 'Is Dead?',
+            variant: 'radio',
+            options: {
+              t: 'Unfortunately',
+              f: 'Not yet'
+            }
+          },
+          dateOfDeath: (fieldset) => {
+            if (!fieldset.isDead) {
+              return null
+            }
+            return {
+              kind: 'date',
+              label: 'Date of Death'
+            };
           }
         }
       }
     },
-    errorMessages: {
-      f0: 'F0 is a required field',
-      array: {
-        f1: 'F1 is a required field',
-        f2: 'F2 is a required field'
-      }
-    },
+    errorMessages: 'F0 is a required field',
     validationSchema: {
       type: 'object',
-      properties: {
-        f0: {
-          type: 'string',
-          minLength: 1
-        },
-        array: {
-          type: 'array',
-          items: {
-            type: 'object',
-            properties: {
-              f1: {
-                type: 'string',
-                minLength: 1
-              },
-              f2: {
-                type: 'integer',
-                minimum: 0,
-                maximum: 10
-              }
-            },
-            required: ['f1', 'f2']
-          }
-        }
-      },
-      required: ['f0', 'array']
+      required: []
     },
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
