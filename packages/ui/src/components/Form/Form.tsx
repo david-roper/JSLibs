@@ -18,10 +18,9 @@ import { ajv } from '../../services/ajv';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 
-import { ArrayField, type ArrayFieldProps } from './ArrayField';
-import { PrimitiveFormField, type PrimitiveFormFieldProps } from './PrimitiveFormField';
-import type { FormErrors, FormValues, NullableArrayFieldValue, NullablePrimitiveFieldValue } from './types';
+import type { FormErrors, FormValues } from './types';
 import { getDefaultValues } from './utils';
+import { FormFieldsComponent } from './FormFieldsComponent';
 
 /** Custom error messages to be supplied for each field */
 type ErrorMessages<T extends FormInstrumentData> = {
@@ -119,47 +118,28 @@ const FormComponent = <T extends FormInstrumentData>({
     }
   };
 
-  const renderFormFields = (fields: FormFields<T>): JSX.Element[] => {
-    const formFields: JSX.Element[] = [];
-    for (const fieldName in fields) {
-      const props = {
-        name: fieldName,
-        error: errors[fieldName],
-        value: values[fieldName],
-        setValue: (value: NullablePrimitiveFieldValue | NullableArrayFieldValue) => {
-          setValues((prevValues) => ({ ...prevValues, [fieldName]: value }));
-        },
-        ...fields[fieldName]
-      };
-      if (props.kind === 'array') {
-        formFields.push(<ArrayField {...(props as ArrayFieldProps)} key={fieldName} />);
-      } else {
-        formFields.push(<PrimitiveFormField {...(props as PrimitiveFormFieldProps)} key={fieldName} />);
-      }
-    }
-    return formFields;
-  };
-
   return (
     <FormProvider {...{ errors, values, setValues }}>
       <form autoComplete="off" className={clsx('w-full', className)} onSubmit={handleSubmit}>
-        {Array.isArray(content)
-          ? content.map((fieldGroup, i) => {
-              return (
-                <div key={i}>
-                  <div className="my-5">
-                    <h3 className="mb-2 font-semibold">{fieldGroup.title}</h3>
-                    {fieldGroup.description && (
-                      <small className="text-sm italic text-slate-600 dark:text-slate-300">
-                        {fieldGroup.description}
-                      </small>
-                    )}
-                  </div>
-                  {renderFormFields(fieldGroup.fields as FormFields<T>)}
+        {Array.isArray(content) ? (
+          content.map((fieldGroup, i) => {
+            return (
+              <div key={i}>
+                <div className="my-5">
+                  <h3 className="mb-2 font-semibold">{fieldGroup.title}</h3>
+                  {fieldGroup.description && (
+                    <small className="text-sm italic text-slate-600 dark:text-slate-300">
+                      {fieldGroup.description}
+                    </small>
+                  )}
                 </div>
-              );
-            })
-          : renderFormFields(content)}
+                <FormFieldsComponent fields={fieldGroup.fields as FormFields<T>} />
+              </div>
+            );
+          })
+        ) : (
+          <FormFieldsComponent fields={content} />
+        )}
         <div className="flex w-full gap-3">
           <Button
             className="block w-full first-letter:capitalize"
