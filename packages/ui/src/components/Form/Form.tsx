@@ -2,14 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 
-import type {
-  ArrayFieldValue,
-  FormFields,
-  FormInstrumentContent,
-  FormInstrumentData,
-  NullableFormInstrumentData,
-  PrimitiveFieldValue
-} from '@douglasneuroinformatics/form-types';
+import type Types from '@douglasneuroinformatics/form-types';
 import type { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
@@ -24,20 +17,20 @@ import type { FormErrors } from './types';
 import { getDefaultValues } from './utils';
 
 /** Custom error messages to be supplied for each field */
-type ErrorMessages<T extends FormInstrumentData> = {
-  [K in keyof T]?: T[K] extends PrimitiveFieldValue
+type ErrorMessages<T extends Types.FormInstrumentData> = {
+  [K in keyof T]?: T[K] extends Types.PrimitiveFieldValue
     ? string
-    : T[K] extends ArrayFieldValue
+    : T[K] extends Types.ArrayFieldValue
     ? {
         [P in keyof T[K][number]]?: string;
       }
     : never;
 };
 
-type FormProps<T extends FormInstrumentData> = {
-  content: FormInstrumentContent<T>;
+type FormProps<T extends Types.FormInstrumentData> = {
+  content: Types.FormInstrumentContent<T>;
   className?: string;
-  initialValues?: NullableFormInstrumentData<T> | null;
+  initialValues?: Types.NullableFormInstrumentData<T> | null;
   resetBtn?: boolean;
   submitBtnLabel?: string;
   errorMessages?: string | ErrorMessages<T>;
@@ -45,7 +38,7 @@ type FormProps<T extends FormInstrumentData> = {
   onSubmit: (data: T) => void;
 };
 
-const FormComponent = <T extends FormInstrumentData>({
+const FormComponent = <T extends Types.FormInstrumentData>({
   content,
   className,
   initialValues,
@@ -56,7 +49,7 @@ const FormComponent = <T extends FormInstrumentData>({
   resetBtn
 }: FormProps<T>) => {
   const [validationErrors, setValidationErrors] = useState<ErrorObject[] | null>(null);
-  const [values, setValues] = useState<NullableFormInstrumentData<T>>(() => initialValues ?? getDefaultValues(content));
+  const [values, setValues] = useState<Types.NullableFormInstrumentData<T>>(() => initialValues ?? getDefaultValues(content));
 
   const { t, i18n } = useTranslation();
 
@@ -143,7 +136,7 @@ const FormComponent = <T extends FormInstrumentData>({
                     </small>
                   )}
                 </div>
-                <FormFieldsComponent fields={fieldGroup.fields as FormFields<T>} />
+                <FormFieldsComponent fields={fieldGroup.fields as Types.FormFields<T>} />
               </div>
             );
           })

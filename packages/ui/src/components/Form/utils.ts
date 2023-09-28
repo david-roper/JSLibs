@@ -1,17 +1,10 @@
-import type {
-  FormFields,
-  FormInstrumentContent,
-  FormInstrumentData,
-  NullableArrayFieldValue,
-  NullableFormInstrumentData,
-  NullablePrimitiveFieldValue
-} from '@douglasneuroinformatics/form-types';
+import type Types from '@douglasneuroinformatics/form-types';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
-export function getFormFields<T extends FormInstrumentData>(content: FormInstrumentContent<T>): FormFields<T> {
-  let fields: FormFields<T>;
+export function getFormFields<T extends Types.FormInstrumentData>(content: Types.FormInstrumentContent<T>): Types.FormFields<T> {
+  let fields: Types.FormFields<T>;
   if (Array.isArray(content)) {
-    fields = content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as FormFields<T>;
+    fields = content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as Types.FormFields<T>;
   } else {
     fields = content;
   }
@@ -19,10 +12,10 @@ export function getFormFields<T extends FormInstrumentData>(content: FormInstrum
 }
 
 /** Returns the default values when initializing the state or resetting the form */
-export const getDefaultValues = <T extends FormInstrumentData>(
-  content: FormInstrumentContent<T>
-): NullableFormInstrumentData<T> => {
-  const defaultValues: Record<string, NullableArrayFieldValue | NullablePrimitiveFieldValue> = {};
+export const getDefaultValues = <T extends Types.FormInstrumentData>(
+  content: Types.FormInstrumentContent<T>
+): Types.NullableFormInstrumentData<T> => {
+  const defaultValues: Record<string, Types.NullableArrayFieldValue | Types.NullablePrimitiveFieldValue> = {};
 
   // Get a flat array of all fields regardless of the content type
   const fields = getFormFields(content);
@@ -33,12 +26,12 @@ export const getDefaultValues = <T extends FormInstrumentData>(
     if (field instanceof Function || field.kind !== 'array') {
       defaultValues[fieldName] = null;
     } else {
-      const defaultItemValues: NullableArrayFieldValue[number] = {};
+      const defaultItemValues: Types.NullableArrayFieldValue[number] = {};
       for (const subfieldName in field.fieldset) {
         defaultItemValues[subfieldName] = null;
       }
       defaultValues[fieldName] = [defaultItemValues];
     }
   }
-  return defaultValues as NullableFormInstrumentData<T>;
+  return defaultValues as Types.NullableFormInstrumentData<T>;
 };
