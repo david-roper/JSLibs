@@ -3,11 +3,13 @@ import type {
   FormInstrumentData,
   NullableArrayFieldValue,
   NullablePrimitiveFieldValue,
-  PrimitiveFieldValue
+  PrimitiveFieldValue,
+  UnknownFormField,
+  UnknownNullableFieldValue
 } from '@douglasneuroinformatics/form-types';
 
 /** Common props for all field components */
-export type BaseFieldProps<T> = {
+export type BaseFieldComponentProps<T extends UnknownNullableFieldValue = UnknownNullableFieldValue> = {
   name: string;
   value: T;
   setValue: (value: T) => void;
@@ -18,21 +20,13 @@ export type BaseFieldProps<T> = {
     : never;
 };
 
+export type UnknownFieldComponentProps<T extends FormInstrumentData> = BaseFieldComponentProps & UnknownFormField<T>;
+
 /** An object mapping field names to error messages, if applicable */
 export type FormErrors<T extends FormInstrumentData = FormInstrumentData> = {
   [K in keyof T]?: T[K] extends PrimitiveFieldValue
     ? string
     : T[K] extends ArrayFieldValue
     ? Record<keyof ArrayFieldValue[number], string>[]
-    : never;
-};
-
-export type FormValues<T extends FormInstrumentData = FormInstrumentData> = {
-  [K in keyof T]: T[K] extends PrimitiveFieldValue
-    ? NullablePrimitiveFieldValue<T[K]>
-    : T[K] extends ArrayFieldValue
-    ? NullableArrayFieldValue<T[K]>
-    : T[K] extends PrimitiveFieldValue | ArrayFieldValue
-    ? NullablePrimitiveFieldValue | NullableArrayFieldValue
     : never;
 };

@@ -10,9 +10,9 @@ import { useTranslation } from 'react-i18next';
 import { Button } from '../Button/Button';
 
 import { PrimitiveFormField, type PrimitiveFormFieldProps } from './PrimitiveFormField';
-import type { BaseFieldProps } from './types';
+import type { BaseFieldComponentProps } from './types';
 
-export type ArrayFieldProps = BaseFieldProps<NullableArrayFieldValue> & ArrayFormField;
+export type ArrayFieldProps = BaseFieldComponentProps<NullableArrayFieldValue> & ArrayFormField;
 
 export const ArrayField = ({ label, fieldset, error, value: arrayValue, setValue: setArrayValue }: ArrayFieldProps) => {
   const { t } = useTranslation();

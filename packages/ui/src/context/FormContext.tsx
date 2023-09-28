@@ -2,14 +2,14 @@
 
 import React, { createContext } from 'react';
 
-import type { FormInstrumentData } from '@douglasneuroinformatics/form-types';
+import type { FormInstrumentData, NullableFormInstrumentData } from '@douglasneuroinformatics/form-types';
 
-import type { FormErrors, FormValues } from '../components/Form/types';
+import type { FormErrors } from '../components/Form/types';
 
 export type FormState<T extends FormInstrumentData = FormInstrumentData> = {
   errors: FormErrors<T>;
-  values: FormValues<T>;
-  setValues: React.Dispatch<React.SetStateAction<FormValues<T>>>;
+  values: NullableFormInstrumentData<T>;
+  setValues: React.Dispatch<React.SetStateAction<NullableFormInstrumentData<T>>>;
 };
 
 export const FormContext = createContext<FormState>(null!);

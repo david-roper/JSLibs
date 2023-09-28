@@ -3,14 +3,14 @@ import { useContext } from 'react';
 import type {
   FormFields,
   FormInstrumentData,
-  NullableArrayFieldValue,
-  NullablePrimitiveFieldValue
+  UnknownFormField,
+  UnknownNullableFieldValue
 } from '@douglasneuroinformatics/form-types';
 
 import { FormContext, type FormState } from '../../context/FormContext';
 
 import { ArrayField, PrimitiveFormField } from '.';
-import type { ArrayFieldProps, PrimitiveFormFieldProps } from '.';
+import type { ArrayFieldProps, BaseFieldComponentProps, PrimitiveFormFieldProps, UnknownFieldComponentProps } from '.';
 
 export type FormFieldsComponentProps<T extends FormInstrumentData> = {
   fields: FormFields<T>;
@@ -22,20 +22,22 @@ export const FormFieldsComponent = <T extends FormInstrumentData>({ fields }: Fo
   return (
     <>
       {Object.keys(fields).map((fieldName: keyof T) => {
-        const props = {
-          name: fieldName,
+        const field: UnknownFormField<T> = fields[fieldName];
+        const staticField = field instanceof Function ? field(values) : field;
+        const value: UnknownNullableFieldValue = values[fieldName];
+        const baseProps: BaseFieldComponentProps = {
+          name: fieldName as string,
           error: errors[fieldName],
-          value: values[fieldName],
-          setValue: (value: NullablePrimitiveFieldValue | NullableArrayFieldValue) => {
+          value: value,
+          setValue: (value) => {
             setValues((prevValues) => ({ ...prevValues, [fieldName]: value }));
-          },
-          ...fields[fieldName]
+          }
         };
+        const props: UnknownFieldComponentProps<T> = { ...staticField, ...baseProps };
         if (props.kind === 'array') {
           return <ArrayField {...(props as ArrayFieldProps)} key={fieldName.toString()} />;
-        } else {
-          return <PrimitiveFormField {...(props as PrimitiveFormFieldProps)} key={fieldName.toString()} />;
         }
+        return <PrimitiveFormField {...(props as PrimitiveFormFieldProps)} key={fieldName.toString()} />;
       })}
     </>
   );

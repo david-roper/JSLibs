@@ -7,9 +7,9 @@ import { clsx } from 'clsx';
 import { PopoverIcon } from '../PopoverIcon/PopoverIcon';
 
 import { FormFieldContainer } from './FormFieldContainer';
-import { type BaseFieldProps } from './types';
+import { type BaseFieldComponentProps } from './types';
 
-export type NumericFieldProps = BaseFieldProps<number | null> & NumericFormField;
+export type NumericFieldProps = BaseFieldComponentProps<number | null> & NumericFormField;
 
 export const NumericField = ({
   description,

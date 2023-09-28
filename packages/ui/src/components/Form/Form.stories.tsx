@@ -135,7 +135,7 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
           },
           dateOfDeath: (fieldset) => {
             if (!fieldset.isDead) {
-              return null
+              return null;
             }
             return {
               kind: 'date',
@@ -225,6 +225,28 @@ export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
     },
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
+    }
+  }
+};
+
+type DynamicFormValues = {
+  a: boolean;
+  b: string;
+};
+
+export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
+  args: {
+    content: {
+      a: {
+        kind: 'binary',
+        label: 'Should Show B?',
+        variant: 'radio'
+      },
+      b: {
+        kind: 'text',
+        label: 'Example',
+        variant: 'short'
+      }
     }
   }
 };

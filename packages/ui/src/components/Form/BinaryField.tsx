@@ -6,9 +6,9 @@ import { CheckIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from 'react-i18next';
 
 import { FormFieldContainer } from './FormFieldContainer';
-import { type BaseFieldProps } from './types';
+import { type BaseFieldComponentProps } from './types';
 
-type BinaryFieldProps = BaseFieldProps<boolean | null> & BinaryFormField;
+type BinaryFieldProps = BaseFieldComponentProps<boolean | null> & BinaryFormField;
 
 type InnerProps = Pick<BinaryFieldProps, 'name' | 'label' | 'value' | 'setValue'>;
 

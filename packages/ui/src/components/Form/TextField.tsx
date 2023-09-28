@@ -8,9 +8,9 @@ import { clsx } from 'clsx';
 import { match } from 'ts-pattern';
 
 import { FormFieldContainer } from './FormFieldContainer';
-import { type BaseFieldProps } from './types';
+import { type BaseFieldComponentProps } from './types';
 
-type TextFieldProps = BaseFieldProps<string | null> & TextFormField;
+type TextFieldProps = BaseFieldComponentProps<string | null> & TextFormField;
 
 type PasswordInputProps = Pick<TextFieldProps, 'name' | 'value' | 'description'> & {
   onChange: React.ChangeEventHandler<HTMLInputElement>;

@@ -15,10 +15,20 @@ export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue>
   [K in keyof T[number]]: NullablePrimitiveFieldValue<T[number][K]>;
 }[];
 
+export type UnknownNullableFieldValue = NullablePrimitiveFieldValue | NullableArrayFieldValue;
+
 /** The type of the data associated with the entire instrument (i.e., the values for all fields) */
 export type FormInstrumentData = Record<string, PrimitiveFieldValue | ArrayFieldValue>;
 
-export type NullableFormInstrumentData = Record<string, NullablePrimitiveFieldValue | NullablePrimitiveFieldValue>;
+export type NullableFormInstrumentData<T extends FormInstrumentData> = {
+  [K in keyof T]: T[K] extends PrimitiveFieldValue
+    ? NullablePrimitiveFieldValue<T[K]>
+    : T[K] extends ArrayFieldValue
+    ? NullableArrayFieldValue<T[K]>
+    : T[K] extends PrimitiveFieldValue | ArrayFieldValue
+    ? NullablePrimitiveFieldValue | NullableArrayFieldValue
+    : never;
+};
 
 /** The basic properties common to all field kinds */
 export type BaseFormField = {
@@ -103,23 +113,31 @@ export type ArrayFormField<TValue extends ArrayFieldValue = ArrayFieldValue> = F
   fieldset: ArrayFieldset<TValue[number]>;
 }>;
 
-export type FormField<TValue extends ArrayFieldValue | PrimitiveFieldValue> = [TValue] extends [PrimitiveFieldValue]
+export type StaticFormField<TValue extends ArrayFieldValue | PrimitiveFieldValue> = [TValue] extends [
+  PrimitiveFieldValue
+]
   ? PrimitiveFormField<TValue>
   : [TValue] extends [ArrayFieldValue]
   ? ArrayFormField<TValue>
   : PrimitiveFormField | ArrayFormField;
 
-// export type DynamicFormField<TData extends FormInstrumentData, TValue extends ArrayFieldValue | PrimitiveFieldValue> = (data: TData)
+export type DynamicFormField<TData extends FormInstrumentData, TValue extends ArrayFieldValue | PrimitiveFieldValue> = (
+  data: NullableFormInstrumentData<TData>
+) => StaticFormField<TValue>;
+
+export type UnknownFormField<TData extends FormInstrumentData, TKey extends keyof TData = keyof TData> =
+  | StaticFormField<TData[TKey]>
+  | DynamicFormField<TData, TData[TKey]>;
 
 export type FormFields<TData extends FormInstrumentData = FormInstrumentData> = {
-  [K in keyof TData]: FormField<TData[K]>;
+  [K in keyof TData]: UnknownFormField<TData, K>;
 };
 
 export type FormFieldsGroup<TData extends FormInstrumentData = FormInstrumentData> = {
   title: string;
   description?: string;
   fields: {
-    [K in keyof TData]?: FormField<TData[K]>;
+    [K in keyof TData]?: UnknownFormField<TData, K>;
   };
 };
 

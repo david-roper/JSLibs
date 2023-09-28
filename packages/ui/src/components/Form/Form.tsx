@@ -7,6 +7,7 @@ import type {
   FormFields,
   FormInstrumentContent,
   FormInstrumentData,
+  NullableFormInstrumentData,
   PrimitiveFieldValue
 } from '@douglasneuroinformatics/form-types';
 import type { ErrorObject, JSONSchemaType } from 'ajv';
@@ -19,7 +20,7 @@ import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 
 import { FormFieldsComponent } from './FormFieldsComponent';
-import type { FormErrors, FormValues } from './types';
+import type { FormErrors } from './types';
 import { getDefaultValues } from './utils';
 
 /** Custom error messages to be supplied for each field */
@@ -36,7 +37,7 @@ type ErrorMessages<T extends FormInstrumentData> = {
 type FormProps<T extends FormInstrumentData> = {
   content: FormInstrumentContent<T>;
   className?: string;
-  initialValues?: FormValues<T> | null;
+  initialValues?: NullableFormInstrumentData<T> | null;
   resetBtn?: boolean;
   submitBtnLabel?: string;
   errorMessages?: string | ErrorMessages<T>;
@@ -55,7 +56,7 @@ const FormComponent = <T extends FormInstrumentData>({
   resetBtn
 }: FormProps<T>) => {
   const [validationErrors, setValidationErrors] = useState<ErrorObject[] | null>(null);
-  const [values, setValues] = useState<FormValues<T>>(() => initialValues ?? getDefaultValues(content));
+  const [values, setValues] = useState<NullableFormInstrumentData<T>>(() => initialValues ?? getDefaultValues(content));
 
   const { t, i18n } = useTranslation();
 

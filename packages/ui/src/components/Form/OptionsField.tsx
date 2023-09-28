@@ -7,9 +7,9 @@ import { Listbox, Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
 import { FormFieldContainer } from './FormFieldContainer';
-import { type BaseFieldProps } from './types';
+import { type BaseFieldComponentProps } from './types';
 
-export type OptionsFieldProps<T extends string = string> = BaseFieldProps<T | null> & OptionsFormField<T>;
+export type OptionsFieldProps<T extends string = string> = BaseFieldComponentProps<T | null> & OptionsFormField<T>;
 
 export const OptionsField = <T extends string = string>({
   description,
