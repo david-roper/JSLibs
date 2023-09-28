@@ -40,7 +40,7 @@ type FormProps<T extends FormInstrumentData> = {
   resetBtn?: boolean;
   submitBtnLabel?: string;
   errorMessages?: string | ErrorMessages<T>;
-  validationSchema: JSONSchemaType<T>;
+  validationSchema?: JSONSchemaType<T>;
   onSubmit: (data: T) => void;
 };
 
@@ -104,7 +104,16 @@ const FormComponent = <T extends FormInstrumentData>({
     setValidationErrors(null);
   };
 
-  const validate = useMemo(() => ajv.compile(validationSchema), [validationSchema]);
+  const validate = useMemo(
+    () =>
+      ajv.compile(
+        validationSchema ?? {
+          type: 'object',
+          required: []
+        }
+      ),
+    [validationSchema]
+  );
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
