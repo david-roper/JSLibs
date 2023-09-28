@@ -115,7 +115,7 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
         label: 'Doctor Name',
         variant: 'short'
       },
-      array: ({ array }) => ({
+      array: () => ({
         kind: 'array',
         label: 'Patient',
         fieldset: {
@@ -237,8 +237,8 @@ export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
         label: 'Should Show B?',
         variant: 'radio'
       },
-      b: ({ a }) => {
-        if (a) {
+      b: (data) => {
+        if (data?.a) {
           return {
             kind: 'text',
             label: 'Example',
