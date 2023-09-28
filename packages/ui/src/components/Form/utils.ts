@@ -1,15 +1,15 @@
 import type Types from '@douglasneuroinformatics/form-types';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
-export function getFormFields<T extends Types.FormInstrumentData>(content: Types.FormInstrumentContent<T>): Types.FormFields<T> {
-  let fields: Types.FormFields<T>;
-  if (Array.isArray(content)) {
-    fields = content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as Types.FormFields<T>;
-  } else {
-    fields = content;
+export function getFormFields<T extends Types.FormInstrumentData>(
+  content: Types.FormInstrumentContent<T>
+): Types.FormFields<T> {
+  if (!Array.isArray(content)) {
+    return content;
   }
-  return fields;
+  return content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as Types.FormFields<T>;
 }
+
 
 /** Returns the default values when initializing the state or resetting the form */
 export const getDefaultValues = <T extends Types.FormInstrumentData>(
