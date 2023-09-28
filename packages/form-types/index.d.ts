@@ -20,7 +20,7 @@ export type UnknownNullableFieldValue = NullablePrimitiveFieldValue | NullableAr
 /** The type of the data associated with the entire instrument (i.e., the values for all fields) */
 export type FormInstrumentData = Record<string, PrimitiveFieldValue | ArrayFieldValue>;
 
-export type NullableFormInstrumentData<T extends FormInstrumentData> = {
+export type NullableFormInstrumentData<T extends FormInstrumentData = FormInstrumentData> = {
   [K in keyof T]: T[K] extends PrimitiveFieldValue
     ? NullablePrimitiveFieldValue<T[K]>
     : T[K] extends ArrayFieldValue
