@@ -26,7 +26,11 @@ export type BaseFormField = {
   isRequired?: boolean;
 };
 
-/** A helper type used to merge `BaseFormField` with `T` */
+/**
+ * A helper type used to merge `BaseFormField` with `T`, where kind determines
+ * the data type stored in the form and variant determines what will be rendered
+ * to the user, if applicable
+ */
 export type FormFieldMixin<T extends { kind: FormFieldKind }> = Simplify<BaseFormField & T>;
 
 export type TextFormField = FormFieldMixin<{
@@ -41,6 +45,10 @@ export type NumericFormField = FormFieldMixin<{
   variant: 'default' | 'slider';
 }>;
 
+/**
+ * Here, TValue is a string and options is a map of the actual values (i.e., what will be sent to backend)
+ * to the labels. Thus, only one key will be sent to the backend.
+ */
 export type OptionsFormField<TValue extends string = string> = FormFieldMixin<{
   kind: 'options';
   options: Record<TValue, string>;
@@ -91,7 +99,7 @@ export type FormField<TValue extends ArrayFieldValue | PrimitiveFieldValue> = [T
   ? PrimitiveFormField<TValue>
   : [TValue] extends [ArrayFieldValue]
   ? ArrayFormField<TValue>
-  : PrimitiveFormField | ArrayFormField;
+  : never;
 
 export type FormFields<TData extends FormInstrumentData = FormInstrumentData> = {
   [K in keyof TData]: FormField<TData[K]>;
