@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.1.8
+
+### Patch Changes
+
+- Minor style bugs
+
 ## 2.1.7
 
 ### Patch Changes
