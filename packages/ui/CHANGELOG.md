@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.2.0
+
+### Minor Changes
+
+- Add slider
+
 ## 2.1.8
 
 ### Patch Changes

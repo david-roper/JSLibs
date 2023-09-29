@@ -19,6 +19,7 @@ export * from './components/NotificationHub/NotificationHub';
 export * from './components/PopoverIcon/PopoverIcon';
 export * from './components/SearchBar/SearchBar';
 export * from './components/SelectDropdown/SelectDropdown';
+export * from './components/Slider/Slider';
 export * from './components/Spinner/Spinner';
 export * from './components/Stepper/Stepper';
 export * from './components/Table/Table';
