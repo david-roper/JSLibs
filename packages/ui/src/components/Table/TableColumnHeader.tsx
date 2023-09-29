@@ -22,12 +22,12 @@ export const TableColumnHeader = <T extends TableEntry>({ column, dropdownOption
     <Menu as="div" className="relative">
       <Menu.Button
         className={clsx(
-          'flex flex-shrink-0 min-w-[10rem] justify-between px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200',
+          'flex flex-shrink-0 items-center min-w-[10rem] justify-between px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200',
           { 'cursor-default': !dropdownOptions }
         )}
       >
         {column.label}
-        {dropdownOptions && <ChevronDownIcon height={16} width={16} />}
+        {dropdownOptions && <ChevronDownIcon className="ml-3" height={16} width={16} />}
       </Menu.Button>
       {dropdownOptions && (
         <Transition
