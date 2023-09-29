@@ -1,6 +1,8 @@
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { clsx } from 'clsx';
 
+import { type ColumnDropdownOptions, TableColumnHeader } from './TableColumnHeader';
+
 /** Coerces the value in a cell to a string for consistant display purposes */
 function defaultFormatter(value: unknown): string {
   if (typeof value === 'string') {
@@ -35,16 +37,13 @@ export type TableProps<T extends TableEntry> = {
   columns: TableColumn<T>[];
   data: T[];
   onEntryClick?: (entry: T) => void;
-  columnDropdownOptions?: {
-    label: string;
-    onSelection: (column: TableColumn<T>) => void;
-  }[];
+  columnDropdownOptions?: ColumnDropdownOptions<T>;
 };
 
 export const Table = <T extends TableEntry>({ columns, data, onEntryClick, columnDropdownOptions }: TableProps<T>) => {
   return (
     <div className="min-w-full overflow-hidden rounded-md shadow-md">
-      <div className="overflow-x-scroll w-full scrollbar-none">
+      <div className="overflow-x-scroll w-full">
         <table className="w-full table-auto">
           <thead className="border-b border-slate-300 bg-slate-50 dark:border-0 dark:bg-slate-700">
             <tr>
@@ -53,9 +52,7 @@ export const Table = <T extends TableEntry>({ columns, data, onEntryClick, colum
                   className="whitespace-nowrap text-sm  font-semibold text-slate-800 dark:text-slate-200 text-left"
                   key={i}
                 >
-                  <button className={clsx('px-6 py-3', { 'cursor-default': !columnDropdownOptions })} type="button">
-                    {column.label}
-                  </button>
+                  <TableColumnHeader column={column} dropdownOptions={columnDropdownOptions} />
                 </th>
               ))}
             </tr>

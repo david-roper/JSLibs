@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.1.6
+
+### Patch Changes
+
+- Add dropdown option to table
+
 ## 2.1.5
 
 ### Patch Changes

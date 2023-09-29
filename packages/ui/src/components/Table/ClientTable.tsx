@@ -13,7 +13,7 @@ const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TablePro
 
   const pageCount = Math.ceil(data.length / entriesPerPage);
 
-  const firstEntry = (currentPage - 1) * entriesPerPage + 1;
+  const firstEntry = data.length === 0 ? 0 : (currentPage - 1) * entriesPerPage + 1;
   const lastEntry = Math.min(firstEntry + entriesPerPage - 1, data.length);
   const currentEntries = data.slice(firstEntry - 1, lastEntry);
 

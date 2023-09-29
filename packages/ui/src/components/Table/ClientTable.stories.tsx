@@ -75,3 +75,10 @@ export const Default: StoryObj<typeof ClientTable<ExampleItem>> = {
     ]
   }
 };
+
+export const Empty: StoryObj<typeof ClientTable> = {
+  args: {
+    columns: [],
+    data: []
+  }
+};
