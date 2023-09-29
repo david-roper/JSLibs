@@ -248,6 +248,6 @@ export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
         return null;
       }
     },
-    onSubmit: (data) => alert(JSON.stringify(data))
+    onSubmit: (data) => { alert(JSON.stringify(data)); }
   }
 };

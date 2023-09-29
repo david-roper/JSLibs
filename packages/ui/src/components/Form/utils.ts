@@ -29,9 +29,7 @@ export const getDefaultValues = <T extends Types.FormInstrumentData>(
   const fields = getFormFields(content);
   for (const fieldName in fields) {
     const field = fields[fieldName] as UnknownFormField<T>;
-    console.log(field);
     const staticField = field instanceof Function ? field(null) : field;
-    console.log(staticField);
     if (!staticField) {
       defaultValues[fieldName] = null;
     } else if (staticField.kind === 'array') {
