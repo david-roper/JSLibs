@@ -64,6 +64,14 @@ export const Default: StoryObj<typeof ClientTable<ExampleItem>> = {
     data,
     onEntryClick: (entry) => {
       alert(entry.id);
-    }
+    },
+    columnDropdownOptions: [
+      {
+        label: 'Delete',
+        onSelection: (column) => {
+          alert(`Delete column: ${column.label}`);
+        }
+      }
+    ]
   }
 };

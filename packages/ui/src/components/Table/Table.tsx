@@ -35,9 +35,13 @@ export type TableProps<T extends TableEntry> = {
   columns: TableColumn<T>[];
   data: T[];
   onEntryClick?: (entry: T) => void;
+  columnDropdownOptions?: {
+    label: string;
+    onSelection: (column: TableColumn<T>) => void;
+  }[];
 };
 
-export const Table = <T extends TableEntry>({ columns, data, onEntryClick }: TableProps<T>) => {
+export const Table = <T extends TableEntry>({ columns, data, onEntryClick, columnDropdownOptions }: TableProps<T>) => {
   return (
     <div className="min-w-full overflow-hidden rounded-md shadow-md">
       <div className="overflow-x-scroll w-full scrollbar-none">
@@ -46,10 +50,12 @@ export const Table = <T extends TableEntry>({ columns, data, onEntryClick }: Tab
             <tr>
               {columns.map((column, i) => (
                 <th
-                  className="whitespace-nowrap px-6 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 text-left"
+                  className="whitespace-nowrap text-sm  font-semibold text-slate-800 dark:text-slate-200 text-left"
                   key={i}
                 >
-                  {column.label}
+                  <button className={clsx('px-6 py-3', { 'cursor-default': !columnDropdownOptions })} type="button">
+                    {column.label}
+                  </button>
                 </th>
               ))}
             </tr>
