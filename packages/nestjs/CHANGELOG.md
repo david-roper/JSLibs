@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.7.0
+
+### Minor Changes
+
+- Add logger
+
 ## 1.6.0
 
 ### Minor Changes
