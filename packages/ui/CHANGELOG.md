@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.3.0
+
+### Minor Changes
+
+- Added dynamic form fields
+
 ## 2.2.0
 
 ### Minor Changes
