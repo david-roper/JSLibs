@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 1.1.0
+
+### Added
+
+Types to support dynamic form fields
+
 ## 1.0.0
 
 ### Major Changes
