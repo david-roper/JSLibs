@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 3.0.1
+
+### Patch Changes
+
+- Update to adhere to new linting rules
+
 ## 3.0.0
 
 ### Major Changes

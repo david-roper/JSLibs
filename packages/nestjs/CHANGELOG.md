@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.7.1
+
+### Patch Changes
+
+- Update to adhere to new linting rules
+
 ## 1.7.0
 
 ### Minor Changes

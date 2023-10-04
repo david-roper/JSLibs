@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 1.1.2
+
+### Patch Changes
+
+- Update to adhere to new linting rules
+
 ## 1.1.0
 
 ### Added

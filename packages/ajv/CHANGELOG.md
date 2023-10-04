@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ajv
 
+## 1.0.2
+
+### Patch Changes
+
+- Update to adhere to new linting rules
+
 ## 1.0.1
 
 ### Patch Changes

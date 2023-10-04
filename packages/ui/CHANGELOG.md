@@ -1,5 +1,15 @@
 # @douglasneuroinformatics/ui
 
+## 2.3.2
+
+### Patch Changes
+
+- Update to adhere to new linting rules
+- Updated dependencies
+  - @douglasneuroinformatics/ajv@1.0.2
+  - @douglasneuroinformatics/form-types@1.1.2
+  - @douglasneuroinformatics/utils@1.0.2
+
 ## 2.3.1
 
 ### Patch Changes
