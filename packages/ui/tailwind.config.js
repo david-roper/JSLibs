@@ -1,10 +1,10 @@
 // @ts-check
 
 import path from 'path';
-import plugin from 'tailwindcss/plugin';
 
 import tailwindcss from '@headlessui/tailwindcss';
 import containerQueries from '@tailwindcss/container-queries';
+import plugin from 'tailwindcss/plugin';
 
 /**
  * Note, using `__dirname` is a hack which will work when run with bun (e.g., vite dev server)
