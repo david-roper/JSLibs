@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.7.3
+
+### Patch Changes
+
+- Use wrapped ajv types for esm compatibility
+
 ## 1.7.2
 
 ### Patch Changes

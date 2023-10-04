@@ -1,6 +1,6 @@
-import { AjvFactory } from '@douglasneuroinformatics/ajv';
+import { Ajv, AjvFactory } from '@douglasneuroinformatics/ajv';
+import type { ErrorObject, JSONSchemaType } from '@douglasneuroinformatics/ajv';
 import { Injectable } from '@nestjs/common';
-import Ajv, { type ErrorObject, type JSONSchemaType } from 'ajv';
 
 @Injectable()
 export class AjvService {
