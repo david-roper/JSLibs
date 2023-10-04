@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 3.0.0
+
+### Major Changes
+
+- Total rewrite to use eslint flat config
+
 ## 2.0.0
 
 ### Major Changes

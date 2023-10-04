@@ -1,22 +1,19 @@
 # @douglasneuroinformatics/eslint-config
 
-This repository contains linting configurations for DNP projects written in TypeScript/JavaScript.
+This repository contains linting configurations for DNP projects written in TypeScript/JavaScript. It is based on my [personal linting config](https://github.com/joshunrau/eslint-config), which can be extended/modified in this package as needed.
 
 ## Install
 
 ```
-bun add --dev @douglasneuroinformatics/eslint-config eslint eslint-plugin-import @typescript-eslint/eslint-plugin @typescript-eslint/parser
+bun add --dev @douglasneuroinformatics/eslint-config eslint
 ```
 
 ## Usage
 
-**.eslintrc.json**
+**eslint.config.js**
 
-```json
-{
-  "extends": ["@douglasneuroinformatics"],
-  "parserOptions": {
-    "project": ["./tsconfig.json"]
-  }
-}
+```js
+import { createConfig } from '@douglasneuroinformatics/eslint-config';
+
+export default createConfig();
 ```
