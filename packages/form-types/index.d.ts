@@ -1,10 +1,10 @@
 import type { Simplify } from 'type-fest';
 
 /** Discriminator key to determine the structure of a specific form field */
-export type FormFieldKind = 'text' | 'numeric' | 'options' | 'date' | 'binary' | 'array';
+export type FormFieldKind = 'array' | 'binary' | 'date' | 'numeric' | 'options' | 'text';
 
 /** The type of the data associated with a primitive field */
-export type PrimitiveFieldValue = string | number | boolean;
+export type PrimitiveFieldValue = boolean | number | string;
 
 export type NullablePrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = T | null;
 
@@ -15,33 +15,33 @@ export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue>
   [K in keyof T[number]]: NullablePrimitiveFieldValue<T[number][K]>;
 }[];
 
-export type UnknownNullableFieldValue = NullablePrimitiveFieldValue | NullableArrayFieldValue;
+export type UnknownNullableFieldValue = NullableArrayFieldValue | NullablePrimitiveFieldValue;
 
 /** The type of the data associated with the entire instrument (i.e., the values for all fields) */
-export type FormInstrumentData = Record<string, PrimitiveFieldValue | ArrayFieldValue>;
+export type FormInstrumentData = Record<string, ArrayFieldValue | PrimitiveFieldValue>;
 
 export type NullableFormInstrumentData<T extends FormInstrumentData = FormInstrumentData> = {
   [K in keyof T]: T[K] extends PrimitiveFieldValue
     ? NullablePrimitiveFieldValue<T[K]>
     : T[K] extends ArrayFieldValue
     ? NullableArrayFieldValue<T[K]>
-    : T[K] extends PrimitiveFieldValue | ArrayFieldValue
-    ? NullablePrimitiveFieldValue | NullableArrayFieldValue
+    : T[K] extends ArrayFieldValue | PrimitiveFieldValue
+    ? NullableArrayFieldValue | NullablePrimitiveFieldValue
     : never;
 };
 
 /** The basic properties common to all field kinds */
 export type BaseFormField = {
-  kind: FormFieldKind;
-
-  /** The label to be displayed to the user */
-  label: string;
-
   /** An optional description of this field */
   description?: string;
 
   /** Whether or not the field is required */
   isRequired?: boolean;
+
+  kind: FormFieldKind;
+
+  /** The label to be displayed to the user */
+  label: string;
 };
 
 /**
@@ -53,13 +53,13 @@ export type FormFieldMixin<T extends { kind: FormFieldKind }> = Simplify<BaseFor
 
 export type TextFormField = FormFieldMixin<{
   kind: 'text';
-  variant: 'short' | 'long' | 'password';
+  variant: 'long' | 'password' | 'short';
 }>;
 
 export type NumericFormField = FormFieldMixin<{
   kind: 'numeric';
-  min: number;
   max: number;
+  min: number;
   variant: 'default' | 'slider';
 }>;
 
@@ -79,21 +79,21 @@ export type DateFormField = FormFieldMixin<{
 export type BinaryFormField = FormFieldMixin<
   | {
       kind: 'binary';
-      variant: 'checkbox';
+      options?: {
+        f: string;
+        t: string;
+      };
+      variant: 'radio';
     }
   | {
       kind: 'binary';
-      variant: 'radio';
-      options?: {
-        t: string;
-        f: string;
-      };
+      variant: 'checkbox';
     }
 >;
 
 /** A field where the underlying value of the field data is of type FormFieldValue */
 export type PrimitiveFormField<TValue extends PrimitiveFieldValue = PrimitiveFieldValue> = TValue extends string
-  ? TextFormField | OptionsFormField<TValue> | DateFormField
+  ? DateFormField | OptionsFormField<TValue> | TextFormField
   : TValue extends number
   ? NumericFormField
   : TValue extends boolean
@@ -105,8 +105,8 @@ export type ArrayFieldset<T extends ArrayFieldValue[number]> = {
 };
 
 export type ArrayFormField<TValue extends ArrayFieldValue = ArrayFieldValue> = FormFieldMixin<{
-  kind: 'array';
   fieldset: ArrayFieldset<TValue[number]>;
+  kind: 'array';
 }>;
 
 export type StaticFormField<TValue extends ArrayFieldValue | PrimitiveFieldValue> = [TValue] extends [
@@ -115,26 +115,26 @@ export type StaticFormField<TValue extends ArrayFieldValue | PrimitiveFieldValue
   ? PrimitiveFormField<TValue>
   : [TValue] extends [ArrayFieldValue]
   ? ArrayFormField<TValue>
-  : PrimitiveFormField | ArrayFormField;
+  : ArrayFormField | PrimitiveFormField;
 
 export type DynamicFormField<TData extends FormInstrumentData, TValue extends ArrayFieldValue | PrimitiveFieldValue> = (
   data: NullableFormInstrumentData<TData> | null
 ) => StaticFormField<TValue> | null;
 
 export type UnknownFormField<TData extends FormInstrumentData, TKey extends keyof TData = keyof TData> =
-  | StaticFormField<TData[TKey]>
-  | DynamicFormField<TData, TData[TKey]>;
+  | DynamicFormField<TData, TData[TKey]>
+  | StaticFormField<TData[TKey]>;
 
 export type FormFields<TData extends FormInstrumentData = FormInstrumentData> = {
   [K in keyof TData]: UnknownFormField<TData, K>;
 };
 
 export type FormFieldsGroup<TData extends FormInstrumentData = FormInstrumentData> = {
-  title: string;
   description?: string;
   fields: {
     [K in keyof TData]?: UnknownFormField<TData, K>;
   };
+  title: string;
 };
 
 export type FormInstrumentContent<TData extends FormInstrumentData = FormInstrumentData> =

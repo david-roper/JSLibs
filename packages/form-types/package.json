@@ -7,7 +7,8 @@
     "index.d.ts"
   ],
   "scripts": {
-    "format": "prettier --write index.d.ts"
+    "format": "prettier --write index.d.ts",
+    "lint": "tsc && eslint --fix index.d.ts"
   },
   "dependencies": {
     "type-fest": "^4.3.1"
