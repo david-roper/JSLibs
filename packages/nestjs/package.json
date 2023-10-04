@@ -13,9 +13,9 @@
     "src"
   ],
   "scripts": {
-    "check-types": "tsc",
     "format": "prettier --write src",
-    "lint": "eslint --fix src"
+    "lint": "tsc && eslint --fix src",
+    "postinstall": "bun scripts/postinstall.js"
   },
   "peerDependencies": {
     "@nestjs/common": "10.2.3",
