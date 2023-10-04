@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ajv
 
+## 1.0.1
+
+### Patch Changes
+
+- Update to be compatible with new linting config
+
 ## 1.0.0
 
 ### Major Changes
