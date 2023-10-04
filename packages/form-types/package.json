@@ -11,6 +11,6 @@
     "lint": "tsc && eslint --fix index.d.ts"
   },
   "dependencies": {
-    "type-fest": "^4.3.1"
+    "type-fest": "^4.3.3"
   }
 }
