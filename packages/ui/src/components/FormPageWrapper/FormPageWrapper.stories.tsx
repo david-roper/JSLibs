@@ -1,18 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Form } from '../Form/Form';
-
 import { FormPageWrapper } from './FormPageWrapper';
 
 type Story = StoryObj<typeof FormPageWrapper>;
 
 const meta: Meta<typeof FormPageWrapper> = {
-  component: FormPageWrapper,
-  parameters: {
-    layout: 'fullscreen'
-  },
   args: {
-    title: 'Example',
     children: (
       <Form
         content={{
@@ -57,17 +51,22 @@ const meta: Meta<typeof FormPageWrapper> = {
             variant: 'short'
           }
         }}
-        validationSchema={{ type: 'object', required: [] }}
+        validationSchema={{ required: [], type: 'object' }}
         onSubmit={(data) => {
           alert(JSON.stringify(data));
         }}
       />
     ),
     languageToggle: {
-      options: ['en', 'fr'],
-      dropdownDirection: 'up'
+      dropdownDirection: 'up',
+      options: ['en', 'fr']
     },
-    logo: 'https://placehold.co/400'
+    logo: 'https://placehold.co/400',
+    title: 'Example'
+  },
+  component: FormPageWrapper,
+  parameters: {
+    layout: 'fullscreen'
   }
 };
 

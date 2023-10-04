@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { Table, type TableColumn } from './Table';
 
 type ExampleItem = {
-  id: string;
   c1: number;
   c2: number;
   c3: number;
@@ -20,12 +19,13 @@ type ExampleItem = {
   c13: number;
   c14: number;
   c15: number;
+  id: string;
 };
 
 const columns: TableColumn<ExampleItem>[] = [
   {
-    label: 'ID',
-    field: 'id'
+    field: 'id',
+    label: 'ID'
   }
 ];
 
@@ -37,7 +37,7 @@ for (let i = 1; i < 16; i++) {
 }
 
 const data: ExampleItem[] = range(25).map((i) => {
-  const item: Record<string, any> = { id: i };
+  const item: Record<string, unknown> = { id: i };
   for (let i = 1; i < 16; i++) {
     item[`c${i}`] = randomInt(1, 10);
   }

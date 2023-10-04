@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge';
 
 import { Button, type ButtonProps } from '../Button/Button';
 
-type DropdownOptions = readonly string[] | Record<string, string>;
+type DropdownOptions = Record<string, string> | readonly string[];
 
 type DropdownOptionKey<T> = T extends readonly string[]
   ? T[number]
@@ -15,37 +15,37 @@ type DropdownOptionKey<T> = T extends readonly string[]
   : never;
 
 const ICON_SIZE = {
-  sm: 14,
+  lg: 18,
   md: 16,
-  lg: 18
+  sm: 14
 };
 
 export type DropdownProps<T extends DropdownOptions> = {
-  /** The text content for the dropdown toggle */
-  title: string;
-
-  /** Either a list of options for the dropdown, or an object with options mapped to custom labels  */
-  options: T;
+  className?: string;
 
   /** Callback function invoked when user clicks an option */
   onSelection: (option: DropdownOptionKey<T>) => void;
 
+  /** Either a list of options for the dropdown, or an object with options mapped to custom labels  */
+  options: T;
+
   size?: ButtonProps['size'];
+
+  /** The text content for the dropdown toggle */
+  title: string;
 
   /** The button variant to use for the dropdown toggle */
   variant?: ButtonProps['variant'];
-
-  className?: string;
 };
 
 // eslint-disable-next-line react/function-component-definition
 export function Dropdown<const T extends DropdownOptions>({
-  title,
-  options,
+  className,
   onSelection,
+  options,
   size,
-  variant,
-  className
+  title,
+  variant
 }: DropdownProps<T>) {
   const optionKeys: readonly string[] = options instanceof Array ? options : Object.keys(options);
   return (

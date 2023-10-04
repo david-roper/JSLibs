@@ -32,10 +32,10 @@ export const Default: Story = {
       return (
         <Story
           args={{
-            title: 'My Select Dropdown',
             options,
             selected,
-            setSelected
+            setSelected,
+            title: 'My Select Dropdown'
           }}
         />
       );

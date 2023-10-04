@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { useNotificationsStore } from '../../stores/notifications-store';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Card } from '../Card/Card';
-
 import { NotificationIcon } from './NotificationIcon';
 
 type NotificationHubProps = {
@@ -17,19 +16,19 @@ type NotificationHubProps = {
 
 const NotificationHubComponent = ({ timeout = 5000 }: NotificationHubProps) => {
   const { t } = useTranslation();
-  const { notifications, dismissNotification } = useNotificationsStore();
+  const { dismissNotification, notifications } = useNotificationsStore();
 
   return (
     <div className="fixed bottom-0 z-50 w-full print:hidden">
       <AnimatePresence>
         {notifications.map((item) => (
           <motion.div
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ height: 'auto', opacity: 1 }}
             className="relative max-w-sm"
-            exit={{ opacity: 0, height: 0 }}
-            initial={{ opacity: 0, height: 0 }}
+            exit={{ height: 0, opacity: 0 }}
+            initial={{ height: 0, opacity: 0 }}
             key={item.id}
-            transition={{ type: 'spring', bounce: 0.1 }}
+            transition={{ bounce: 0.1, type: 'spring' }}
           >
             <div className="w-full p-2">
               <Card className="w-full rounded-lg p-0">

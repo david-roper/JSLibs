@@ -12,11 +12,11 @@ import { type BaseFieldComponentProps } from './types';
 
 type TextFieldProps = BaseFieldComponentProps<string> & TextFormField;
 
-type PasswordInputProps = Pick<TextFieldProps, 'name' | 'value' | 'description'> & {
+type PasswordInputProps = Pick<TextFieldProps, 'description' | 'name' | 'value'> & {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-const PasswordInput = ({ name, value, onChange, description }: PasswordInputProps) => {
+const PasswordInput = ({ description, name, onChange, value }: PasswordInputProps) => {
   const [show, setShow] = useState(false);
   return (
     <React.Fragment>
@@ -48,7 +48,7 @@ const PasswordInput = ({ name, value, onChange, description }: PasswordInputProp
   );
 };
 
-const TextField = ({ description, name, label, variant, error, value, setValue }: TextFieldProps) => {
+const TextField = ({ description, error, label, name, setValue, value, variant }: TextFieldProps) => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
     setValue(event.target.value);
   };

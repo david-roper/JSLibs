@@ -7,15 +7,15 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';
 
 export type ModalProps = {
-  open: boolean;
-  title: string;
   children: React.ReactNode;
   onClose: () => void;
-  width?: 'sm' | 'md' | 'lg' | 'xl';
+  open: boolean;
   showCloseButton?: boolean;
+  title: string;
+  width?: 'lg' | 'md' | 'sm' | 'xl';
 };
 
-export const Modal = ({ open, title, children, onClose, showCloseButton, width = 'md' }: ModalProps) => {
+export const Modal = ({ children, onClose, open, showCloseButton, title, width = 'md' }: ModalProps) => {
   return (
     <Transition appear as={React.Fragment} show={open}>
       <Dialog as="div" className="relative z-10" onClose={onClose}>
@@ -45,9 +45,9 @@ export const Modal = ({ open, title, children, onClose, showCloseButton, width =
                 className={clsx(
                   'w-full transform relative overflow-visible rounded-2xl text-slate-900 dark:text-slate-100 bg-slate-100 dark:bg-slate-800 p-6 text-left align-middle shadow-xl transition-all',
                   {
-                    'max-w-sm': width === 'sm',
-                    'max-w-md': width === 'md',
                     'max-w-lg': width === 'lg',
+                    'max-w-md': width === 'md',
+                    'max-w-sm': width === 'sm',
                     'max-w-xl': width === 'xl'
                   }
                 )}

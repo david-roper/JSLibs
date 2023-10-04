@@ -7,11 +7,11 @@ import { OptionsField, type OptionsFieldProps } from './OptionsField';
 import { TextField, type TextFieldProps } from './TextField';
 
 export type PrimitiveFormFieldProps =
-  | TextFieldProps
+  | BinaryFieldProps
+  | DateFieldProps
   | NumericFieldProps
   | OptionsFieldProps
-  | DateFieldProps
-  | BinaryFieldProps;
+  | TextFieldProps;
 
 export const PrimitiveFormField = (props: PrimitiveFormFieldProps) => {
   switch (props.kind) {

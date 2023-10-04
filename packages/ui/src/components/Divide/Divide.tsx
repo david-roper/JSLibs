@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { twMerge } from 'tailwind-merge';
 
 export const Divide = ({ className, ...props }: React.ComponentPropsWithoutRef<'hr'>) => (

@@ -6,8 +6,8 @@ import { range } from '@douglasneuroinformatics/utils';
 import { clsx } from 'clsx';
 
 export type YearSelectorProps = {
-  selected: Date;
   onSelection: (date: Date) => void;
+  selected: Date;
 };
 
 export const YearSelector = (props: YearSelectorProps) => {

@@ -1,14 +1,16 @@
 'use client';
 
+import React from 'react';
+
 import { clsx } from 'clsx';
 
 export type StepperIconProps = {
   icon: React.ReactElement;
-  label: string;
   isActive: boolean;
+  label: string;
 };
 
-export const StepperIcon = ({ icon, label, isActive = false }: StepperIconProps) => {
+export const StepperIcon = ({ icon, isActive = false, label }: StepperIconProps) => {
   return (
     <div>
       <div className="relative flex items-center">

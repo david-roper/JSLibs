@@ -1,11 +1,12 @@
 'use client';
 
+import React from 'react';
+
 import type { NumericFormField } from '@douglasneuroinformatics/form-types';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 
 import { PopoverIcon } from '../PopoverIcon/PopoverIcon';
-
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
@@ -13,13 +14,13 @@ export type NumericFieldProps = BaseFieldComponentProps<number> & NumericFormFie
 
 export const NumericField = ({
   description,
-  name,
-  label,
-  min,
-  max,
   error,
-  value,
+  label,
+  max,
+  min,
+  name,
   setValue,
+  value,
   variant
 }: NumericFieldProps) => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {

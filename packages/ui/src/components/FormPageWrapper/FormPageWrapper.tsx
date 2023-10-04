@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { twMerge } from 'tailwind-merge';
 
 import { Card } from '../Card/Card';
@@ -5,21 +7,21 @@ import { LanguageToggle, type LanguageToggleProps } from '../LanguageToggle/Lang
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
 
 export type FormPageWrapperProps = {
-  title: string;
   children: React.ReactNode;
-  logo: string;
-  languageToggle: LanguageToggleProps<string>;
   className?: string;
+  languageToggle: LanguageToggleProps<string>;
+  logo: string;
+  title: string;
   widthMultiplier?: number;
 };
 
 /** Standalone page used as a wrapper for forms (e.g., on login page) */
 export const FormPageWrapper = ({
   children,
-  title,
-  logo,
-  languageToggle,
   className,
+  languageToggle,
+  logo,
+  title,
   widthMultiplier = 1
 }: FormPageWrapperProps) => (
   <div className={twMerge('flex min-h-screen items-center justify-center', className)}>

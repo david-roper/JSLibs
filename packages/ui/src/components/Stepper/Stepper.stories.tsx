@@ -12,8 +12,6 @@ export default meta;
 const steps: Step[] = [];
 for (let i = 1; i < 4; i++) {
   steps.push({
-    label: 'Step ' + i,
-    icon: <FaceSmileIcon />,
     element: (
       <div>
         <span>
@@ -21,7 +19,9 @@ for (let i = 1; i < 4; i++) {
           neque saepe ullam voluptas facere, hic atque quibusdam in, quidem rerum voluptatum? Nesciunt.
         </span>
       </div>
-    )
+    ),
+    icon: <FaceSmileIcon />,
+    label: 'Step ' + i
   });
 }
 

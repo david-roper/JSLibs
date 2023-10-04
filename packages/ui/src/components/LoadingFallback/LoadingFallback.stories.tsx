@@ -5,22 +5,22 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LoadingFallback } from './LoadingFallback';
 
 type User = {
-  username: string;
   password: string;
+  username: string;
 };
 
 const users: User[] = [
   {
-    username: 'Weijie123',
-    password: 'password'
+    password: 'password',
+    username: 'Weijie123'
   },
   {
-    username: 'Ryan123',
-    password: 'password'
+    password: 'password',
+    username: 'Ryan123'
   },
   {
-    username: 'David123',
-    password: 'password'
+    password: 'password',
+    username: 'David123'
   }
 ];
 

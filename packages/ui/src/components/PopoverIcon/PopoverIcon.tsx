@@ -7,11 +7,11 @@ import clsx from 'clsx';
 
 export type PopoverIconProps = {
   icon: React.ComponentType<Omit<React.SVGProps<SVGSVGElement>, 'ref'>>;
-  text: string;
   position: 'left' | 'right';
+  text: string;
 };
 
-export const PopoverIcon = ({ icon, text, position }: PopoverIconProps) => {
+export const PopoverIcon = ({ icon, position, text }: PopoverIconProps) => {
   // TypeScript wants components to start with capital letter
   const Icon = icon;
   return (

@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { useNotificationsStore } from '../../stores/notifications-store';
 import { Button } from '../Button/Button';
-
 import { NotificationHub } from './NotificationHub';
 
 type Story = StoryObj<typeof NotificationHub>;
@@ -20,8 +19,8 @@ const meta: Meta<typeof NotificationHub> = {
             type="button"
             onClick={() => {
               notifications.addNotification({
-                type: 'info',
-                message: `Notification ${notifications.notifications.length}`
+                message: `Notification ${notifications.notifications.length}`,
+                type: 'info'
               });
             }}
           />

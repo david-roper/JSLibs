@@ -24,34 +24,34 @@ import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Card } from '../Card/Card';
 
 /** An array of arbitrary objects with data to graph  */
-type LineGraphData = readonly Record<string, any>[];
+type LineGraphData = readonly Record<string, unknown>[];
 
 /** Extract string keys from items in `T` where the value of `T[K]` extends `K` */
 type ExtractValidKeys<T extends LineGraphData, K> = Extract<ConditionalKeys<T[number], K>, string>;
 
-type LineGraphLine<T extends LineGraphData = Record<string, any>[]> = Pick<
+type LineGraphLine<T extends LineGraphData = Record<string, unknown>[]> = Pick<
   LineProps,
-  'stroke' | 'strokeWidth' | 'type' | 'legendType' | 'strokeDasharray'
+  'legendType' | 'stroke' | 'strokeDasharray' | 'strokeWidth' | 'type'
 > & {
+  err?: ExtractValidKeys<T, number>;
   name: string;
   val: ExtractValidKeys<T, number>;
-  err?: ExtractValidKeys<T, number>;
 };
 
 const strokeColors = {
-  light: '#475569', // slate-600
-  dark: '#cbd5e1' // slate-300
+  dark: '#cbd5e1', // slate-300
+  light: '#475569' // slate-600
 };
 
 const tooltipStyles: Record<Theme, React.CSSProperties> = {
-  light: {
-    backgroundColor: '#f1f5f9', // slate-100
-    borderColor: strokeColors.dark,
-    borderRadius: '2px'
-  },
   dark: {
     backgroundColor: '#0f172a', // slate-900
     borderColor: strokeColors.light,
+    borderRadius: '2px'
+  },
+  light: {
+    backgroundColor: '#f1f5f9', // slate-100
+    borderColor: strokeColors.dark,
     borderRadius: '2px'
   }
 };
@@ -76,7 +76,7 @@ function LineGraphComponent<const T extends LineGraphData>({
   return (
     <Card className="rounded-md p-3">
       <ResponsiveContainer height={400} width="100%">
-        <LineChart data={[...data]} margin={{ left: 15, right: 15, bottom: 5, top: 5 }}>
+        <LineChart data={[...data]} margin={{ bottom: 5, left: 15, right: 15, top: 5 }}>
           <CartesianGrid stroke="#64748b" strokeDasharray="5 5" />
           <XAxis
             axisLine={{ stroke: '#64748b' }}
@@ -113,7 +113,7 @@ function LineGraphComponent<const T extends LineGraphData>({
             }}
             labelStyle={{ color: strokeColors[theme], fontWeight: 500, whiteSpace: 'pre-wrap' }}
           />
-          {lines.map(({ name, val, err, stroke, type, ...props }) => (
+          {lines.map(({ err, name, stroke, type, val, ...props }) => (
             <Line
               {...props}
               dataKey={val}

@@ -13,12 +13,12 @@ export type OptionsFieldProps<T extends string = string> = BaseFieldComponentPro
 
 export const OptionsField = <T extends string = string>({
   description,
-  name,
-  label,
-  options,
   error,
-  value,
-  setValue
+  label,
+  name,
+  options,
+  setValue,
+  value
 }: OptionsFieldProps<T>) => {
   return (
     <FormFieldContainer description={description} error={error}>

@@ -10,7 +10,7 @@ import { type BaseFieldComponentProps } from './types';
 
 type BinaryFieldProps = BaseFieldComponentProps<boolean> & BinaryFormField;
 
-type InnerProps = Pick<BinaryFieldProps, 'name' | 'label' | 'value' | 'setValue'>;
+type InnerProps = Pick<BinaryFieldProps, 'label' | 'name' | 'setValue' | 'value'>;
 
 const Checkbox = (props: InnerProps) => (
   <>
@@ -29,7 +29,7 @@ const Checkbox = (props: InnerProps) => (
   </>
 );
 
-const RadioOption = ({ value, label }: { value: true | false; label?: string }) => {
+const RadioOption = ({ label, value }: { label?: string; value: false | true }) => {
   const { t } = useTranslation();
   return (
     <RadioGroup.Option className="flex items-center text-slate-600 dark:text-slate-300" value={value}>
@@ -41,7 +41,7 @@ const RadioOption = ({ value, label }: { value: true | false; label?: string }) 
   );
 };
 
-const Radio = (props: InnerProps & { options?: { t: string; f: string } }) => {
+const Radio = (props: InnerProps & { options?: { f: string; t: string } }) => {
   return (
     <RadioGroup value={props.value} onChange={props.setValue}>
       <RadioGroup.Label className="field-label">{props.label}</RadioGroup.Label>

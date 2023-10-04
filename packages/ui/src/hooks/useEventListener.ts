@@ -7,7 +7,7 @@ export function useEventListener<K extends keyof MediaQueryListEventMap>(
   eventName: K,
   handler: (event: MediaQueryListEventMap[K]) => void,
   element: RefObject<MediaQueryList>,
-  options?: boolean | AddEventListenerOptions
+  options?: AddEventListenerOptions | boolean
 ): void;
 
 // Window Event based useEventListener interface
@@ -15,7 +15,7 @@ export function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,
   element?: undefined,
-  options?: boolean | AddEventListenerOptions
+  options?: AddEventListenerOptions | boolean
 ): void;
 
 // Element Event based useEventListener interface
@@ -23,7 +23,7 @@ export function useEventListener<K extends keyof HTMLElementEventMap, T extends 
   eventName: K,
   handler: (event: HTMLElementEventMap[K]) => void,
   element: RefObject<T>,
-  options?: boolean | AddEventListenerOptions
+  options?: AddEventListenerOptions | boolean
 ): void;
 
 // Document Event based useEventListener interface
@@ -31,7 +31,7 @@ export function useEventListener<K extends keyof DocumentEventMap>(
   eventName: K,
   handler: (event: DocumentEventMap[K]) => void,
   element: RefObject<Document>,
-  options?: boolean | AddEventListenerOptions
+  options?: AddEventListenerOptions | boolean
 ): void;
 
 export function useEventListener<
@@ -41,10 +41,10 @@ export function useEventListener<
   // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   T extends HTMLElement | MediaQueryList | void = void
 >(
-  eventName: KW | KH | KM,
-  handler: (event: WindowEventMap[KW] | HTMLElementEventMap[KH] | MediaQueryListEventMap[KM] | Event) => void,
+  eventName: KH | KM | KW,
+  handler: (event: Event | HTMLElementEventMap[KH] | MediaQueryListEventMap[KM] | WindowEventMap[KW]) => void,
   element?: RefObject<T>,
-  options?: boolean | AddEventListenerOptions
+  options?: AddEventListenerOptions | boolean
 ) {
   // Create a ref that stores handler
   const savedHandler = useRef(handler);

@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 
+import type { FormErrors } from './types';
 import type Types from '@douglasneuroinformatics/form-types';
 import type { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
@@ -11,9 +12,7 @@ import { FormProvider } from '../../context/FormContext';
 import { ajv } from '../../services/ajv';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
-
 import { FormFieldsComponent } from './FormFieldsComponent';
-import type { FormErrors } from './types';
 import { getDefaultValues } from './utils';
 
 /** Custom error messages to be supplied for each field */
@@ -28,30 +27,30 @@ type ErrorMessages<T extends Types.FormInstrumentData> = {
 };
 
 type FormProps<T extends Types.FormInstrumentData> = {
-  content: Types.FormInstrumentContent<T>;
   className?: string;
+  content: Types.FormInstrumentContent<T>;
+  errorMessages?: ErrorMessages<T> | string;
   initialValues?: Types.NullableFormInstrumentData<T> | null;
+  onSubmit: (data: T) => void;
   resetBtn?: boolean;
   submitBtnLabel?: string;
-  errorMessages?: string | ErrorMessages<T>;
   validationSchema?: JSONSchemaType<T>;
-  onSubmit: (data: T) => void;
 };
 
 const FormComponent = <T extends Types.FormInstrumentData>({
-  content,
   className,
-  initialValues,
+  content,
   errorMessages,
-  submitBtnLabel,
-  validationSchema,
+  initialValues,
   onSubmit,
-  resetBtn
+  resetBtn,
+  submitBtnLabel,
+  validationSchema
 }: FormProps<T>) => {
   const [validationErrors, setValidationErrors] = useState<ErrorObject[] | null>(null);
   const [values, setValues] = useState<Types.NullableFormInstrumentData<T>>(() => initialValues ?? getDefaultValues(content));
 
-  const { t, i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const errors: FormErrors<T> = useMemo(() => {
     const formErrors: FormErrors<T> = {};
@@ -102,8 +101,8 @@ const FormComponent = <T extends Types.FormInstrumentData>({
     () =>
       ajv.compile(
         validationSchema ?? {
-          type: 'object',
-          required: []
+          required: [],
+          type: 'object'
         }
       ),
     [validationSchema]
@@ -122,7 +121,7 @@ const FormComponent = <T extends Types.FormInstrumentData>({
   };
 
   return (
-    <FormProvider {...{ errors, values, setValues }}>
+    <FormProvider {...{ errors, setValues, values }}>
       <form autoComplete="off" className={clsx('w-full', className)} onSubmit={handleSubmit}>
         {Array.isArray(content) ? (
           content.map((fieldGroup, i) => {

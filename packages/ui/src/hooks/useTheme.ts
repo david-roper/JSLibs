@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export type Theme = 'light' | 'dark';
+export type Theme = 'dark' | 'light';
 
 export function useTheme() {
   // Initial theme value is based on the value saved in local storage or the system theme

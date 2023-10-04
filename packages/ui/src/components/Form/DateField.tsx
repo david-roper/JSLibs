@@ -8,13 +8,12 @@ import { Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
 import { DatePicker } from '../DatePicker/DatePicker';
-
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
 export type DateFieldProps = BaseFieldComponentProps<string> & DateFormField;
 
-export const DateField = ({ description, name, label, error, value, setValue }: DateFieldProps) => {
+export const DateField = ({ description, error, label, name, setValue, value }: DateFieldProps) => {
   const [inputFocused, setInputFocused] = useState(false);
   const [mouseInDatePicker, setMouseInDatePicker] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);

@@ -4,20 +4,19 @@ import { create } from 'zustand';
 
 export type NotificationInterface = {
   id: number;
-  type: 'info' | 'warning' | 'success' | 'error';
-  title?: string;
   message?: string;
+  title?: string;
+  type: 'error' | 'info' | 'success' | 'warning';
   variant?: 'critical' | 'standard';
 };
 
 export type NotificationsStore = {
-  notifications: NotificationInterface[];
   addNotification: (notification: Omit<NotificationInterface, 'id'>) => void;
   dismissNotification: (id: number) => void;
+  notifications: NotificationInterface[];
 };
 
 export const useNotificationsStore = create<NotificationsStore>((set) => ({
-  notifications: [],
   addNotification: (notification) => {
     set((state) => ({
       notifications: [...state.notifications, { id: Date.now(), ...notification }]
@@ -27,5 +26,6 @@ export const useNotificationsStore = create<NotificationsStore>((set) => ({
     set((state) => ({
       notifications: state.notifications.filter((notification) => notification.id !== id)
     }));
-  }
+  },
+  notifications: []
 }));

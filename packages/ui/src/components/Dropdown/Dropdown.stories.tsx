@@ -8,7 +8,7 @@ export default { component: Dropdown } satisfies Meta<typeof Dropdown>;
 
 export const Default: Story = {
   args: {
-    title: 'Dropdown',
-    options: ['Option 1', 'Option 2']
+    options: ['Option 1', 'Option 2'],
+    title: 'Dropdown'
   }
 };

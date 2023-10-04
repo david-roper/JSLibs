@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { ArrowToggle } from '../ArrowToggle/ArrowToggle';
-
 import { CALENDAR_ANIMATION_DURATION, Calendar } from './Calendar';
 import { YearSelector } from './YearSelector';
 
@@ -25,7 +24,7 @@ type SetYearAction = {
   value: number;
 };
 
-type ReducerAction = IncrementAction | DecrementAction | SetYearAction;
+type ReducerAction = DecrementAction | IncrementAction | SetYearAction;
 
 const reducer = (previousDate: Date, action: ReducerAction) => {
   const newDate = new Date(previousDate.valueOf());
@@ -43,9 +42,9 @@ const reducer = (previousDate: Date, action: ReducerAction) => {
 };
 
 export type DatePickerProps = {
-  onSelection: (value: Date) => void;
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>;
   onMouseLeave?: React.MouseEventHandler<HTMLDivElement>;
+  onSelection: (value: Date) => void;
 };
 
 export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ...props }: DatePickerProps) {

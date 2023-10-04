@@ -23,24 +23,24 @@ export type TableEntry = Record<string, unknown>;
 export type FieldFactory<T extends TableEntry = TableEntry> = (entry: T) => string;
 
 export type TableColumn<T extends TableEntry> = {
-  /** The label to be displayed on the header */
-  label: string;
-
   /** How to determine the values for column */
-  field: keyof T | FieldFactory<T>;
+  field: FieldFactory<T> | keyof T;
 
   /** Override the default formatter for this field */
-  formatter?: (value: any) => string;
+  formatter?: (value: unknown) => string;
+
+  /** The label to be displayed on the header */
+  label: string;
 };
 
 export type TableProps<T extends TableEntry> = {
+  columnDropdownOptions?: ColumnDropdownOptions<T>;
   columns: TableColumn<T>[];
   data: T[];
   onEntryClick?: (entry: T) => void;
-  columnDropdownOptions?: ColumnDropdownOptions<T>;
 };
 
-export const Table = <T extends TableEntry>({ columns, data, onEntryClick, columnDropdownOptions }: TableProps<T>) => {
+export const Table = <T extends TableEntry>({ columnDropdownOptions, columns, data, onEntryClick }: TableProps<T>) => {
   return (
     <div className="min-w-full overflow-hidden rounded-md shadow-md">
       <div className="overflow-x-scroll w-full">

@@ -6,7 +6,7 @@ import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
 
 export type LanguageToggleProps<T extends string> = {
-  dropdownDirection?: 'up' | 'down';
+  dropdownDirection?: 'down' | 'up';
   options: T[];
 };
 

@@ -1,21 +1,20 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from '../Button/Button';
-
 import { Modal } from './Modal';
 
 type Story = StoryObj<typeof Modal>;
 
 const meta: Meta<typeof Modal> = {
-  component: Modal,
   args: {
-    open: true,
-    title: 'Terms and Conditions',
     onClose: () => {
       alert('Close!');
     },
-    showCloseButton: false
-  }
+    open: true,
+    showCloseButton: false,
+    title: 'Terms and Conditions'
+  },
+  component: Modal
 };
 
 export default meta;

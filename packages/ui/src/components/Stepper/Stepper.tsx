@@ -3,14 +3,13 @@
 import React, { useReducer } from 'react';
 
 import { StepperContext } from '../../context/StepperContext';
-
 import { StepperDivider } from './StepperDivider';
 import { StepperIcon } from './StepperIcon';
 
 type Step = {
-  label: string;
-  icon: React.ReactElement;
   element: React.ReactElement;
+  icon: React.ReactElement;
+  label: string;
 };
 
 type StepperProps = {
@@ -18,7 +17,7 @@ type StepperProps = {
 };
 
 const Stepper = ({ steps }: StepperProps) => {
-  const [index, updateIndex] = useReducer((prevIndex: number, action: 'increment' | 'decrement') => {
+  const [index, updateIndex] = useReducer((prevIndex: number, action: 'decrement' | 'increment') => {
     if (action === 'decrement' && prevIndex > 0) {
       return prevIndex - 1;
     } else if (action === 'increment' && prevIndex < steps.length - 1) {
@@ -43,4 +42,4 @@ const Stepper = ({ steps }: StepperProps) => {
   );
 };
 
-export { Stepper, type Step, type StepperProps };
+export { type Step, Stepper, type StepperProps };

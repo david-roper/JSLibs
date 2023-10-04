@@ -15,9 +15,6 @@ export const Default: Story = {
       return (
         <Story
           args={{
-            title: 'Example',
-            isOpen,
-            setIsOpen,
             children: (
               <div>
                 <p>
@@ -26,7 +23,10 @@ export const Default: Story = {
                   fugit laborum.
                 </p>
               </div>
-            )
+            ),
+            isOpen,
+            setIsOpen,
+            title: 'Example'
           }}
         />
       );

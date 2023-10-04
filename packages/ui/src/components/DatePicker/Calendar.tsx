@@ -9,9 +9,9 @@ import { useTranslation } from 'react-i18next';
 export const CALENDAR_ANIMATION_DURATION = 0.2; // seconds
 
 export type CalendarProps = {
-  year: number;
   month: number;
   onSelection: (date: Date) => void;
+  year: number;
 };
 
 export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(function Calendar(props, ref) {

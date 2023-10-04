@@ -12,24 +12,24 @@ export type SelectOption = {
 };
 
 export type SelectDropdownProps<T extends SelectOption> = {
-  title: string;
+  checkPosition?: 'left' | 'right';
+  className?: string;
   options: T[];
   selected: T[];
   setSelected: (selected: T[]) => void;
+  title: string;
   /** The button variant to use for the dropdown toggle */
   variant?: ButtonProps['variant'];
-  className?: string;
-  checkPosition?: 'left' | 'right';
 };
 
 export const SelectDropdown = <T extends SelectOption>({
-  options,
-  title,
-  variant,
-  className,
   checkPosition = 'left',
+  className,
+  options,
   selected,
-  setSelected
+  setSelected,
+  title,
+  variant
 }: SelectDropdownProps<T>) => {
   // Here we specify the key prop of objects for comparison
   return (

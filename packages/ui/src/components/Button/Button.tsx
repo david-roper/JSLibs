@@ -9,12 +9,12 @@ export type ButtonProps = {
   icon?: React.ReactElement;
   iconPosition?: 'left' | 'right';
   label: string;
-  size?: 'sm' | 'md' | 'lg';
-  variant?: 'primary' | 'secondary' | 'danger';
+  size?: 'lg' | 'md' | 'sm';
+  variant?: 'danger' | 'primary' | 'secondary';
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'children'>;
 
 export const Button = React.forwardRef(function Button(
-  { disabled, className, icon, label, iconPosition = 'left', size = 'md', variant = 'primary', ...props }: ButtonProps,
+  { className, disabled, icon, iconPosition = 'left', label, size = 'md', variant = 'primary', ...props }: ButtonProps,
   ref?: ForwardedRef<HTMLButtonElement>
 ) {
   return (

@@ -6,11 +6,8 @@ import { ChevronUpIcon } from '@heroicons/react/24/solid';
 import { twMerge } from 'tailwind-merge';
 
 export type ArrowToggleProps = {
-  /** The starting position of the arrow (i.e., which direction does it point to) */
-  position: 'up' | 'right' | 'down' | 'left';
-
-  /** The clockwise rotation of the arrow when toggled (e.g., if the position is 'right' and rotation is 90, the arrow will point down) */
-  rotation: number;
+  /** The size of the arrow in pixels (default is 16px) */
+  arrowSize?: number;
 
   /** Custom content to insert beside the arrow */
   content?: React.ReactNode;
@@ -18,12 +15,15 @@ export type ArrowToggleProps = {
   /** The position of the custom content, if applicable */
   contentPosition?: 'left' | 'right';
 
-  /** The size of the arrow in pixels (default is 16px) */
-  arrowSize?: number;
+  /** The starting position of the arrow (i.e., which direction does it point to) */
+  position: 'down' | 'left' | 'right' | 'up';
+
+  /** The clockwise rotation of the arrow when toggled (e.g., if the position is 'right' and rotation is 90, the arrow will point down) */
+  rotation: number;
 } & Omit<React.ComponentPropsWithoutRef<'button'>, 'content'>;
 
 export const ArrowToggle = React.forwardRef<HTMLButtonElement, ArrowToggleProps>(function ArrowToggle(
-  { className, position, rotation, onClick, content, contentPosition, arrowSize, ...props },
+  { arrowSize, className, content, contentPosition, onClick, position, rotation, ...props },
   ref
 ) {
   const [isToggled, setIsToggled] = useState(false);

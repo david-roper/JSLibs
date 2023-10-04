@@ -17,62 +17,20 @@ const meta: Meta<typeof Form> = {
 export default meta;
 
 type BasicFormValues = {
-  textShort: string;
-  textLong: string;
-  textPassword: string;
+  binaryCheck: boolean;
+  binaryRadio: boolean;
+  date: string;
   numericDefault: number;
   numericSlider: number;
   options: 'a' | 'b' | 'c';
-  date: string;
-  binaryCheck: boolean;
-  binaryRadio: boolean;
+  textLong: string;
+  textPassword: string;
+  textShort: string;
 };
 
 export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
   args: {
     content: {
-      textShort: {
-        kind: 'text',
-        label: 'Short Text',
-        variant: 'short',
-        description:
-          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae natus eaque dolor sequi qui dolore aut at amet fugit, porro, est et maiores, id esse! Esse doloribus laudantium laborum aperiam.'
-      },
-      textLong: {
-        kind: 'text',
-        label: 'Long Text',
-        variant: 'long'
-      },
-      textPassword: {
-        kind: 'text',
-        label: 'Password',
-        variant: 'password'
-      },
-      numericDefault: {
-        description: 'This is a numeric field',
-        kind: 'numeric',
-        label: 'Numeric (Default)',
-        min: 0,
-        max: 10,
-        variant: 'default'
-      },
-      numericSlider: {
-        description: 'This is a numeric field',
-        kind: 'numeric',
-        label: 'Numeric (Slider)',
-        min: 0,
-        max: 10,
-        variant: 'slider'
-      },
-      options: {
-        kind: 'options',
-        label: 'Options',
-        options: {
-          a: 'Option A',
-          b: 'Option B',
-          c: 'Option C'
-        }
-      },
       binaryCheck: {
         kind: 'binary',
         label: 'Binary',
@@ -86,67 +44,109 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
       date: {
         kind: 'date',
         label: 'Date'
+      },
+      numericDefault: {
+        description: 'This is a numeric field',
+        kind: 'numeric',
+        label: 'Numeric (Default)',
+        max: 10,
+        min: 0,
+        variant: 'default'
+      },
+      numericSlider: {
+        description: 'This is a numeric field',
+        kind: 'numeric',
+        label: 'Numeric (Slider)',
+        max: 10,
+        min: 0,
+        variant: 'slider'
+      },
+      options: {
+        kind: 'options',
+        label: 'Options',
+        options: {
+          a: 'Option A',
+          b: 'Option B',
+          c: 'Option C'
+        }
+      },
+      textLong: {
+        kind: 'text',
+        label: 'Long Text',
+        variant: 'long'
+      },
+      textPassword: {
+        kind: 'text',
+        label: 'Password',
+        variant: 'password'
+      },
+      textShort: {
+        description:
+          'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae natus eaque dolor sequi qui dolore aut at amet fugit, porro, est et maiores, id esse! Esse doloribus laudantium laborum aperiam.',
+        kind: 'text',
+        label: 'Short Text',
+        variant: 'short'
       }
-    },
-    validationSchema: {
-      type: 'object',
-      required: []
     },
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
+    },
+    validationSchema: {
+      required: [],
+      type: 'object'
     }
   }
 };
 
 type ArrayFormValues = {
-  doctorName: string;
   array: {
-    patientName: string;
-    isDead: boolean;
     dateOfDeath?: string;
+    isDead: boolean;
+    patientName: string;
   }[];
+  doctorName: string;
 };
 
 export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
   args: {
     content: {
-      doctorName: {
-        kind: 'text',
-        label: 'Doctor Name',
-        variant: 'short'
-      },
       array: () => ({
-        kind: 'array',
-        label: 'Patient',
         fieldset: {
-          patientName: {
-            kind: 'text',
-            label: 'Patient Name',
-            variant: 'short'
+          dateOfDeath: {
+            kind: 'date',
+            label: 'Date of Death'
           },
           isDead: {
             kind: 'binary',
             label: 'Is Dead?',
-            variant: 'radio',
             options: {
-              t: 'Unfortunately',
-              f: 'Not yet'
-            }
+              f: 'Not yet',
+              t: 'Unfortunately'
+            },
+            variant: 'radio'
           },
-          dateOfDeath: {
-            kind: 'date',
-            label: 'Date of Death'
+          patientName: {
+            kind: 'text',
+            label: 'Patient Name',
+            variant: 'short'
           }
-        }
-      })
+        },
+        kind: 'array',
+        label: 'Patient'
+      }),
+      doctorName: {
+        kind: 'text',
+        label: 'Doctor Name',
+        variant: 'short'
+      }
     },
     errorMessages: 'F0 is a required field',
-    validationSchema: {
-      type: 'object',
-      required: []
-    },
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
+    },
+    validationSchema: {
+      required: [],
+      type: 'object'
     }
   }
 };
@@ -162,7 +162,6 @@ export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
   args: {
     content: [
       {
-        title: 'Group 1',
         description:
           'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam et ut aut. Assumenda facilis numquam cupiditate aut in magni quisquam et natus obcaecati dicta eum nulla ducimus, earum alias rerum.',
         fields: {
@@ -176,10 +175,10 @@ export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
             label: 'Field 2',
             variant: 'short'
           }
-        }
+        },
+        title: 'Group 1'
       },
       {
-        title: 'Group 2',
         description:
           'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae natus eaque dolor sequi qui dolore aut at amet fugit, porro, est et maiores, id esse! Esse doloribus laudantium laborum aperiam.',
         fields: {
@@ -193,33 +192,34 @@ export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
             label: 'Field 4',
             variant: 'short'
           }
-        }
+        },
+        title: 'Group 2'
       }
     ],
-    validationSchema: {
-      type: 'object',
-      properties: {
-        f1: {
-          type: 'string',
-          minLength: 1
-        },
-        f2: {
-          type: 'string',
-          minLength: 1
-        },
-        f3: {
-          type: 'string',
-          minLength: 1
-        },
-        f4: {
-          type: 'string',
-          minLength: 1
-        }
-      },
-      required: ['f1', 'f2', 'f3', 'f4']
-    },
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
+    },
+    validationSchema: {
+      properties: {
+        f1: {
+          minLength: 1,
+          type: 'string'
+        },
+        f2: {
+          minLength: 1,
+          type: 'string'
+        },
+        f3: {
+          minLength: 1,
+          type: 'string'
+        },
+        f4: {
+          minLength: 1,
+          type: 'string'
+        }
+      },
+      required: ['f1', 'f2', 'f3', 'f4'],
+      type: 'object'
     }
   }
 };

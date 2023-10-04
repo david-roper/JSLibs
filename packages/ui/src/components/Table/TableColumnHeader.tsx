@@ -1,14 +1,13 @@
 import React from 'react';
 
+import type { TableColumn, TableEntry } from './Table';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';
 
-import type { TableColumn, TableEntry } from './Table';
-
 export type ColumnDropdownOptions<T extends TableEntry> = {
-  label: string;
   icon?: React.ComponentType<Omit<React.SVGProps<SVGSVGElement>, 'ref'>>;
+  label: string;
   onSelection: (column: TableColumn<T>) => void;
 }[];
 

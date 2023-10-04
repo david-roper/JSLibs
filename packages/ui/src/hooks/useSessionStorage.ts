@@ -15,7 +15,7 @@ declare global {
 type SetValue<T> = Dispatch<SetStateAction<T>>;
 
 // A wrapper for "JSON.parse()"" to support "undefined" value
-function parseJSON<T>(value: string | null): T | undefined {
+function parseJSON<T>(value: null | string): T | undefined {
   try {
     return value === 'undefined' ? undefined : (JSON.parse(value ?? '') as T);
   } catch {
@@ -75,7 +75,7 @@ export function useSessionStorage<T>(key: string, initialValue: T): [T, SetValue
   }, []);
 
   const handleStorageChange = useCallback(
-    (event: StorageEvent | CustomEvent) => {
+    (event: CustomEvent | StorageEvent) => {
       if ((event as StorageEvent).key && (event as StorageEvent).key !== key) {
         return;
       }
