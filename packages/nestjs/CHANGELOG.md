@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.7.2
+
+### Patch Changes
+
+- Add `@douglasneuroinformatics/ajv` as dependency
+
 ## 1.7.1
 
 ### Patch Changes

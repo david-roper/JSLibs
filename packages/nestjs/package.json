@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/nestjs",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",
@@ -31,6 +31,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@douglasneuroinformatics/ajv": "^1.1.0",
     "type-fest": "^4.3.3"
   }
 }
