@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ajv
 
+## 1.1.0
+
+### Minor Changes
+
+- Added wrapper around entire ajv library
+
 ## 1.0.2
 
 ### Patch Changes
