@@ -1,6 +1,6 @@
 import { ConfigurableModuleBuilder } from '@nestjs/common';
 
-interface CryptoModuleOptions {
+type CryptoModuleOptions = {
   secretKey: string;
 }
 
@@ -12,7 +12,7 @@ const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new ConfigurableModule
   .build();
 
 export {
-  type CryptoModuleOptions,
   ConfigurableModuleClass as ConfigurableCryptoModule,
+  type CryptoModuleOptions,
   MODULE_OPTIONS_TOKEN as CRYPTO_MODULE_OPTIONS_TOKEN
 };

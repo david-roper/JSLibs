@@ -6,6 +6,7 @@ import { DatabaseService } from './database.service';
 
 @Global()
 @Module({
+  exports: [DatabaseService],
   imports: [
     MongooseModule.forRootAsync({
       inject: [DatabaseService],
@@ -17,7 +18,6 @@ import { DatabaseService } from './database.service';
       }
     })
   ],
-  providers: [DatabaseService],
-  exports: [DatabaseService]
+  providers: [DatabaseService]
 })
 export class DatabaseModule extends ConfigurableDatabaseModule {}

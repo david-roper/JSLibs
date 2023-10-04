@@ -5,7 +5,7 @@ import { type Types } from 'mongoose';
  * database. All controllers that represent such entities should implement this
  * controller and inject a service that implements the `EntityService` interface.
  */
-export interface EntityController<T> {
+export type EntityController<T> = {
   create(entity: T): Promise<T>;
 
   findAll(): Promise<T[]>;

@@ -1,5 +1,4 @@
 import { BadRequestException, Injectable, Optional, type PipeTransform } from '@nestjs/common';
-
 import { Types, isValidObjectId } from 'mongoose';
 
 @Injectable()
@@ -10,7 +9,7 @@ export class ParseIdPipe implements PipeTransform {
     this.isOptional = options?.isOptional ?? false;
   }
 
-  transform(value: any) {
+  transform(value: unknown) {
     if (this.isOptional && value === undefined) {
       return undefined;
     } else if (!isValidObjectId(value)) {

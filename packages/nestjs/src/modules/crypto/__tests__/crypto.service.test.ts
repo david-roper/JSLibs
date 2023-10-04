@@ -1,6 +1,6 @@
-import { Test, TestingModule } from '@nestjs/testing';
-
 import { beforeEach, describe, expect, it } from 'bun:test';
+
+import { Test, TestingModule } from '@nestjs/testing';
 
 import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from '..';
 import { CryptoService } from '../crypto.service';

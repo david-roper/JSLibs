@@ -1,5 +1,4 @@
 import { Injectable, Logger, type NestMiddleware } from '@nestjs/common';
-
 import type { NextFunction, Request, Response } from 'express';
 
 @Injectable()

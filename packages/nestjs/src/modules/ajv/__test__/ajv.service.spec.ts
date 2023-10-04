@@ -1,6 +1,6 @@
-import { Test } from '@nestjs/testing';
-
 import { beforeEach, describe, expect, it } from 'bun:test';
+
+import { Test } from '@nestjs/testing';
 
 import { AjvService } from '../ajv.service';
 
