@@ -1,4 +1,3 @@
-import type { NullableFormInstrumentData, UnknownFormField } from '@douglasneuroinformatics/form-types';
 import type Types from '@douglasneuroinformatics/form-types';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
@@ -20,15 +19,15 @@ export function getDefaultFormValuesForArrayField(field: Types.ArrayFormField): 
 }
 
 /** Returns the default values when initializing the state or resetting the form */
-export const getDefaultFormValues = <T extends Types.FormInstrumentData>(
+export function getDefaultFormValues<T extends Types.FormInstrumentData>(
   content: Types.FormInstrumentContent<T>
-): Types.NullableFormInstrumentData<T> => {
-  const defaultValues: NullableFormInstrumentData = {};
+): Types.NullableFormInstrumentData<T> {
+  const defaultValues: Types.NullableFormInstrumentData = {};
 
   // Get a flat array of all fields regardless of the content type
   const fields = getFormFields(content);
   for (const fieldName in fields) {
-    const field = fields[fieldName] as UnknownFormField<T>;
+    const field = fields[fieldName] as Types.UnknownFormField<T>;
     const staticField = field instanceof Function ? field(null) : field;
     if (!staticField) {
       defaultValues[fieldName] = null;
@@ -39,7 +38,7 @@ export const getDefaultFormValues = <T extends Types.FormInstrumentData>(
     }
   }
   return defaultValues as Types.NullableFormInstrumentData<T>;
-};
+}
 
 export function formatFormDataAsString<T extends Types.FormInstrumentData>(data: T) {
   const lines: string[] = [];
@@ -57,4 +56,28 @@ export function formatFormDataAsString<T extends Types.FormInstrumentData>(data:
     }
   }
   return lines.join('\n') + '\n';
+}
+
+/**
+ * Given a set of data, resolve static content for form fields. Null values
+ * will be removed.
+ */
+export function resolveStaticFormFields<T extends Types.FormInstrumentData>(
+  content: Types.FormInstrumentContent<T>,
+  data: Types.NullableFormInstrumentData<T>
+) {
+  const staticFormFields: Partial<Types.StaticFormFields<T>> = {};
+  const formFields = getFormFields(content);
+  for (const fieldName in formFields) {
+    const field: Types.UnknownFormField<T, typeof fieldName> = formFields[fieldName];
+    if (typeof field === 'function') {
+      const resolvedField = field(data);
+      if (resolvedField) {
+        staticFormFields[fieldName] = resolvedField;
+      }
+    } else {
+      staticFormFields[fieldName] = field;
+    }
+  }
+  return staticFormFields;
 }

@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.4.6
+
+### Patch Changes
+
+- Add resolve static fields
+
 ## 2.4.2
 
 ### Patch Changes
