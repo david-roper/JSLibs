@@ -1,13 +1,13 @@
 import type { AnyFunction } from 'bun';
 import { type Mock, jest } from 'bun:test';
 
-import type { Constructor } from 'type-fest';
+import type { Class } from 'type-fest';
 
 export type MockedInstance<T extends object> = {
-  [K in keyof T as T[K] extends (...args: unknown[]) => unknown ? K : never]: Mock<AnyFunction>;
+  [K in keyof T as T[K] extends AnyFunction ? K : never]: Mock<AnyFunction>;
 };
 
-export function createMock<T extends Constructor<object>>(constructor: T) {
+export function createMock<T extends object>(constructor: Class<T>) {
   const prototype = constructor.prototype as Record<string, unknown>;
   if (!Object.getPrototypeOf(prototype) === Object.prototype) {
     throw new Error(`Invalid prototype, expected plain object, got: ${JSON.stringify(prototype)}`);
@@ -23,5 +23,5 @@ export function createMock<T extends Constructor<object>>(constructor: T) {
         throw new Error(`Unexpected type for property '${prop}': ${typeof prototype[prop]}`);
       }
     });
-  return obj as MockedInstance<InstanceType<T>>;
+  return obj as MockedInstance<T>;
 }
