@@ -1,10 +1,13 @@
 import { useContext } from 'react';
 
-import type { ArrayFieldProps, BaseFieldComponentProps, PrimitiveFormFieldProps, UnknownFieldComponentProps } from '.';
+import type { ArrayFieldProps } from './ArrayField';
+import type { PrimitiveFormFieldProps } from './PrimitiveFormField';
+import type { BaseFieldComponentProps, UnknownFieldComponentProps } from './types';
 import type Types from '@douglasneuroinformatics/form-types';
 
-import { ArrayField, PrimitiveFormField } from '.';
 import { FormContext, type FormState } from '../../context/FormContext';
+import { ArrayField } from './ArrayField';
+import { PrimitiveFormField } from './PrimitiveFormField';
 
 export type FormFieldsComponentProps<T extends Types.FormInstrumentData> = {
   fields: Types.FormFields<T>;

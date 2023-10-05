@@ -2,11 +2,11 @@
 
 import React, { useMemo, useState } from 'react';
 
+import type { FormErrors } from './types';
 import type Types from '@douglasneuroinformatics/form-types';
 import type { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
-import type { FormErrors } from './types';
 
 import { FormProvider } from '../../context/FormContext';
 import { ajv } from '../../services/ajv';
