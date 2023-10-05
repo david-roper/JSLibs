@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 1.1.3
+
+### Patch Changes
+
+- Readd array field
+
 ## 1.1.2
 
 ### Patch Changes
