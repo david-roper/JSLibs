@@ -11,7 +11,7 @@ function getFormFields<T extends Types.FormInstrumentData>(
   return content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as Types.FormFields<T>;
 }
 
-function getDefaultValuesForArrayField(field: Types.ArrayFormField): Types.NullableArrayFieldValue {
+function getDefaultFormValuesForArrayField(field: Types.ArrayFormField): Types.NullableArrayFieldValue {
   const values: Types.NullableArrayFieldValue[number] = {};
   for (const subfieldName in field.fieldset) {
     values[subfieldName] = null;
@@ -20,7 +20,7 @@ function getDefaultValuesForArrayField(field: Types.ArrayFormField): Types.Nulla
 }
 
 /** Returns the default values when initializing the state or resetting the form */
-export const getDefaultValues = <T extends Types.FormInstrumentData>(
+export const getDefaultFormValues = <T extends Types.FormInstrumentData>(
   content: Types.FormInstrumentContent<T>
 ): Types.NullableFormInstrumentData<T> => {
   const defaultValues: NullableFormInstrumentData = {};
@@ -33,7 +33,7 @@ export const getDefaultValues = <T extends Types.FormInstrumentData>(
     if (!staticField) {
       defaultValues[fieldName] = null;
     } else if (staticField.kind === 'array') {
-      defaultValues[fieldName] = getDefaultValuesForArrayField(staticField);
+      defaultValues[fieldName] = getDefaultFormValuesForArrayField(staticField);
     } else {
       defaultValues[fieldName] = null;
     }
@@ -41,7 +41,7 @@ export const getDefaultValues = <T extends Types.FormInstrumentData>(
   return defaultValues as Types.NullableFormInstrumentData<T>;
 };
 
-export function formatDataAsString<T extends Types.FormInstrumentData>(data: T) {
+export function formatFormDataAsString<T extends Types.FormInstrumentData>(data: T) {
   const lines: string[] = [];
   for (const key in data) {
     const value: Types.ArrayFieldValue | Types.PrimitiveFieldValue = data[key]!;

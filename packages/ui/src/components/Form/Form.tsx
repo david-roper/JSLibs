@@ -2,18 +2,18 @@
 
 import React, { useMemo, useState } from 'react';
 
-import type { FormErrors } from './types';
 import type Types from '@douglasneuroinformatics/form-types';
 import type { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
 import { useTranslation } from 'react-i18next';
+import type { FormErrors } from './types';
 
 import { FormProvider } from '../../context/FormContext';
 import { ajv } from '../../services/ajv';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 import { FormFieldsComponent } from './FormFieldsComponent';
-import { getDefaultValues } from './utils';
+import { getDefaultFormValues } from './utils';
 
 /** Custom error messages to be supplied for each field */
 type ErrorMessages<T extends Types.FormInstrumentData> = {
@@ -48,7 +48,9 @@ const FormComponent = <T extends Types.FormInstrumentData>({
   validationSchema
 }: FormProps<T>) => {
   const [validationErrors, setValidationErrors] = useState<ErrorObject[] | null>(null);
-  const [values, setValues] = useState<Types.NullableFormInstrumentData<T>>(() => initialValues ?? getDefaultValues(content));
+  const [values, setValues] = useState<Types.NullableFormInstrumentData<T>>(
+    () => initialValues ?? getDefaultFormValues(content)
+  );
 
   const { i18n, t } = useTranslation();
 
@@ -93,7 +95,7 @@ const FormComponent = <T extends Types.FormInstrumentData>({
   }, [validationErrors, i18n.resolvedLanguage]);
 
   const reset = () => {
-    setValues(getDefaultValues(content));
+    setValues(getDefaultFormValues(content));
     setValidationErrors(null);
   };
 

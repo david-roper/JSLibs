@@ -1,5 +1,17 @@
 # @douglasneuroinformatics/ui
 
+## 2.4.2
+
+### Patch Changes
+
+- Rename `formatDataAsString` to `formatFormDataAsString`
+
+## 2.4.1
+
+### Patch Changes
+
+- Rename `getDefaultFields` to `getDefaultFormFields`
+
 ## 2.4.0
 
 ### Minor Changes
