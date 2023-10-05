@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.4.0
+
+### Minor Changes
+
+- Add form utils as export
+
 ## 2.3.3
 
 ### Patch Changes

@@ -40,3 +40,21 @@ export const getDefaultValues = <T extends Types.FormInstrumentData>(
   }
   return defaultValues as Types.NullableFormInstrumentData<T>;
 };
+
+export function formatDataAsString<T extends Types.FormInstrumentData>(data: T) {
+  const lines: string[] = [];
+  for (const key in data) {
+    const value: Types.ArrayFieldValue | Types.PrimitiveFieldValue = data[key]!;
+    if (Array.isArray(value)) {
+      for (let i = 0; i < value.length; i++) {
+        const record = value[i]!;
+        for (const prop in record) {
+          lines.push(`${prop} (${i + 1}): ${record[prop]}`);
+        }
+      }
+    } else {
+      lines.push(`${key}: ${value}`);
+    }
+  }
+  return lines.join('\n') + '\n';
+}
