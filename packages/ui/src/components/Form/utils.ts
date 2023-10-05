@@ -2,7 +2,7 @@ import type { NullableFormInstrumentData, UnknownFormField } from '@douglasneuro
 import type Types from '@douglasneuroinformatics/form-types';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
-function getFormFields<T extends Types.FormInstrumentData>(
+export function getFormFields<T extends Types.FormInstrumentData>(
   content: Types.FormInstrumentContent<T>
 ): Types.FormFields<T> {
   if (!Array.isArray(content)) {
@@ -11,7 +11,7 @@ function getFormFields<T extends Types.FormInstrumentData>(
   return content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as Types.FormFields<T>;
 }
 
-function getDefaultFormValuesForArrayField(field: Types.ArrayFormField): Types.NullableArrayFieldValue {
+export function getDefaultFormValuesForArrayField(field: Types.ArrayFormField): Types.NullableArrayFieldValue {
   const values: Types.NullableArrayFieldValue[number] = {};
   for (const subfieldName in field.fieldset) {
     values[subfieldName] = null;
