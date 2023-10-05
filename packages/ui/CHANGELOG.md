@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.3.3
+
+### Patch Changes
+
+- Restory dynamic fieldset
+
 ## 2.3.2
 
 ### Patch Changes

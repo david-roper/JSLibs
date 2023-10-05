@@ -13,7 +13,7 @@ export const ArrayField = ({ error, fieldset, label, setValue: setArrayValue, va
   const { t } = useTranslation();
 
   if (!arrayValue) {
-    return null
+    return null;
   }
 
   // Creates a new object with all values mapped to null and appends it to the previous arrayValue
@@ -35,6 +35,10 @@ export const ArrayField = ({ error, fieldset, label, setValue: setArrayValue, va
           <span className="font-medium text-slate-600 dark:text-slate-300">{label + ' ' + (i + 1)}</span>
           {Object.keys(fields).map((fieldName) => {
             const field = fieldset[fieldName];
+            const fieldProps = typeof field === 'function' ? field(fields) : field;
+            if (!fieldProps) {
+              return null;
+            }
             const props = {
               error: error?.[i]?.[fieldName],
               name: fieldName + i,
@@ -44,7 +48,7 @@ export const ArrayField = ({ error, fieldset, label, setValue: setArrayValue, va
                 setArrayValue(newArrayValue);
               },
               value: fields[fieldName],
-              ...field
+              ...fieldProps
             } as PrimitiveFormFieldProps;
             return <PrimitiveFormField {...props} key={fieldName} />;
           })}

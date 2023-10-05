@@ -1,3 +1,4 @@
+/* eslint-disable perfectionist/sort-objects */
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Form } from './Form';
@@ -112,9 +113,10 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
     content: {
       array: () => ({
         fieldset: {
-          dateOfDeath: {
-            kind: 'date',
-            label: 'Date of Death'
+          patientName: {
+            kind: 'text',
+            label: 'Patient Name',
+            variant: 'short'
           },
           isDead: {
             kind: 'binary',
@@ -125,10 +127,14 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
             },
             variant: 'radio'
           },
-          patientName: {
-            kind: 'text',
-            label: 'Patient Name',
-            variant: 'short'
+          dateOfDeath: (fieldset) => {
+            if (!fieldset.isDead) {
+              return null;
+            }
+            return {
+              kind: 'date',
+              label: 'Date of Death'
+            };
           }
         },
         kind: 'array',
@@ -248,6 +254,8 @@ export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
         return null;
       }
     },
-    onSubmit: (data) => { alert(JSON.stringify(data)); }
+    onSubmit: (data) => {
+      alert(JSON.stringify(data));
+    }
   }
 };
