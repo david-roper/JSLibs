@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 3.0.2
+
+### Patch Changes
+
+- Allow unsafe access in tests
+
 ## 3.0.1
 
 ### Patch Changes

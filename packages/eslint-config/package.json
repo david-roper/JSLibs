@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/eslint-config",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Linting configurations for DNP projects written in TypeScript/JavaScript",
   "type": "module",
   "keywords": [
@@ -16,7 +16,7 @@
     "lint": "eslint --fix index.js"
   },
   "dependencies": {
-    "@joshunrau/eslint-config": "^3.2.4"
+    "@joshunrau/eslint-config": "^3.3.0"
   },
   "peerDependencies": {
     "eslint": "8.x",
