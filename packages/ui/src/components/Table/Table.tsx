@@ -27,7 +27,8 @@ export type TableColumn<T extends TableEntry> = {
   field: FieldFactory<T> | keyof T;
 
   /** Override the default formatter for this field */
-  formatter?: (value: unknown) => string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  formatter?: (value: any) => string;
 
   /** The label to be displayed on the header */
   label: string;

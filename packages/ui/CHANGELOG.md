@@ -1,5 +1,17 @@
 # @douglasneuroinformatics/ui
 
+## 2.4.8
+
+### Patch Changes
+
+- Use any for formatter
+
+## 2.4.7
+
+### Patch Changes
+
+- Switch type unknown to any
+
 ## 2.4.6
 
 ### Patch Changes
