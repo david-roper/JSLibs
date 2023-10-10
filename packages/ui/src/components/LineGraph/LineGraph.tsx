@@ -24,12 +24,14 @@ import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Card } from '../Card/Card';
 
 /** An array of arbitrary objects with data to graph  */
-type LineGraphData = readonly Record<string, unknown>[];
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type LineGraphData = readonly Record<string, any>[];
 
 /** Extract string keys from items in `T` where the value of `T[K]` extends `K` */
 type ExtractValidKeys<T extends LineGraphData, K> = Extract<ConditionalKeys<T[number], K>, string>;
 
-type LineGraphLine<T extends LineGraphData = Record<string, unknown>[]> = Pick<
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type LineGraphLine<T extends LineGraphData = Record<string, any>[]> = Pick<
   LineProps,
   'legendType' | 'stroke' | 'strokeDasharray' | 'strokeWidth' | 'type'
 > & {
