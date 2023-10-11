@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.4.9
+
+### Patch Changes
+
+- Add transformTranslations
+
 ## 2.4.8
 
 ### Patch Changes
