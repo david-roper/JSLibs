@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 2.4.10
+
+### Patch Changes
+
+- Add legacy import fallback
+
 ## 2.4.9
 
 ### Patch Changes

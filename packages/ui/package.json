@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/ui",
-  "version": "2.4.9",
+  "version": "2.4.10",
   "description": "Common React components and tailwind config for DNP projects",
   "license": "LGPL-3.0",
   "type": "module",
@@ -12,6 +12,8 @@
     },
     "./tailwind.config": "./tailwind.config.js"
   },
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src/**/!(*.stories.tsx)",
