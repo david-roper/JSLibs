@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.8.3
+
+### Patch Changes
+
+- Remove logging in validation
+
 ## 1.8.2
 
 ### Patch Changes
