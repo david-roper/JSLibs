@@ -15,10 +15,10 @@ export class ExceptionsFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
 
     let httpStatus: HttpStatus;
-    let message: string;
+    let message: unknown;
     if (exception instanceof HttpException) {
       httpStatus = exception.getStatus();
-      message = exception.message;
+      message = JSON.parse(exception.message);
     } else {
       this.logger.error(exception);
       httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
