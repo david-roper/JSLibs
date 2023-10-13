@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 2.0.0
+
+### Major Changes
+
+- Rename FormInstrumentContent to FormContent
+
 ## 1.1.3
 
 ### Patch Changes

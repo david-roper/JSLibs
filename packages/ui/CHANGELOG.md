@@ -1,5 +1,16 @@
 # @douglasneuroinformatics/ui
 
+## 3.0.0
+
+### Major Changes
+
+- Rename FormInstrumentContent to FormContent
+
+### Patch Changes
+
+- Updated dependencies
+  - @douglasneuroinformatics/form-types@2.0.0
+
 ## 2.4.10
 
 ### Patch Changes

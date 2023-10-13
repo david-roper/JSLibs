@@ -28,7 +28,7 @@ type ErrorMessages<T extends Types.FormInstrumentData> = {
 
 type FormProps<T extends Types.FormInstrumentData> = {
   className?: string;
-  content: Types.FormInstrumentContent<T>;
+  content: Types.FormContent<T>;
   errorMessages?: ErrorMessages<T> | string;
   initialValues?: Types.NullableFormInstrumentData<T> | null;
   onSubmit: (data: T) => void;

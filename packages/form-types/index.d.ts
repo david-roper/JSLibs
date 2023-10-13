@@ -38,6 +38,7 @@ export type BaseFormField = {
   /** Whether or not the field is required */
   isRequired?: boolean;
 
+  /** Discriminator key */
   kind: FormFieldKind;
 
   /** The label to be displayed to the user */
@@ -143,6 +144,6 @@ export type FormFieldsGroup<TData extends FormInstrumentData = FormInstrumentDat
   title: string;
 };
 
-export type FormInstrumentContent<TData extends FormInstrumentData = FormInstrumentData> =
+export type FormContent<TData extends FormInstrumentData = FormInstrumentData> =
   | FormFields<TData>
   | FormFieldsGroup<TData>[];

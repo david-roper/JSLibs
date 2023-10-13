@@ -1,9 +1,7 @@
 import type Types from '@douglasneuroinformatics/form-types';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
-export function getFormFields<T extends Types.FormInstrumentData>(
-  content: Types.FormInstrumentContent<T>
-): Types.FormFields<T> {
+export function getFormFields<T extends Types.FormInstrumentData>(content: Types.FormContent<T>): Types.FormFields<T> {
   if (!Array.isArray(content)) {
     return content;
   }
@@ -20,7 +18,7 @@ export function getDefaultFormValuesForArrayField(field: Types.ArrayFormField): 
 
 /** Returns the default values when initializing the state or resetting the form */
 export function getDefaultFormValues<T extends Types.FormInstrumentData>(
-  content: Types.FormInstrumentContent<T>
+  content: Types.FormContent<T>
 ): Types.NullableFormInstrumentData<T> {
   const defaultValues: Types.NullableFormInstrumentData = {};
 
@@ -63,7 +61,7 @@ export function formatFormDataAsString<T extends Types.FormInstrumentData>(data:
  * will be removed.
  */
 export function resolveStaticFormFields<T extends Types.FormInstrumentData>(
-  content: Types.FormInstrumentContent<T>,
+  content: Types.FormContent<T>,
   data: Types.NullableFormInstrumentData<T>
 ) {
   const staticFormFields: Partial<Types.StaticFormFields<T>> = {};
