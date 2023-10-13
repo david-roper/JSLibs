@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/ui",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Common React components and tailwind config for DNP projects",
   "license": "LGPL-3.0",
   "type": "module",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@douglasneuroinformatics/ajv": "^1.0.2",
-    "@douglasneuroinformatics/form-types": "^2.0.0",
+    "@douglasneuroinformatics/form-types": "^3.0.0",
     "@douglasneuroinformatics/utils": "^1.0.2",
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",

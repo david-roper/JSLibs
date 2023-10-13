@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 3.0.0
+
+### Major Changes
+
+- Rename FormInstrumentData to FormDataType and NullableFormInstrumentData to NullableFormDataType
+
 ## 2.0.0
 
 ### Major Changes
