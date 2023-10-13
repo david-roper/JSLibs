@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.8.1
+
+### Patch Changes
+
+- Add custom error handling
+
 ## 1.8.0
 
 ### Minor Changes
