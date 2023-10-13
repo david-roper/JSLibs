@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.8.0
+
+### Minor Changes
+
+- Add zod
+
 ## 1.7.5
 
 ### Patch Changes
