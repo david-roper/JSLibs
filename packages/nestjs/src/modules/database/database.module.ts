@@ -12,6 +12,7 @@ import { DatabaseService } from './database.service';
       inject: [DatabaseService],
       useFactory: (databaseService: DatabaseService) => {
         return {
+          connectionFactory: databaseService.connectionFactory,
           ignoreUndefined: true,
           uri: databaseService.uri
         };
