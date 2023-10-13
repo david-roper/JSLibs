@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.7.5
+
+### Patch Changes
+
+- Update types to correspond to new names
+
 ## 1.7.3
 
 ### Patch Changes

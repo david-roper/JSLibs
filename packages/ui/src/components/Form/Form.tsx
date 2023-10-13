@@ -2,7 +2,6 @@
 
 import React, { useMemo, useState } from 'react';
 
-import type { FormErrors } from './types';
 import type Types from '@douglasneuroinformatics/form-types';
 import type { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
@@ -15,8 +14,10 @@ import { Button } from '../Button/Button';
 import { FormFieldsComponent } from './FormFieldsComponent';
 import { getDefaultFormValues } from './utils';
 
+import type { FormErrors } from './types';
+
 /** Custom error messages to be supplied for each field */
-type ErrorMessages<T extends Types.FormInstrumentData> = {
+type ErrorMessages<T extends Types.FormDataType> = {
   [K in keyof T]?: T[K] extends Types.PrimitiveFieldValue
     ? string
     : T[K] extends Types.ArrayFieldValue
@@ -26,18 +27,18 @@ type ErrorMessages<T extends Types.FormInstrumentData> = {
     : never;
 };
 
-type FormProps<T extends Types.FormInstrumentData> = {
+type FormProps<T extends Types.FormDataType> = {
   className?: string;
   content: Types.FormContent<T>;
   errorMessages?: ErrorMessages<T> | string;
-  initialValues?: Types.NullableFormInstrumentData<T> | null;
+  initialValues?: Types.NullableFormDataType<T> | null;
   onSubmit: (data: T) => void;
   resetBtn?: boolean;
   submitBtnLabel?: string;
   validationSchema?: JSONSchemaType<T>;
 };
 
-const FormComponent = <T extends Types.FormInstrumentData>({
+const FormComponent = <T extends Types.FormDataType>({
   className,
   content,
   errorMessages,
@@ -48,7 +49,7 @@ const FormComponent = <T extends Types.FormInstrumentData>({
   validationSchema
 }: FormProps<T>) => {
   const [validationErrors, setValidationErrors] = useState<ErrorObject[] | null>(null);
-  const [values, setValues] = useState<Types.NullableFormInstrumentData<T>>(
+  const [values, setValues] = useState<Types.NullableFormDataType<T>>(
     () => initialValues ?? getDefaultFormValues(content)
   );
 

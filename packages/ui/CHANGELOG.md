@@ -1,5 +1,13 @@
 # @douglasneuroinformatics/ui
 
+## 3.0.2
+
+### Patch Changes
+
+- Update types to correspond to new names
+- Updated dependencies
+  - @douglasneuroinformatics/form-types@3.0.1
+
 ## 3.0.1
 
 ### Patch Changes

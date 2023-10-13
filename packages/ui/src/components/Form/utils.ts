@@ -1,7 +1,7 @@
 import type Types from '@douglasneuroinformatics/form-types';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
-export function getFormFields<T extends Types.FormInstrumentData>(content: Types.FormContent<T>): Types.FormFields<T> {
+export function getFormFields<T extends Types.FormDataType>(content: Types.FormContent<T>): Types.FormFields<T> {
   if (!Array.isArray(content)) {
     return content;
   }
@@ -17,10 +17,10 @@ export function getDefaultFormValuesForArrayField(field: Types.ArrayFormField): 
 }
 
 /** Returns the default values when initializing the state or resetting the form */
-export function getDefaultFormValues<T extends Types.FormInstrumentData>(
+export function getDefaultFormValues<T extends Types.FormDataType>(
   content: Types.FormContent<T>
-): Types.NullableFormInstrumentData<T> {
-  const defaultValues: Types.NullableFormInstrumentData = {};
+): Types.NullableFormDataType<T> {
+  const defaultValues: Types.NullableFormDataType = {};
 
   // Get a flat array of all fields regardless of the content type
   const fields = getFormFields(content);
@@ -35,10 +35,10 @@ export function getDefaultFormValues<T extends Types.FormInstrumentData>(
       defaultValues[fieldName] = null;
     }
   }
-  return defaultValues as Types.NullableFormInstrumentData<T>;
+  return defaultValues as Types.NullableFormDataType<T>;
 }
 
-export function formatFormDataAsString<T extends Types.FormInstrumentData>(data: T) {
+export function formatFormDataAsString<T extends Types.FormDataType>(data: T) {
   const lines: string[] = [];
   for (const key in data) {
     const value: Types.ArrayFieldValue | Types.PrimitiveFieldValue = data[key]!;
@@ -60,9 +60,9 @@ export function formatFormDataAsString<T extends Types.FormInstrumentData>(data:
  * Given a set of data, resolve static content for form fields. Null values
  * will be removed.
  */
-export function resolveStaticFormFields<T extends Types.FormInstrumentData>(
+export function resolveStaticFormFields<T extends Types.FormDataType>(
   content: Types.FormContent<T>,
-  data: Types.NullableFormInstrumentData<T>
+  data: Types.NullableFormDataType<T>
 ) {
   const staticFormFields: Partial<Types.StaticFormFields<T>> = {};
   const formFields = getFormFields(content);

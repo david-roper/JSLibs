@@ -12,10 +12,11 @@ export type BaseFieldComponentProps<T extends Types.UnknownNullableFieldValue = 
   value: T | null;
 };
 
-export type UnknownFieldComponentProps<T extends Types.FormInstrumentData> = BaseFieldComponentProps & Types.UnknownFormField<T>;
+export type UnknownFieldComponentProps<T extends Types.FormDataType> = BaseFieldComponentProps &
+  Types.UnknownFormField<T>;
 
 /** An object mapping field names to error messages, if applicable */
-export type FormErrors<T extends Types.FormInstrumentData = Types.FormInstrumentData> = {
+export type FormErrors<T extends Types.FormDataType = Types.FormDataType> = {
   [K in keyof T]?: T[K] extends Types.PrimitiveFieldValue
     ? string
     : T[K] extends Types.ArrayFieldValue

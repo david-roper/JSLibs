@@ -1,20 +1,21 @@
 import { useContext } from 'react';
 
-import type { ArrayFieldProps } from './ArrayField';
-import type { PrimitiveFormFieldProps } from './PrimitiveFormField';
-import type { BaseFieldComponentProps, UnknownFieldComponentProps } from './types';
 import type Types from '@douglasneuroinformatics/form-types';
 
 import { FormContext, type FormState } from '../../context/FormContext';
 import { ArrayField } from './ArrayField';
 import { PrimitiveFormField } from './PrimitiveFormField';
 
-export type FormFieldsComponentProps<T extends Types.FormInstrumentData> = {
+import type { ArrayFieldProps } from './ArrayField';
+import type { PrimitiveFormFieldProps } from './PrimitiveFormField';
+import type { BaseFieldComponentProps, UnknownFieldComponentProps } from './types';
+
+export type FormFieldsComponentProps<T extends Types.FormDataType> = {
   fields: Types.FormFields<T>;
 };
 
 /** Renders an object containing key value pairs, where the value is a FormField of some kind */
-export const FormFieldsComponent = <T extends Types.FormInstrumentData>({ fields }: FormFieldsComponentProps<T>) => {
+export const FormFieldsComponent = <T extends Types.FormDataType>({ fields }: FormFieldsComponentProps<T>) => {
   const { errors, setValues, values } = useContext(FormContext) as FormState<T>;
   return (
     <>
