@@ -1,5 +1,12 @@
 import { type ArgumentsHost, Catch, type ExceptionFilter, HttpException, HttpStatus, Logger } from '@nestjs/common';
+import { isObject } from '@nestjs/common/utils/shared.utils';
 import { HttpAdapterHost } from '@nestjs/core';
+import { type ZodType, z } from 'zod';
+
+const httpExceptionSchema: ZodType<Pick<HttpException, 'getResponse' | 'getStatus'>> = z.object({
+  getResponse: z.function().returns(z.any()),
+  getStatus: z.function().returns(z.number())
+});
 
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter {
@@ -8,30 +15,29 @@ export class ExceptionsFilter implements ExceptionFilter {
   constructor(private readonly httpAdapterHost: HttpAdapterHost) {}
 
   catch(exception: unknown, host: ArgumentsHost): void {
-    // In certain situations `httpAdapter` might not be available in the
-    // constructor method, thus we should resolve it here.
     const { httpAdapter } = this.httpAdapterHost;
-
     const ctx = host.switchToHttp();
 
-    let httpStatus: HttpStatus;
-    let message: unknown;
-    if (exception instanceof HttpException) {
-      httpStatus = exception.getStatus();
-      message = JSON.parse(exception.message);
+    let statusCode: HttpStatus;
+    let responseBody: object;
+    if (this.isHttpException(exception)) {
+      const res = exception.getResponse();
+      statusCode = exception.getStatus();
+      responseBody = isObject(res) ? res : { message: res, statusCode };
     } else {
       this.logger.error(exception);
-      httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
-      message = 'Internal Server Error';
+      statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
+      responseBody = {
+        message: 'Internal Server Error',
+        statusCode
+      };
     }
 
-    const responseBody = {
-      message,
-      path: httpAdapter.getRequestUrl(ctx.getRequest()) as string,
-      statusCode: httpStatus,
-      timestamp: new Date().toISOString()
-    };
+    httpAdapter.reply(ctx.getResponse(), responseBody, statusCode);
+  }
 
-    httpAdapter.reply(ctx.getResponse(), responseBody, httpStatus);
+  private isHttpException(exception: unknown): exception is HttpException {
+    // Cannot use instanceof HttpException due to potentially different prototype chain in library
+    return httpExceptionSchema.safeParse(exception).success;
   }
 }
