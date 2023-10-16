@@ -23,6 +23,11 @@ export class ValidationPipe implements PipeTransform {
     if (result.success) {
       return result.data;
     }
-    throw new BadRequestException(result.error);
+
+    throw new BadRequestException({
+      message: 'Validation Error',
+      // eslint-disable-next-line perfectionist/sort-objects
+      issues: result.error.issues
+    });
   }
 }
