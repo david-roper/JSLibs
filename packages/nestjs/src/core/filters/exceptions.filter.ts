@@ -25,12 +25,15 @@ export class ExceptionsFilter implements ExceptionFilter {
       statusCode = exception.getStatus();
       responseBody = isObject(res) ? res : { message: res, statusCode };
     } else {
-      this.logger.error(exception);
       statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
       responseBody = {
         message: 'Internal Server Error',
         statusCode
       };
+    }
+
+    if (statusCode === HttpStatus.INTERNAL_SERVER_ERROR) {
+      this.logger.error(exception);
     }
 
     httpAdapter.reply(ctx.getResponse(), responseBody, statusCode);
