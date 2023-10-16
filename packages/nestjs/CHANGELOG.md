@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.8.4
+
+### Patch Changes
+
+- Use schema for ExceptionsFilter
+
 ## 1.8.3
 
 ### Patch Changes
