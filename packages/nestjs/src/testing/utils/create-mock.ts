@@ -7,13 +7,19 @@ export type MockedInstance<T extends object> = {
   [K in keyof T as T[K] extends AnyFunction ? K : never]: Mock<AnyFunction>;
 };
 
+function getAllPropertyNames(object: object): string[] {
+  const properties = Object.getOwnPropertyNames(object);
+  const prototype: unknown = Object.getPrototypeOf(object);
+  if (prototype === Object.prototype) {
+    return properties;
+  }
+  return Array.from(new Set(properties.concat(getAllPropertyNames(prototype as object))));
+}
+
 export function createMock<T extends object>(constructor: Class<T>) {
   const prototype = constructor.prototype as Record<string, unknown>;
-  if (!Object.getPrototypeOf(prototype) === Object.prototype) {
-    throw new Error(`Invalid prototype, expected plain object, got: ${JSON.stringify(prototype)}`);
-  }
   const obj: Record<string, unknown> = {};
-  Object.getOwnPropertyNames(prototype)
+  getAllPropertyNames(constructor.prototype)
     .filter((s) => s !== 'constructor')
     .forEach((prop) => {
       const value = prototype[prop];
