@@ -1,5 +1,17 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.2
+
+### Patch Changes
+
+- Simplify types in controller
+
+## 1.12.1
+
+### Patch Changes
+
+- Simplify types
+
 ## 1.12.0
 
 ### Minor Changes
