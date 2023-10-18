@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.8.7
+
+### Patch Changes
+
+- Add entity schema decorator
+
 ## 1.8.6
 
 ### Patch Changes
