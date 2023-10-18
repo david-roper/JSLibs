@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.9.1
+
+### Patch Changes
+
+- Set prototypeof
+
 ## 1.9.0
 
 ### Minor Changes
