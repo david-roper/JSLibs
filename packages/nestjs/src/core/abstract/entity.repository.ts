@@ -6,9 +6,9 @@ import { Document, type FilterQuery, type Model, Types, isValidObjectId } from '
 
 import type { EntityClass, EntityObject } from '../types';
 
-export function EntityRepository<T extends object>(entity: EntityClass<T>) {
+export function EntityRepository<T extends object>(Entity: EntityClass<T>) {
   abstract class Repository {
-    constructor(@InjectModel(entity.modelName) protected readonly model: Model<T>) {}
+    constructor(@InjectModel(Entity.modelName) protected readonly model: Model<T>) {}
 
     async create(entity: T): Promise<EntityObject<T>> {
       return this.model.create(entity).then((doc) => this.docToObject(doc)!);
@@ -54,7 +54,7 @@ export function EntityRepository<T extends object>(entity: EntityClass<T>) {
         transform: (doc, obj) => {
           obj.id = doc._id?.toString();
           delete obj._id;
-          return obj;
+          return Object.setPrototypeOf(obj, Entity.prototype) as EntityObject<T>;
         }
       });
     }
