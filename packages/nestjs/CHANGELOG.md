@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.9.2
+
+### Patch Changes
+
+- Add generics to entity repo
+
 ## 1.9.1
 
 ### Patch Changes
