@@ -2,15 +2,8 @@
 
 import { InjectModel } from '@nestjs/mongoose';
 import { Document, type FilterQuery, type Model, Types } from 'mongoose';
-import type { Class } from 'type-fest';
 
-export type EntityObject<T extends object> = T & {
-  id: string;
-};
-
-export type EntityClass<T extends object> = Class<T> & {
-  readonly modelName: string;
-};
+import type { EntityClass, EntityObject } from '../types';
 
 export function EntityRepository<T extends object>(entity: EntityClass<T>) {
   abstract class Repository {

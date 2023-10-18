@@ -1,7 +1,7 @@
 import { Schema, type SchemaOptions } from '@nestjs/mongoose';
 import type { ConditionalExcept } from 'type-fest';
 
-import type { EntityClass } from '../abstract/entity.repository';
+import type { EntityClass } from '../types';
 
 const defaultSchemaOptions = {
   id: true,
