@@ -1,13 +1,12 @@
+export * from './abstract/entity.controller';
 export * from './abstract/entity.repository';
+export * from './abstract/entity.service';
 
 export * from './decorators/entity-schema.decorator';
 export * from './decorators/request-user.decorator';
 export * from './decorators/validation-schema.decorator';
 
 export * from './filters/exceptions.filter';
-
-export * from './interfaces/entity-controller.interface';
-export * from './interfaces/entity-service.interface';
 
 export * from './middleware/logger.middleware';
 
