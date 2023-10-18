@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.10.0
+
+### Minor Changes
+
+- Add object id schema
+
 ## 1.9.2
 
 ### Patch Changes
