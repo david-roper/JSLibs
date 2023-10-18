@@ -13,7 +13,7 @@ export type EntityClass<T extends object> = Class<T> & {
 };
 
 export function EntityRepository<T extends object>(entity: EntityClass<T>) {
-  abstract class Repository<T extends object> {
+  abstract class Repository {
     constructor(@InjectModel(entity.modelName) protected readonly model: Model<T>) {}
 
     async create(entity: T): Promise<EntityObject<T>> {
