@@ -1,3 +1,5 @@
+export * from './abstract/entity.repository';
+
 export * from './decorators/request-user.decorator';
 export * from './decorators/validation-schema.decorator';
 
