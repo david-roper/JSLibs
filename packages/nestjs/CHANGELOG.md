@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.9.0
+
+### Minor Changes
+
+- Add id methods
+
 ## 1.8.8
 
 ### Patch Changes
