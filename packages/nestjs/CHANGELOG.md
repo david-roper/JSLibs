@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.8.6
+
+### Patch Changes
+
+- Add entity repo
+
 ## 1.8.5
 
 ### Patch Changes
