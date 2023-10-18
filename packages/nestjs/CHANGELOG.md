@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.10.1
+
+### Patch Changes
+
+- Do not change ot object id
+
 ## 1.10.0
 
 ### Minor Changes
