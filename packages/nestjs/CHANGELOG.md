@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.8.8
+
+### Patch Changes
+
+- Update types
+
 ## 1.8.7
 
 ### Patch Changes
