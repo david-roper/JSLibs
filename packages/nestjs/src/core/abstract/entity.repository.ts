@@ -4,11 +4,11 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Document, type FilterQuery, type Model, Types } from 'mongoose';
 import type { Class } from 'type-fest';
 
-type EntityObject<T extends object> = T & {
+export type EntityObject<T extends object> = T & {
   id: string;
 };
 
-type EntityClass<T extends object> = Class<T> & {
+export type EntityClass<T extends object> = Class<T> & {
   readonly modelName: string;
 };
 
