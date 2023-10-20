@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.3
+
+### Patch Changes
+
+- Add count to repo
+
 ## 1.12.2
 
 ### Patch Changes

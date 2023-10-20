@@ -10,6 +10,10 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
   abstract class Repository {
     constructor(@InjectModel(Entity.modelName) protected readonly model: Model<TBase>) {}
 
+    async count<TEntity extends TBase = TBase>(filter?: FilterQuery<TEntity>) {
+      return this.model.count(filter);
+    }
+
     async create<TEntity extends TBase = TBase>(entity: TEntity): Promise<EntityObject<TEntity>> {
       return this.model.create(entity).then((doc) => this.docToObject(doc)!);
     }
