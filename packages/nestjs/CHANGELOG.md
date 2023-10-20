@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.4
+
+### Patch Changes
+
+- Update typings
+
 ## 1.12.3
 
 ### Patch Changes

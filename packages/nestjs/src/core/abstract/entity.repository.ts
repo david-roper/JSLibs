@@ -2,9 +2,9 @@
 
 import { InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Document, type FilterQuery, type Model, Types, isValidObjectId } from 'mongoose';
+import { type FilterQuery, type HydratedDocument, type Model, Types, isValidObjectId } from 'mongoose';
 
-import type { EntityClass, EntityObject } from '../types';
+import type { EntityClass } from '../types';
 
 export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase>) {
   abstract class Repository {
@@ -14,22 +14,24 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
       return this.model.count(filter);
     }
 
-    async create<TEntity extends TBase = TBase>(entity: TEntity): Promise<EntityObject<TEntity>> {
-      return this.model.create(entity).then((doc) => this.docToObject(doc)!);
+    async create<TEntity extends TBase = TBase>(entity: TEntity) {
+      return this.model.create(entity) as Promise<HydratedDocument<TEntity>>;
     }
 
-    async find<TEntity extends TBase = TBase>(filter: FilterQuery<TEntity> = {}): Promise<EntityObject<TEntity>[]> {
-      return this.model.find(filter).then((arr) => arr.map((doc) => this.docToObject(doc)!));
+    async find<TEntity extends TBase = TBase>(filter: FilterQuery<TEntity> = {}): Promise<HydratedDocument<TEntity>[]> {
+      return this.model.find(filter);
     }
 
-    async findOne<TEntity extends TBase = TBase>(filter: FilterQuery<TEntity>): Promise<EntityObject<TEntity> | null> {
-      return this.model.findOne(filter).then((doc) => this.docToObject(doc));
+    async findOne<TEntity extends TBase = TBase>(
+      filter: FilterQuery<TEntity>
+    ): Promise<HydratedDocument<TEntity> | null> {
+      return this.model.findOne(filter);
     }
 
     async findById<TEntity extends TBase = TBase>(
       id: string,
       filter: FilterQuery<TEntity> = {}
-    ): Promise<EntityObject<TEntity> | null> {
+    ): Promise<HydratedDocument<TEntity> | null> {
       return this.findOne(this.createFilter(id, filter));
     }
 
@@ -40,42 +42,29 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
     async updateOne<TEntity extends TBase = TBase>(
       filter: FilterQuery<TEntity>,
       update: Partial<TEntity>
-    ): Promise<EntityObject<TEntity> | null> {
-      return this.model.findOneAndUpdate(filter, update, { new: true }).then((doc) => this.docToObject(doc));
+    ): Promise<HydratedDocument<TEntity> | null> {
+      return this.model.findOneAndUpdate(filter, update, { new: true });
     }
 
     async updateById<TEntity extends TBase = TBase>(
       id: string,
       update: Partial<TEntity>,
       filter: FilterQuery<TEntity> = {}
-    ): Promise<EntityObject<TEntity> | null> {
+    ): Promise<HydratedDocument<TEntity> | null> {
       return this.updateOne(this.createFilter(id, filter), update);
     }
 
     async deleteOne<TEntity extends TBase = TBase>(
       filter: FilterQuery<TEntity>
-    ): Promise<EntityObject<TEntity> | null> {
-      return this.model.findOneAndDelete(filter, { new: true }).then((doc) => this.docToObject(doc));
+    ): Promise<HydratedDocument<TEntity> | null> {
+      return this.model.findOneAndDelete(filter, { new: true });
     }
 
-    async deleteById<TEntity extends TBase = TBase>(id: string, filter: FilterQuery<TEntity> = {}) {
+    async deleteById<TEntity extends TBase = TBase>(
+      id: string,
+      filter: FilterQuery<TEntity> = {}
+    ): Promise<HydratedDocument<TEntity> | null> {
       return this.deleteOne(this.createFilter(id, filter));
-    }
-
-    private docToObject<TEntity extends TBase = TBase>(
-      this: void,
-      doc: Document<unknown, object, TBase> | null
-    ): EntityObject<TEntity> | null {
-      if (!doc) {
-        return null;
-      }
-      return doc.toObject({
-        transform: (doc, obj) => {
-          obj.id = doc._id?.toString();
-          delete obj._id;
-          return Object.setPrototypeOf(obj, Entity.prototype) as EntityObject<TEntity>;
-        }
-      });
     }
 
     private createFilter<TEntity extends TBase = TBase>(
