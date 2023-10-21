@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
-import type { ErrorObject, JSONSchemaType } from 'ajv';
 import { clsx } from 'clsx';
+import { set } from 'lodash';
 import { useTranslation } from 'react-i18next';
+import { ZodError, type ZodType } from 'zod';
 
 import { FormProvider } from '../../context/FormContext';
-import { ajv } from '../../services/ajv';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 import { FormFieldsComponent } from './FormFieldsComponent';
@@ -16,110 +16,52 @@ import { getDefaultFormValues } from './utils';
 
 import type { FormErrors } from './types';
 
-/** Custom error messages to be supplied for each field */
-type ErrorMessages<T extends Types.FormDataType> = {
-  [K in keyof T]?: T[K] extends Types.PrimitiveFieldValue
-    ? string
-    : T[K] extends Types.ArrayFieldValue
-    ? {
-        [P in keyof T[K][number]]?: string;
-      }
-    : never;
-};
-
 type FormProps<T extends Types.FormDataType> = {
   className?: string;
   content: Types.FormContent<T>;
-  errorMessages?: ErrorMessages<T> | string;
   initialValues?: Types.NullableFormDataType<T> | null;
   onSubmit: (data: T) => void;
   resetBtn?: boolean;
   submitBtnLabel?: string;
-  validationSchema?: JSONSchemaType<T>;
+  validationSchema: ZodType<T>;
 };
 
 const FormComponent = <T extends Types.FormDataType>({
   className,
   content,
-  errorMessages,
   initialValues,
   onSubmit,
   resetBtn,
   submitBtnLabel,
   validationSchema
 }: FormProps<T>) => {
-  const [validationErrors, setValidationErrors] = useState<ErrorObject[] | null>(null);
+  const { t } = useTranslation();
+  const [errors, setErrors] = useState<FormErrors<T>>({});
   const [values, setValues] = useState<Types.NullableFormDataType<T>>(
     () => initialValues ?? getDefaultFormValues(content)
   );
 
-  const { i18n, t } = useTranslation();
-
-  const errors: FormErrors<T> = useMemo(() => {
-    const formErrors: FormErrors<T> = {};
-    if (!validationErrors) {
-      return formErrors;
+  const handleError = (error: ZodError<T>) => {
+    const formattedErrors: FormErrors<T> = {};
+    for (const issue of error.issues) {
+      set(formattedErrors, issue.path, issue.message);
     }
-
-    const getErrorMessage = (error: ErrorObject, path: string[]): string => {
-      const defaultMessage = `${error.message ?? t('form.errors.unknown')}`;
-      const [k1, k2]: [string?, string?] = [path[0], path[2]];
-      if (typeof errorMessages === 'string') {
-        return errorMessages;
-      } else if (typeof errorMessages?.[k1!] === 'string') {
-        return errorMessages[k1!] as string;
-      } else if (errorMessages?.[k1!] instanceof Object) {
-        return (errorMessages[k1!] as Record<string, string | undefined>)[k2!] ?? defaultMessage;
-      }
-      return defaultMessage;
-    };
-
-    for (const error of validationErrors) {
-      const path = error.instancePath.split('/').filter((e) => e);
-      const baseField = path[0] as Extract<keyof T, string>;
-      const isPrimitiveField = path.length === 1;
-      if (isPrimitiveField) {
-        (formErrors[baseField] as string) = getErrorMessage(error, path);
-        continue;
-      }
-      if (!Array.isArray(formErrors[baseField])) {
-        (formErrors[baseField] as Record<string, string>[]) = [];
-      }
-      const arrayErrors = formErrors[baseField] as Record<string, string>[];
-      const [index, item] = [parseInt(path[1]!), path[2]];
-      if (!arrayErrors[index]) {
-        arrayErrors[index] = {};
-      }
-      arrayErrors[index]![item!] = getErrorMessage(error, path);
-    }
-    return formErrors;
-  }, [validationErrors, i18n.resolvedLanguage]);
-
-  const reset = () => {
-    setValues(getDefaultFormValues(content));
-    setValidationErrors(null);
+    setErrors(formattedErrors);
   };
 
-  const validate = useMemo(
-    () =>
-      ajv.compile(
-        validationSchema ?? {
-          required: [],
-          type: 'object'
-        }
-      ),
-    [validationSchema]
-  );
+  const reset = () => {
+    setErrors({});
+    setValues(getDefaultFormValues(content));
+  };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const valid = validate(values);
-    if (valid) {
+    const result = validationSchema.safeParse(values);
+    if (result.success) {
       reset();
-      onSubmit(values as T);
+      onSubmit(result.data);
     } else {
-      console.error(validate.errors);
-      setValidationErrors(validate.errors ?? null);
+      handleError(result.error);
     }
   };
 

@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { z } from 'zod';
 
 import { Form } from '../Form/Form';
 import { FormPageWrapper } from './FormPageWrapper';
@@ -51,7 +52,7 @@ const meta: Meta<typeof FormPageWrapper> = {
             variant: 'short'
           }
         }}
-        validationSchema={{ required: [], type: 'object' }}
+        validationSchema={z.record(z.any())}
         onSubmit={(data) => {
           alert(JSON.stringify(data));
         }}

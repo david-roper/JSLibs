@@ -1,5 +1,6 @@
 /* eslint-disable perfectionist/sort-objects */
 import type { Meta, StoryObj } from '@storybook/react';
+import { z } from 'zod';
 
 import { Form } from './Form';
 
@@ -92,10 +93,17 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
     },
-    validationSchema: {
-      required: [],
-      type: 'object'
-    }
+    validationSchema: z.object({
+      binaryCheck: z.boolean(),
+      binaryRadio: z.boolean(),
+      date: z.date(),
+      numericDefault: z.number(),
+      numericSlider: z.number(),
+      options: z.enum(['a', 'b', 'c']),
+      textLong: z.string(),
+      textPassword: z.string(),
+      textShort: z.string()
+    })
   }
 };
 
@@ -146,14 +154,19 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
         variant: 'short'
       }
     },
-    errorMessages: 'F0 is a required field',
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
     },
-    validationSchema: {
-      required: [],
-      type: 'object'
-    }
+    validationSchema: z.object({
+      array: z.array(
+        z.object({
+          dateOfDeath: z.date().optional(),
+          isDead: z.boolean(),
+          patientName: z.string()
+        })
+      ),
+      doctorName: z.string()
+    })
   }
 };
 
@@ -205,34 +218,18 @@ export const GroupedForm: StoryObj<typeof Form<GroupedFormValues>> = {
     onSubmit: (data) => {
       alert(JSON.stringify(data, null, 2));
     },
-    validationSchema: {
-      properties: {
-        f1: {
-          minLength: 1,
-          type: 'string'
-        },
-        f2: {
-          minLength: 1,
-          type: 'string'
-        },
-        f3: {
-          minLength: 1,
-          type: 'string'
-        },
-        f4: {
-          minLength: 1,
-          type: 'string'
-        }
-      },
-      required: ['f1', 'f2', 'f3', 'f4'],
-      type: 'object'
-    }
+    validationSchema: z.object({
+      f1: z.string(),
+      f2: z.string(),
+      f3: z.string(),
+      f4: z.string()
+    })
   }
 };
 
 type DynamicFormValues = {
   a: boolean;
-  b: string;
+  b?: string;
 };
 
 export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
@@ -254,6 +251,10 @@ export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
         return null;
       }
     },
+    validationSchema: z.object({
+      a: z.boolean(),
+      b: z.string().optional()
+    }),
     onSubmit: (data) => {
       alert(JSON.stringify(data));
     }

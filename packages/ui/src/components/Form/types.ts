@@ -21,5 +21,5 @@ export type FormErrors<T extends Types.FormDataType = Types.FormDataType> = {
     ? string
     : T[K] extends Types.ArrayFieldValue
     ? Record<keyof Types.ArrayFieldValue[number], string>[]
-    : never;
+    : Record<keyof Types.ArrayFieldValue[number], string>[] | string;
 };
