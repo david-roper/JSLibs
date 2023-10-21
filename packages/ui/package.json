@@ -29,9 +29,9 @@
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
-    "@douglasneuroinformatics/ajv": "workspace:*",
-    "@douglasneuroinformatics/form-types": "workspace:*",
-    "@douglasneuroinformatics/utils": "workspace:*",
+    "@douglasneuroinformatics/ajv": "latest",
+    "@douglasneuroinformatics/form-types": "latest",
+    "@douglasneuroinformatics/utils": "latest",
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",
     "@heroicons/react": "^2.0.18",
