@@ -4,7 +4,7 @@ import type { Simplify } from 'type-fest';
 export type FormFieldKind = 'array' | 'binary' | 'date' | 'numeric' | 'options' | 'text';
 
 /** The type of the data associated with a primitive field */
-export type PrimitiveFieldValue = boolean | number | string;
+export type PrimitiveFieldValue = Date | boolean | number | string;
 
 export type NullablePrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = T | null;
 
@@ -93,8 +93,10 @@ export type BinaryFormField = FormFieldMixin<
 >;
 
 /** A field where the underlying value of the field data is of type FormFieldValue */
-export type PrimitiveFormField<TValue extends PrimitiveFieldValue = PrimitiveFieldValue> = TValue extends string
-  ? DateFormField | OptionsFormField<TValue> | TextFormField
+export type PrimitiveFormField<TValue extends PrimitiveFieldValue = PrimitiveFieldValue> = TValue extends Date
+  ? DateFormField
+  : TValue extends string
+  ? OptionsFormField<TValue> | TextFormField
   : TValue extends number
   ? NumericFormField
   : TValue extends boolean

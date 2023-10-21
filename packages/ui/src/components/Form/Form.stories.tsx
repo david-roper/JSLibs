@@ -20,7 +20,7 @@ export default meta;
 type BasicFormValues = {
   binaryCheck: boolean;
   binaryRadio: boolean;
-  date: string;
+  date: Date;
   numericDefault: number;
   numericSlider: number;
   options: 'a' | 'b' | 'c';
@@ -101,7 +101,7 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
 
 type ArrayFormValues = {
   array: {
-    dateOfDeath?: string;
+    dateOfDeath?: Date;
     isDead: boolean;
     patientName: string;
   }[];

@@ -46,11 +46,11 @@ export function formatFormDataAsString<T extends Types.FormDataType>(data: T) {
       for (let i = 0; i < value.length; i++) {
         const record = value[i]!;
         for (const prop in record) {
-          lines.push(`${prop} (${i + 1}): ${record[prop]}`);
+          lines.push(`${prop} (${i + 1}): ${record[prop]?.toString()}`);
         }
       }
     } else {
-      lines.push(`${key}: ${value}`);
+      lines.push(`${key}: ${value.toString()}`);
     }
   }
   return lines.join('\n') + '\n';

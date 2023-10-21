@@ -11,7 +11,7 @@ import { DatePicker } from '../DatePicker/DatePicker';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-export type DateFieldProps = BaseFieldComponentProps<string> & DateFormField;
+export type DateFieldProps = BaseFieldComponentProps<Date> & DateFormField;
 
 export const DateField = ({ description, error, label, name, setValue, value }: DateFieldProps) => {
   const [inputFocused, setInputFocused] = useState(false);
@@ -22,12 +22,12 @@ export const DateField = ({ description, error, label, name, setValue, value }: 
     setShowDatePicker(inputFocused || mouseInDatePicker);
   }, [inputFocused, mouseInDatePicker]);
 
-  const handleChange = (value: string) => {
+  const handleChange = (value: Date) => {
     setValue(value);
   };
 
   const handleDatePickerSelection = (date: Date) => {
-    handleChange(toBasicISOString(date));
+    handleChange(date);
     setShowDatePicker(false);
   };
 
@@ -38,12 +38,16 @@ export const DateField = ({ description, error, label, name, setValue, value }: 
       <input
         autoComplete="off"
         className="field-input"
-        value={value ?? ''}
+        value={value ? toBasicISOString(value) : ''}
         onBlur={() => {
           setInputFocused(false);
         }}
         onChange={(event) => {
-          handleChange(event.target.value);
+          if (!event.target.valueAsDate) {
+            console.error(`Invalid value cannot be coerced to Date: ${event.target.value}`);
+            return;
+          }
+          handleChange(event.target.valueAsDate);
         }}
         onFocus={() => {
           setInputFocused(true);
