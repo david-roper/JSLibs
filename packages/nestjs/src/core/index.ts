@@ -8,6 +8,8 @@ export * from './decorators/validation-schema.decorator';
 
 export * from './filters/exceptions.filter';
 
+export * from './interceptors/document.interceptor';
+
 export * from './middleware/logger.middleware';
 
 export * from './pipes/parse-id.pipe';
