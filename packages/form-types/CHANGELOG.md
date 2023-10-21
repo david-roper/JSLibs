@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 4.0.0
+
+### Major Changes
+
+- Use Zod for for form validation
+
 ## 3.0.1
 
 ### Patch Changes

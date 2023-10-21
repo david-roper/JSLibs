@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/ui",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "description": "Common React components and tailwind config for DNP projects",
   "license": "LGPL-3.0",
   "type": "module",
@@ -29,9 +29,9 @@
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
-    "@douglasneuroinformatics/ajv": "latest",
-    "@douglasneuroinformatics/form-types": "latest",
-    "@douglasneuroinformatics/utils": "latest",
+    "@douglasneuroinformatics/ajv": "^1.1.0",
+    "@douglasneuroinformatics/form-types": "^4.0.0",
+    "@douglasneuroinformatics/utils": "^1.0.2",
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",
     "@heroicons/react": "^2.0.18",

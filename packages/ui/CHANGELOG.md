@@ -1,5 +1,16 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.0
+
+### Major Changes
+
+- Use Zod for for form validation
+
+### Patch Changes
+
+- Updated dependencies
+  - @douglasneuroinformatics/form-types@4.0.0
+
 ## 3.0.2
 
 ### Patch Changes
