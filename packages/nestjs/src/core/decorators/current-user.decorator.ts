@@ -14,7 +14,7 @@ type AppRequest = Request & {
 export const CurrentUser = createParamDecorator<keyof AppRequest['user'], ExecutionContext>((key, context) => {
   const request = context.switchToHttp().getRequest<AppRequest>();
   if (key) {
-    return request.user[key];
+    return request.user?.[key];
   }
   return request.user;
 });
