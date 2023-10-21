@@ -31,7 +31,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@douglasneuroinformatics/ajv": "^1.1.0",
+    "@douglasneuroinformatics/ajv": "workspace:*",
     "type-fest": "^4.3.3",
     "zod": "^3.22.4"
   }
