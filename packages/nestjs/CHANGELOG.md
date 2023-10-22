@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.5
+
+### Patch Changes
+
+- Change object id schema
+
 ## 1.12.4
 
 ### Patch Changes
