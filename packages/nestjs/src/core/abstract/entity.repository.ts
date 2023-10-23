@@ -2,7 +2,8 @@
 
 import { InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { type FilterQuery, type HydratedDocument, type Model, Types, isValidObjectId } from 'mongoose';
+import type { FilterQuery, HydratedDocument, Model, QueryOptions } from 'mongoose';
+import { Types, isValidObjectId } from 'mongoose';
 
 import type { EntityClass } from '../types';
 
@@ -18,8 +19,11 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
       return this.model.create(entity) as Promise<HydratedDocument<TEntity>>;
     }
 
-    async find<TEntity extends TBase = TBase>(filter: FilterQuery<TEntity> = {}): Promise<HydratedDocument<TEntity>[]> {
-      return this.model.find(filter);
+    async find<TEntity extends TBase = TBase>(
+      filter: FilterQuery<TEntity> = {},
+      options?: QueryOptions<TEntity>
+    ): Promise<HydratedDocument<TEntity>[]> {
+      return this.model.find(filter, null, options);
     }
 
     async findOne<TEntity extends TBase = TBase>(

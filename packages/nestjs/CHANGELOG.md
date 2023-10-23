@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.6
+
+### Patch Changes
+
+- Add options
+
 ## 1.12.5
 
 ### Patch Changes
