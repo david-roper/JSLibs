@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.2
+
+### Patch Changes
+
+- Add spinner styles to theme
+
 ## 4.0.1
 
 ### Patch Changes
