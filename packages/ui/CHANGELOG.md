@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.1
+
+### Patch Changes
+
+- Allow partial for inital values
+
 ## 4.0.0
 
 ### Major Changes

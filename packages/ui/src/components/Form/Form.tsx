@@ -4,8 +4,10 @@ import React, { useState } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
 import { clsx } from 'clsx';
+import { merge } from 'lodash';
 import { set } from 'lodash';
 import { useTranslation } from 'react-i18next';
+import type { PartialDeep } from 'type-fest';
 import { ZodError, type ZodType } from 'zod';
 
 import { FormProvider } from '../../context/FormContext';
@@ -19,7 +21,7 @@ import type { FormErrors } from './types';
 type FormProps<T extends Types.FormDataType> = {
   className?: string;
   content: Types.FormContent<T>;
-  initialValues?: Types.NullableFormDataType<T> | null;
+  initialValues?: PartialDeep<Types.NullableFormDataType<T>> | null;
   onSubmit: (data: T) => void;
   resetBtn?: boolean;
   submitBtnLabel?: string;
@@ -37,9 +39,13 @@ const FormComponent = <T extends Types.FormDataType>({
 }: FormProps<T>) => {
   const { t } = useTranslation();
   const [errors, setErrors] = useState<FormErrors<T>>({});
-  const [values, setValues] = useState<Types.NullableFormDataType<T>>(
-    () => initialValues ?? getDefaultFormValues(content)
-  );
+  const [values, setValues] = useState<Types.NullableFormDataType<T>>(() => {
+    const defaultValues = getDefaultFormValues(content);
+    if (!initialValues) {
+      return defaultValues;
+    }
+    return merge(defaultValues, initialValues);
+  });
 
   const handleError = (error: ZodError<T>) => {
     const formattedErrors: FormErrors<T> = {};
