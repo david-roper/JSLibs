@@ -1,12 +1,15 @@
 import type Types from '@douglasneuroinformatics/form-types';
 
-/** Common props for all field components */
-export type BaseFieldComponentProps<T extends Types.UnknownNullableFieldValue = Types.UnknownNullableFieldValue> = {
-  error?: T extends Types.NullableArrayFieldValue
+export type FieldError<T extends Types.UnknownNullableFieldValue = Types.UnknownNullableFieldValue> =
+  T extends Types.NullableArrayFieldValue
     ? Record<string, string>[]
     : T extends Types.NullablePrimitiveFieldValue
     ? string
     : never;
+
+/** Common props for all field components */
+export type BaseFieldComponentProps<T extends Types.UnknownNullableFieldValue = Types.UnknownNullableFieldValue> = {
+  error?: FieldError<T>;
   name: string;
   setValue: (value: T | null) => void;
   value: T | null;
