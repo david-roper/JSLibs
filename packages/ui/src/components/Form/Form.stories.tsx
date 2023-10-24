@@ -119,35 +119,39 @@ type ArrayFormValues = {
 export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
   args: {
     content: {
-      array: () => ({
-        fieldset: {
-          patientName: {
-            kind: 'text',
-            label: 'Patient Name',
-            variant: 'short'
-          },
-          isDead: {
-            kind: 'binary',
-            label: 'Is Dead?',
-            options: {
-              f: 'Not yet',
-              t: 'Unfortunately'
+      array: {
+        deps: [],
+        kind: 'dynamic',
+        render: () => ({
+          fieldset: {
+            patientName: {
+              kind: 'text',
+              label: 'Patient Name',
+              variant: 'short'
             },
-            variant: 'radio'
-          },
-          dateOfDeath: (fieldset) => {
-            if (!fieldset.isDead) {
-              return null;
+            isDead: {
+              kind: 'binary',
+              label: 'Is Dead?',
+              options: {
+                f: 'Not yet',
+                t: 'Unfortunately'
+              },
+              variant: 'radio'
+            },
+            dateOfDeath: (fieldset) => {
+              if (!fieldset.isDead) {
+                return null;
+              }
+              return {
+                kind: 'date',
+                label: 'Date of Death'
+              };
             }
-            return {
-              kind: 'date',
-              label: 'Date of Death'
-            };
-          }
-        },
-        kind: 'array',
-        label: 'Patient'
-      }),
+          },
+          kind: 'array',
+          label: 'Patient'
+        })
+      },
       doctorName: {
         kind: 'text',
         label: 'Doctor Name',
@@ -240,15 +244,19 @@ export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
         label: 'Should Show B?',
         variant: 'radio'
       },
-      b: (data) => {
-        if (data?.a) {
-          return {
-            kind: 'text',
-            label: 'Example',
-            variant: 'short'
-          };
+      b: {
+        deps: [],
+        kind: 'dynamic',
+        render: (data) => {
+          if (data?.a) {
+            return {
+              kind: 'text',
+              label: 'Example',
+              variant: 'short'
+            };
+          }
+          return null;
         }
-        return null;
       }
     },
     validationSchema: z.object({

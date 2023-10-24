@@ -13,7 +13,7 @@ type FormFieldComponentProps<T extends Types.FormDataType> = {
 
 const FormFieldComponent = <T extends Types.FormDataType>({ field, name }: FormFieldComponentProps<T>) => {
   const { values } = useContext(FormContext) as FormState<T>;
-  const staticField = field instanceof Function ? field(values) : field;
+  const staticField = field.kind === 'dynamic' ? field.render(values) : field;
   if (!staticField) {
     return null;
   } else if (staticField.kind === 'array') {

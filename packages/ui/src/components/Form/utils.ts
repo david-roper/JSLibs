@@ -52,8 +52,8 @@ export function resolveStaticFormFields<T extends Types.FormDataType>(
   const formFields = getFormFields(content);
   for (const fieldName in formFields) {
     const field: Types.UnknownFormField<T, typeof fieldName> = formFields[fieldName];
-    if (typeof field === 'function') {
-      const resolvedField = field(data);
+    if (field.kind === 'dynamic') {
+      const resolvedField = field.render(data);
       if (resolvedField) {
         staticFormFields[fieldName] = resolvedField;
       }
