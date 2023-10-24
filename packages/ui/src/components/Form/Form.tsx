@@ -72,7 +72,7 @@ const FormComponent = <T extends Types.FormDataType>({
   };
 
   return (
-    <FormProvider {...{ errors, setValues, values }}>
+    <FormProvider errors={errors} setValues={setValues} values={values}>
       <form autoComplete="off" className={clsx('w-full', className)} onSubmit={handleSubmit}>
         {Array.isArray(content) ? (
           content.map((fieldGroup, i) => {

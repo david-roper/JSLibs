@@ -7,13 +7,15 @@ import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 import { match } from 'ts-pattern';
 
+import { useFormField } from '../../hooks/useFormField';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-type TextFieldProps = BaseFieldComponentProps<string> & TextFormField;
+type TextFieldProps = BaseFieldComponentProps & TextFormField;
 
-type PasswordInputProps = Pick<TextFieldProps, 'description' | 'name' | 'value'> & {
+type PasswordInputProps = Pick<TextFieldProps, 'description' | 'name'> & {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  value: null | string;
 };
 
 const PasswordInput = ({ description, name, onChange, value }: PasswordInputProps) => {
@@ -48,7 +50,9 @@ const PasswordInput = ({ description, name, onChange, value }: PasswordInputProp
   );
 };
 
-const TextField = ({ description, error, label, name, setValue, value, variant }: TextFieldProps) => {
+const TextField = ({ description, label, name, path, variant }: TextFieldProps) => {
+  const { error, setValue, value } = useFormField<string>(path);
+
   const handleChange: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {
     setValue(event.target.value);
   };
