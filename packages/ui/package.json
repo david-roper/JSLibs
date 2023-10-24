@@ -8,21 +8,19 @@
     ".": {
       "bun": "./src/index.ts",
       "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "types": "./src/index.ts"
     },
     "./tailwind.config": "./tailwind.config.js"
   },
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src/**/!(*.stories.tsx)",
     "tailwind.config.js"
   ],
   "scripts": {
-    "build": "bun lint && bun build:dist",
-    "build:dist": "tsc -b tsconfig.build.json && esbuild --bundle --format=esm --outdir=dist --packages=external --platform=browser --sourcemap=external src/index.ts",
+    "build:dist": "bun build.js && tsc -b tsconfig.build.json",
     "build:storybook": "storybook build",
+    "dev": "bun build.js --watch",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
     "push": "bun build:dist && npm publish",
@@ -79,9 +77,9 @@
   "peerDependencies": {
     "@headlessui/tailwindcss": "^0.2.0",
     "@tailwindcss/container-queries": "^0.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwindcss": "^3.3.3"
+    "react": ">=18",
+    "react-dom": ">=18",
+    "tailwindcss": ">=3"
   },
   "publishConfig": {
     "access": "public"
