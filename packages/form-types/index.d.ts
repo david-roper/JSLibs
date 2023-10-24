@@ -126,9 +126,11 @@ export type StaticFormFields<TData extends FormDataType = FormDataType> = {
   [K in keyof TData]: StaticFormField<TData[K]>;
 };
 
-export type DynamicFormField<TData extends FormDataType, TValue extends ArrayFieldValue | PrimitiveFieldValue> = (
-  data: NullableFormDataType<TData> | null
-) => StaticFormField<TValue> | null;
+export type DynamicFormField<TData extends FormDataType, TValue extends ArrayFieldValue | PrimitiveFieldValue> = {
+  deps: readonly string[];
+  kind: 'dynamic';
+  render: (data: NullableFormDataType<TData> | null) => StaticFormField<TValue> | null;
+};
 
 export type UnknownFormField<TData extends FormDataType, TKey extends keyof TData = keyof TData> =
   | DynamicFormField<TData, TData[TKey]>
