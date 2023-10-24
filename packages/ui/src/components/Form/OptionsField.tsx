@@ -6,6 +6,7 @@ import type { OptionsFormField } from '@douglasneuroinformatics/form-types';
 import { Listbox, Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
+import { Card } from '../..';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
@@ -40,7 +41,10 @@ export const OptionsField = <T extends string = string>({
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="scrollbar-none absolute z-10 mt-1 max-h-80 w-full overflow-scroll rounded-lg border border-slate-300 bg-slate-100 shadow-lg dark:border-slate-600 dark:bg-slate-800">
+              <Listbox.Options
+                as={Card}
+                className="scrollbar-none absolute z-10 mt-1 max-h-80 w-full overflow-scroll"
+              >
                 {Object.keys(options).map((option) => (
                   <Listbox.Option
                     className="p-2 capitalize hover:bg-slate-200 dark:hover:bg-slate-700"

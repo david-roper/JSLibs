@@ -37,7 +37,7 @@ export const LanguageToggle = <T extends string = string>({ dropdownDirection, o
       >
         <Menu.Items
           className={clsx(
-            'absolute flex min-w-full flex-col rounded-md bg-inherit bg-opacity-100 shadow-xl ring-1 ring-black ring-opacity-10',
+            'absolute flex min-w-full flex-col bg-inherit bg-opacity-100 shadow-md rounded-md ring-1 ring-slate-900/5 dark:ring-slate-100/20',
             {
               'bottom-12': dropdownDirection === 'up',
               'right-0 mt-2 origin-right': dropdownDirection !== 'up'

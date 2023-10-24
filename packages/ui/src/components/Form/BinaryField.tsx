@@ -20,7 +20,7 @@ const Checkbox = (props: InnerProps) => (
     <div className="field-input-base">
       <Switch
         checked={Boolean(props.value)}
-        className="flex h-6 w-6 items-center justify-center bg-white ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-xl dark:bg-slate-800 dark:ring-slate-500 dark:hover:bg-slate-700"
+        className="flex h-6 w-6 items-center justify-center bg-white ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-xl dark:bg-slate-800 dark:ring-slate-500 dark:hover:bg-slate-700 rounded"
         onChange={props.setValue}
       >
         <CheckIcon className="ui-checked:visible invisible p-0.5 text-slate-600 dark:text-slate-300" />

@@ -5,6 +5,7 @@ import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { twMerge } from 'tailwind-merge';
 
 import { Button, type ButtonProps } from '../Button/Button';
+import { Card } from '../Card/Card';
 
 type DropdownOptions = Record<string, string> | readonly string[];
 
@@ -71,7 +72,7 @@ export function Dropdown<const T extends DropdownOptions>({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute z-10 mt-2 flex w-fit min-w-full flex-col bg-slate-50 shadow-sm ring-1 ring-black ring-opacity-5 dark:bg-slate-800">
+        <Menu.Items as={Card} className="absolute z-10 mt-2 flex w-fit min-w-full flex-col overflow-hidden">
           {optionKeys.map((option) => (
             <Menu.Item key={option}>
               <button

@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { ArrowToggle } from '../ArrowToggle/ArrowToggle';
+import { Card } from '../Card/Card';
 import { CALENDAR_ANIMATION_DURATION, Calendar } from './Calendar';
 import { YearSelector } from './YearSelector';
 
@@ -64,7 +65,7 @@ export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ..
   };
 
   return (
-    <div className="w-fit bg-slate-50 dark:bg-slate-800 p-3 shadow-lg" {...props}>
+    <Card className="w-fit p-3" {...props}>
       <div className="mb-3 flex items-center justify-between">
         <div className="flex items-center">
           <span className="font-semibold">{`${monthName} ${date.getFullYear()}`}</span>
@@ -136,6 +137,6 @@ export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ..
           )}
         </AnimatePresence>
       </div>
-    </div>
+    </Card>
   );
 });

@@ -28,7 +28,7 @@ export const YearSelector = (props: YearSelectorProps) => {
         <div className="flex h-9 items-center justify-center" key={year}>
           <button
             className={clsx(
-              'h-full w-full rounded-lg border dark:border-slate-700 shadow-sm hover:bg-slate-200 dark:hover:bg-slate-700',
+              'h-full w-full rounded-lg border dark:border-slate-700 shadow hover:bg-slate-200 dark:hover:bg-slate-700',
               {
                 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-600': year === props.selected.getFullYear()
               }
