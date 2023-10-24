@@ -1,5 +1,7 @@
 'use client';
 
+import { useEffect } from 'react';
+
 import type Types from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
 
@@ -13,13 +15,21 @@ export type ArrayFieldProps = BaseFieldComponentProps<Types.NullableArrayFieldVa
 export const ArrayField = ({ error, fieldset, label, setValue: setArrayValue, value: arrayValue }: ArrayFieldProps) => {
   const { t } = useTranslation();
 
+  const createNewFieldset = () => Object.fromEntries(Object.keys(fieldset).map((fieldName) => [fieldName, null]));
+
+  useEffect(() => {
+    if (!arrayValue) {
+      setArrayValue([createNewFieldset()]);
+    }
+  }, []);
+
   if (!arrayValue) {
     return null;
   }
 
   // Creates a new object with all values mapped to null and appends it to the previous arrayValue
   const appendField = () => {
-    setArrayValue([...arrayValue, Object.fromEntries(Object.keys(fieldset).map((fieldName) => [fieldName, null]))]);
+    setArrayValue([...arrayValue, createNewFieldset()]);
   };
 
   const removeField = () => {
