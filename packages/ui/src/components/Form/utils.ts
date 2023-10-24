@@ -8,14 +8,6 @@ export function getFormFields<T extends Types.FormDataType>(content: Types.FormC
   return content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as Types.FormFields<T>;
 }
 
-export function getDefaultFormValuesForArrayField(field: Types.ArrayFormField): Types.NullableArrayFieldValue {
-  const values: Types.NullableArrayFieldValue[number] = {};
-  for (const subfieldName in field.fieldset) {
-    values[subfieldName] = null;
-  }
-  return [values];
-}
-
 /** Returns the default values when initializing the state or resetting the form */
 export function getDefaultFormValues<T extends Types.FormDataType>(
   content: Types.FormContent<T>
@@ -25,15 +17,7 @@ export function getDefaultFormValues<T extends Types.FormDataType>(
   // Get a flat array of all fields regardless of the content type
   const fields = getFormFields(content);
   for (const fieldName in fields) {
-    const field = fields[fieldName] as Types.UnknownFormField<T>;
-    const staticField = field instanceof Function ? field(null) : field;
-    if (!staticField) {
-      defaultValues[fieldName] = null;
-    } else if (staticField.kind === 'array') {
-      defaultValues[fieldName] = getDefaultFormValuesForArrayField(staticField);
-    } else {
-      defaultValues[fieldName] = null;
-    }
+    defaultValues[fieldName] = null;
   }
   return defaultValues as Types.NullableFormDataType<T>;
 }
