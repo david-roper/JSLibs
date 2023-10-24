@@ -20,7 +20,7 @@ export const Button = React.forwardRef(function Button(
   return (
     <button
       className={twMerge(
-        'flex items-center justify-center rounded-md font-medium shadow-md focus:outline-none disabled:cursor-not-allowed disabled:opacity-70',
+        'flex items-center justify-center rounded-md font-medium shadow focus:outline-none disabled:cursor-not-allowed disabled:opacity-70',
         size === 'sm' && 'px-4 py-2 text-sm',
         size === 'md' && 'text-md px-6 py-2',
         size === 'lg' && 'px-8 py-3 text-lg',
