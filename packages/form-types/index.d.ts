@@ -127,7 +127,7 @@ export type StaticFormFields<TData extends FormDataType = FormDataType> = {
 };
 
 export type DynamicFormField<TData extends FormDataType, TValue extends ArrayFieldValue | PrimitiveFieldValue> = {
-  deps: readonly string[];
+  deps: readonly Extract<keyof TData, string>[];
   kind: 'dynamic';
   render: (data: NullableFormDataType<TData> | null) => StaticFormField<TValue> | null;
 };
