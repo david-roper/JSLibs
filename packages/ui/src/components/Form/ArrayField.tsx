@@ -38,8 +38,7 @@ export const ArrayField = memo(function ArrayField({
 
   const removeField = () => {
     if (arrayValue.length > 1) {
-      arrayValue.pop();
-      setArrayValue(arrayValue);
+      setArrayValue(arrayValue.slice(0, arrayValue.length - 1));
     }
   };
 
