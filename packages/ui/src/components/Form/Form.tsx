@@ -13,7 +13,7 @@ import { ZodError, type ZodType } from 'zod';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 import { FormFieldsComponent } from './FormFieldsComponent';
-import { getDefaultFormValues } from './utils';
+import { deepPrune, getDefaultFormValues } from './utils';
 
 import type { FormErrors } from './types';
 
@@ -61,7 +61,7 @@ const FormComponent = <T extends Types.FormDataType>({
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const result = validationSchema.safeParse(values);
+    const result = validationSchema.safeParse(deepPrune(values));
     if (result.success) {
       reset();
       onSubmit(result.data);
