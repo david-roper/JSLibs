@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
+import { pick } from 'lodash';
 
 import { StaticField } from './StaticField';
 
@@ -27,9 +28,20 @@ export const DynamicField = <
   setValues,
   values
 }: DynamicFieldProps<TData, TValue>) => {
+  const [dependentValues, setDependentValues] = useState(pick(values, field.deps));
+
   const staticField = useMemo(() => {
     return field.render(values);
-  }, [values]);
+  }, [dependentValues]);
+
+  useEffect(() => {
+    for (const key of field.deps) {
+      if (dependentValues[key] !== values[key]) {
+        setDependentValues(pick(values, field.deps));
+        break;
+      }
+    }
+  }, [field.deps, values]);
 
   if (!staticField) {
     return null;

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
 import { useTranslation } from 'react-i18next';
@@ -12,16 +12,20 @@ import type { BaseFieldComponentProps } from './types';
 
 export type ArrayFieldProps = BaseFieldComponentProps<Types.NullableArrayFieldValue> & Types.ArrayFormField;
 
-export const ArrayField = ({ error, fieldset, label, setValue: setArrayValue, value: arrayValue }: ArrayFieldProps) => {
+export const ArrayField = memo(function ArrayField({
+  error,
+  fieldset,
+  label,
+  setValue: setArrayValue,
+  value: arrayValue
+}: ArrayFieldProps) {
   const { t } = useTranslation();
 
   const createNewFieldset = () => Object.fromEntries(Object.keys(fieldset).map((fieldName) => [fieldName, null]));
 
   useEffect(() => {
-    if (!arrayValue) {
-      setArrayValue([createNewFieldset()]);
-    }
-  }, []);
+    setArrayValue([createNewFieldset()]);
+  }, [fieldset]);
 
   if (!arrayValue) {
     return null;
@@ -73,4 +77,4 @@ export const ArrayField = ({ error, fieldset, label, setValue: setArrayValue, va
       </div>
     </div>
   );
-};
+});
