@@ -66,6 +66,7 @@ const FormComponent = <T extends Types.FormDataType>({
       reset();
       onSubmit(result.data);
     } else {
+      console.error(result.error.issues);
       handleError(result.error);
     }
   };

@@ -31,7 +31,13 @@ export const StaticField = <TData extends Types.FormDataType>({
 
   if (field.kind === 'array') {
     return (
-      <ArrayField {...field} name={name} setValue={setValue} value={values[name] as Types.NullableArrayFieldValue} />
+      <ArrayField
+        {...field}
+        error={errors[name] as Record<string, string>[]}
+        name={name}
+        setValue={setValue}
+        value={values[name] as Types.NullableArrayFieldValue}
+      />
     );
   }
   return (
