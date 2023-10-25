@@ -7,20 +7,20 @@ import { Listbox, Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
 import { Card } from '../..';
-import { useFormField } from '../../hooks/useFormField';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-export type OptionsFieldProps<T extends string = string> = BaseFieldComponentProps & OptionsFormField<T>;
+export type OptionsFieldProps<T extends string = string> = BaseFieldComponentProps<T> & OptionsFormField<T>;
 
 export const OptionsField = <T extends string = string>({
   description,
+  error,
   label,
   name,
   options,
-  path
+  setValue,
+  value
 }: OptionsFieldProps<T>) => {
-  const { error, setValue, value } = useFormField<T>(path);
   return (
     <FormFieldContainer description={description} error={error}>
       <Listbox as={React.Fragment} name={name} value={value} onChange={setValue}>

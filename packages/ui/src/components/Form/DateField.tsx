@@ -7,15 +7,13 @@ import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { Transition } from '@headlessui/react';
 import { clsx } from 'clsx';
 
-import { useFormField } from '../../hooks/useFormField';
 import { DatePicker } from '../DatePicker/DatePicker';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-export type DateFieldProps = BaseFieldComponentProps & DateFormField;
+export type DateFieldProps = BaseFieldComponentProps<Date> & DateFormField;
 
-export const DateField = ({ description, label, name, path }: DateFieldProps) => {
-  const { error, setValue, value } = useFormField<Date>(path);
+export const DateField = ({ description, error, label, name, setValue, value }: DateFieldProps) => {
   const [inputFocused, setInputFocused] = useState(false);
   const [mouseInDatePicker, setMouseInDatePicker] = useState(false);
   const [showDatePicker, setShowDatePicker] = useState(false);

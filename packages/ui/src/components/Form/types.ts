@@ -8,10 +8,15 @@ export type FieldError<T extends Types.UnknownNullableFieldValue = Types.Unknown
     : never;
 
 /** Common props for all field components */
-export type BaseFieldComponentProps = {
+export type BaseFieldComponentProps<T extends Types.UnknownNullableFieldValue = Types.UnknownNullableFieldValue> = {
+  error?: FieldError<T>;
   name: string;
-  path: string[];
+  setValue: (value: T | null) => void;
+  value: T | null;
 };
+
+export type UnknownFieldComponentProps<T extends Types.FormDataType> = BaseFieldComponentProps &
+  Types.UnknownFormField<T>;
 
 /** An object mapping field names to error messages, if applicable */
 export type FormErrors<T extends Types.FormDataType = Types.FormDataType> = {

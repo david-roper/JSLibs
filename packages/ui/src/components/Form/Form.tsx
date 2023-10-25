@@ -10,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 import type { PartialDeep } from 'type-fest';
 import { ZodError, type ZodType } from 'zod';
 
-import { FormProvider } from '../../context/FormContext';
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 import { FormFieldsComponent } from './FormFieldsComponent';
@@ -72,46 +71,47 @@ const FormComponent = <T extends Types.FormDataType>({
   };
 
   return (
-    <FormProvider errors={errors} setValues={setValues} values={values}>
-      <form autoComplete="off" className={clsx('w-full', className)} onSubmit={handleSubmit}>
-        {Array.isArray(content) ? (
-          content.map((fieldGroup, i) => {
-            return (
-              <div key={i}>
-                <div className="my-5">
-                  <h3 className="mb-2 font-semibold">{fieldGroup.title}</h3>
-                  {fieldGroup.description && (
-                    <small className="text-sm italic text-slate-600 dark:text-slate-300">
-                      {fieldGroup.description}
-                    </small>
-                  )}
-                </div>
-                <FormFieldsComponent fields={fieldGroup.fields as Types.FormFields<T>} />
+    <form autoComplete="off" className={clsx('w-full', className)} onSubmit={handleSubmit}>
+      {Array.isArray(content) ? (
+        content.map((fieldGroup, i) => {
+          return (
+            <div key={i}>
+              <div className="my-5">
+                <h3 className="mb-2 font-semibold">{fieldGroup.title}</h3>
+                {fieldGroup.description && (
+                  <small className="text-sm italic text-slate-600 dark:text-slate-300">{fieldGroup.description}</small>
+                )}
               </div>
-            );
-          })
-        ) : (
-          <FormFieldsComponent fields={content} />
-        )}
-        <div className="flex w-full gap-3">
+              <FormFieldsComponent
+                errors={errors}
+                fields={fieldGroup.fields as Types.FormFields<T>}
+                setValues={setValues}
+                values={values}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <FormFieldsComponent errors={errors} fields={content} setValues={setValues} values={values} />
+      )}
+      <div className="flex w-full gap-3">
+        <Button
+          className="block w-full first-letter:capitalize"
+          label={submitBtnLabel ?? t('form.submit')}
+          type="submit"
+          variant="primary"
+        />
+        {resetBtn && (
           <Button
             className="block w-full first-letter:capitalize"
-            label={submitBtnLabel ?? t('form.submit')}
-            type="submit"
-            variant="primary"
+            label={t('form.reset')}
+            type="button"
+            variant="secondary"
+            onClick={reset}
           />
-          {resetBtn && (
-            <Button
-              className="block w-full first-letter:capitalize"
-              label={t('form.reset')}
-              type="button"
-              variant="secondary"
-              onClick={reset}
-            />
-          )}
-        </div>
-      </form>
-    </FormProvider>
+        )}
+      </div>
+    </form>
   );
 };
 

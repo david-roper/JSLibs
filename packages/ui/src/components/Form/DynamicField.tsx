@@ -1,34 +1,39 @@
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
 
-import { FormContext, type FormState } from '../../context/FormContext';
 import { StaticField } from './StaticField';
+
+import type { FormErrors } from './types';
 
 export type DynamicFieldProps<
   TData extends Types.FormDataType,
   TValue extends Types.ArrayFieldValue | Types.PrimitiveFieldValue
-> = Types.DynamicFormField<TData, TValue> & {
+> = {
+  errors: FormErrors<TData>;
+  field: Types.DynamicFormField<TData, TValue>;
   name: string;
-  path: string[];
+  setValues: React.Dispatch<React.SetStateAction<Types.NullableFormDataType<TData>>>;
+  values: Types.NullableFormDataType<TData>;
 };
 
 export const DynamicField = <
   TData extends Types.FormDataType,
   TValue extends Types.ArrayFieldValue | Types.PrimitiveFieldValue
 >({
+  errors,
+  field,
   name,
-  path,
-  ...props
+  setValues,
+  values
 }: DynamicFieldProps<TData, TValue>) => {
-  const { values } = useContext(FormContext) as FormState<TData>;
-  const staticProps = useMemo(() => {
-    return props.render(values);
-  }, []);
+  const staticField = useMemo(() => {
+    return field.render(values);
+  }, [values]);
 
-  if (!staticProps) {
+  if (!staticField) {
     return null;
   }
 
-  return <StaticField name={name} path={path} {...staticProps} />;
+  return <StaticField errors={errors} field={staticField} name={name} setValues={setValues} values={values} />;
 };

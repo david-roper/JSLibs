@@ -1,29 +1,35 @@
 'use client';
 
+import type Types from '@douglasneuroinformatics/form-types';
+
 import { BinaryField, type BinaryFieldProps } from './BinaryField';
 import { DateField, type DateFieldProps } from './DateField';
 import { NumericField, type NumericFieldProps } from './NumericField';
 import { OptionsField, type OptionsFieldProps } from './OptionsField';
 import { TextField, type TextFieldProps } from './TextField';
 
-export type PrimitiveFormFieldProps =
-  | BinaryFieldProps
-  | DateFieldProps
-  | NumericFieldProps
-  | OptionsFieldProps
-  | TextFieldProps;
+import type { BaseFieldComponentProps } from './types';
 
-export const PrimitiveFormField = (props: PrimitiveFormFieldProps) => {
-  switch (props.kind) {
+export type PrimitiveFormFieldProps = BaseFieldComponentProps<Types.NullablePrimitiveFieldValue> & {
+  field:
+    | Types.BinaryFormField
+    | Types.DateFormField
+    | Types.NumericFormField
+    | Types.OptionsFormField
+    | Types.TextFormField;
+};
+
+export const PrimitiveFormField = ({ field, ...props }: PrimitiveFormFieldProps) => {
+  switch (field.kind) {
     case 'text':
-      return <TextField {...props} key={props.name} />;
+      return <TextField {...field} {...(props as TextFieldProps)} />;
     case 'numeric':
-      return <NumericField {...props} key={props.name} />;
+      return <NumericField {...field} {...(props as NumericFieldProps)} />;
     case 'options':
-      return <OptionsField {...props} key={props.name} />;
+      return <OptionsField {...field} {...(props as OptionsFieldProps)} />;
     case 'date':
-      return <DateField {...props} key={props.name} />;
+      return <DateField {...field} {...(props as DateFieldProps)} />;
     case 'binary':
-      return <BinaryField {...props} key={props.name} />;
+      return <BinaryField {...field} {...(props as BinaryFieldProps)} />;
   }
 };

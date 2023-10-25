@@ -1,31 +1,46 @@
-import { ArrayField, type ArrayFieldProps } from './ArrayField';
-import { BinaryField, type BinaryFieldProps } from './BinaryField';
-import { DateField, type DateFieldProps } from './DateField';
-import { NumericField, type NumericFieldProps } from './NumericField';
-import { OptionsField, type OptionsFieldProps } from './OptionsField';
-import { TextField, type TextFieldProps } from './TextField';
+import { useCallback } from 'react';
 
-export type StaticFieldProps =
-  | ArrayFieldProps
-  | BinaryFieldProps
-  | DateFieldProps
-  | NumericFieldProps
-  | OptionsFieldProps
-  | TextFieldProps;
+import type Types from '@douglasneuroinformatics/form-types';
 
-export const StaticField = (props: StaticFieldProps) => {
-  switch (props.kind) {
-    case 'array':
-      return <ArrayField {...props} key={props.name} />;
-    case 'text':
-      return <TextField {...props} key={props.name} />;
-    case 'numeric':
-      return <NumericField {...props} key={props.name} />;
-    case 'options':
-      return <OptionsField {...props} key={props.name} />;
-    case 'date':
-      return <DateField {...props} key={props.name} />;
-    case 'binary':
-      return <BinaryField {...props} key={props.name} />;
+import { ArrayField } from './ArrayField';
+import { PrimitiveFormField, type PrimitiveFormFieldProps } from './PrimitiveFormField';
+
+import type { FormErrors } from './types';
+
+export type StaticFieldProps<TData extends Types.FormDataType> = {
+  errors: FormErrors<TData>;
+  field: PrimitiveFormFieldProps['field'] | Types.ArrayFormField;
+  name: string;
+  setValues: React.Dispatch<React.SetStateAction<Types.NullableFormDataType<TData>>>;
+  values: Types.NullableFormDataType<TData>;
+};
+
+export const StaticField = <TData extends Types.FormDataType>({
+  errors,
+  field,
+  name,
+  setValues,
+  values
+}: StaticFieldProps<TData>) => {
+  const setValue = useCallback(
+    <TValue extends Types.UnknownNullableFieldValue>(value: TValue) => {
+      return setValues((prevValues) => ({ ...prevValues, [name]: value }));
+    },
+    [setValues]
+  );
+
+  if (field.kind === 'array') {
+    return (
+      <ArrayField {...field} name={name} setValue={setValue} value={values[name] as Types.NullableArrayFieldValue} />
+    );
   }
+  return (
+    <PrimitiveFormField
+      error={errors[name] as string}
+      field={field}
+      name={name}
+      setValue={setValue}
+      value={values[name] as Types.NullablePrimitiveFieldValue}
+    />
+  );
 };

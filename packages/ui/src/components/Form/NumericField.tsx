@@ -6,16 +6,23 @@ import type { NumericFormField } from '@douglasneuroinformatics/form-types';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { clsx } from 'clsx';
 
-import { useFormField } from '../../hooks/useFormField';
 import { PopoverIcon } from '../PopoverIcon/PopoverIcon';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-export type NumericFieldProps = BaseFieldComponentProps & NumericFormField;
+export type NumericFieldProps = BaseFieldComponentProps<number> & NumericFormField;
 
-export const NumericField = ({ description, label, max, min, name, path, variant }: NumericFieldProps) => {
-  const { error, setValue, value } = useFormField<number>(path);
-
+export const NumericField = ({
+  description,
+  error,
+  label,
+  max,
+  min,
+  name,
+  setValue,
+  value,
+  variant
+}: NumericFieldProps) => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const newValue = parseFloat(event.target.value);
     if (Number.isNaN(newValue)) {

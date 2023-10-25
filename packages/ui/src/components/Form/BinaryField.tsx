@@ -5,16 +5,12 @@ import { RadioGroup, Switch } from '@headlessui/react';
 import { CheckIcon } from '@heroicons/react/24/solid';
 import { useTranslation } from 'react-i18next';
 
-import { useFormField } from '../../hooks/useFormField';
 import { FormFieldContainer } from './FormFieldContainer';
 import { type BaseFieldComponentProps } from './types';
 
-type BinaryFieldProps = BaseFieldComponentProps & BinaryFormField;
+type BinaryFieldProps = BaseFieldComponentProps<boolean> & BinaryFormField;
 
-type InnerProps = Pick<BinaryFieldProps, 'label' | 'name'> & {
-  setValue: (value: boolean | null) => void;
-  value: boolean | null;
-};
+type InnerProps = Pick<BinaryFieldProps, 'label' | 'name' | 'setValue' | 'value'>;
 
 const Checkbox = (props: InnerProps) => (
   <>
@@ -57,12 +53,11 @@ const Radio = (props: InnerProps & { options?: { f: string; t: string } }) => {
   );
 };
 
-const BinaryField = ({ description, path, variant, ...props }: BinaryFieldProps) => {
-  const { error, setValue, value } = useFormField<boolean>(path);
+const BinaryField = ({ description, error, variant, ...props }: BinaryFieldProps) => {
   return (
     <FormFieldContainer description={description} error={error}>
-      {variant === 'checkbox' && <Checkbox {...props} setValue={setValue} value={value} />}
-      {variant === 'radio' && <Radio {...props} setValue={setValue} value={value} />}
+      {variant === 'checkbox' && <Checkbox {...props} />}
+      {variant === 'radio' && <Radio {...props} />}
     </FormFieldContainer>
   );
 };
