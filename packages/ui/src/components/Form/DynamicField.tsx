@@ -32,7 +32,7 @@ export const DynamicField = <
 
   const staticField = useMemo(() => {
     return field.render(values);
-  }, [dependentValues]);
+  }, [dependentValues, field.render]);
 
   useEffect(() => {
     for (const key of field.deps) {
