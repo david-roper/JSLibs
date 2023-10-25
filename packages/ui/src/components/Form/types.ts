@@ -11,6 +11,7 @@ export type FieldError<T extends Types.UnknownNullableFieldValue = Types.Unknown
 export type BaseFieldComponentProps<T extends Types.UnknownNullableFieldValue = Types.UnknownNullableFieldValue> = {
   error?: FieldError<T>;
   name: string;
+  setError: (error: FieldError<T>) => void;
   setValue: (value: T | null) => void;
   value: T | null;
 };

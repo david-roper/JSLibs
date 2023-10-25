@@ -13,9 +13,10 @@ import type { BaseFieldComponentProps } from './types';
 export type ArrayFieldProps = BaseFieldComponentProps<Types.NullableArrayFieldValue> & Types.ArrayFormField;
 
 export const ArrayField = memo(function ArrayField({
-  error,
+  error: arrayError,
   fieldset,
   label,
+  setError: setArrayError,
   setValue: setArrayValue,
   value: arrayValue
 }: ArrayFieldProps) {
@@ -55,10 +56,18 @@ export const ArrayField = memo(function ArrayField({
             }
             return (
               <PrimitiveFormField
-                error={error?.[i]?.[name]}
+                error={arrayError?.[i]?.[name]}
                 field={fieldProps}
                 key={name}
                 name={name}
+                setError={(error) => {
+                  const newArrayError = arrayError ? [...arrayError] : [];
+                  if (!newArrayError[i]) {
+                    newArrayError[i] = {};
+                  }
+                  newArrayError[i]![name] = error;
+                  setArrayError(newArrayError);
+                }}
                 setValue={(value) => {
                   const newArrayValue = [...arrayValue];
                   newArrayValue[i]![name] = value;

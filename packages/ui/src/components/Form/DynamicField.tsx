@@ -14,6 +14,7 @@ export type DynamicFieldProps<
   errors: FormErrors<TData>;
   field: Types.DynamicFormField<TData, TValue>;
   name: string;
+  setErrors: React.Dispatch<React.SetStateAction<FormErrors<TData>>>;
   setValues: React.Dispatch<React.SetStateAction<Types.NullableFormDataType<TData>>>;
   values: Types.NullableFormDataType<TData>;
 };
@@ -22,11 +23,10 @@ export const DynamicField = <
   TData extends Types.FormDataType,
   TValue extends Types.ArrayFieldValue | Types.PrimitiveFieldValue
 >({
-  errors,
   field,
   name,
-  setValues,
-  values
+  values,
+  ...props
 }: DynamicFieldProps<TData, TValue>) => {
   const [dependentValues, setDependentValues] = useState(pick(values, field.deps));
 
@@ -47,5 +47,5 @@ export const DynamicField = <
     return null;
   }
 
-  return <StaticField errors={errors} field={staticField} name={name} setValues={setValues} values={values} />;
+  return <StaticField {...props} field={staticField} name={name} values={values} />;
 };

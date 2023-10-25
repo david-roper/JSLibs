@@ -86,6 +86,7 @@ const FormComponent = <T extends Types.FormDataType>({
               <FormFieldsComponent
                 errors={errors}
                 fields={fieldGroup.fields as Types.FormFields<T>}
+                setErrors={setErrors}
                 setValues={setValues}
                 values={values}
               />
@@ -93,7 +94,13 @@ const FormComponent = <T extends Types.FormDataType>({
           );
         })
       ) : (
-        <FormFieldsComponent errors={errors} fields={content} setValues={setValues} values={values} />
+        <FormFieldsComponent
+          errors={errors}
+          fields={content}
+          setErrors={setErrors}
+          setValues={setValues}
+          values={values}
+        />
       )}
       <div className="flex w-full gap-3">
         <Button
