@@ -46,7 +46,7 @@ export const ArrayField = ({ error, fieldset, label, setValue: setArrayValue, va
           <span className="font-medium text-slate-600 dark:text-slate-300">{label + ' ' + (i + 1)}</span>
           {Object.keys(fields).map((name) => {
             const field = fieldset[name];
-            const fieldProps = typeof field === 'function' ? field(fields) : field;
+            const fieldProps = field?.kind === 'dynamic-fieldset' ? field.render(fields) : field;
             if (!fieldProps) {
               return null;
             }

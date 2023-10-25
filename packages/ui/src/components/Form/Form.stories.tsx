@@ -138,14 +138,17 @@ export const ArrayForm: StoryObj<typeof Form<ArrayFormValues>> = {
               },
               variant: 'radio'
             },
-            dateOfDeath: (fieldset) => {
-              if (!fieldset.isDead) {
-                return null;
+            dateOfDeath: {
+              kind: 'dynamic-fieldset',
+              render: (fieldset) => {
+                if (!fieldset.isDead) {
+                  return null;
+                }
+                return {
+                  kind: 'date',
+                  label: 'Date of Death'
+                };
               }
-              return {
-                kind: 'date',
-                label: 'Date of Death'
-              };
             }
           },
           kind: 'array',

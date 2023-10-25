@@ -103,10 +103,13 @@ export type PrimitiveFormField<TValue extends PrimitiveFieldValue = PrimitiveFie
   ? BinaryFormField
   : never;
 
+export type DynamicFieldsetField<T extends ArrayFieldValue[number], TValue extends PrimitiveFieldValue> = {
+  kind: 'dynamic-fieldset';
+  render: (fieldset: { [K in keyof T]?: T[K] | null | undefined }) => PrimitiveFormField<TValue> | null;
+};
+
 export type ArrayFieldset<T extends ArrayFieldValue[number]> = {
-  [K in keyof T]:
-    | ((fieldset: { [K in keyof T]?: T[K] | null | undefined }) => PrimitiveFormField<T[K]> | null)
-    | PrimitiveFormField<T[K]>;
+  [K in keyof T]: DynamicFieldsetField<T, T[K]> | PrimitiveFormField<T[K]>;
 };
 
 export type ArrayFormField<TValue extends ArrayFieldValue = ArrayFieldValue> = FormFieldMixin<{
