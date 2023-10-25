@@ -59,8 +59,8 @@ export type TextFormField = FormFieldMixin<{
 
 export type NumericFormField = FormFieldMixin<{
   kind: 'numeric';
-  max: number;
-  min: number;
+  max?: number;
+  min?: number;
   variant: 'default' | 'slider';
 }>;
 

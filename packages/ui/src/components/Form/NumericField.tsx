@@ -27,7 +27,7 @@ export const NumericField = ({
     const newValue = parseFloat(event.target.value);
     if (Number.isNaN(newValue)) {
       setValue(null);
-    } else if (newValue >= min && newValue <= max) {
+    } else if (newValue >= (min ?? -Infinity) && newValue <= (max ?? Infinity)) {
       setValue(newValue);
     }
   };
