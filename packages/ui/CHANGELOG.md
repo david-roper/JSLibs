@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.6
+
+### Patch Changes
+
+- Adjust search bar size
+
 ## 4.0.5
 
 ### Patch Changes

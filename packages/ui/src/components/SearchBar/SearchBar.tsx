@@ -24,8 +24,8 @@ export const SearchBar = withI18nProvider(function SearchBar({
         'dark:highlight-white/5 w-full items-center rounded-md border border-slate-200 text-left text-sm text-slate-600 shadow-sm focus:outline-none focus:ring-2 focus:ring-sky-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700',
         size === 'xs' && 'p-1.5',
         size === 'sm' && 'p-2',
-        size === 'md' && 'p-3',
-        size === 'lg' && 'p-4',
+        size === 'md' && 'p-2.5',
+        size === 'lg' && 'p-3',
         className
       )}
       placeholder={placeholder ?? t('searchBar.placeholder')!}
