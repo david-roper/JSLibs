@@ -5,6 +5,7 @@ import React from 'react';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 
 import { PopoverIcon } from '../PopoverIcon/PopoverIcon';
+import { FormErrorMessage } from './FormErrorMessage';
 
 export type FormFieldContainerProps = {
   children: React.ReactNode;
@@ -23,11 +24,7 @@ export const FormFieldContainer = ({ children, description, error }: FormFieldCo
           </div>
         )}
       </div>
-      {error && (
-        <div className="text-red-600">
-          <span>{error}</span>
-        </div>
-      )}
+      {error && <FormErrorMessage message={error} />}
     </div>
   );
 };

@@ -12,6 +12,7 @@ import { ZodError, type ZodType } from 'zod';
 
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
+import { FormErrorMessage } from './FormErrorMessage';
 import { FormFieldsComponent } from './FormFieldsComponent';
 import { deepPrune, getDefaultFormValues } from './utils';
 
@@ -37,6 +38,7 @@ const FormComponent = <T extends Types.FormDataType>({
   validationSchema
 }: FormProps<T>) => {
   const { t } = useTranslation();
+  const [rootError, setRootError] = useState<null | string>(null);
   const [errors, setErrors] = useState<FormErrors<T>>({});
   const [values, setValues] = useState<Types.NullableFormDataType<T>>(() => {
     const defaultValues = getDefaultFormValues(content);
@@ -47,14 +49,21 @@ const FormComponent = <T extends Types.FormDataType>({
   });
 
   const handleError = (error: ZodError<T>) => {
-    const formattedErrors: FormErrors<T> = {};
+    const fieldErrors: FormErrors<T> = {};
+    const rootErrors: string[] = [];
     for (const issue of error.issues) {
-      set(formattedErrors, issue.path, issue.message);
+      if (issue.path.length > 0) {
+        set(fieldErrors, issue.path, issue.message);
+      } else {
+        rootErrors.push(issue.message);
+      }
     }
-    setErrors(formattedErrors);
+    setRootError(rootErrors.join('\n'));
+    setErrors(fieldErrors);
   };
 
   const reset = () => {
+    setRootError(null);
     setErrors({});
     setValues(getDefaultFormValues(content));
   };
@@ -119,6 +128,7 @@ const FormComponent = <T extends Types.FormDataType>({
           />
         )}
       </div>
+      {rootError && <FormErrorMessage message={rootError} />}
     </form>
   );
 };
