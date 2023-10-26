@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/eslint-config
 
+## 3.0.3
+
+### Patch Changes
+
+- Update deps
+
 ## 3.0.2
 
 ### Patch Changes

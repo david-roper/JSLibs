@@ -1,5 +1,14 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.5
+
+### Patch Changes
+
+- Update deps
+- Updated dependencies
+  - @douglasneuroinformatics/form-types@4.0.1
+  - @douglasneuroinformatics/utils@1.0.4
+
 ## 4.0.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/utils",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A collection of zero dependency JavaScript utility functions for Node.js and the browser",
   "license": "LGPL-3.0",
   "type": "module",
@@ -15,10 +15,10 @@
     "lint": "tsc && eslint --fix src"
   },
   "dependencies": {
-    "type-fest": "^4.5.0"
+    "type-fest": "^4.6.0"
   },
   "devDependencies": {
-    "typedoc": "^0.25.1"
+    "typedoc": "^0.25.2"
   },
   "publishConfig": {
     "access": "public"

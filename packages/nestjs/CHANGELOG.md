@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.7
+
+### Patch Changes
+
+- Update deps
+
 ## 1.12.6
 
 ### Patch Changes

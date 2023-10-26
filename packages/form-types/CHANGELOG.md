@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 4.0.1
+
+### Patch Changes
+
+- Update deps
+
 ## 4.0.0
 
 ### Major Changes

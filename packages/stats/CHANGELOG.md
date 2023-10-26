@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/stats
 
+## 2.0.2
+
+### Patch Changes
+
+- Update deps
+
 ## 2.0.1
 
 ### Patch Changes
