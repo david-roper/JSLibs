@@ -22,6 +22,7 @@ type FormProps<T extends Types.FormDataType> = {
   className?: string;
   content: Types.FormContent<T>;
   initialValues?: PartialDeep<Types.NullableFormDataType<T>> | null;
+  onError?: (error: ZodError<T>) => void;
   onSubmit: (data: T) => void;
   resetBtn?: boolean;
   submitBtnLabel?: string;
@@ -32,6 +33,7 @@ const FormComponent = <T extends Types.FormDataType>({
   className,
   content,
   initialValues,
+  onError,
   onSubmit,
   resetBtn,
   submitBtnLabel,
@@ -60,6 +62,9 @@ const FormComponent = <T extends Types.FormDataType>({
     }
     setRootError(rootErrors.join('\n'));
     setErrors(fieldErrors);
+    if (onError) {
+      onError(error);
+    }
   };
 
   const reset = () => {
