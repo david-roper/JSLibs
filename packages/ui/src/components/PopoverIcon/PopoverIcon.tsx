@@ -30,7 +30,7 @@ export const PopoverIcon = ({ icon, position, text }: PopoverIconProps) => {
       >
         <Popover.Panel
           className={clsx(
-            'absolute z-10 mt-2 w-max max-w-xs rounded-md border border-slate-300 bg-slate-100 p-2 text-sm text-slate-600 shadow-md dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300',
+            'absolute z-10 mt-2 w-max max-w-xs rounded-md border border-slate-300 bg-slate-100 p-2 text-sm text-slate-600 shadow-sm dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300',
             {
               'left-0': position === 'left',
               'right-0': position === 'right'

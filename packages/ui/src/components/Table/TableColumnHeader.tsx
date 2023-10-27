@@ -39,7 +39,7 @@ export const TableColumnHeader = <T extends TableEntry>({ column, dropdownOption
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute z-50 right-4 mt-2 w-32 overflow-hidden origin-top-right rounded-md bg-slate-50 shadow-md ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-700">
+          <Menu.Items className="absolute z-50 right-4 mt-2 w-32 overflow-hidden origin-top-right rounded-md bg-slate-50 shadow-sm ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-700">
             {dropdownOptions.map((option) => {
               const Icon = option.icon;
               return (

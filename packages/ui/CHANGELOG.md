@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.7
+
+### Patch Changes
+
+- Reduce shadow
+
 ## 4.0.6
 
 ### Patch Changes
