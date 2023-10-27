@@ -19,6 +19,7 @@ export const Default: Story = {
           magnam dolorum?
         </p>
       </div>
-    )
+    ),
+    className: 'p-3'
   }
 };

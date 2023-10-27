@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.8
+
+### Patch Changes
+
+- Increase ring
+
 ## 4.0.7
 
 ### Patch Changes
