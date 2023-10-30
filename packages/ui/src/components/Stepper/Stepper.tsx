@@ -36,7 +36,6 @@ const Stepper = ({ steps }: StepperProps) => {
           </React.Fragment>
         ))}
       </div>
-      <h3 className="mb-5 text-2xl font-semibold text-slate-900 dark:text-slate-100">{steps[index]?.label}</h3>
       <div>{steps[index]?.element}</div>
     </StepperContext.Provider>
   );

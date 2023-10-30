@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.8
+
+### Patch Changes
+
+- Update schema typing
+
 ## 1.12.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.9
+
+### Patch Changes
+
+- Remove stepper label
+
 ## 4.0.8
 
 ### Patch Changes
