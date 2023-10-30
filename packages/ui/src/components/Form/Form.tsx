@@ -14,7 +14,7 @@ import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 import { FormErrorMessage } from './FormErrorMessage';
 import { FormFieldsComponent } from './FormFieldsComponent';
-import { deepPrune, getDefaultFormValues } from './utils';
+import { getDefaultFormValues, pruneValues } from './utils';
 
 import type { FormErrors } from './types';
 
@@ -75,7 +75,7 @@ const FormComponent = <T extends Types.FormDataType>({
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const result = validationSchema.safeParse(deepPrune(values));
+    const result = validationSchema.safeParse(pruneValues(values));
     if (result.success) {
       reset();
       onSubmit(result.data);

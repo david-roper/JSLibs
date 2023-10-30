@@ -1,5 +1,4 @@
 import type Types from '@douglasneuroinformatics/form-types';
-import _ from 'lodash';
 
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
 export function getFormFields<T extends Types.FormDataType>(content: Types.FormContent<T>): Types.FormFields<T> {
@@ -65,18 +64,14 @@ export function resolveStaticFormFields<T extends Types.FormDataType>(
   return staticFormFields;
 }
 
-export function deepPrune(obj: object) {
-  const prune = (current: object) => {
-    _.forOwn(current, function (value, key) {
-      if (_.isUndefined(value) || _.isNull(value) || (_.isObject(value) && _.isEmpty(prune(value)))) {
-        delete current[key as keyof object];
-      }
-    });
-    // remove any leftover undefined values from the delete operation on an array
-    if (_.isArray(current)) {
-      return _.pull(current, undefined) as unknown[];
+export function pruneValues(values: Types.NullableFormDataType) {
+  const obj: Types.FormDataType = {};
+  for (const [key, value] of Object.entries(values)) {
+    if (Array.isArray(value)) {
+      obj[key] = value.map(pruneValues) as Types.ArrayFieldValue;
+    } else if (value !== null && value !== undefined) {
+      obj[key] = value;
     }
-    return current;
-  };
-  return prune(_.cloneDeep(obj));
+  }
+  return obj;
 }

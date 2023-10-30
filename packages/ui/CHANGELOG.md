@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.11
+
+### Patch Changes
+
+- Fix prune valus
+
 ## 4.0.9
 
 ### Patch Changes
