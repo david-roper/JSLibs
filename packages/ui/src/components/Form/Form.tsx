@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
 import { clsx } from 'clsx';
-import { merge } from 'lodash';
-import { set } from 'lodash';
+import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import type { PartialDeep } from 'type-fest';
 import { ZodError, type ZodType } from 'zod';
@@ -47,7 +46,7 @@ const FormComponent = <T extends Types.FormDataType>({
     if (!initialValues) {
       return defaultValues;
     }
-    return merge(defaultValues, initialValues);
+    return _.merge(defaultValues, initialValues);
   });
 
   const handleError = (error: ZodError<T>) => {
@@ -55,7 +54,7 @@ const FormComponent = <T extends Types.FormDataType>({
     const rootErrors: string[] = [];
     for (const issue of error.issues) {
       if (issue.path.length > 0) {
-        set(fieldErrors, issue.path, issue.message);
+        _.set(fieldErrors, issue.path, issue.message);
       } else {
         rootErrors.push(issue.message);
       }

@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.12
+
+### Patch Changes
+
+- Use default export for lodash
+
 ## 4.0.11
 
 ### Patch Changes
