@@ -1,16 +1,22 @@
 {
   "name": "@douglasneuroinformatics/utils",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A collection of zero dependency JavaScript utility functions for Node.js and the browser",
   "license": "LGPL-3.0",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "bun": "./src/index.ts",
+      "import": "./dist/index.js",
+      "types": "./src/index.ts"
+    }
   },
   "files": [
+    "dist",
     "src"
   ],
   "scripts": {
+    "build": "bun build src/index.ts --outdir dist --target=browser --sourcemap=external",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src"
   },
