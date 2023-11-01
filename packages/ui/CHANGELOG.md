@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.13
+
+### Patch Changes
+
+- Equate padding in modal body
+
 ## 4.0.12
 
 ### Patch Changes
