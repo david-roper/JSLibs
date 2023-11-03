@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.14
+
+### Patch Changes
+
+- Fix overflow in stepper
+
 ## 4.0.13
 
 ### Patch Changes

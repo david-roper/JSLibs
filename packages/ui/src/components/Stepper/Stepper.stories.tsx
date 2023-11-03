@@ -36,7 +36,7 @@ for (let i = 1; i < 4; i++) {
   steps.push({
     element: <MockStep step={i} />,
     icon: <FaceSmileIcon />,
-    label: 'Step ' + i
+    label: 'Step Number ' + i
   });
 }
 
