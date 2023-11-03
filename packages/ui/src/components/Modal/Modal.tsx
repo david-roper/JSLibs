@@ -66,7 +66,7 @@ export const Modal = ({ children, onClose, open, showCloseButton, title, width =
                     </button>
                   )}
                 </div>
-                <div className="my-3 p-0.5">{children}</div>
+                <div className="my-2 p-0.5">{children}</div>
               </Dialog.Panel>
             </Transition.Child>
           </div>
