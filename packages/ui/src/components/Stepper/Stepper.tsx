@@ -47,7 +47,7 @@ const Stepper = ({ steps }: StepperProps) => {
 
   return (
     <StepperContext.Provider value={{ index, updateIndex }}>
-      <div className="mb-16 flex items-center print:hidden justify-between relative">
+      <div className="mb-12 flex items-center print:hidden justify-between relative">
         {steps.map((step, i) => {
           return (
             <React.Fragment key={i}>
