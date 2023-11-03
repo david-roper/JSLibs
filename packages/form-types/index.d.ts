@@ -57,12 +57,20 @@ export type TextFormField = FormFieldMixin<{
   variant: 'long' | 'password' | 'short';
 }>;
 
-export type NumericFormField = FormFieldMixin<{
-  kind: 'numeric';
-  max?: number;
-  min?: number;
-  variant: 'default' | 'slider';
-}>;
+export type NumericFormField = FormFieldMixin<
+  | {
+      kind: 'numeric';
+      max: number;
+      min: number;
+      variant: 'slider';
+    }
+  | {
+      kind: 'numeric';
+      max?: number;
+      min?: number;
+      variant: 'default';
+    }
+>;
 
 /**
  * Here, TValue is a string and options is a map of the actual values (i.e., what will be sent to backend)
