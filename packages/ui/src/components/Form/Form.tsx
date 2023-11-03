@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
-import { clsx } from 'clsx';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
+import { twMerge } from 'tailwind-merge';
 import type { PartialDeep } from 'type-fest';
 import { ZodError, type ZodType } from 'zod';
 
@@ -85,7 +85,7 @@ const FormComponent = <T extends Types.FormDataType>({
   };
 
   return (
-    <form autoComplete="off" className={clsx('w-full', className)} onSubmit={handleSubmit}>
+    <form autoComplete="off" className={twMerge('w-full max-w-3xl', className)} onSubmit={handleSubmit}>
       {Array.isArray(content) ? (
         content.map((fieldGroup, i) => {
           return (
