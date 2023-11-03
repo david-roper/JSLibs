@@ -85,7 +85,7 @@ const FormComponent = <T extends Types.FormDataType>({
   };
 
   return (
-    <form autoComplete="off" className={twMerge('w-full max-w-3xl', className)} onSubmit={handleSubmit}>
+    <form autoComplete="off" className={twMerge('w-full max-w-3xl mx-auto', className)} onSubmit={handleSubmit}>
       {Array.isArray(content) ? (
         content.map((fieldGroup, i) => {
           return (
