@@ -1,4 +1,4 @@
-import { toBasicISOString } from '@douglasneuroinformatics/utils';
+import { range, toBasicISOString } from '@douglasneuroinformatics/utils';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -40,6 +40,7 @@ export type TableProps<T extends TableEntry> = {
   columnDropdownOptions?: ColumnDropdownOptions<T>;
   columns: TableColumn<T>[];
   data: T[];
+  minRows?: number;
   onEntryClick?: (entry: T) => void;
 };
 
@@ -48,6 +49,7 @@ export const Table = <T extends TableEntry>({
   columnDropdownOptions,
   columns,
   data,
+  minRows,
   onEntryClick
 }: TableProps<T>) => {
   return (
@@ -67,27 +69,37 @@ export const Table = <T extends TableEntry>({
             </tr>
           </thead>
           <tbody className="dark:divide-slate-600 divide-y">
-            {data.map((entry, i) => (
-              <tr
-                className={clsx('whitespace-nowrap p-4 text-sm text-slate-600 dark:text-slate-300', {
-                  'cursor-pointer hover:backdrop-brightness-95': typeof onEntryClick === 'function'
-                })}
-                key={i}
-                onClick={() => {
-                  onEntryClick && onEntryClick(entry);
-                }}
-              >
-                {columns.map(({ field, formatter }, j) => {
-                  const value = typeof field === 'function' ? field(entry) : entry[field];
-                  const formattedValue = formatter ? formatter(value) : defaultFormatter(value);
-                  return (
-                    <td className="whitespace-nowrap px-6 py-3" key={j}>
-                      <span>{formattedValue}</span>
-                    </td>
-                  );
-                })}
-              </tr>
-            ))}
+            {range(Math.max(data.length, minRows ?? -1)).map((i) => {
+              const entry = data[i];
+              return (
+                <tr
+                  className={clsx('whitespace-nowrap p-4 text-sm text-slate-600 dark:text-slate-300', {
+                    'cursor-pointer hover:backdrop-brightness-95': entry && typeof onEntryClick === 'function'
+                  })}
+                  key={i}
+                  onClick={() => {
+                    entry && onEntryClick && onEntryClick(entry);
+                  }}
+                >
+                  {columns.map(({ field, formatter }, j) => {
+                    let value: unknown;
+                    if (!entry) {
+                      value = '';
+                    } else if (typeof field === 'function') {
+                      value = field(entry);
+                    } else {
+                      value = entry[field];
+                    }
+                    const formattedValue = formatter ? formatter(value) : defaultFormatter(value);
+                    return (
+                      <td className="whitespace-nowrap px-6" key={j} style={{ height: 42 }}>
+                        <span className="text-ellipsis block leading-none">{formattedValue}</span>
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

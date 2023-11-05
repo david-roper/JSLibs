@@ -70,6 +70,7 @@ export const Default: StoryObj<typeof ClientTable<ExampleItem>> = {
     ],
     columns,
     data,
+    minRows: 10,
     onEntryClick: (entry) => {
       alert(entry.id);
     }
@@ -79,6 +80,7 @@ export const Default: StoryObj<typeof ClientTable<ExampleItem>> = {
 export const Empty: StoryObj<typeof ClientTable<ExampleItem>> = {
   args: {
     columns: columns,
-    data: []
+    data: [],
+    minRows: 5
   }
 };
