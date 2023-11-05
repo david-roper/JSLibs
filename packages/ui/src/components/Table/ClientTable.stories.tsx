@@ -80,7 +80,6 @@ export const Default: StoryObj<typeof ClientTable<ExampleItem>> = {
 export const Empty: StoryObj<typeof ClientTable<ExampleItem>> = {
   args: {
     columns: columns,
-    data: [],
-    minRows: 5
+    data: []
   }
 };

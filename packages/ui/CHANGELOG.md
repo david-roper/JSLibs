@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.19
+
+### Patch Changes
+
+- Fix max rows issue
+
 ## 4.0.18
 
 ### Patch Changes

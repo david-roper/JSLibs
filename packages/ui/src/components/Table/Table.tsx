@@ -52,6 +52,7 @@ export const Table = <T extends TableEntry>({
   minRows,
   onEntryClick
 }: TableProps<T>) => {
+  const nRows = Math.max(data.length, minRows ?? -1);
   return (
     <div className={twMerge('min-w-full overflow-hidden rounded-md shadow dark:bg-slate-800 bg-slate-50', className)}>
       <div className="overflow-x-scroll w-full">
@@ -69,37 +70,38 @@ export const Table = <T extends TableEntry>({
             </tr>
           </thead>
           <tbody className="dark:divide-slate-600 divide-y">
-            {range(Math.max(data.length, minRows ?? -1)).map((i) => {
-              const entry = data[i];
-              return (
-                <tr
-                  className={clsx('whitespace-nowrap p-4 text-sm text-slate-600 dark:text-slate-300', {
-                    'cursor-pointer hover:backdrop-brightness-95': entry && typeof onEntryClick === 'function'
-                  })}
-                  key={i}
-                  onClick={() => {
-                    entry && onEntryClick && onEntryClick(entry);
-                  }}
-                >
-                  {columns.map(({ field, formatter }, j) => {
-                    let value: unknown;
-                    if (!entry) {
-                      value = '';
-                    } else if (typeof field === 'function') {
-                      value = field(entry);
-                    } else {
-                      value = entry[field];
-                    }
-                    const formattedValue = entry && formatter ? formatter(value) : defaultFormatter(value);
-                    return (
-                      <td className="whitespace-nowrap px-6" key={j} style={{ height: 42 }}>
-                        <span className="text-ellipsis block leading-none">{formattedValue}</span>
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
+            {nRows > 0 &&
+              range(nRows).map((i) => {
+                const entry = data[i];
+                return (
+                  <tr
+                    className={clsx('whitespace-nowrap p-4 text-sm text-slate-600 dark:text-slate-300', {
+                      'cursor-pointer hover:backdrop-brightness-95': entry && typeof onEntryClick === 'function'
+                    })}
+                    key={i}
+                    onClick={() => {
+                      entry && onEntryClick && onEntryClick(entry);
+                    }}
+                  >
+                    {columns.map(({ field, formatter }, j) => {
+                      let value: unknown;
+                      if (!entry) {
+                        value = '';
+                      } else if (typeof field === 'function') {
+                        value = field(entry);
+                      } else {
+                        value = entry[field];
+                      }
+                      const formattedValue = entry && formatter ? formatter(value) : defaultFormatter(value);
+                      return (
+                        <td className="whitespace-nowrap px-6" key={j} style={{ height: 42 }}>
+                          <span className="text-ellipsis block leading-none">{formattedValue}</span>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
