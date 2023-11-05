@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.17
+
+### Patch Changes
+
+- Add minRows option
+
 ## 4.0.15
 
 ### Patch Changes
