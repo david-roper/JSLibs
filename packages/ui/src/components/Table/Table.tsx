@@ -90,7 +90,7 @@ export const Table = <T extends TableEntry>({
                     } else {
                       value = entry[field];
                     }
-                    const formattedValue = formatter ? formatter(value) : defaultFormatter(value);
+                    const formattedValue = entry && formatter ? formatter(value) : defaultFormatter(value);
                     return (
                       <td className="whitespace-nowrap px-6" key={j} style={{ height: 42 }}>
                         <span className="text-ellipsis block leading-none">{formattedValue}</span>
