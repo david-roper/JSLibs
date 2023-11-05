@@ -1,5 +1,6 @@
 import { toBasicISOString } from '@douglasneuroinformatics/utils';
 import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 import { type ColumnDropdownOptions, TableColumnHeader } from './TableColumnHeader';
 
@@ -35,15 +36,22 @@ export type TableColumn<T extends TableEntry> = {
 };
 
 export type TableProps<T extends TableEntry> = {
+  className?: string;
   columnDropdownOptions?: ColumnDropdownOptions<T>;
   columns: TableColumn<T>[];
   data: T[];
   onEntryClick?: (entry: T) => void;
 };
 
-export const Table = <T extends TableEntry>({ columnDropdownOptions, columns, data, onEntryClick }: TableProps<T>) => {
+export const Table = <T extends TableEntry>({
+  className,
+  columnDropdownOptions,
+  columns,
+  data,
+  onEntryClick
+}: TableProps<T>) => {
   return (
-    <div className="min-w-full overflow-hidden rounded-md shadow">
+    <div className={twMerge('min-w-full overflow-hidden rounded-md shadow dark:bg-slate-800 bg-slate-50', className)}>
       <div className="overflow-x-scroll w-full">
         <table className="w-full table-auto">
           <thead className="border-b border-slate-300 bg-slate-50 dark:border-0 dark:bg-slate-700">
@@ -58,7 +66,7 @@ export const Table = <T extends TableEntry>({ columnDropdownOptions, columns, da
               ))}
             </tr>
           </thead>
-          <tbody className="bg-slate-50 dark:divide-slate-600 divide-y dark:bg-slate-800">
+          <tbody className="dark:divide-slate-600 divide-y">
             {data.map((entry, i) => (
               <tr
                 className={clsx('whitespace-nowrap p-4 text-sm text-slate-600 dark:text-slate-300', {
