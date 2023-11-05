@@ -13,6 +13,7 @@ export * from './interceptors/document.interceptor';
 export * from './middleware/logger.middleware';
 
 export * from './pipes/parse-id.pipe';
+export * from './pipes/parse-schema.pipe';
 export * from './pipes/validation.pipe';
 
 export * from './validation/object-id.schema';

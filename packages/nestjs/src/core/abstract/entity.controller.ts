@@ -5,7 +5,7 @@ export abstract class EntityController<TEntity extends object> {
 
   abstract deleteById(id: string, ...args: any[]): object;
 
-  abstract findAll(...args: any[]): Promise<object[]>;
+  // abstract findAll(...args: any[]): Promise<object[]>;
 
   abstract findById(id: string, ...args: any[]): Promise<object>;
 

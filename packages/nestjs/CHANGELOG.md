@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.12.9
+
+### Patch Changes
+
+- Add schema parse
+
 ## 1.12.8
 
 ### Patch Changes

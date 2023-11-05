@@ -3,7 +3,7 @@ export abstract class EntityService<TEntity extends object> {
 
   abstract deleteById(id: string, options?: object): Promise<object>;
 
-  abstract findAll(options?: object): Promise<object[]>;
+  // abstract findAll(options?: object): Promise<object[]>;
 
   abstract findById(id: string, options?: object): Promise<object>;
 
