@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 4.0.2
+
+### Patch Changes
+
+- Add union for numeric field
+
 ## 4.0.1
 
 ### Patch Changes
