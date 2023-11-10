@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.20
+
+### Patch Changes
+
+- Handle SSR in useWindowSize
+
 ## 4.0.19
 
 ### Patch Changes

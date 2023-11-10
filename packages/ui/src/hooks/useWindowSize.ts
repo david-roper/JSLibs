@@ -1,25 +1,31 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-export function useWindowSize() {
-  const [windowSize, setWindowSize] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth
+import { useEventListener } from './useEventListener';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+
+export type WindowSize = {
+  height: number;
+  width: number;
+};
+
+export function useWindowSize(): WindowSize {
+  const [windowSize, setWindowSize] = useState<WindowSize>({
+    height: 0,
+    width: 0
   });
 
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({
-        height: window.innerHeight,
-        width: window.innerWidth
-      });
-    };
+  const handleSize = () => {
+    setWindowSize({
+      height: window.innerHeight,
+      width: window.innerWidth
+    });
+  };
 
-    window.addEventListener('resize', handleResize);
+  useEventListener('resize', handleSize);
 
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+  // Set size at the first client-side load
+  useIsomorphicLayoutEffect(() => {
+    handleSize();
   }, []);
 
   return windowSize;

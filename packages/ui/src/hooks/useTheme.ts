@@ -2,7 +2,9 @@ import { useCallback, useEffect, useState } from 'react';
 
 export type Theme = 'dark' | 'light';
 
-export function useTheme() {
+export type UpdateTheme = (theme: Theme) => void;
+
+export function useTheme(): readonly [Theme, UpdateTheme] {
   // Initial theme value is based on the value saved in local storage or the system theme
   const [theme, setTheme] = useState<Theme>(() => {
     const initialTheme: Theme =
