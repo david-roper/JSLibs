@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+import type { Promisable } from 'type-fest';
+
 import { useNotificationsStore } from '../stores/notifications-store';
 
 /**
@@ -27,19 +29,18 @@ export function useDownload() {
     }
   }, [data, filename]);
 
-  return (filename: string, fetchData: () => Promise<string>) => {
-    fetchData()
-      .then((value) => {
-        setData(value);
-        setFilename(filename);
-      })
-      .catch((error) => {
-        const message = error instanceof Error ? error.message : 'An unknown error occurred';
-        notifications.addNotification({
-          message,
-          title: 'Error',
-          type: 'error'
-        });
+  return async (filename: string, fetchData: () => Promisable<string>) => {
+    try {
+      const data = await fetchData();
+      setData(data);
+      setFilename(filename);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'An unknown error occurred';
+      notifications.addNotification({
+        message,
+        title: 'Error',
+        type: 'error'
       });
+    }
   };
 }

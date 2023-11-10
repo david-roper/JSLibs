@@ -1,4 +1,4 @@
-import { createInstance } from 'i18next';
+import { type i18n as I18n, createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 const defaultNS = 'translations';
@@ -76,7 +76,7 @@ const resources = {
   }
 } as const;
 
-const i18n = createInstance({
+const i18n: I18n = createInstance({
   defaultNS,
   fallbackLng: 'en',
   interpolation: {

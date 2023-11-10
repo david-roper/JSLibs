@@ -1,5 +1,12 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.21
+
+### Patch Changes
+
+- Allow non-promise for useDownload
+- Update hooks for SSR compatability
+
 ## 4.0.20
 
 ### Patch Changes

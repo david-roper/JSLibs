@@ -1,9 +1,9 @@
-'use client';
+import { type RefObject, useEffect, useRef } from 'react';
 
-import { type RefObject, useEffect, useLayoutEffect, useRef } from 'react';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 // MediaQueryList Event based useEventListener interface
-export function useEventListener<K extends keyof MediaQueryListEventMap>(
+function useEventListener<K extends keyof MediaQueryListEventMap>(
   eventName: K,
   handler: (event: MediaQueryListEventMap[K]) => void,
   element: RefObject<MediaQueryList>,
@@ -11,7 +11,7 @@ export function useEventListener<K extends keyof MediaQueryListEventMap>(
 ): void;
 
 // Window Event based useEventListener interface
-export function useEventListener<K extends keyof WindowEventMap>(
+function useEventListener<K extends keyof WindowEventMap>(
   eventName: K,
   handler: (event: WindowEventMap[K]) => void,
   element?: undefined,
@@ -19,7 +19,7 @@ export function useEventListener<K extends keyof WindowEventMap>(
 ): void;
 
 // Element Event based useEventListener interface
-export function useEventListener<K extends keyof HTMLElementEventMap, T extends HTMLElement = HTMLDivElement>(
+function useEventListener<K extends keyof HTMLElementEventMap, T extends HTMLElement = HTMLDivElement>(
   eventName: K,
   handler: (event: HTMLElementEventMap[K]) => void,
   element: RefObject<T>,
@@ -27,18 +27,17 @@ export function useEventListener<K extends keyof HTMLElementEventMap, T extends 
 ): void;
 
 // Document Event based useEventListener interface
-export function useEventListener<K extends keyof DocumentEventMap>(
+function useEventListener<K extends keyof DocumentEventMap>(
   eventName: K,
   handler: (event: DocumentEventMap[K]) => void,
   element: RefObject<Document>,
   options?: AddEventListenerOptions | boolean
 ): void;
 
-export function useEventListener<
+function useEventListener<
   KW extends keyof WindowEventMap,
   KH extends keyof HTMLElementEventMap,
   KM extends keyof MediaQueryListEventMap,
-  // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
   T extends HTMLElement | MediaQueryList | void = void
 >(
   eventName: KH | KM | KW,
@@ -49,7 +48,7 @@ export function useEventListener<
   // Create a ref that stores handler
   const savedHandler = useRef(handler);
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     savedHandler.current = handler;
   }, [handler]);
 
@@ -57,13 +56,10 @@ export function useEventListener<
     // Define the listening target
     const targetElement: T | Window = element?.current ?? window;
 
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!(targetElement && targetElement.addEventListener)) return;
 
     // Create event listener that calls handler function stored in ref
-    const listener: typeof handler = (event) => {
-      savedHandler.current(event);
-    };
+    const listener: typeof handler = (event) => savedHandler.current(event);
 
     targetElement.addEventListener(eventName, listener, options);
 
@@ -73,3 +69,5 @@ export function useEventListener<
     };
   }, [eventName, element, options]);
 }
+
+export { useEventListener };

@@ -17,7 +17,7 @@ const baseConfig = createConfig({
 const uiConfig = createConfig({
   base: {
     env: 'browser',
-    filesRoot: 'packages/ui/src'
+    fileRoots: ['packages/ui/src']
   },
   jsx: true,
   ts: {

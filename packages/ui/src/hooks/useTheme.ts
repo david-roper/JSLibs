@@ -5,17 +5,17 @@ export type Theme = 'dark' | 'light';
 export type UpdateTheme = (theme: Theme) => void;
 
 export function useTheme(): readonly [Theme, UpdateTheme] {
-  // Initial theme value is based on the value saved in local storage or the system theme
-  const [theme, setTheme] = useState<Theme>(() => {
+  const [theme, setTheme] = useState<Theme>('light');
+
+  useEffect(() => {
+    // Initial theme value is based on the value saved in local storage or the system theme
     const initialTheme: Theme =
       (window.localStorage.getItem('theme') as Theme | null) ??
       (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     document.documentElement.setAttribute('data-mode', initialTheme);
-    return initialTheme;
-  });
+    setTheme(initialTheme);
 
-  // Whenever the data-mode attribute of the root HTML element changes, update state and local storage
-  useEffect(() => {
+    // Whenever the data-mode attribute of the root HTML element changes, update state and local storage
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'data-mode') {
@@ -38,12 +38,9 @@ export function useTheme(): readonly [Theme, UpdateTheme] {
   }, []);
 
   // When the user wants to change the theme
-  const updateTheme = useCallback(
-    (theme: Theme) => {
-      document.documentElement.setAttribute('data-mode', theme);
-    },
-    [document.documentElement]
-  );
+  const updateTheme = useCallback((theme: Theme) => {
+    document.documentElement.setAttribute('data-mode', theme);
+  }, []);
 
   return [theme, updateTheme] as const;
 }
