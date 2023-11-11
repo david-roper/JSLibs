@@ -54,7 +54,7 @@ const Stepper = ({ steps }: StepperProps) => {
                   <div
                     className={clsx(
                       'h-12 w-12 rounded-full text-white bg-sky-700  py-3 transition duration-500 ease-in-out [&>*]:h-full [&>*]:w-full',
-                      i > index && 'bg-slate-200'
+                      i > index && 'bg-slate-200 dark:bg-slate-700'
                     )}
                     ref={(e) => {
                       icons.current[i] = e!;

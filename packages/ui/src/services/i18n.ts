@@ -76,7 +76,7 @@ const resources = {
   }
 } as const;
 
-const i18n: I18n = createInstance({
+const i18n = createInstance({
   defaultNS,
   fallbackLng: 'en',
   interpolation: {
@@ -85,7 +85,7 @@ const i18n: I18n = createInstance({
   resources,
   returnObjects: true,
   supportedLngs: ['en', 'fr']
-});
+}) as I18n;
 
 void i18n.use(initReactI18next).init();
 
