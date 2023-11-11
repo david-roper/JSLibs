@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.22
+
+### Patch Changes
+
+- Add use client directives
+
 ## 4.0.21
 
 ### Patch Changes
