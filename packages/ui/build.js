@@ -15,6 +15,9 @@ await fs.mkdir(BUILD_DIR);
 
 /** @type {import('esbuild').BuildOptions} */
 const options = {
+  banner: {
+    js: "'use client';"
+  },
   bundle: true,
   entryPoints: [path.resolve(import.meta.dir, 'src', 'index.ts')],
   format: 'esm',

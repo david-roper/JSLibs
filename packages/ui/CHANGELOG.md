@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.24
+
+### Patch Changes
+
+- Emit use client on build only
+
 ## 4.0.22
 
 ### Patch Changes

@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useEffect, useReducer, useRef, useState } from 'react';
 
 import clsx from 'clsx';

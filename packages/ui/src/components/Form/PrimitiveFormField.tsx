@@ -1,5 +1,3 @@
-'use client';
-
 import type Types from '@douglasneuroinformatics/form-types';
 
 import { BinaryField, type BinaryFieldProps } from './BinaryField';

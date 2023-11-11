@@ -1,5 +1,3 @@
-'use client';
-
 import { memo, useEffect } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';

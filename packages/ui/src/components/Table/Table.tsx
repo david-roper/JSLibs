@@ -1,5 +1,3 @@
-'use client';
-
 import { range, toBasicISOString } from '@douglasneuroinformatics/utils';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

@@ -1,5 +1,3 @@
-'use client';
-
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { twMerge } from 'tailwind-merge';

@@ -1,5 +1,3 @@
-'use client';
-
 import type { NumericFormField } from '@douglasneuroinformatics/form-types';
 
 import { NumericFieldDefault } from './NumericFieldDefault';
