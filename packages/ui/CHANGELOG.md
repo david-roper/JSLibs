@@ -1,5 +1,12 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.26
+
+### Patch Changes
+
+- d3f4d31: Fix stepper in dark mode
+- Add test attributes
+
 ## 4.0.24
 
 ### Patch Changes

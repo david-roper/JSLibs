@@ -18,6 +18,7 @@ import type { FormErrors } from './types';
 type FormProps<T extends Types.FormDataType> = {
   className?: string;
   content: Types.FormContent<T>;
+  id?: string;
   initialValues?: PartialDeep<Types.NullableFormDataType<T>> | null;
   onError?: (error: ZodError<T>) => void;
   onSubmit: (data: T) => void;
@@ -29,6 +30,7 @@ type FormProps<T extends Types.FormDataType> = {
 const FormComponent = <T extends Types.FormDataType>({
   className,
   content,
+  id,
   initialValues,
   onError,
   onSubmit,
@@ -83,7 +85,7 @@ const FormComponent = <T extends Types.FormDataType>({
   };
 
   return (
-    <form autoComplete="off" className={twMerge('w-full max-w-3xl mx-auto', className)} onSubmit={handleSubmit}>
+    <form autoComplete="off" className={twMerge('w-full max-w-3xl mx-auto', className)} id={id} onSubmit={handleSubmit}>
       {Array.isArray(content) ? (
         content.map((fieldGroup, i) => {
           return (
@@ -114,7 +116,9 @@ const FormComponent = <T extends Types.FormDataType>({
         />
       )}
       <div className="flex w-full gap-3">
+        {/** Note - aria-label is used for testing in downstream packages */}
         <Button
+          aria-label="Submit Button"
           className="block w-full first-letter:capitalize"
           label={submitBtnLabel ?? t('form.submit')}
           type="submit"
@@ -122,6 +126,7 @@ const FormComponent = <T extends Types.FormDataType>({
         />
         {resetBtn && (
           <Button
+            aria-label="Reset Button"
             className="block w-full first-letter:capitalize"
             label={t('form.reset')}
             type="button"
