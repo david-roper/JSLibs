@@ -16,6 +16,7 @@ import { getDefaultFormValues, pruneValues } from './utils';
 import type { FormErrors } from './types';
 
 type FormProps<T extends Types.FormDataType> = {
+  [key: `data-${string}`]: unknown;
   className?: string;
   content: Types.FormContent<T>;
   id?: string;
@@ -36,7 +37,8 @@ const FormComponent = <T extends Types.FormDataType>({
   onSubmit,
   resetBtn,
   submitBtnLabel,
-  validationSchema
+  validationSchema,
+  ...props
 }: FormProps<T>) => {
   const { t } = useTranslation();
   const [rootError, setRootError] = useState<null | string>(null);
@@ -85,7 +87,13 @@ const FormComponent = <T extends Types.FormDataType>({
   };
 
   return (
-    <form autoComplete="off" className={twMerge('w-full max-w-3xl mx-auto', className)} id={id} onSubmit={handleSubmit}>
+    <form
+      autoComplete="off"
+      className={twMerge('w-full max-w-3xl mx-auto', className)}
+      id={id}
+      onSubmit={handleSubmit}
+      {...props}
+    >
       {Array.isArray(content) ? (
         content.map((fieldGroup, i) => {
           return (
