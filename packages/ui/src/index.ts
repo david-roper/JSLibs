@@ -14,6 +14,7 @@ export * from './components/Form/Form';
 export * from './components/Form/types';
 export * from './components/Form/utils';
 export * from './components/FormPageWrapper/FormPageWrapper';
+export * from './components/LanguageToggle/BaseLanguageToggle';
 export * from './components/LanguageToggle/LanguageToggle';
 export * from './components/LineGraph/LineGraph';
 export * from './components/Modal/Modal';
