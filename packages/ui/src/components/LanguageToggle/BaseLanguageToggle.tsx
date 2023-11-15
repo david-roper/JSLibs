@@ -7,16 +7,17 @@ import type { Promisable } from 'type-fest';
 
 export type BaseLanguageToggleProps<T extends string> = {
   dropdownDirection?: 'down' | 'up';
-  onSelection: (option: T) => Promisable<void>;
+  i18n: {
+    changeLanguage: (lang: T) => Promisable<unknown>;
+    resolvedLanguage?: T;
+  };
   options: T[];
-  selected: T;
 };
 
 export const BaseLanguageToggle = <T extends string = string>({
   dropdownDirection,
-  onSelection,
-  options,
-  selected
+  i18n,
+  options
 }: BaseLanguageToggleProps<T>) => {
   return (
     <Menu as="div" className="relative bg-inherit">
@@ -24,7 +25,7 @@ export const BaseLanguageToggle = <T extends string = string>({
         className="flex items-center justify-center rounded-md p-2 hover:backdrop-brightness-95 dark:hover:backdrop-brightness-150"
         type="button"
       >
-        <span className="uppercase">{selected}</span>
+        <span className="uppercase">{i18n.resolvedLanguage}</span>
         <ChevronDownIcon
           className={clsx('ml-1', { 'rotate-180': dropdownDirection === 'up' })}
           height={16}
@@ -55,7 +56,7 @@ export const BaseLanguageToggle = <T extends string = string>({
               className="p-2 uppercase first:rounded-t-md last:rounded-b-md hover:backdrop-brightness-95 dark:hover:backdrop-brightness-150"
               key={lang}
               type="button"
-              onClick={() => void onSelection(lang)}
+              onClick={() => void i18n.changeLanguage(lang)}
             >
               {lang}
             </Menu.Item>

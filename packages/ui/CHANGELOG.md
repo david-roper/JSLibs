@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.0.29
+
+### Patch Changes
+
+- Use i18n interface
+
 ## 4.0.28
 
 ### Patch Changes
