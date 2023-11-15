@@ -13,22 +13,29 @@ export const Default: Story = {
     (Story) => {
       const [isOpen, setIsOpen] = useState(true);
       return (
-        <Story
-          args={{
-            children: (
-              <div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt suscipit vero qui optio explicabo
-                  autem eaque, voluptatem dolore nulla, perspiciatis soluta quaerat similique magni amet at quae fuga
-                  fugit laborum.
-                </p>
-              </div>
-            ),
-            isOpen,
-            setIsOpen,
-            title: 'Example'
-          }}
-        />
+        <>
+          <div className="fixed inset-0 w-full bg-slate-200 dark:bg-slate-800">
+            <button type="button" onClick={() => setIsOpen(!isOpen)}>
+              Open
+            </button>
+          </div>
+          <Story
+            args={{
+              children: (
+                <div>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt suscipit vero qui optio explicabo
+                    autem eaque, voluptatem dolore nulla, perspiciatis soluta quaerat similique magni amet at quae fuga
+                    fugit laborum.
+                  </p>
+                </div>
+              ),
+              isOpen,
+              setIsOpen,
+              title: 'Example'
+            }}
+          />
+        </>
       );
     }
   ]

@@ -13,7 +13,7 @@ export type SliderProps = {
 export const Slider = ({ children, isOpen, setIsOpen, title }: SliderProps) => {
   return (
     <Transition as={React.Fragment} show={isOpen}>
-      <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={setIsOpen}>
+      <Dialog as="div" className="fixed inset-0 overflow-hidden z-10" onClose={setIsOpen}>
         <div className="absolute inset-0 overflow-hidden">
           <Transition.Child
             as={React.Fragment}
