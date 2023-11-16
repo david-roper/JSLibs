@@ -5,9 +5,10 @@ import { useTheme } from '../../hooks/useTheme';
 
 export type ThemeToggleProps = {
   className?: string;
+  size?: number;
 };
 
-export const ThemeToggle = ({ className }: ThemeToggleProps) => {
+export const ThemeToggle = ({ className, size = 24 }: ThemeToggleProps) => {
   const [theme, setTheme] = useTheme();
 
   const toggleTheme = () => {
@@ -23,7 +24,7 @@ export const ThemeToggle = ({ className }: ThemeToggleProps) => {
       type="button"
       onClick={toggleTheme}
     >
-      {theme === 'dark' ? <SunIcon height={24} width={24} /> : <MoonIcon height={24} width={24} />}
+      {theme === 'dark' ? <SunIcon height={size} width={size} /> : <MoonIcon height={size} width={size} />}
     </button>
   );
 };

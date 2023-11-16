@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.1.0
+
+### Minor Changes
+
+- Add size option
+
 ## 4.0.31
 
 ### Patch Changes
