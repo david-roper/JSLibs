@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 4.1.1
+
+### Patch Changes
+
+- Add useInterval
+
 ## 4.1.0
 
 ### Minor Changes

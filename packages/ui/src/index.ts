@@ -32,6 +32,7 @@ export * from './context/StepperContext';
 export * from './hooks/useDownload';
 export * from './hooks/useEventCallback';
 export * from './hooks/useEventListener';
+export * from './hooks/useInterval';
 export * from './hooks/useIsomorphicLayoutEffect';
 export * from './hooks/useMediaQuery';
 export * from './hooks/useOnClickOutside';
