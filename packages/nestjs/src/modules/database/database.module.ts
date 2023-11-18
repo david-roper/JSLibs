@@ -1,24 +1,29 @@
-import { Global, Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigurableModuleBuilder, Global, Module } from '@nestjs/common';
+import { Db, MongoClient } from 'mongodb';
 
-import { ConfigurableDatabaseModule } from './database.config';
-import { DatabaseService } from './database.service';
+type DatabaseModuleOptions = {
+  name: string;
+  uri: string;
+};
+
+const DATABASE_CONNECTION_TOKEN = 'NATIVE_DATABASE_CONNECTION';
+
+const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new ConfigurableModuleBuilder<DatabaseModuleOptions>()
+  .setClassMethodName('forRoot')
+  .build();
 
 @Global()
 @Module({
-  exports: [DatabaseService],
-  imports: [
-    MongooseModule.forRootAsync({
-      inject: [DatabaseService],
-      useFactory: (databaseService: DatabaseService) => {
-        return {
-          connectionFactory: databaseService.connectionFactory,
-          ignoreUndefined: true,
-          uri: databaseService.uri
-        };
+  providers: [
+    {
+      inject: [MODULE_OPTIONS_TOKEN],
+      provide: DATABASE_CONNECTION_TOKEN,
+      useFactory: async ({ name, uri }: DatabaseModuleOptions): Promise<Db> => {
+        const client = new MongoClient(uri);
+        await client.connect();
+        return client.db(name);
       }
-    })
-  ],
-  providers: [DatabaseService]
+    }
+  ]
 })
-export class DatabaseModule extends ConfigurableDatabaseModule {}
+export class DatabaseModule extends ConfigurableModuleClass {}

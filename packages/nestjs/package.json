@@ -14,8 +14,13 @@
   ],
   "scripts": {
     "format": "prettier --write src",
-    "lint": "tsc && eslint --fix src",
-    "postinstall": "bun scripts/postinstall.js"
+    "postinstall": "bun scripts/postinstall.js",
+    "lint": "tsc && eslint --fix src"
+  },
+  "dependencies": {
+    "@douglasneuroinformatics/ajv": "^1.1.0",
+    "type-fest": "^4.6.0",
+    "zod": "^3.22.4"
   },
   "peerDependencies": {
     "@nestjs/common": "10.2.3",
@@ -23,16 +28,12 @@
     "@nestjs/mongoose": "^10.0.1",
     "@nestjs/platform-express": "^10.2.5",
     "@nestjs/testing": "^10.2.5",
+    "mongodb": "^6.3.0",
     "mongoose": "^7.5.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@douglasneuroinformatics/ajv": "^1.1.0",
-    "type-fest": "^4.6.0",
-    "zod": "^3.22.4"
   }
 }
