@@ -18,23 +18,24 @@ export type FormDataType = Record<string, FormFieldValue>;
 
 // REQUIRED DATA TYPES
 
-type RequiredPrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = NonNullable<T>;
+export type RequiredPrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = NonNullable<T>;
 
-type RequiredArrayFieldsetValue<T extends ArrayFieldsetValue = ArrayFieldsetValue> = {
+export type RequiredArrayFieldsetValue<T extends ArrayFieldsetValue = ArrayFieldsetValue> = {
   [K in keyof T]: RequiredPrimitiveFieldValue<T[K]>;
 };
 
-type RequiredArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = RequiredArrayFieldsetValue<
+export type RequiredArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = RequiredArrayFieldsetValue<
   NonNullable<T>[number]
 >[];
 
-type RequiredFormFieldValue<T extends FormFieldValue = FormFieldValue> = T extends NonNullable<PrimitiveFieldValue>
-  ? RequiredPrimitiveFieldValue<T>
-  : T extends NonNullable<ArrayFieldValue>
-  ? RequiredArrayFieldValue
-  : T;
+export type RequiredFormFieldValue<T extends FormFieldValue = FormFieldValue> =
+  T extends NonNullable<PrimitiveFieldValue>
+    ? RequiredPrimitiveFieldValue<T>
+    : T extends NonNullable<ArrayFieldValue>
+    ? RequiredArrayFieldValue
+    : T;
 
-type RequiredFormDataType<T extends FormDataType = FormDataType> = {
+export type RequiredFormDataType<T extends FormDataType = FormDataType> = {
   [K in keyof T]-?: NonNullable<T[K]> extends (infer U extends ArrayFieldsetValue)[]
     ? {
         [P in keyof U]-?: NonNullable<U[P]> extends RequiredPrimitiveFieldValue ? NonNullable<U[P]> : never;
