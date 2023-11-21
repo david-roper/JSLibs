@@ -3,28 +3,38 @@ import type { Simplify } from 'type-fest';
 /** Discriminator key to determine the structure of a specific form field */
 export type FormFieldKind = 'array' | 'binary' | 'date' | 'numeric' | 'options' | 'text';
 
-/** The type of the data associated with a primitive field */
-export type PrimitiveFieldValue = Date | boolean | number | string | undefined;
+// BASE DATA TYPES
 
-export type RequiredPrimitiveFieldValue = Exclude<PrimitiveFieldValue, undefined>;
+export type PrimitiveFieldValue = Date | boolean | number | string | undefined;
 
 export type ArrayFieldsetValue = Record<string, PrimitiveFieldValue>;
 
-export type RequiredArrayFieldsetValue = Record<string, RequiredPrimitiveFieldValue>;
-
-/** The type of the data associated with an array field */
 export type ArrayFieldValue = ArrayFieldsetValue[] | undefined;
 
-export type RequiredArrayFieldValue = RequiredArrayFieldsetValue[];
-
 export type FormFieldValue = ArrayFieldValue | PrimitiveFieldValue;
-
-export type RequiredFormFieldValue = RequiredArrayFieldValue | RequiredPrimitiveFieldValue;
 
 /** The type of the data associated with the entire instrument (i.e., the values for all fields) */
 export type FormDataType = Record<string, FormFieldValue>;
 
-export type RequiredFormDataType<T extends FormDataType = FormDataType> = {
+// REQUIRED DATA TYPES
+
+type RequiredPrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = NonNullable<T>;
+
+type RequiredArrayFieldsetValue<T extends ArrayFieldsetValue = ArrayFieldsetValue> = {
+  [K in keyof T]: RequiredPrimitiveFieldValue<T[K]>;
+};
+
+type RequiredArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = RequiredArrayFieldsetValue<
+  NonNullable<T>[number]
+>[];
+
+type RequiredFormFieldValue<T extends FormFieldValue = FormFieldValue> = T extends NonNullable<PrimitiveFieldValue>
+  ? RequiredPrimitiveFieldValue<T>
+  : T extends NonNullable<ArrayFieldValue>
+  ? RequiredArrayFieldValue
+  : T;
+
+type RequiredFormDataType<T extends FormDataType = FormDataType> = {
   [K in keyof T]-?: NonNullable<T[K]> extends (infer U extends ArrayFieldsetValue)[]
     ? {
         [P in keyof U]-?: NonNullable<U[P]> extends RequiredPrimitiveFieldValue ? NonNullable<U[P]> : never;
@@ -153,7 +163,10 @@ export type StaticFormFields<
   [K in keyof TRequiredData]: StaticFormField<TRequiredData[K]>;
 };
 
-export type DynamicFormField<TData extends FormDataType, TValue extends RequiredFormFieldValue> = {
+export type DynamicFormField<
+  TData extends FormDataType,
+  TValue extends RequiredFormFieldValue = RequiredFormFieldValue
+> = {
   deps: readonly Extract<keyof TData, string>[];
   kind: 'dynamic';
   render: (data: PartialFormDataType<TData> | null) => StaticFormField<TValue> | null;

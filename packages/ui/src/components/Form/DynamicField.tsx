@@ -7,27 +7,21 @@ import { StaticField } from './StaticField';
 
 import type { FormErrors } from './types';
 
-export type DynamicFieldProps<
-  TData extends Types.FormDataType,
-  TValue extends Types.ArrayFieldValue | Types.PrimitiveFieldValue
-> = {
+export type DynamicFieldProps<TData extends Types.FormDataType> = {
   errors: FormErrors<TData>;
-  field: Types.DynamicFormField<TData, TValue>;
+  field: Types.DynamicFormField<TData>;
   name: string;
   setErrors: React.Dispatch<React.SetStateAction<FormErrors<TData>>>;
   setValues: React.Dispatch<React.SetStateAction<Types.PartialFormDataType<TData>>>;
   values: Types.PartialFormDataType<TData>;
 };
 
-export const DynamicField = <
-  TData extends Types.FormDataType,
-  TValue extends Types.ArrayFieldValue | Types.PrimitiveFieldValue
->({
+export const DynamicField = <TData extends Types.FormDataType>({
   field,
   name,
   values,
   ...props
-}: DynamicFieldProps<TData, TValue>) => {
+}: DynamicFieldProps<TData>) => {
   const [dependentValues, setDependentValues] = useState(_.pick(values, field.deps));
 
   const staticField = useMemo(() => {
