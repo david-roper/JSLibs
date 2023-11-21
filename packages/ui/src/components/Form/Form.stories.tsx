@@ -248,7 +248,7 @@ export const DynamicForm: StoryObj<typeof Form<DynamicFormValues>> = {
         variant: 'radio'
       },
       b: {
-        deps: [],
+        deps: ['a'],
         kind: 'dynamic',
         render: (data) => {
           if (data?.a) {

@@ -22,7 +22,7 @@ export const NumericFieldDefault = ({
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
     const newValue = parseFloat(event.target.value);
     if (Number.isNaN(newValue)) {
-      setValue(null);
+      setValue(undefined);
     } else if (newValue >= (min ?? -Infinity) && newValue <= (max ?? Infinity)) {
       setValue(newValue);
     }
@@ -41,7 +41,7 @@ export const NumericFieldDefault = ({
       />
       <label
         className={clsx('field-label field-label-floating peer-focus:field-label-floating--active', {
-          'field-label-floating--active': value !== null
+          'field-label-floating--active': typeof value === 'number'
         })}
         htmlFor={name}
       >

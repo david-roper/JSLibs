@@ -4,29 +4,46 @@ import type { Simplify } from 'type-fest';
 export type FormFieldKind = 'array' | 'binary' | 'date' | 'numeric' | 'options' | 'text';
 
 /** The type of the data associated with a primitive field */
-export type PrimitiveFieldValue = Date | boolean | number | string;
+export type PrimitiveFieldValue = Date | boolean | number | string | undefined;
 
-export type NullablePrimitiveFieldValue<T extends PrimitiveFieldValue = PrimitiveFieldValue> = T | null;
+export type RequiredPrimitiveFieldValue = Exclude<PrimitiveFieldValue, undefined>;
+
+export type ArrayFieldsetValue = Record<string, PrimitiveFieldValue>;
+
+export type RequiredArrayFieldsetValue = Record<string, RequiredPrimitiveFieldValue>;
 
 /** The type of the data associated with an array field */
-export type ArrayFieldValue = Record<string, PrimitiveFieldValue>[];
+export type ArrayFieldValue = ArrayFieldsetValue[] | undefined;
 
-export type NullableArrayFieldValue<T extends ArrayFieldValue = ArrayFieldValue> = {
-  [K in keyof T[number]]: NullablePrimitiveFieldValue<T[number][K]>;
-}[];
+export type RequiredArrayFieldValue = RequiredArrayFieldsetValue[];
 
-export type UnknownNullableFieldValue = NullableArrayFieldValue | NullablePrimitiveFieldValue;
+export type FormFieldValue = ArrayFieldValue | PrimitiveFieldValue;
+
+export type RequiredFormFieldValue = RequiredArrayFieldValue | RequiredPrimitiveFieldValue;
 
 /** The type of the data associated with the entire instrument (i.e., the values for all fields) */
-export type FormDataType = Record<string, ArrayFieldValue | PrimitiveFieldValue>;
+export type FormDataType = Record<string, FormFieldValue>;
 
-export type NullableFormDataType<T extends FormDataType = FormDataType> = {
-  [K in keyof T]: T[K] extends PrimitiveFieldValue
-    ? NullablePrimitiveFieldValue<T[K]>
-    : T[K] extends ArrayFieldValue
-    ? NullableArrayFieldValue<T[K]>
-    : T[K] extends ArrayFieldValue | PrimitiveFieldValue
-    ? NullableArrayFieldValue | NullablePrimitiveFieldValue
+export type RequiredFormDataType<T extends FormDataType = FormDataType> = {
+  [K in keyof T]-?: NonNullable<T[K]> extends (infer U extends ArrayFieldsetValue)[]
+    ? {
+        [P in keyof U]-?: NonNullable<U[P]> extends RequiredPrimitiveFieldValue ? NonNullable<U[P]> : never;
+      }[]
+    : NonNullable<T[K]> extends RequiredPrimitiveFieldValue
+    ? NonNullable<T[K]>
+    : never;
+};
+
+/** The `FormDataType` with all `FormFieldValues` set to be optional */
+export type PartialFormDataType<T extends FormDataType = FormDataType> = {
+  [K in keyof T]?: NonNullable<T[K]> extends (infer U extends ArrayFieldsetValue)[]
+    ?
+        | {
+            [P in keyof U]?: U[P];
+          }[]
+        | undefined
+    : NonNullable<T[K]> extends FormFieldValue
+    ? T[K]
     : never;
 };
 
@@ -34,9 +51,6 @@ export type NullableFormDataType<T extends FormDataType = FormDataType> = {
 export type BaseFormField = {
   /** An optional description of this field */
   description?: string;
-
-  /** Whether or not the field is required */
-  isRequired?: boolean;
 
   /** Discriminator key */
   kind: FormFieldKind;
@@ -101,60 +115,64 @@ export type BinaryFormField = FormFieldMixin<
 >;
 
 /** A field where the underlying value of the field data is of type FormFieldValue */
-export type PrimitiveFormField<TValue extends PrimitiveFieldValue = PrimitiveFieldValue> = TValue extends Date
-  ? DateFormField
-  : TValue extends string
-  ? OptionsFormField<TValue> | TextFormField
-  : TValue extends number
-  ? NumericFormField
-  : TValue extends boolean
-  ? BinaryFormField
-  : never;
+export type PrimitiveFormField<TValue extends RequiredPrimitiveFieldValue = RequiredPrimitiveFieldValue> =
+  TValue extends Date
+    ? DateFormField
+    : TValue extends string
+    ? OptionsFormField<TValue> | TextFormField
+    : TValue extends number
+    ? NumericFormField
+    : TValue extends boolean
+    ? BinaryFormField
+    : BinaryFormField | DateFormField | NumericFormField | OptionsFormField;
 
-export type DynamicFieldsetField<T extends ArrayFieldValue[number], TValue extends PrimitiveFieldValue> = {
+export type DynamicFieldsetField<T extends ArrayFieldsetValue, TValue extends RequiredPrimitiveFieldValue> = {
   kind: 'dynamic-fieldset';
-  render: (fieldset: { [K in keyof T]?: T[K] | null | undefined }) => PrimitiveFormField<TValue> | null;
+  render: (fieldset: Partial<T>) => PrimitiveFormField<TValue> | null;
 };
 
-export type ArrayFieldset<T extends ArrayFieldValue[number]> = {
+export type ArrayFieldset<T extends RequiredArrayFieldsetValue> = {
   [K in keyof T]: DynamicFieldsetField<T, T[K]> | PrimitiveFormField<T[K]>;
 };
 
-export type ArrayFormField<TValue extends ArrayFieldValue = ArrayFieldValue> = FormFieldMixin<{
+export type ArrayFormField<TValue extends RequiredArrayFieldValue = RequiredArrayFieldValue> = FormFieldMixin<{
   fieldset: ArrayFieldset<TValue[number]>;
   kind: 'array';
 }>;
 
-export type StaticFormField<TValue extends ArrayFieldValue | PrimitiveFieldValue> = [TValue] extends [
-  PrimitiveFieldValue
-]
+export type StaticFormField<TValue extends RequiredFormFieldValue> = TValue extends RequiredPrimitiveFieldValue
   ? PrimitiveFormField<TValue>
-  : [TValue] extends [ArrayFieldValue]
+  : TValue extends RequiredArrayFieldValue
   ? ArrayFormField<TValue>
   : ArrayFormField | PrimitiveFormField;
 
-export type StaticFormFields<TData extends FormDataType = FormDataType> = {
-  [K in keyof TData]: StaticFormField<TData[K]>;
+export type StaticFormFields<
+  TData extends FormDataType,
+  TRequiredData extends RequiredFormDataType<TData> = RequiredFormDataType<TData>
+> = {
+  [K in keyof TRequiredData]: StaticFormField<TRequiredData[K]>;
 };
 
-export type DynamicFormField<TData extends FormDataType, TValue extends ArrayFieldValue | PrimitiveFieldValue> = {
+export type DynamicFormField<TData extends FormDataType, TValue extends RequiredFormFieldValue> = {
   deps: readonly Extract<keyof TData, string>[];
   kind: 'dynamic';
-  render: (data: NullableFormDataType<TData> | null) => StaticFormField<TValue> | null;
+  render: (data: PartialFormDataType<TData> | null) => StaticFormField<TValue> | null;
 };
 
-export type UnknownFormField<TData extends FormDataType, TKey extends keyof TData = keyof TData> =
-  | DynamicFormField<TData, TData[TKey]>
-  | StaticFormField<TData[TKey]>;
+export type UnknownFormField<
+  TData extends FormDataType = FormDataType,
+  TKey extends keyof TData = keyof TData,
+  TRequiredData extends RequiredFormDataType<TData> = RequiredFormDataType<TData>
+> = DynamicFormField<TData, TRequiredData[TKey]> | StaticFormField<TRequiredData[TKey]>;
 
 export type FormFields<TData extends FormDataType = FormDataType> = {
-  [K in keyof TData]: UnknownFormField<TData, K>;
+  [K in keyof TData]-?: UnknownFormField<TData, K>;
 };
 
-export type FormFieldsGroup<TData extends FormDataType = FormDataType> = {
+export type FormFieldsGroup<TData extends FormDataType> = {
   description?: string;
   fields: {
-    [K in keyof TData]?: UnknownFormField<TData, K>;
+    [K in keyof TData]?: UnknownFormField<RequiredFormDataType<TData>, K>;
   };
   title: string;
 };

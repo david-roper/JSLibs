@@ -15,8 +15,8 @@ export type DynamicFieldProps<
   field: Types.DynamicFormField<TData, TValue>;
   name: string;
   setErrors: React.Dispatch<React.SetStateAction<FormErrors<TData>>>;
-  setValues: React.Dispatch<React.SetStateAction<Types.NullableFormDataType<TData>>>;
-  values: Types.NullableFormDataType<TData>;
+  setValues: React.Dispatch<React.SetStateAction<Types.PartialFormDataType<TData>>>;
+  values: Types.PartialFormDataType<TData>;
 };
 
 export const DynamicField = <

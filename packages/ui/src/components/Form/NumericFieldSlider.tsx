@@ -36,7 +36,7 @@ export const NumericFieldSlider = ({
     const offsetLeft = pointRect.left - guideRect.left;
     const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
     const valueIndex = Math.round((values.length - 1) * offsetPercentage);
-    setValue(values[valueIndex] ?? null);
+    setValue(values[valueIndex] ?? undefined);
   };
 
   return (

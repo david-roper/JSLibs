@@ -12,8 +12,8 @@ export type StaticFieldProps<TData extends Types.FormDataType> = {
   field: PrimitiveFormFieldProps['field'] | Types.ArrayFormField;
   name: string;
   setErrors: React.Dispatch<React.SetStateAction<FormErrors<TData>>>;
-  setValues: React.Dispatch<React.SetStateAction<Types.NullableFormDataType<TData>>>;
-  values: Types.NullableFormDataType<TData>;
+  setValues: React.Dispatch<React.SetStateAction<Types.PartialFormDataType<TData>>>;
+  values: Types.PartialFormDataType<TData>;
 };
 
 export const StaticField = <TData extends Types.FormDataType>({
@@ -25,14 +25,14 @@ export const StaticField = <TData extends Types.FormDataType>({
   values
 }: StaticFieldProps<TData>) => {
   const setError = useCallback(
-    <TValue extends Types.UnknownNullableFieldValue>(error: FieldError<TValue>) => {
+    <TValue extends Types.FormFieldValue>(error: FieldError<TValue>) => {
       return setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
     },
     [setErrors]
   );
 
   const setValue = useCallback(
-    <TValue extends Types.UnknownNullableFieldValue>(value: TValue) => {
+    <TValue extends Types.FormFieldValue>(value: TValue) => {
       return setValues((prevValues) => ({ ...prevValues, [name]: value }));
     },
     [setValues]
@@ -46,7 +46,7 @@ export const StaticField = <TData extends Types.FormDataType>({
         name={name}
         setError={setError}
         setValue={setValue}
-        value={values[name] as Types.NullableArrayFieldValue}
+        value={values[name] as Types.ArrayFieldValue}
       />
     );
   }
@@ -57,7 +57,7 @@ export const StaticField = <TData extends Types.FormDataType>({
       name={name}
       setError={setError}
       setValue={setValue}
-      value={values[name] as Types.NullablePrimitiveFieldValue}
+      value={values[name] as Types.PrimitiveFieldValue}
     />
   );
 };

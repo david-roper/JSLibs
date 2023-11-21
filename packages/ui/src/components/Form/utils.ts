@@ -8,24 +8,10 @@ export function getFormFields<T extends Types.FormDataType>(content: Types.FormC
   return content.reduce((prev, current) => ({ ...prev, ...current.fields }), content[0]!.fields) as Types.FormFields<T>;
 }
 
-/** Returns the default values when initializing the state or resetting the form */
-export function getDefaultFormValues<T extends Types.FormDataType>(
-  content: Types.FormContent<T>
-): Types.NullableFormDataType<T> {
-  const defaultValues: Types.NullableFormDataType = {};
-
-  // Get a flat array of all fields regardless of the content type
-  const fields = getFormFields(content);
-  for (const fieldName in fields) {
-    defaultValues[fieldName] = null;
-  }
-  return defaultValues as Types.NullableFormDataType<T>;
-}
-
 export function formatFormDataAsString<T extends Types.FormDataType>(data: T) {
   const lines: string[] = [];
   for (const key in data) {
-    const value: Types.ArrayFieldValue | Types.PrimitiveFieldValue = data[key]!;
+    const value = data[key]!;
     if (Array.isArray(value)) {
       for (let i = 0; i < value.length; i++) {
         const record = value[i]!;
@@ -46,7 +32,7 @@ export function formatFormDataAsString<T extends Types.FormDataType>(data: T) {
  */
 export function resolveStaticFormFields<T extends Types.FormDataType>(
   content: Types.FormContent<T>,
-  data: Types.NullableFormDataType<T>
+  data: Types.PartialFormDataType<T>
 ) {
   const staticFormFields: Partial<Types.StaticFormFields<T>> = {};
   const formFields = getFormFields(content);
@@ -62,16 +48,4 @@ export function resolveStaticFormFields<T extends Types.FormDataType>(
     }
   }
   return staticFormFields;
-}
-
-export function pruneValues(values: Types.NullableFormDataType) {
-  const obj: Types.FormDataType = {};
-  for (const [key, value] of Object.entries(values)) {
-    if (Array.isArray(value)) {
-      obj[key] = value.map(pruneValues) as Types.ArrayFieldValue;
-    } else if (value !== null && value !== undefined) {
-      obj[key] = value;
-    }
-  }
-  return obj;
 }

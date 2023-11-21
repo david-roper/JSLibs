@@ -8,7 +8,7 @@ import { TextField, type TextFieldProps } from './TextField';
 
 import type { BaseFieldComponentProps } from './types';
 
-export type PrimitiveFormFieldProps = BaseFieldComponentProps<Types.NullablePrimitiveFieldValue> & {
+export type PrimitiveFormFieldProps = BaseFieldComponentProps<Types.PrimitiveFieldValue> & {
   field:
     | Types.BinaryFormField
     | Types.DateFormField

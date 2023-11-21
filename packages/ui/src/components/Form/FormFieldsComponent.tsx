@@ -1,4 +1,5 @@
 import type Types from '@douglasneuroinformatics/form-types';
+import type { PartialFormDataType } from '@douglasneuroinformatics/form-types';
 
 import { DynamicField } from './DynamicField';
 import { StaticField } from './StaticField';
@@ -9,8 +10,8 @@ export type FormFieldsComponentProps<T extends Types.FormDataType> = {
   errors: FormErrors<T>;
   fields: Types.FormFields<T>;
   setErrors: React.Dispatch<React.SetStateAction<FormErrors<T>>>;
-  setValues: React.Dispatch<React.SetStateAction<Types.NullableFormDataType<T>>>;
-  values: Types.NullableFormDataType<T>;
+  setValues: React.Dispatch<React.SetStateAction<PartialFormDataType<T>>>;
+  values: Types.PartialFormDataType<T>;
 };
 
 /** Renders an object containing key value pairs, where the value is a FormField of some kind */

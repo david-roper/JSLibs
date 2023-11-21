@@ -11,7 +11,7 @@ export default { component: NumericFieldSlider } satisfies Meta<typeof NumericFi
 export const Default: Story = {
   decorators: [
     (Story) => {
-      const [value, setValue] = useState<null | number>(null);
+      const [value, setValue] = useState<number>();
       return (
         <Story
           args={{

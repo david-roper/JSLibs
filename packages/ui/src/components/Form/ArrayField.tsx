@@ -8,7 +8,7 @@ import { PrimitiveFormField } from './PrimitiveFormField';
 
 import type { BaseFieldComponentProps } from './types';
 
-export type ArrayFieldProps = BaseFieldComponentProps<Types.NullableArrayFieldValue> & Types.ArrayFormField;
+export type ArrayFieldProps = BaseFieldComponentProps<Types.ArrayFieldValue> & Types.ArrayFormField;
 
 export const ArrayField = memo(function ArrayField({
   error: arrayError,
@@ -20,7 +20,7 @@ export const ArrayField = memo(function ArrayField({
 }: ArrayFieldProps) {
   const { t } = useTranslation();
 
-  const createNewFieldset = () => Object.fromEntries(Object.keys(fieldset).map((fieldName) => [fieldName, null]));
+  const createNewFieldset = () => Object.fromEntries(Object.keys(fieldset).map((fieldName) => [fieldName, undefined]));
 
   useEffect(() => {
     setArrayValue([createNewFieldset()]);
@@ -71,7 +71,7 @@ export const ArrayField = memo(function ArrayField({
                   newArrayValue[i]![name] = value;
                   setArrayValue(newArrayValue);
                 }}
-                value={arrayValue?.[i]?.[name] ?? null}
+                value={arrayValue?.[i]?.[name]}
               />
             );
           })}

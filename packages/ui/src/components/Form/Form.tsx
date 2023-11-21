@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 
 import type Types from '@douglasneuroinformatics/form-types';
+import type { PartialFormDataType } from '@douglasneuroinformatics/form-types';
 import _ from 'lodash';
 import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
-import type { PartialDeep } from 'type-fest';
 import { ZodError, type ZodType } from 'zod';
 
 import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 import { FormErrorMessage } from './FormErrorMessage';
 import { FormFieldsComponent } from './FormFieldsComponent';
-import { getDefaultFormValues, pruneValues } from './utils';
 
 import type { FormErrors } from './types';
 
@@ -20,7 +19,7 @@ type FormProps<T extends Types.FormDataType> = {
   className?: string;
   content: Types.FormContent<T>;
   id?: string;
-  initialValues?: PartialDeep<Types.NullableFormDataType<T>> | null;
+  initialValues?: PartialFormDataType<T>;
   onError?: (error: ZodError<T>) => void;
   onSubmit: (data: T) => void;
   resetBtn?: boolean;
@@ -43,13 +42,7 @@ const FormComponent = <T extends Types.FormDataType>({
   const { t } = useTranslation();
   const [rootError, setRootError] = useState<null | string>(null);
   const [errors, setErrors] = useState<FormErrors<T>>({});
-  const [values, setValues] = useState<Types.NullableFormDataType<T>>(() => {
-    const defaultValues = getDefaultFormValues(content);
-    if (!initialValues) {
-      return defaultValues;
-    }
-    return _.merge(defaultValues, initialValues);
-  });
+  const [values, setValues] = useState<PartialFormDataType<T>>(initialValues ?? {});
 
   const handleError = (error: ZodError<T>) => {
     const fieldErrors: FormErrors<T> = {};
@@ -71,12 +64,12 @@ const FormComponent = <T extends Types.FormDataType>({
   const reset = () => {
     setRootError(null);
     setErrors({});
-    setValues(getDefaultFormValues(content));
+    setValues({});
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
-    const result = validationSchema.safeParse(pruneValues(values));
+    const result = validationSchema.safeParse(values);
     if (result.success) {
       reset();
       onSubmit(result.data);
