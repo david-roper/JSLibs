@@ -41,7 +41,7 @@ type RequiredFormDataType<T extends FormDataType = FormDataType> = {
       }[]
     : NonNullable<T[K]> extends RequiredPrimitiveFieldValue
     ? NonNullable<T[K]>
-    : never;
+    : RequiredArrayFieldValue | RequiredPrimitiveFieldValue;
 };
 
 /** The `FormDataType` with all `FormFieldValues` set to be optional */

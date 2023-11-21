@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 5.0.1
+
+### Patch Changes
+
+- Add fallback for RequiredFormDataType
+
 ## 5.0.0
 
 ### Major Changes
