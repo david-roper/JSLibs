@@ -41,7 +41,7 @@ const RadioOption = ({ label, value }: { label?: string; value: false | true }) 
 
 const Radio = (props: InnerProps & { options?: { f: string; t: string } }) => {
   return (
-    <RadioGroup value={props.value} onChange={props.setValue}>
+    <RadioGroup value={props.value ?? null} onChange={props.setValue}>
       <RadioGroup.Label className="field-label">{props.label}</RadioGroup.Label>
       <div className="my-4 flex flex-col gap-5">
         <RadioOption label={props.options?.t} value={true} />
