@@ -3,6 +3,7 @@ export * from './components/Button/Button';
 export * from './components/Card/Card';
 export * from './components/DatePicker/DatePicker';
 export * from './components/Divide/Divide';
+export * from './components/DownloadButton/DownloadButton';
 export * from './components/Dropdown/Dropdown';
 export * from './components/Form/ArrayField';
 export * from './components/Form/BinaryField';

@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 5.1.0
+
+### Minor Changes
+
+- Add download button
+
 ## 5.0.1
 
 ### Patch Changes
