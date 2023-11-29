@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@douglasneuroinformatics/ajv": "^1.1.0",
-    "type-fest": "^4.6.0",
+    "type-fest": "^4.8.2",
     "zod": "^3.22.4"
   },
   "peerDependencies": {

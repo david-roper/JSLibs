@@ -1,4 +1,6 @@
-import type { Collection, Db, Document, OptionalUnlessRequiredId } from 'mongodb';
+import { InternalServerErrorException } from '@nestjs/common';
+import { ObjectId } from 'mongodb';
+import type { Collection, Db, Document, Filter, InferIdType, OptionalUnlessRequiredId } from 'mongodb';
 
 import { InjectDatabaseConnection } from './database.decorators';
 
@@ -16,12 +18,23 @@ export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
       return this.collection.countDocuments();
     }
 
+    async create(entity: OptionalUnlessRequiredId<T>) {
+      const result = await this.collection.insertOne(entity);
+      if (!result.acknowledged) {
+        throw new InternalServerErrorException(`Failed to create entity: ${JSON.stringify(entity)} `);
+      }
+      return (await this.findById(result.insertedId))!;
+    }
+
     async find(filter: Partial<T>) {
       return this.collection.find().filter(filter).toArray();
     }
 
-    async insertOne(entity: OptionalUnlessRequiredId<T>) {
-      return this.collection.insertOne(entity);
+    async findById(id: InferIdType<T>) {
+      if (!ObjectId.isValid(id)) {
+        throw new InternalServerErrorException(`Cannot coerce value to ObjectID: ${id.toString()}`);
+      }
+      return this.collection.findOne({ _id: id } as Filter<T>);
     }
   }
   return Repository;
