@@ -14,8 +14,8 @@ export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
       this.collection = db.collection(entity.modelName);
     }
 
-    async count() {
-      return this.collection.countDocuments();
+    async count(filter?: Document) {
+      return this.collection.countDocuments(filter);
     }
 
     async create(entity: OptionalUnlessRequiredId<T>) {
@@ -23,11 +23,15 @@ export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
       if (!result.acknowledged) {
         throw new InternalServerErrorException(`Failed to create entity: ${JSON.stringify(entity)} `);
       }
-      return (await this.findById(result.insertedId))!;
+      return this.findById(result.insertedId).then((value) => value!);
     }
 
-    async find(filter: Partial<T>) {
-      return this.collection.find().filter(filter).toArray();
+    async exists(filter: Filter<T>) {
+      return this.collection.findOne(filter).then((value) => value !== null);
+    }
+
+    async find(filter: Filter<T>) {
+      return this.collection.find(filter).toArray();
     }
 
     async findById(id: InferIdType<T>) {
@@ -35,6 +39,10 @@ export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
         throw new InternalServerErrorException(`Cannot coerce value to ObjectID: ${id.toString()}`);
       }
       return this.collection.findOne({ _id: id } as Filter<T>);
+    }
+
+    async findOne(filter: Filter<T>) {
+      return this.collection.findOne(filter);
     }
   }
   return Repository;
