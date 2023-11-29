@@ -1,6 +1,6 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
-import type { Collection, Db, Document, Filter, InferIdType, OptionalUnlessRequiredId } from 'mongodb';
+import type { Collection, Db, Document, Filter, FindOptions, InferIdType, OptionalUnlessRequiredId } from 'mongodb';
 
 import { InjectDatabaseConnection } from './database.decorators';
 
@@ -26,22 +26,22 @@ export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
       return this.findById(result.insertedId).then((value) => value!);
     }
 
-    async exists(filter: Filter<T>) {
+    exists(filter: Filter<T>) {
       return this.collection.findOne(filter).then((value) => value !== null);
     }
 
-    async find(filter: Filter<T>) {
-      return this.collection.find(filter).toArray();
+    find(filter: Filter<T>, options?: FindOptions) {
+      return this.collection.find(filter, options).toArray();
     }
 
-    async findById(id: InferIdType<T>) {
+    findById(id: InferIdType<T>) {
       if (!ObjectId.isValid(id)) {
         throw new InternalServerErrorException(`Cannot coerce value to ObjectID: ${id.toString()}`);
       }
       return this.collection.findOne({ _id: id } as Filter<T>);
     }
 
-    async findOne(filter: Filter<T>) {
+    findOne(filter: Filter<T>) {
       return this.collection.findOne(filter);
     }
   }
