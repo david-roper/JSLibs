@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.13.0
+
+### Minor Changes
+
+- Deprecate EntityRepository
+
 ## 1.12.9
 
 ### Patch Changes

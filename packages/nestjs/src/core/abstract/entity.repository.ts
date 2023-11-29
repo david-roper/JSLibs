@@ -7,18 +7,24 @@ import { Types, isValidObjectId } from 'mongoose';
 
 import type { EntityClass } from '../types';
 
+/**
+ * @deprecated - Will be removed in favor of the `DatabaseModule` in v2
+ */
 export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase>) {
   abstract class Repository {
     constructor(@InjectModel(Entity.modelName) protected readonly model: Model<TBase>) {}
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async count<TEntity extends TBase = TBase>(filter?: FilterQuery<TEntity>) {
       return this.model.count(filter);
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async create<TEntity extends TBase = TBase>(entity: TEntity) {
       return this.model.create(entity) as Promise<HydratedDocument<TEntity>>;
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async find<TEntity extends TBase = TBase>(
       filter: FilterQuery<TEntity> = {},
       options?: QueryOptions<TEntity>
@@ -26,12 +32,14 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
       return this.model.find(filter, null, options);
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async findOne<TEntity extends TBase = TBase>(
       filter: FilterQuery<TEntity>
     ): Promise<HydratedDocument<TEntity> | null> {
       return this.model.findOne(filter);
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async findById<TEntity extends TBase = TBase>(
       id: string,
       filter: FilterQuery<TEntity> = {}
@@ -39,10 +47,12 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
       return this.findOne(this.createFilter(id, filter));
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async exists(filter: FilterQuery<TBase>): Promise<boolean> {
       return (await this.model.exists(filter)) !== null;
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async updateOne<TEntity extends TBase = TBase>(
       filter: FilterQuery<TEntity>,
       update: Partial<TEntity>
@@ -50,6 +60,7 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
       return this.model.findOneAndUpdate(filter, update, { new: true });
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async updateById<TEntity extends TBase = TBase>(
       id: string,
       update: Partial<TEntity>,
@@ -58,12 +69,14 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
       return this.updateOne(this.createFilter(id, filter), update);
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async deleteOne<TEntity extends TBase = TBase>(
       filter: FilterQuery<TEntity>
     ): Promise<HydratedDocument<TEntity> | null> {
       return this.model.findOneAndDelete(filter, { new: true });
     }
 
+    /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async deleteById<TEntity extends TBase = TBase>(
       id: string,
       filter: FilterQuery<TEntity> = {}
