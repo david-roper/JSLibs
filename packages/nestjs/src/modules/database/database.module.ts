@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { type DynamicModule, Global, Module } from '@nestjs/common';
+import { type DynamicModule, Module } from '@nestjs/common';
 import { Db, MongoClient } from 'mongodb';
 import type { Promisable } from 'type-fest';
 
 import { DATABASE_CONNECTION_TOKEN, MODULE_OPTIONS_TOKEN } from './database.constants';
+import { DatabaseRepository } from './database.repository';
 import { getRepositoryToken } from './database.utils';
 
 import type { EntityClass } from '../../core/types';
@@ -19,15 +20,12 @@ type DatabaseModuleAsyncOptions = {
   useFactory: (...args: any[]) => Promisable<DatabaseModuleOptions>;
 };
 
-@Global()
 @Module({})
 export class DatabaseModule {
   static forFeature(entities: EntityClass[]): DynamicModule {
     const providers = entities.map((entity) => ({
       provide: getRepositoryToken(entity),
-      useValue: {
-        sayHello: () => console.log('Hello World')
-      }
+      useClass: DatabaseRepository(entity)
     }));
     return {
       exports: providers.map(({ provide }) => provide),
@@ -37,6 +35,8 @@ export class DatabaseModule {
   }
   static forRootAsync(options: DatabaseModuleAsyncOptions): DynamicModule {
     return {
+      exports: [DATABASE_CONNECTION_TOKEN],
+      global: true,
       module: DatabaseModule,
       providers: [
         {

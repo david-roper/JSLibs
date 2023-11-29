@@ -5,7 +5,7 @@ import { getRepositoryToken } from './database.utils';
 
 import type { EntityClass } from '../../core/types';
 
-export const InjectDbConnection = () => {
+export const InjectDatabaseConnection = () => {
   return Inject(DATABASE_CONNECTION_TOKEN);
 };
 
