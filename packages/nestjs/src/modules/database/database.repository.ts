@@ -27,23 +27,23 @@ export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
       return this.findById(result.insertedId).then((value) => value!);
     }
 
-    exists(filter: Filter<T>) {
-      return this.collection.findOne(filter).then((value) => value !== null);
+    exists(filter: Filter<T>, options: FindOptions = {}) {
+      return this.collection.findOne(filter, options).then((value) => value !== null);
     }
 
-    find(filter: Filter<T>, options?: FindOptions) {
+    find(filter: Filter<T>, options: FindOptions = {}) {
       return this.collection.find(filter, options).toArray();
     }
 
-    findById(id: ObjectIdLike) {
+    findById(id: ObjectIdLike, options: FindOptions = {}) {
       if (!ObjectId.isValid(id)) {
         throw new InternalServerErrorException(`Cannot coerce value to ObjectID: ${id.toString()}`);
       }
-      return this.collection.findOne({ _id: new ObjectId(id) } as Filter<T>);
+      return this.collection.findOne({ _id: new ObjectId(id) } as Filter<T>, options);
     }
 
-    findOne(filter: Filter<T>) {
-      return this.collection.findOne(filter);
+    findOne(filter: Filter<T>, options: FindOptions = {}) {
+      return this.collection.findOne(filter, options);
     }
   }
   return Repository;
