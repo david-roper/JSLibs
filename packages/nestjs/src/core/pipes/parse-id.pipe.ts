@@ -1,5 +1,5 @@
 import { BadRequestException, Injectable, Optional, type PipeTransform } from '@nestjs/common';
-import { Types, isValidObjectId } from 'mongoose';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ParseIdPipe implements PipeTransform {
@@ -12,9 +12,9 @@ export class ParseIdPipe implements PipeTransform {
   transform(value: unknown) {
     if (this.isOptional && value === undefined) {
       return undefined;
-    } else if (!isValidObjectId(value)) {
+    } else if (!ObjectId.isValid(String(value))) {
       throw new BadRequestException('Value cannot be coerced to object ID: ' + value);
     }
-    return new Types.ObjectId(value as string);
+    return new ObjectId(String(value));
   }
 }

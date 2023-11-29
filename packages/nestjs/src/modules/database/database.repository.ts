@@ -1,10 +1,11 @@
 import { InternalServerErrorException } from '@nestjs/common';
 import { ObjectId } from 'mongodb';
-import type { Collection, Db, Document, Filter, FindOptions, InferIdType, OptionalUnlessRequiredId } from 'mongodb';
+import type { Collection, Db, Document, Filter, FindOptions, OptionalUnlessRequiredId } from 'mongodb';
 
 import { InjectDatabaseConnection } from './database.decorators';
 
 import type { EntityClass } from '../../core/types';
+import type { ObjectIdLike } from './database.utils';
 
 export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
   class Repository {
@@ -34,11 +35,11 @@ export function DatabaseRepository<T extends Document>(entity: EntityClass<T>) {
       return this.collection.find(filter, options).toArray();
     }
 
-    findById(id: InferIdType<T>) {
+    findById(id: ObjectIdLike) {
       if (!ObjectId.isValid(id)) {
         throw new InternalServerErrorException(`Cannot coerce value to ObjectID: ${id.toString()}`);
       }
-      return this.collection.findOne({ _id: id } as Filter<T>);
+      return this.collection.findOne({ _id: new ObjectId(id) } as Filter<T>);
     }
 
     findOne(filter: Filter<T>) {
