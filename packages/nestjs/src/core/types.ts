@@ -7,6 +7,6 @@ export type AppRequest = Request & {
   user: object;
 };
 
-export type EntityClass<T extends object> = Class<T> & {
+export type EntityClass<T extends object = object> = Class<T> & {
   readonly modelName: string;
 };

@@ -4,6 +4,10 @@ import { type DynamicModule, Global, Module } from '@nestjs/common';
 import { Db, MongoClient } from 'mongodb';
 import type { Promisable } from 'type-fest';
 
+import { getRepositoryToken } from './database.utils';
+
+import type { EntityClass } from '../../core/types';
+
 type DatabaseModuleOptions = {
   dbName: string;
   uri: string;
@@ -21,6 +25,19 @@ const DATABASE_CONNECTION_TOKEN = 'NATIVE_DATABASE_CONNECTION';
 @Global()
 @Module({})
 export class DatabaseModule {
+  static forFeature(entities: EntityClass[]): DynamicModule {
+    const providers = entities.map((entity) => ({
+      provide: getRepositoryToken(entity),
+      useValue: {
+        sayHello: () => console.log('Hello World')
+      }
+    }));
+    return {
+      exports: providers.map(({ provide }) => provide),
+      module: DatabaseModule,
+      providers
+    };
+  }
   static forRootAsync(options: DatabaseModuleAsyncOptions): DynamicModule {
     return {
       module: DatabaseModule,
@@ -42,5 +59,4 @@ export class DatabaseModule {
       ]
     };
   }
-  static forFeature();
 }
