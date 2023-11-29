@@ -4,6 +4,7 @@ import { type DynamicModule, Global, Module } from '@nestjs/common';
 import { Db, MongoClient } from 'mongodb';
 import type { Promisable } from 'type-fest';
 
+import { DATABASE_CONNECTION_TOKEN, MODULE_OPTIONS_TOKEN } from './database.constants';
 import { getRepositoryToken } from './database.utils';
 
 import type { EntityClass } from '../../core/types';
@@ -17,10 +18,6 @@ type DatabaseModuleAsyncOptions = {
   inject?: any[];
   useFactory: (...args: any[]) => Promisable<DatabaseModuleOptions>;
 };
-
-const MODULE_OPTIONS_TOKEN = 'DATABASE_MODULE_OPTIONS';
-
-const DATABASE_CONNECTION_TOKEN = 'NATIVE_DATABASE_CONNECTION';
 
 @Global()
 @Module({})
