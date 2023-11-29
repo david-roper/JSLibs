@@ -16,7 +16,7 @@ export function EntityRepository<TBase extends object>(Entity: EntityClass<TBase
 
     /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */
     async count<TEntity extends TBase = TBase>(filter?: FilterQuery<TEntity>) {
-      return this.model.count(filter);
+      return this.model.countDocuments(filter);
     }
 
     /** @deprecated - Will be removed in favor of the `DatabaseModule` in v2 */

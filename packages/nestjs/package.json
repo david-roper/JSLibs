@@ -29,7 +29,7 @@
     "@nestjs/platform-express": "^10.2.5",
     "@nestjs/testing": "^10.2.5",
     "mongodb": "^6.3.0",
-    "mongoose": "^7.5.2",
+    "mongoose": "^8.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },
