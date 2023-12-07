@@ -3,9 +3,11 @@ import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ParseIdPipe implements PipeTransform {
+  coerce: boolean;
   isOptional: boolean;
 
-  constructor(@Optional() options?: { isOptional?: boolean }) {
+  constructor(@Optional() options?: { coerce?: boolean; isOptional?: boolean }) {
+    this.coerce = options?.coerce ?? false;
     this.isOptional = options?.isOptional ?? false;
   }
 
@@ -15,6 +17,6 @@ export class ParseIdPipe implements PipeTransform {
     } else if (!ObjectId.isValid(String(value))) {
       throw new BadRequestException('Value cannot be coerced to object ID: ' + value);
     }
-    return new ObjectId(String(value));
+    return this.coerce ? new ObjectId(String(value)) : String(value);
   }
 }
