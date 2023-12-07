@@ -1,6 +1,7 @@
 import type { AnyFunction } from 'bun';
 import { type Mock, jest } from 'bun:test';
 
+import _ from 'lodash';
 import type { Class } from 'type-fest';
 
 export type MockedInstance<T extends object> = {
@@ -30,4 +31,16 @@ export function createMock<T extends object>(constructor: Class<T>) {
       }
     });
   return obj as MockedInstance<T>;
+}
+
+export function createMockObject<T extends object>(target: T) {
+  return new Proxy(target, {
+    get(target, property) {
+      const value: unknown = _.get(target, property);
+      if (value !== undefined) {
+        return value;
+      }
+      return jest.fn();
+    }
+  });
 }
