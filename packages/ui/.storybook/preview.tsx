@@ -1,6 +1,6 @@
 import { withThemeByDataAttribute } from '@storybook/addon-styling';
 import type { Preview } from '@storybook/react';
-
+import React from 'react';
 import './tailwind.css';
 import i18n from '../src/services/i18n';
 

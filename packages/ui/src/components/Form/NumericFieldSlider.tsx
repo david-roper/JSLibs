@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
@@ -27,6 +27,8 @@ export const NumericFieldSlider = ({
 
   const values = useMemo(() => range(min, max + 1), [min, max]);
 
+  const [isFocused, setIsFocused] = useState(false)
+
   const handleDrag = () => {
     if (!(guide.current && point.current)) {
       return;
@@ -44,10 +46,11 @@ export const NumericFieldSlider = ({
       <label className="field-label" htmlFor={name}>
         {label}
       </label>
-      <div className="flex gap-3">
-        <div className="field-input-base flex items-center">
+      <div className={"flex gap-3" + (isFocused? " border-solid border-2" : "")}>
+        <div className="field-input-base flex items-center"  onClick={() => setIsFocused(!isFocused)}>
           <div
             className="h-1.5 items-center w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
+            id="slider-bar"
             ref={guide}
           >
             <motion.div
@@ -56,6 +59,7 @@ export const NumericFieldSlider = ({
               dragConstraints={guide}
               dragElastic={false}
               dragMomentum={false}
+              id="slider-circle"
               ref={point}
               onDrag={handleDrag}
             />
