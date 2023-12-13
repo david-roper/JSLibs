@@ -29,6 +29,15 @@ export const NumericFieldSlider = ({
 
   const [isFocused, setIsFocused] = useState(false)
 
+  const keyMove = () => {
+    if(isFocused){
+      if (!(guide.current && point.current)) {
+        return;
+      }
+      
+    }
+  }
+
   const handleDrag = () => {
     if (!(guide.current && point.current)) {
       return;
@@ -62,6 +71,7 @@ export const NumericFieldSlider = ({
               id="slider-circle"
               ref={point}
               onDrag={handleDrag}
+              onKeyDown={keyMove}
             />
           </div>
         </div>
