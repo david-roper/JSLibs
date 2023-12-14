@@ -1,11 +1,12 @@
 import { useMemo, useRef, useState } from 'react';
 
-import { range } from '@douglasneuroinformatics/utils';
+//import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import { motion } from 'framer-motion';
+import _ from 'lodash';
 import type { Simplify } from 'type-fest';
 
-import { PopoverIcon } from '../..';
+import { PopoverIcon, cn } from '../..';
 import { FormFieldContainer } from './FormFieldContainer';
 
 import type { NumericFieldProps } from './NumericField';
@@ -24,19 +25,10 @@ export const NumericFieldSlider = ({
 }: NumericFieldSliderProps) => {
   const guide = useRef<HTMLDivElement>(null);
   const point = useRef<HTMLDivElement>(null);
-
-  const values = useMemo(() => range(min, max + 1), [min, max]);
-
+  const container = useRef<HTMLDivElement>(null)
   const [isFocused, setIsFocused] = useState(false)
 
-  const keyMove = () => {
-    if(isFocused){
-      if (!(guide.current && point.current)) {
-        return;
-      }
-      
-    }
-  }
+  const values = useMemo(() => _.range(min, max + 1), [min, max]);
 
   const handleDrag = () => {
     if (!(guide.current && point.current)) {
@@ -50,28 +42,61 @@ export const NumericFieldSlider = ({
     setValue(values[valueIndex] ?? undefined);
   };
 
+  const keyMove = (e) => {
+    console.log('key is pressed');
+    if (!(guide.current && point.current)) {
+      return;
+    }
+    if (!(document.getElementById("slider-div"))) {
+      return;
+    }
+    const guideRect = guide.current.getBoundingClientRect();
+    const pointRect = point.current.getBoundingClientRect();
+
+    var slider = document.getElementById("slider-div");
+    //slider.style.position = "absolute";
+
+
+    if(isFocused){
+      //move to the right
+      if (e.keyCode === 39){
+       console.log('moving right')
+       //slider.style.left = (pointRect.left - 10) + 'px';
+       handleDrag();
+
+      }
+      //move to the left
+      else if (e.keyCode === 37){
+        //slider.style.left = (pointRect.left + 10) + 'px';
+        handleDrag();
+      }
+    }
+
+
+  };
+
   return (
     <FormFieldContainer error={error}>
       <label className="field-label" htmlFor={name}>
         {label}
       </label>
-      <div className={"flex gap-3" + (isFocused? " border-solid border-2" : "")}>
-        <div className="field-input-base flex items-center"  onClick={() => setIsFocused(!isFocused)}>
+      <div className="flex gap-3">
+        <div className={cn("field-input-base flex items-center", isFocused && 'border' )} ref={container} onClick={() => setIsFocused(!isFocused)}>
           <div
-            className="h-1.5 items-center w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
-            id="slider-bar"
+            className="h-1.5 focus:border items-center w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
           >
             <motion.div
+              id="slider-div"
               className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400"
               drag="x"
               dragConstraints={guide}
               dragElastic={false}
               dragMomentum={false}
-              id="slider-circle"
               ref={point}
               onDrag={handleDrag}
-              onKeyDown={keyMove}
+              onKeyDown={(e) => keyMove(e)}
+              tabIndex={0}
             />
           </div>
         </div>
