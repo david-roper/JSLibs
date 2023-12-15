@@ -50,8 +50,7 @@ export const NumericFieldSlider = ({
     if (!(document.getElementById("slider-div"))) {
       return;
     }
-    const guideRect = guide.current.getBoundingClientRect();
-    const pointRect = point.current.getBoundingClientRect();
+ 
 
     var slider = document.getElementById("slider-div");
     //slider.style.position = "absolute";
@@ -59,14 +58,14 @@ export const NumericFieldSlider = ({
 
     if(isFocused){
       //move to the right
-      if (e.keyCode === 39){
+      if (e.key === 'ArrowRight'){
        console.log('moving right')
        //slider.style.left = (pointRect.left - 10) + 'px';
        handleDrag();
 
       }
       //move to the left
-      else if (e.keyCode === 37){
+      else if (e.key === 'ArrowLeft'){
         //slider.style.left = (pointRect.left + 10) + 'px';
         handleDrag();
       }
@@ -95,7 +94,7 @@ export const NumericFieldSlider = ({
               dragMomentum={false}
               ref={point}
               onDrag={handleDrag}
-              onKeyDown={(e) => keyMove(e)}
+              onKeyDown={keyMove}
               tabIndex={0}
             />
           </div>
