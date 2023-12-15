@@ -42,6 +42,26 @@ export const NumericFieldSlider = ({
     setValue(values[valueIndex] ?? undefined);
   };
 
+  const handleDragWithKey = (direction: number) => {
+    if (!(guide.current && point.current)) {
+      return;
+    }
+    const guideRect = guide.current.getBoundingClientRect();
+    const pointRect = point.current.getBoundingClientRect();
+    const offsetLeft = pointRect.left - guideRect.left;
+    const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
+    const valueIndex = Math.round((values.length - 1) * offsetPercentage);
+
+
+     // Calculate the new value based on the direction
+     const newValueIndex = valueIndex + direction;
+
+     // Ensure the new value is within bounds
+     if (newValueIndex >= 0 && newValueIndex < values.length) {
+       setValue(values[newValueIndex]);
+     }
+  };
+
   const keyMove = (e) => {
     console.log('key is pressed');
     if (!(guide.current && point.current)) {
@@ -61,13 +81,13 @@ export const NumericFieldSlider = ({
       if (e.key === 'ArrowRight'){
        console.log('moving right')
        //slider.style.left = (pointRect.left - 10) + 'px';
-       handleDrag();
+       handleDragWithKey(1);
 
       }
       //move to the left
       else if (e.key === 'ArrowLeft'){
         //slider.style.left = (pointRect.left + 10) + 'px';
-        handleDrag();
+        handleDragWithKey(-1);
       }
     }
 
