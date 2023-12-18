@@ -63,7 +63,6 @@ export const NumericFieldSlider = ({
   };
 
   const keyMove = (e) => {
-    console.log('key is pressed');
     if (!(guide.current && point.current)) {
       return;
     }
@@ -79,13 +78,14 @@ export const NumericFieldSlider = ({
     if(isFocused){
       //move to the right
       if (e.key === 'ArrowRight'){
-       console.log('moving right')
+      console.log('right key')
        //slider.style.left = (pointRect.left - 10) + 'px';
        handleDragWithKey(1);
 
       }
       //move to the left
       else if (e.key === 'ArrowLeft'){
+        console.log('left key')
         //slider.style.left = (pointRect.left + 10) + 'px';
         handleDragWithKey(-1);
       }
@@ -100,7 +100,7 @@ export const NumericFieldSlider = ({
         {label}
       </label>
       <div className="flex gap-3">
-        <div className={cn("field-input-base flex items-center", isFocused && 'border' )} ref={container} onClick={() => setIsFocused(!isFocused)}>
+        <div className={cn("field-input-base flex items-center", isFocused && 'border' )} ref={container} onClick={() => setIsFocused(!isFocused)} onKeyDown={keyMove} tabIndex={0}>
           <div
             className="h-1.5 focus:border items-center w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
@@ -115,7 +115,6 @@ export const NumericFieldSlider = ({
               ref={point}
               onDrag={handleDrag}
               onKeyDown={keyMove}
-              tabIndex={0}
             />
           </div>
         </div>
