@@ -77,7 +77,7 @@ export const NumericFieldSlider = ({
       //move to the left
       else if (e.key === 'ArrowLeft'){
         console.log('left key')
-        var newPos = pointRect.left - 30;
+        var newPos = pointRect.left - 40;
         if(newPos > guideRect.left){
           console.log('newPos value: ' + newPos);
           slider.style.transform = 'translateX(' + (newPos) + 'px)';
