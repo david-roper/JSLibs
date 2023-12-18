@@ -42,25 +42,6 @@ export const NumericFieldSlider = ({
     setValue(values[valueIndex] ?? undefined);
   };
 
-  const handleDragWithKey = (direction: number) => {
-    if (!(guide.current && point.current)) {
-      return;
-    }
-    const guideRect = guide.current.getBoundingClientRect();
-    const pointRect = point.current.getBoundingClientRect();
-    const offsetLeft = pointRect.left - guideRect.left;
-    const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
-    const valueIndex = Math.round((values.length - 1) * offsetPercentage);
-
-
-     // Calculate the new value based on the direction
-     const newValueIndex = valueIndex + direction;
-
-     // Ensure the new value is within bounds
-     if (newValueIndex >= 0 && newValueIndex < values.length) {
-       setValue(values[newValueIndex]);
-     }
-  };
 
   const keyMove = (e) => {
     if (!(guide.current && point.current)) {
@@ -69,25 +50,44 @@ export const NumericFieldSlider = ({
     if (!(document.getElementById("slider-div"))) {
       return;
     }
- 
+    const pointRect = point.current.getBoundingClientRect();
+    const guideRect = guide.current.getBoundingClientRect();
 
     var slider = document.getElementById("slider-div");
     //slider.style.position = "absolute";
-
+    
 
     if(isFocused){
+      console.log('guideRect right pos: ' + guideRect.right)
+      console.log('guideRect left pos: ' + guideRect.left)
+      console.log('pointRect left pos: ' + pointRect.left)
       //move to the right
       if (e.key === 'ArrowRight'){
       console.log('right key')
-       //slider.style.left = (pointRect.left - 10) + 'px';
-       handleDragWithKey(1);
+       if(guideRect.right > (pointRect.right + 10)){
+        slider.style.transform = 'translateX(' + (pointRect.left + 10) + 'px)';
+        handleDrag();
+       }
+       else{
+        slider.style.transform = 'translateX(' + (0) + 'px)';
+       }
+      
 
       }
       //move to the left
       else if (e.key === 'ArrowLeft'){
         console.log('left key')
-        //slider.style.left = (pointRect.left + 10) + 'px';
-        handleDragWithKey(-1);
+        var newPos = pointRect.left - 30;
+        if(newPos > guideRect.left){
+          console.log('newPos value: ' + newPos);
+          slider.style.transform = 'translateX(' + (newPos) + 'px)';
+          handleDrag();
+        }
+        else{
+          console.log('newPos value 2: ' + newPos);
+          slider.style.transform = 'translateX(' + (guideRect.right - pointRect.right) + 'px)';
+        } 
+        
       }
     }
 
