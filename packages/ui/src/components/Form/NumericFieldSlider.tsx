@@ -1,8 +1,7 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
 //import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
-import { motion } from 'framer-motion';
 import _ from 'lodash';
 import type { Simplify } from 'type-fest';
 
@@ -25,74 +24,122 @@ export const NumericFieldSlider = ({
 }: NumericFieldSliderProps) => {
   const guide = useRef<HTMLDivElement>(null);
   const point = useRef<HTMLDivElement>(null);
-  const container = useRef<HTMLDivElement>(null)
-  const [isFocused, setIsFocused] = useState(false)
-
+  const container = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [currentValueIndex, setCurrentValueIndex] = useState(0);
   const values = useMemo(() => _.range(min, max + 1), [min, max]);
 
-  const handleDrag = () => {
-    if (!(guide.current && point.current)) {
-      return;
+  const computePositions = () => {
+    if (!guide.current) {
+      return null;
     }
-    const guideRect = guide.current.getBoundingClientRect();
-    const pointRect = point.current.getBoundingClientRect();
-    const offsetLeft = pointRect.left - guideRect.left;
-    const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
-    const valueIndex = Math.round((values.length - 1) * offsetPercentage);
-    setValue(values[valueIndex] ?? undefined);
+    const width = guide.current.clientWidth;
+    return values.map((_, i) => {
+      return (width / values.length) * i;
+    });
   };
 
+  const positions = computePositions();
 
-  const keyMove = (e) => {
-    if (!(guide.current && point.current)) {
+  const handleDragEnd: React.DragEventHandler<HTMLDivElement> = (e) => {
+    //find the drag position of the element
+    //find the closest indexed point in the positions list to the dragged position
+    //snap the ball to that indexed point
+
+    if (!(guide.current && point.current && positions)) {
       return;
     }
-    if (!(document.getElementById("slider-div"))) {
+    if (!(positions[0])) {
       return;
     }
-    const pointRect = point.current.getBoundingClientRect();
-    const guideRect = guide.current.getBoundingClientRect();
+    const dragPos = e.clientX;
+    let closestIndex = 0;
+    let dragPointDiff = Math.abs(dragPos - positions[0]);
 
-    var slider = document.getElementById("slider-div");
-    //slider.style.position = "absolute";
-    
-
-    if(isFocused){
-      console.log('guideRect right pos: ' + guideRect.right)
-      console.log('guideRect left pos: ' + guideRect.left)
-      console.log('pointRect left pos: ' + pointRect.left)
-      //move to the right
-      if (e.key === 'ArrowRight'){
-      console.log('right key')
-       if(guideRect.right > (pointRect.right + 10)){
-        slider.style.transform = 'translateX(' + (pointRect.left + 10) + 'px)';
-        handleDrag();
-       }
-       else{
-        slider.style.transform = 'translateX(' + (0) + 'px)';
-       }
-      
-
-      }
-      //move to the left
-      else if (e.key === 'ArrowLeft'){
-        console.log('left key')
-        var newPos = pointRect.left - 40;
-        if(newPos > guideRect.left){
-          console.log('newPos value: ' + newPos);
-          slider.style.transform = 'translateX(' + (newPos) + 'px)';
-          handleDrag();
-        }
-        else{
-          console.log('newPos value 2: ' + newPos);
-          slider.style.transform = 'translateX(' + (guideRect.right - pointRect.right) + 'px)';
-        } 
-        
+    for (let i = 0; i < positions.length; i++) {
+      if (dragPointDiff > Math.abs(dragPos - positions[i])) {
+        dragPointDiff = Math.abs(dragPos - positions[i]);
+        closestIndex = i;
       }
     }
 
+    setCurrentValueIndex(closestIndex);
 
+    // const guideRect = guide.current.getBoundingClientRect();
+    // const offsetLeft = pointRect.left - guideRect.left;
+    // const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
+    // const valueIndex = Math.round((values.length - 1) * offsetPercentage);
+    // setValue(values[valueIndex] ?? undefined);
   };
+
+  const handleDrag: React.DragEventHandler<HTMLDivElement> = (e) => {
+    if (!(guide.current && point.current && positions)) {
+      return;
+    }
+    const guideRect = guide.current.getBoundingClientRect();
+    const dragPos = e.clientX;
+
+    if (dragPos < guideRect.left) {
+      setCurrentPosition(0);
+      point.current.style.left = currentPosition + 'px';
+    } else if (dragPos > guideRect.right) {
+      setCurrentValueIndex(positions.length);
+      point.current.style.left = currentPosition + 'px';
+    } else {
+      point.current.style.left = dragPos + 'px';
+    }
+  };
+
+  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (!(guide.current && point.current && positions) || !isFocused) {
+      return;
+    }
+    if (e.key === 'ArrowRight' && currentValueIndex <= positions.length) {
+      setCurrentValueIndex(currentValueIndex + 1);
+    } else if (e.key === 'ArrowLeft' && currentValueIndex >= 1) {
+      setCurrentValueIndex(currentValueIndex - 1);
+    }
+
+    // const pointRect = point.current.getBoundingClientRect();
+    // const guideRect = guide.current.getBoundingClientRect();
+
+    // console.log('guideRect right pos: ' + guideRect.right)
+    // console.log('guideRect left pos: ' + guideRect.left)
+    // console.log('pointRect left pos: ' + pointRect.left)
+    //move to the right
+    // if (e.key === 'ArrowRight') {
+    //   console.log('right key')
+    //   if (guideRect.right > pointRect.right + 10) {
+    //     point.current.clientLeft = pointRect.left + 10;
+
+    //     //point.current.style.transform = 'translateX(' + (pointRect.left + 10) + 'px)';
+    //     handleDrag();
+    //   } else {
+    //     point.current.style.transform = 'translateX(' + 0 + 'px)';
+    //   }
+    // }
+    //   //move to the left
+    //   else if (e.key === 'ArrowLeft'){
+    //     console.log('left key')
+    //     let newPos = pointRect.left - 40;
+    //     if(newPos > guideRect.left){
+    //       console.log('newPos value: ' + newPos);
+    //       point.current.style.transform = 'translateX(' + (newPos) + 'px)';
+    //       handleDrag();
+    //     }
+    //     else{
+    //       console.log('newPos value 2: ' + newPos);
+    //       point.current.style.transform = 'translateX(' + (guideRect.right - pointRect.right) + 'px)';
+    //     }
+  };
+
+  useEffect(() => {
+    const val = positions?.[currentValueIndex];
+    if (typeof val === 'number') {
+      setCurrentPosition(val);
+    }
+  }, [currentValueIndex]);
 
   return (
     <FormFieldContainer error={error}>
@@ -100,25 +147,32 @@ export const NumericFieldSlider = ({
         {label}
       </label>
       <div className="flex gap-3">
-        <div className={cn("field-input-base flex items-center", isFocused && 'border' )} ref={container} onClick={() => setIsFocused(!isFocused)} onKeyDown={keyMove} tabIndex={0}>
+        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
+        <div
+          className={cn('field-input-base flex items-center', isFocused && 'border')}
+          ref={container}
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+          tabIndex={0}
+          onClick={() => setIsFocused(!isFocused)}
+          onKeyDown={handleKeyDown}
+        >
           <div
-            className="h-1.5 focus:border items-center w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
+            className="h-1.5 focus:border items-center relative w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
           >
-            <motion.div
+            <div
+              className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400 absolute cursor-grab"
               id="slider-div"
-              className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400"
-              drag="x"
-              dragConstraints={guide}
-              dragElastic={false}
-              dragMomentum={false}
               ref={point}
+              style={{ left: currentPosition }}
               onDrag={handleDrag}
-              onKeyDown={keyMove}
+              onDragEnd={handleDragEnd}
             />
           </div>
         </div>
-        <div className="flex items-center justify-center text-slate-600 dark:text-slate-300">{value ?? 'NA'}</div>
+        <div className="flex items-center justify-center text-slate-600 dark:text-slate-300">
+          {currentValueIndex ?? 'NA'}
+        </div>
         {description && (
           <div className="flex items-center justify-center">
             <PopoverIcon icon={QuestionMarkCircleIcon} position="right" text={description} />
