@@ -50,17 +50,20 @@ export const NumericFieldSlider = ({
     if (!(guide.current && point.current && positions)) {
       return;
     }
-    if (!(positions[0])) {
+    if (!positions[0]) {
       return;
     }
+
     const dragPos = e.clientX;
+
     let closestIndex = 0;
     let dragPointDiff = Math.abs(dragPos - positions[0]);
 
     for (let i = 0; i < positions.length; i++) {
-      if (dragPointDiff > Math.abs(dragPos - positions[i])) {
-        dragPointDiff = Math.abs(dragPos - positions[i]);
+      if (dragPointDiff > Math.abs(dragPos - positions[i]!)) {
+        dragPointDiff = Math.abs(dragPos - positions[i]!);
         closestIndex = i;
+        console.log('closest index ' + closestIndex);
       }
     }
 
@@ -73,16 +76,30 @@ export const NumericFieldSlider = ({
     // setValue(values[valueIndex] ?? undefined);
   };
 
+  //potential plan
+  //on dragstart have a isdragactive state
+  //move the circle with following the pages x-axis movement
+  //guide - page
+
   const handleDrag: React.DragEventHandler<HTMLDivElement> = (e) => {
     if (!(guide.current && point.current && positions)) {
       return;
     }
+
+    console.log('dragging now');
+
     const guideRect = guide.current.getBoundingClientRect();
+    const pointRect = point.current.getBoundingClientRect()
+
+
     const dragPos = e.clientX;
 
+    // console.log({ guideRect, pointRect, e })
     if (dragPos < guideRect.left) {
-      setCurrentPosition(0);
-      point.current.style.left = currentPosition + 'px';
+      if (positions[0] !== undefined) {
+        setCurrentPosition(positions?.[0]);
+        point.current.style.left = currentPosition + 'px';
+      }
     } else if (dragPos > guideRect.right) {
       setCurrentValueIndex(positions.length);
       point.current.style.left = currentPosition + 'px';
@@ -159,9 +176,13 @@ export const NumericFieldSlider = ({
           <div
             className="h-1.5 focus:border items-center relative w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
+            onMouseMove={(e) => {
+              console.log(e.pageX)
+            }}
           >
             <div
               className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400 absolute cursor-grab"
+              draggable={true}
               id="slider-div"
               ref={point}
               style={{ left: currentPosition }}
