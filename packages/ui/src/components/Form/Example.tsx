@@ -4,6 +4,7 @@
 // Modified original Vue implementation to use React
 
 import { useState } from 'react';
+import React from 'react';
 
 import type { EmptyObject } from 'type-fest';
 
@@ -34,8 +35,8 @@ export const _Example = () => {
     height: window.innerHeight,
     sliderX: 0,
     width: window.innerWidth
-  })
-  
+  });
+
   function currentValue() {
     const valueRangeStart = 0;
     const valueRange = 10;
@@ -45,7 +46,7 @@ export const _Example = () => {
   function gradientEnd() {
     return state.gradientEnd;
   }
-  
+
   function setGradientEnd(value) {
     setState({ gradientEnd: value });
   }
@@ -54,15 +55,15 @@ export const _Example = () => {
     return state.gradientStart;
   }
 
-  function gradientStart(value) {
-    setState({ gradientStart: value });
-  }
+  // gradientStart(value) {
+  //   setState({ gradientStart: value });
+  // };
 
-  bgStyle() {
+  function bgStyle() {
     return { background: 'linear-gradient(to bottom right,' + `${this.gradientStart}, ${this.gradientEnd})` };
   }
 
-  commonMoving(pageX: number) {
+  function commonMoving(pageX: number) {
     if (this.state.dragging) {
       const dragAmount = pageX - this.initialMouseX!;
       const targetX = this.initialSliderX! + dragAmount;
@@ -94,22 +95,22 @@ export const _Example = () => {
     }
   }
 
-  commonStartDrag(pageX: number) {
+  function commonStartDrag(pageX: number) {
     this.initialMouseX = pageX;
     this.setState({ dragging: true });
     this.initialSliderX = this.state.sliderX;
   }
 
-  componentDidMount() {
+  function componentDidMount() {
     this.updateWindowDimensions();
     window.addEventListener('resize', this.updateWindowDimensions);
   }
 
-  componentWillUnmount() {
+  function componentWillUnmount() {
     window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
-  gradationElementStyle(value: number) {
+  function gradationElementStyle(value: number) {
     const nearDistance = 0.5;
     const liftDistance = 12;
 
@@ -123,16 +124,15 @@ export const _Example = () => {
     return lift;
   }
 
-  mouseMoving(e: React.MouseEvent) {
+  function mouseMoving(e: React.MouseEvent) {
     const pageX = e.pageX;
     this.commonMoving(pageX);
   }
 
-
-  return 
-}
+  return;
+};
 export class Example extends React.Component<EmptyObject, State> {
-  private activeGradientStart?: string
+  private activeGradientStart?: string;
   private gradations: number[];
   private initialMouseX?: number;
   private initialSliderX?: number;
@@ -256,11 +256,17 @@ export class Example extends React.Component<EmptyObject, State> {
     return (
       <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] h-screen overflow-x-hidden" id="app">
         <div className="relative" style={this.bgStyle()}>
-          <div className="absolute -translate-x-2/4 -translate-y-2/4 text-[40vh] left-2/4 top-2/4">{Math.round(this.currentValue)}</div>
+          <div className="absolute -translate-x-2/4 -translate-y-2/4 text-[40vh] left-2/4 top-2/4">
+            {Math.round(this.currentValue)}
+          </div>
 
           <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
             {this.gradations.map((value, i) => (
-              <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0" key={i} style={this.gradationElementStyle(value)}>
+              <div
+                className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
+                key={i}
+                style={this.gradationElementStyle(value)}
+              >
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{value}</span>
                 <br />
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
@@ -271,7 +277,10 @@ export class Example extends React.Component<EmptyObject, State> {
 
         <div className="bg-[#ccc]">
           <div
-            className={'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' + (this.state.dragging ? 'cursor-grabbing ' : '')}
+            className={
+              'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
+              (this.state.dragging ? 'cursor-grabbing ' : '')
+            }
             style={{ left: this.state.sliderX }}
             onMouseMove={this.mouseMoving}
             onMouseUp={this.stopDrag}
@@ -288,7 +297,10 @@ export class Example extends React.Component<EmptyObject, State> {
             </svg>
 
             <div
-              className={'absolute w-[50px] h-[50px] bg-[#2724A2] cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px] ' + (this.state.dragging ? 'cursor-grabbing ' : '')}
+              className={
+                'absolute w-[50px] h-[50px] bg-[#2724A2] cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px] ' +
+                (this.state.dragging ? 'cursor-grabbing ' : '')
+              }
               onMouseDown={this.startDrag}
               onTouchStart={this.startTouchDrag}
             >
