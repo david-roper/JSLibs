@@ -37,23 +37,23 @@ export const _Example = () => {
     width: window.innerWidth
   });
 
-  function currentValue() {
-    const valueRangeStart = 0;
-    const valueRange = 10;
-    return (state.sliderX / sliderMaxX) * valueRange + valueRangeStart;
-  }
+  // function currentValue() {
+  //   const valueRangeStart = 0;
+  //   const valueRange = 10;
+  //   return (state.sliderX / sliderMaxX) * valueRange + valueRangeStart;
+  // }
 
-  function gradientEnd() {
-    return state.gradientEnd;
-  }
+  // function gradientEnd() {
+  //   return state.gradientEnd;
+  // }
 
-  function setGradientEnd(value) {
-    setState({ gradientEnd: value });
-  }
+  // function setGradientEnd(value) {
+  //   setState({ gradientEnd: value });
+  // }
 
-  function gradientStart() {
-    return state.gradientStart;
-  }
+  // function gradientStart() {
+  //   return state.gradientStart;
+  // }
 
   // gradientStart(value) {
   //   setState({ gradientStart: value });
@@ -275,7 +275,7 @@ export class Example extends React.Component<EmptyObject, State> {
           </div>
         </div>
 
-        <div className="bg-[#ccc]">
+        <div className="bg-[#ccc] h-1/2">
           <div
             className={
               'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
