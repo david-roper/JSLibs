@@ -132,9 +132,27 @@ export const _Example = () => {
   return;
 };
 export class Example extends React.Component<EmptyObject, State> {
+  handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    if (e.key === 'ArrowRight') {
+      let movedRight = this.state.sliderX + 10;
+      if (movedRight > sliderMaxX) {
+        this.setState({ sliderX: sliderMaxX });
+      } else {
+        this.setState({ sliderX: movedRight });
+      }
+    } else if (e.key === 'ArrowLeft') {
+      let movedLeft = this.state.sliderX - 10;
+      if (movedLeft < sliderMinX) {
+        this.setState({ sliderX: sliderMinX });
+      } else {
+        this.setState({ sliderX: movedLeft });
+      }
+    }
+  };
   private activeGradientStart?: string;
   private gradations: number[];
   private initialMouseX?: number;
+
   private initialSliderX?: number;
 
   constructor(props: EmptyObject) {
@@ -272,16 +290,21 @@ export class Example extends React.Component<EmptyObject, State> {
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
               </div>
             ))}
+            <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[8vh]">
+              {Math.round(this.currentValue)}
+            </div>
           </div>
         </div>
 
-        <div className="bg-[#ccc] h-1/2">
+        <div className="bg-[#ccc] h-1/4">
           <div
             className={
               'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
               (this.state.dragging ? 'cursor-grabbing ' : '')
             }
             style={{ left: this.state.sliderX }}
+            tabIndex={0}
+            onKeyDown={this.handleKeyDown}
             onMouseMove={this.mouseMoving}
             onMouseUp={this.stopDrag}
             onTouchEnd={this.stopDrag}
@@ -332,7 +355,6 @@ export class Example extends React.Component<EmptyObject, State> {
     const pageX = e.changedTouches[0]!.pageX;
     this.commonMoving(pageX);
   }
-
   updateWindowDimensions() {
     this.setState({ height: window.innerHeight, width: window.innerWidth });
     if (window.innerWidth > 500) {
