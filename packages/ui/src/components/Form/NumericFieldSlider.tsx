@@ -89,8 +89,6 @@ export const NumericFieldSlider = ({
     console.log('dragging now');
 
     const guideRect = guide.current.getBoundingClientRect();
-    const pointRect = point.current.getBoundingClientRect()
-
 
     const dragPos = e.clientX;
 
@@ -114,6 +112,8 @@ export const NumericFieldSlider = ({
     }
     if (e.key === 'ArrowRight' && currentValueIndex <= positions.length) {
       setCurrentValueIndex(currentValueIndex + 1);
+      setValue(currentPosition);
+      console.log(value);
     } else if (e.key === 'ArrowLeft' && currentValueIndex >= 1) {
       setCurrentValueIndex(currentValueIndex - 1);
     }
@@ -177,7 +177,7 @@ export const NumericFieldSlider = ({
             className="h-1.5 focus:border items-center relative w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
             onMouseMove={(e) => {
-              console.log(e.pageX)
+              console.log(e.pageX);
             }}
           >
             <div

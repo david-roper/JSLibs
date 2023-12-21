@@ -62,9 +62,9 @@ export const _Example = () => {
   //   setState({ gradientStart: value });
   // };
 
-  function bgStyle() {
-    return { background: 'linear-gradient(to bottom right,' + `${this.gradientStart}, ${this.gradientEnd})` };
-  }
+  // function bgStyle() {
+  //   return { background: 'linear-gradient(to bottom right,' + `${this.gradientStart}, ${this.gradientEnd})` };
+  // }
 
   function commonMoving(pageX: number) {
     if (this.state.dragging) {
@@ -170,7 +170,7 @@ export class Example extends React.Component<EmptyObject, State> {
     this.mouseMoving = this.mouseMoving.bind(this);
     this.touchMoving = this.touchMoving.bind(this);
     this.stopDrag = this.stopDrag.bind(this);
-    this.bgStyle = this.bgStyle.bind(this);
+    // this.bgStyle = this.bgStyle.bind(this);
 
     this.gradations = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -207,9 +207,9 @@ export class Example extends React.Component<EmptyObject, State> {
     this.setState({ gradientStart: value });
   }
 
-  bgStyle() {
-    return { background: 'linear-gradient(to bottom right,' + `${this.gradientStart}, ${this.gradientEnd})` };
-  }
+  // bgStyle() {
+  //   return { background: 'linear-gradient(to bottom right,' + `${this.gradientStart}, ${this.gradientEnd})` };
+  // }
 
   commonMoving(pageX: number) {
     if (this.state.dragging) {
