@@ -7,6 +7,7 @@ import { useState } from 'react';
 import React from 'react';
 
 import type { EmptyObject } from 'type-fest';
+import { cn } from '../..';
 
 // Also added touch support for moving the slider on mobile browsers
 const sliderMinX = 0;
@@ -22,6 +23,7 @@ type State = {
   gradientEnd: string;
   gradientStart: string;
   height: number;
+  isFocused: boolean;
   sliderX: number;
   width: number;
 };
@@ -33,6 +35,7 @@ export const _Example = () => {
     gradientEnd: greenGradient.end,
     gradientStart: greenGradient.start,
     height: window.innerHeight,
+    isFocused: false,
     sliderX: 0,
     width: window.innerWidth
   });
@@ -133,6 +136,9 @@ export const _Example = () => {
 };
 export class Example extends React.Component<EmptyObject, State> {
   handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    // if (!this.state.isFocused) {
+    //   return;
+    // }
     if (e.key === 'ArrowRight') {
       let movedRight = this.state.sliderX + 10;
       if (movedRight > sliderMaxX) {
@@ -173,6 +179,7 @@ export class Example extends React.Component<EmptyObject, State> {
       gradientEnd: greenGradient.end,
       gradientStart: greenGradient.start,
       height: window.innerHeight,
+      isFocused: false,
       sliderX: 0,
       width: window.innerWidth
     };
@@ -272,12 +279,8 @@ export class Example extends React.Component<EmptyObject, State> {
 
   render() {
     return (
-      <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] h-screen overflow-x-hidden" id="app">
-        <div className="relative" style={this.bgStyle()}>
-          <div className="absolute -translate-x-2/4 -translate-y-2/4 text-[40vh] left-2/4 top-2/4">
-            {Math.round(this.currentValue)}
-          </div>
-
+      <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] overflow-x-hidden" id="app">
+        <div className="relative bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300">
           <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
             {this.gradations.map((value, i) => (
               <div
@@ -290,21 +293,19 @@ export class Example extends React.Component<EmptyObject, State> {
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
               </div>
             ))}
-            <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[8vh]">
+            <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]">
               {Math.round(this.currentValue)}
             </div>
           </div>
         </div>
 
-        <div className="bg-[#ccc] h-1/4">
+        <div className="bg-[#ccc] h-3/4">
           <div
             className={
               'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
               (this.state.dragging ? 'cursor-grabbing ' : '')
             }
             style={{ left: this.state.sliderX }}
-            tabIndex={0}
-            onKeyDown={this.handleKeyDown}
             onMouseMove={this.mouseMoving}
             onMouseUp={this.stopDrag}
             onTouchEnd={this.stopDrag}
@@ -320,10 +321,13 @@ export class Example extends React.Component<EmptyObject, State> {
             </svg>
 
             <div
-              className={
-                'absolute w-[50px] h-[50px] bg-[#2724A2] cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px] ' +
-                (this.state.dragging ? 'cursor-grabbing ' : '')
-              }
+              className={cn(
+                'absolute focus:border-2 w-[50px] h-[50px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px]',
+                this.state.dragging && 'cursor-grabbing'
+              )}
+              tabIndex={0}
+              onFocus={() => this.setState({ isFocused: !this.state.isFocused })}
+              onKeyDown={this.handleKeyDown}
               onMouseDown={this.startDrag}
               onTouchStart={this.startTouchDrag}
             >
