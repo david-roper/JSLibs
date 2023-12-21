@@ -6,8 +6,11 @@
 import { useState } from 'react';
 import React from 'react';
 
+import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
 import type { EmptyObject } from 'type-fest';
-import { cn } from '../..';
+
+import { PopoverIcon, cn } from '../..';
+import { FormFieldContainer } from './FormFieldContainer';
 
 // Also added touch support for moving the slider on mobile browsers
 const sliderMinX = 0;
@@ -19,6 +22,7 @@ const orangeGradient = { end: '#FF9008', start: '#a17208' };
 const redGradient = { end: '#7C0000', start: '#FF9008' };
 
 type State = {
+  description: string;
   dragging: boolean;
   gradientEnd: string;
   gradientStart: string;
@@ -31,6 +35,7 @@ type State = {
 export const _Example = () => {
   const gradations = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const [state, setState] = useState<State>({
+    description: 'this is a numeric field',
     dragging: false,
     gradientEnd: greenGradient.end,
     gradientStart: greenGradient.start,
@@ -136,9 +141,9 @@ export const _Example = () => {
 };
 export class Example extends React.Component<EmptyObject, State> {
   handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    // if (!this.state.isFocused) {
-    //   return;
-    // }
+    if (!this.state.isFocused) {
+      return;
+    }
     if (e.key === 'ArrowRight') {
       let movedRight = this.state.sliderX + 10;
       if (movedRight > sliderMaxX) {
@@ -175,6 +180,7 @@ export class Example extends React.Component<EmptyObject, State> {
     this.gradations = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
     this.state = {
+      description: 'this is a numeric slider',
       dragging: false,
       gradientEnd: greenGradient.end,
       gradientStart: greenGradient.start,
@@ -233,12 +239,6 @@ export class Example extends React.Component<EmptyObject, State> {
 
       if (this.activeGradientStart !== targetGradient.start) {
         this.activeGradientStart = targetGradient.start;
-
-        // // gradient changed
-        // TweenLite.to(this, 0.7, {
-        //   gradientEnd: targetGradient.end,
-        //   gradientStart: targetGradient.start
-        // });
       }
     }
   }
@@ -279,63 +279,68 @@ export class Example extends React.Component<EmptyObject, State> {
 
   render() {
     return (
-      <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] overflow-x-hidden" id="app">
-        <div className="relative bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300">
-          <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
-            {this.gradations.map((value, i) => (
-              <div
-                className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
-                key={i}
-                style={this.gradationElementStyle(value)}
-              >
-                <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{value}</span>
-                <br />
-                <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
+      <FormFieldContainer>
+        <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] overflow-x-hidden" id="app">
+          <div className="relative bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300">
+            <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
+              {this.gradations.map((value, i) => (
+                <div
+                  className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
+                  key={i}
+                  style={this.gradationElementStyle(value)}
+                >
+                  <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{value}</span>
+                  <br />
+                  <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
+                </div>
+              ))}
+              <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]">
+                {Math.round(this.currentValue)}
               </div>
-            ))}
-            <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]">
-              {Math.round(this.currentValue)}
+              <div className="relative text-center inline-block my-0-number left-8">
+                <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={this.state.description} />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="bg-[#ccc] h-3/4">
-          <div
-            className={
-              'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
-              (this.state.dragging ? 'cursor-grabbing ' : '')
-            }
-            style={{ left: this.state.sliderX }}
-            onMouseMove={this.mouseMoving}
-            onMouseUp={this.stopDrag}
-            onTouchEnd={this.stopDrag}
-            onTouchMove={this.touchMoving}
-          >
-            <svg fill="none" height="30" viewBox="0 0 150 30" width="150" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M74.3132 0C47.0043 2.44032e-05 50.175 30 
-                7.9179 30H144.27C99.4571 30 101.622 -2.44032e-05 74.3132 0Z"
-                fill="#ccc"
-                transform="translate(-7.38794 0.5)"
-              />
-            </svg>
-
+          <div className="bg-[#ccc] h-3/4">
             <div
-              className={cn(
-                'absolute focus:border-2 w-[50px] h-[50px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px]',
-                this.state.dragging && 'cursor-grabbing'
-              )}
-              tabIndex={0}
-              onFocus={() => this.setState({ isFocused: !this.state.isFocused })}
-              onKeyDown={this.handleKeyDown}
-              onMouseDown={this.startDrag}
-              onTouchStart={this.startTouchDrag}
+              className={
+                'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
+                (this.state.dragging ? 'cursor-grabbing ' : '')
+              }
+              style={{ left: this.state.sliderX }}
+              onMouseMove={this.mouseMoving}
+              onMouseUp={this.stopDrag}
+              onTouchEnd={this.stopDrag}
+              onTouchMove={this.touchMoving}
             >
-              <i className="text-[white] ml-[21px] mt-4"></i>
+              <svg fill="none" height="30" viewBox="0 0 150 30" width="150" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M74.3132 0C47.0043 2.44032e-05 50.175 30 
+                7.9179 30H144.27C99.4571 30 101.622 -2.44032e-05 74.3132 0Z"
+                  fill="#ccc"
+                  transform="translate(-7.38794 0.5)"
+                />
+              </svg>
+
+              <div
+                className={cn(
+                  'absolute focus:border-2 w-[50px] h-[50px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px]',
+                  this.state.dragging && 'cursor-grabbing'
+                )}
+                tabIndex={0}
+                onFocus={() => this.setState({ isFocused: true })}
+                onKeyDown={this.handleKeyDown}
+                onMouseDown={this.startDrag}
+                onTouchStart={this.startTouchDrag}
+              >
+                <i className="text-[white] ml-[21px] mt-4"></i>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </FormFieldContainer>
     );
   }
 
