@@ -42,7 +42,16 @@ const commonStartDrag = (pageX: number) => {
   setInitialSliderX(sliderX)
 }
 
-handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+const componentDidMount = () => {
+  updateWindowDimensions();
+  window.addEventListener('resize', updateWindowDimensions);
+}
+
+const componentWillUnmount = () => {
+  window.removeEventListener('resize', updateWindowDimensions);
+}
+
+const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
   if (!isFocused) {
     return;
   }
@@ -91,11 +100,81 @@ const updateWindowDimensions= () => {
   }
 }
 
-  return (
+const mouseMoving = (e: React.MouseEvent) => {
+  const pageX = e.pageX;
+  commonMoving(pageX);
+}
+
+const currentValue = () => {
+  const valueRangeStart = 0;
+  const valueRange = 10;
+  return (sliderX / sliderMaxX) * valueRange + valueRangeStart;
+}
+
+return (
     <FormFieldContainer error={error}>
       <label className="field-label" htmlFor={name}>
         {label}
       </label>
+      <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] overflow-x-hidden" id="app">
+          <div className="relative bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300">
+            <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
+              {this.gradations.map((value, i) => (
+                <div
+                  className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
+                  key={i}
+                >
+                  <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{value}</span>
+                  <br />
+                  <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
+                </div>
+              ))}
+              <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]">
+                {Math.round(currentValue())}
+              </div>
+              <div className="relative text-center inline-block my-0-number left-8">
+                <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={this.state.description} />
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-[#ccc] h-3/4">
+            <div
+              className={
+                'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
+                (isDragging ? 'cursor-grabbing ' : '')
+              }
+              style={{ left: sliderX }}
+              onMouseMove={mouseMoving}
+              onMouseUp={stopDrag}
+              onTouchEnd={stopDrag}
+              onTouchMove={touchMoving}
+            >
+              <svg fill="none" height="30" viewBox="0 0 150 30" width="150" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M74.3132 0C47.0043 2.44032e-05 50.175 30 
+                7.9179 30H144.27C99.4571 30 101.622 -2.44032e-05 74.3132 0Z"
+                  fill="#ccc"
+                  transform="translate(-7.38794 0.5)"
+                />
+              </svg>
+
+              <div
+                className={cn(
+                  'absolute focus:border-2 w-[50px] h-[50px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px]',
+                  isDragging && 'cursor-grabbing'
+                )}
+                tabIndex={0}
+                onFocus={() => setIsFocused(true)}
+                onKeyDown={()=> handleKeyDown}
+                onMouseDown={startDrag}
+                onTouchStart={startTouchDrag}
+              >
+                <i className="text-[white] ml-[21px] mt-4"></i>
+              </div>
+            </div>
+          </div>
+        </div>
 
       <div className="flex gap-3">
         {description && (
@@ -105,5 +184,5 @@ const updateWindowDimensions= () => {
         )}
       </div>
     </FormFieldContainer>
-  );
+);
 };
