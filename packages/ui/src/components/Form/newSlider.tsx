@@ -108,6 +108,7 @@ const mouseMoving = (e: React.MouseEvent) => {
 const currentValue = () => {
   const valueRangeStart = 0;
   const valueRange = 10;
+  setValue((sliderX / sliderMaxX) * valueRange + valueRangeStart)
   return (sliderX / sliderMaxX) * valueRange + valueRangeStart;
 }
 
@@ -119,7 +120,7 @@ return (
       <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] overflow-x-hidden" id="app">
           <div className="relative bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300">
             <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
-              {this.gradations.map((value, i) => (
+              {gradations.map((value, i) => (
                 <div
                   className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
                   key={i}
@@ -133,7 +134,7 @@ return (
                 {Math.round(currentValue())}
               </div>
               <div className="relative text-center inline-block my-0-number left-8">
-                <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={this.state.description} />
+                <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description} />
               </div>
             </div>
           </div>
