@@ -6,6 +6,7 @@ import { NewSlider } from './newSlider';
 
 type Story = StoryObj<typeof NewSlider>;
 
+
 export default { component: NewSlider } satisfies Meta<typeof NewSlider>;
 
 export const Default: Story = {

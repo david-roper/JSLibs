@@ -63,7 +63,6 @@ export const NumericFieldSlider = ({
       if (dragPointDiff > Math.abs(dragPos - positions[i]!)) {
         dragPointDiff = Math.abs(dragPos - positions[i]!);
         closestIndex = i;
-        console.log('closest index ' + closestIndex);
       }
     }
 
