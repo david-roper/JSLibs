@@ -2,12 +2,11 @@ import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { NewSlider } from './newSlider';
+import { NewSlider2 } from './newSlider2';
 
-type Story = StoryObj<typeof NewSlider>;
+type Story = StoryObj<typeof NewSlider2>;
 
-
-export default { component: NewSlider } satisfies Meta<typeof NewSlider>;
+export default { component: NewSlider2 } satisfies Meta<typeof NewSlider2>;
 
 export const Default: Story = {
   decorators: [

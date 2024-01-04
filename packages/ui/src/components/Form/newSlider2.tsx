@@ -10,9 +10,9 @@ import { FormFieldContainer } from './FormFieldContainer';
 
 import type { NumericFieldProps } from './NumericField';
 
-export type NewSliderProps = Simplify<Extract<NumericFieldProps, { variant: 'slider' }>>;
+export type NewSlider2Props = Simplify<Extract<NumericFieldProps, { variant: 'slider' }>>;
 
-export const NewSlider = ({ description, error, label, max, min, name, setValue, value }: NewSliderProps) => {
+export const NewSlider2 = ({ description, error, label, max, min, name, setValue, value }: NewSlider2Props) => {
   const [isDragging, setDragging] = useState(false);
   const [height, setHeight] = useState(window.innerHeight);
   const [isFocused, setIsFocused] = useState(false);
