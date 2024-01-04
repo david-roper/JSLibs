@@ -170,6 +170,33 @@ export class Example extends React.Component<EmptyObject, State> {
     this.commonMoving(pageX);
   }
 
+  startDrag(e: React.MouseEvent) {
+    const pageX = e.pageX;
+    this.commonStartDrag(pageX);
+  }
+
+  startTouchDrag(e: React.TouchEvent) {
+    e.preventDefault();
+    const pageX = e.changedTouches[0]!.pageX;
+    this.commonStartDrag(pageX);
+  }
+
+  stopDrag() {
+    this.setState({ dragging: false });
+  }
+
+  touchMoving(e: React.TouchEvent) {
+    e.preventDefault();
+    const pageX = e.changedTouches[0]!.pageX;
+    this.commonMoving(pageX);
+  }
+  updateWindowDimensions() {
+    this.setState({ height: window.innerHeight, width: window.innerWidth });
+    if (window.innerWidth > 500) {
+      sliderMaxX = 520;
+    }
+  }
+
   render() {
     return (
       <FormFieldContainer>
@@ -235,32 +262,5 @@ export class Example extends React.Component<EmptyObject, State> {
         </div>
       </FormFieldContainer>
     );
-  }
-
-  startDrag(e: React.MouseEvent) {
-    const pageX = e.pageX;
-    this.commonStartDrag(pageX);
-  }
-
-  startTouchDrag(e: React.TouchEvent) {
-    e.preventDefault();
-    const pageX = e.changedTouches[0]!.pageX;
-    this.commonStartDrag(pageX);
-  }
-
-  stopDrag() {
-    this.setState({ dragging: false });
-  }
-
-  touchMoving(e: React.TouchEvent) {
-    e.preventDefault();
-    const pageX = e.changedTouches[0]!.pageX;
-    this.commonMoving(pageX);
-  }
-  updateWindowDimensions() {
-    this.setState({ height: window.innerHeight, width: window.innerWidth });
-    if (window.innerWidth > 500) {
-      sliderMaxX = 520;
-    }
   }
 }
