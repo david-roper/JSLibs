@@ -23,7 +23,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const [initialSliderX, setInitialSliderX] = useState(0);
 
   const sliderMinX = 0;
-  let sliderMaxX = 280;
+  let sliderMaxX = 525;
 
   const commonMoving = (pageX: number) => {
     if (isDragging) {
@@ -52,6 +52,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+    console.log('key is clicked')
     if (!isFocused) {
       return;
     }
@@ -164,7 +165,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
               )}
               tabIndex={0}
               onFocus={() => setIsFocused(true)}
-              onKeyDown={() => handleKeyDown}
+              onKeyDown={handleKeyDown}
               onMouseDown={startDrag}
               onTouchStart={startTouchDrag}
             >
