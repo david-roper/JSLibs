@@ -137,7 +137,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           </div>
         </div>
 
-        <div className="bg-[#ccc] h-3/4">
+        <div className="bg-[#ccc] h-1/2">
           <div
             className={
               'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
@@ -160,7 +160,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
 
             <div
               className={cn(
-                'absolute focus:border-2 w-[50px] h-[50px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[42px] top-[5px]',
+                'absolute focus:border-2 w-[42px] h-[42px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
                 isDragging && 'cursor-grabbing'
               )}
               tabIndex={0}
@@ -175,13 +175,6 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
         </div>
       </div>
 
-      <div className="flex gap-3">
-        {description && (
-          <div className="flex items-center justify-center">
-            <PopoverIcon icon={QuestionMarkCircleIcon} position="right" text={description} />
-          </div>
-        )}
-      </div>
     </FormFieldContainer>
   );
 };
