@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 //import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
-import _ from 'lodash';
 import type { Simplify } from 'type-fest';
 
 import { PopoverIcon, cn } from '../..';
@@ -14,10 +13,10 @@ export type BallSliderProps = Simplify<Extract<NumericFieldProps, { variant: 'sl
 
 export const BallSlider = ({ description, error, label, max, min, name, setValue, value }: BallSliderProps) => {
   const [isDragging, setDragging] = useState(false);
-  const [height, setHeight] = useState(window.innerHeight);
+  //const [height, setHeight] = useState(window.innerHeight);
   const [isFocused, setIsFocused] = useState(false);
   const [sliderX, setSliderX] = useState(0);
-  const [width, setWidth] = useState(window.innerWidth);
+  // const [width, setWidth] = useState(window.innerWidth);
   const gradations: number[] = [];
   const [initialMouseX, setInitialMouseX] = useState(0);
   const [initialSliderX, setInitialSliderX] = useState(0);
@@ -46,14 +45,14 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     setInitialSliderX(sliderX);
   };
 
-  const componentDidMount = () => {
-    updateWindowDimensions();
-    window.addEventListener('resize', updateWindowDimensions);
-  };
+  // const componentDidMount = () => {
+  //   updateWindowDimensions();
+  //   window.addEventListener('resize', updateWindowDimensions);
+  // };
 
-  const componentWillUnmount = () => {
-    window.removeEventListener('resize', updateWindowDimensions);
-  };
+  // const componentWillUnmount = () => {
+  //   window.removeEventListener('resize', updateWindowDimensions);
+  // };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
     if (!isFocused) {
@@ -96,13 +95,13 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     const pageX = e.changedTouches[0]!.pageX;
     commonMoving(pageX);
   };
-  const updateWindowDimensions = () => {
-    setHeight(window.innerHeight);
-    setWidth(window.innerWidth);
-    // if (window.innerWidth > 500) {
-    //   sliderMaxX = 525;
-    // }
-  };
+  // const updateWindowDimensions = () => {
+  //   //setHeight(window.innerHeight);
+  //   setWidth(window.innerWidth);
+  //   if (width > 500) {
+  //     sliderMaxX = 525;
+  //   }
+  // };
 
   const mouseMoving = (e: React.MouseEvent) => {
     const pageX = e.pageX;
@@ -155,7 +154,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
               {Math.round(value!)}
             </div>
             <div className="relative text-center inline-block my-0-number left-8">
-              <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description} />
+              <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description!} />
             </div>
           </div>
         </div>

@@ -3,7 +3,6 @@
 // Based on https://codepen.io/ederdiaz/pen/NBPWZp
 // Modified original Vue implementation to use React
 
-import { useState } from 'react';
 import React from 'react';
 
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';

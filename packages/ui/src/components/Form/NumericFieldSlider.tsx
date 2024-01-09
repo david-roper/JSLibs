@@ -85,7 +85,7 @@ export const NumericFieldSlider = ({
       return;
     }
 
-    console.log('dragging now');
+    //console.log('dragging now');
 
     const guideRect = guide.current.getBoundingClientRect();
 
@@ -112,7 +112,7 @@ export const NumericFieldSlider = ({
     if (e.key === 'ArrowRight' && currentValueIndex <= positions.length) {
       setCurrentValueIndex(currentValueIndex + 1);
       setValue(currentPosition);
-      console.log(value);
+      //console.log(value);
     } else if (e.key === 'ArrowLeft' && currentValueIndex >= 1) {
       setCurrentValueIndex(currentValueIndex - 1);
     }
