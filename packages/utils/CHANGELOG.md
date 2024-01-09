@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/utils
 
+## 1.1.0
+
+### Minor Changes
+
+- Add deep freeze
+
 ## 1.0.5
 
 ### Patch Changes
