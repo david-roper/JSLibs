@@ -22,13 +22,13 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const [initialMouseX, setInitialMouseX] = useState(0);
   const [initialSliderX, setInitialSliderX] = useState(0);
 
-  const sliderMinX = 0;
+  const sliderMinX = 5;
   let sliderMaxX = 525;
 
   const commonMoving = (pageX: number) => {
     if (isDragging) {
-      const dragAmount = pageX - initialMouseX!;
-      const targetX = initialSliderX! + dragAmount;
+      const dragAmount = pageX - initialMouseX;
+      const targetX = initialSliderX + dragAmount;
 
       // keep slider inside limits
       const sliderX = Math.max(Math.min(targetX, sliderMaxX), sliderMinX);
@@ -52,7 +52,6 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    console.log('key is clicked')
     if (!isFocused) {
       return;
     }
@@ -115,11 +114,11 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
 
   return (
     <FormFieldContainer error={error}>
-      <label className="field-label" htmlFor={name}>
-        {label}
-      </label>
       <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] overflow-x-hidden" id="app">
         <div className="relative bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300">
+          <label className="relative field-label left-2" htmlFor={name}>
+            {label}
+          </label>
           <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
             {gradations.map((value, i) => (
               <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0" key={i}>
@@ -137,7 +136,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           </div>
         </div>
 
-        <div className="bg-[#ccc] h-1/2">
+        <div className="bg-[#ccc] h-3/4">
           <div
             className={
               'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
@@ -174,7 +173,6 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           </div>
         </div>
       </div>
-
     </FormFieldContainer>
   );
 };
