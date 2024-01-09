@@ -87,6 +87,12 @@ export type NumericFormField = FormFieldMixin<
       kind: 'numeric';
       max: number;
       min: number;
+      variant: 'ballslider';
+    }
+  | {
+      kind: 'numeric';
+      max: number;
+      min: number;
       variant: 'slider';
     }
   | {

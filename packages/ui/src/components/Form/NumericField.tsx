@@ -1,5 +1,6 @@
 import type { NumericFormField } from '@douglasneuroinformatics/form-types';
 
+import { BallSlider } from './BallSlider';
 import { NumericFieldDefault } from './NumericFieldDefault';
 import { NumericFieldSlider } from './NumericFieldSlider';
 import { type BaseFieldComponentProps } from './types';
@@ -12,5 +13,7 @@ export const NumericField = (props: NumericFieldProps) => {
       return <NumericFieldDefault {...props} />;
     case 'slider':
       return <NumericFieldSlider {...props} />;
+    case 'ballslider':
+      return <BallSlider {...props} />;
   }
 };

@@ -9,7 +9,7 @@ import { FormFieldContainer } from './FormFieldContainer';
 
 import type { NumericFieldProps } from './NumericField';
 
-export type BallSliderProps = Simplify<Extract<NumericFieldProps, { variant: 'slider' }>>;
+export type BallSliderProps = Simplify<Extract<NumericFieldProps, { variant: 'ballslider' }>>;
 
 export const BallSlider = ({ description, error, label, max, min, name, setValue, value }: BallSliderProps) => {
   const [isDragging, setDragging] = useState(false);
@@ -111,7 +111,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const currentValue = () => {
     const valueRangeStart = min;
     const valueRange = max - min;
-
+    setValue((sliderX / sliderMaxX) * valueRange + valueRangeStart);
     return (sliderX / sliderMaxX) * valueRange + valueRangeStart;
   };
 
@@ -128,8 +128,6 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
 
     return lift;
   };
-
-  setValue(currentValue());
 
   return (
     <FormFieldContainer error={error}>
@@ -151,7 +149,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
               </div>
             ))}
             <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]">
-              {Math.round(value!)}
+              {Math.round(currentValue())}
             </div>
             <div className="relative text-center inline-block my-0-number left-8">
               <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description!} />
