@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useState } from 'react';
 
 //import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
@@ -18,13 +18,17 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const [isFocused, setIsFocused] = useState(false);
   const [sliderX, setSliderX] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
-  const gradations = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const gradations: number[] = [];
   const [initialMouseX, setInitialMouseX] = useState(0);
   const [initialSliderX, setInitialSliderX] = useState(0);
 
   const sliderMinX = 5;
-  let sliderMaxX = 525;
 
+  for (let i = min; i <= max; i++) {
+    gradations.push(i);
+  }
+  //console.log(gradations);
+  let sliderMaxX = Math.round(47.5 * gradations.length);
   const commonMoving = (pageX: number) => {
     if (isDragging) {
       const dragAmount = pageX - initialMouseX;
@@ -95,9 +99,9 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const updateWindowDimensions = () => {
     setHeight(window.innerHeight);
     setWidth(window.innerWidth);
-    if (window.innerWidth > 500) {
-      sliderMaxX = 520;
-    }
+    // if (window.innerWidth > 500) {
+    //   sliderMaxX = 525;
+    // }
   };
 
   const mouseMoving = (e: React.MouseEvent) => {
@@ -106,11 +110,13 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   };
 
   const currentValue = () => {
-    const valueRangeStart = 0;
-    const valueRange = 10;
-    setValue((sliderX / sliderMaxX) * valueRange + valueRangeStart);
+    const valueRangeStart = min;
+    const valueRange = max - min;
+
     return (sliderX / sliderMaxX) * valueRange + valueRangeStart;
   };
+
+  setValue(currentValue());
 
   return (
     <FormFieldContainer error={error}>
@@ -120,15 +126,15 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
             {label}
           </label>
           <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
-            {gradations.map((value, i) => (
+            {gradations.map((val, i) => (
               <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0" key={i}>
-                <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{value}</span>
+                <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{val}</span>
                 <br />
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
               </div>
             ))}
             <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]">
-              {Math.round(currentValue())}
+              {Math.round(value!)}
             </div>
             <div className="relative text-center inline-block my-0-number left-8">
               <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description} />
@@ -136,7 +142,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           </div>
         </div>
 
-        <div className="bg-[#ccc] h-3/4">
+        <div className="bg-[#ccc] h-1/2">
           <div
             className={
               'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +

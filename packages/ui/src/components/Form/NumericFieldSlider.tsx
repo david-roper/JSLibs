@@ -175,9 +175,6 @@ export const NumericFieldSlider = ({
           <div
             className="h-1.5 focus:border items-center relative w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
-            onMouseMove={(e) => {
-              console.log(e.pageX);
-            }}
           >
             <div
               className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400 absolute cursor-grab"
