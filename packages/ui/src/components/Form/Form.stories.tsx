@@ -19,6 +19,7 @@ const meta: Meta<typeof Form> = {
 export default meta;
 
 type BasicFormValues = {
+  ballSlider: number;
   binaryCheck: boolean;
   binaryRadio: boolean;
   date: Date;
@@ -33,6 +34,14 @@ type BasicFormValues = {
 export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
   args: {
     content: {
+      ballSlider: {
+        description: 'This is a ball slider numeric field',
+        kind: 'numeric',
+        label: 'Ball numeric (Slider)',
+        max: 10,
+        min: 0,
+        variant: 'slider'
+      },
       binaryCheck: {
         kind: 'binary',
         label: 'Binary',
@@ -94,6 +103,7 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
       alert(JSON.stringify(data, null, 2));
     },
     validationSchema: z.object({
+      ballSlider: z.number(),
       binaryCheck: z.boolean(),
       binaryRadio: z.boolean(),
       date: z.date(),

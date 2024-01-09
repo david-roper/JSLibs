@@ -28,7 +28,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     gradations.push(i);
   }
   //console.log(gradations);
-  let sliderMaxX = Math.round(47.5 * gradations.length);
+  let sliderMaxX = Math.round(47.73 * gradations.length);
   const commonMoving = (pageX: number) => {
     if (isDragging) {
       const dragAmount = pageX - initialMouseX;
@@ -116,6 +116,20 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     return (sliderX / sliderMaxX) * valueRange + valueRangeStart;
   };
 
+  const gradationElementStyle = (value: number) => {
+    const nearDistance = 0.5;
+    const liftDistance = 12;
+
+    const diff = Math.abs(currentValue() - value);
+    const distY = diff / nearDistance - 1;
+
+    // constrain the distance so that the element doesn't go to the bottom
+    const elementY = Math.min(distY * liftDistance, 0);
+    const lift = { top: `${elementY}px` };
+
+    return lift;
+  };
+
   setValue(currentValue());
 
   return (
@@ -127,7 +141,11 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           </label>
           <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
             {gradations.map((val, i) => (
-              <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0" key={i}>
+              <div
+                className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
+                key={i}
+                style={gradationElementStyle(val)}
+              >
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{val}</span>
                 <br />
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
