@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/form-types
 
+## 5.2.0
+
+### Minor Changes
+
+- Allow null for initial values in form
+
 ## 5.1.0
 
 ### Minor Changes

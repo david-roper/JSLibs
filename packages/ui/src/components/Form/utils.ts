@@ -1,5 +1,20 @@
 import type Types from '@douglasneuroinformatics/form-types';
 
+export function getInitialValues<T extends Types.FormDataType>(values: Types.PartialNullableFormDataType<T>) {
+  const initialValues: Record<string, unknown> = {};
+  for (const key in values) {
+    const value = values[key];
+    if (value === null || value === undefined) {
+      continue;
+    } else if (Array.isArray(value)) {
+      initialValues[key] = value.map(getInitialValues);
+    } else {
+      initialValues[key] = value;
+    }
+  }
+  return initialValues as Types.PartialFormDataType<T>;
+}
+
 /** Extract a flat array of form fields from the content. This function assumes there are no duplicate keys in groups  */
 export function getFormFields<T extends Types.FormDataType>(content: Types.FormContent<T>): Types.FormFields<T> {
   if (!Array.isArray(content)) {
