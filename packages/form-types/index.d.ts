@@ -32,8 +32,8 @@ export type RequiredFormFieldValue<T extends FormFieldValue = FormFieldValue> =
   T extends NonNullable<PrimitiveFieldValue>
     ? RequiredPrimitiveFieldValue<T>
     : T extends NonNullable<ArrayFieldValue>
-    ? RequiredArrayFieldValue
-    : T;
+      ? RequiredArrayFieldValue
+      : T;
 
 export type RequiredFormDataType<T extends FormDataType = FormDataType> = {
   [K in keyof T]-?: NonNullable<T[K]> extends (infer U extends ArrayFieldsetValue)[]
@@ -41,8 +41,8 @@ export type RequiredFormDataType<T extends FormDataType = FormDataType> = {
         [P in keyof U]-?: NonNullable<U[P]> extends RequiredPrimitiveFieldValue ? NonNullable<U[P]> : never;
       }[]
     : NonNullable<T[K]> extends RequiredPrimitiveFieldValue
-    ? NonNullable<T[K]>
-    : RequiredArrayFieldValue | RequiredPrimitiveFieldValue;
+      ? NonNullable<T[K]>
+      : RequiredArrayFieldValue | RequiredPrimitiveFieldValue;
 };
 
 /** The `FormDataType` with all `FormFieldValues` set to be optional */
@@ -54,8 +54,21 @@ export type PartialFormDataType<T extends FormDataType = FormDataType> = {
           }[]
         | undefined
     : NonNullable<T[K]> extends FormFieldValue
-    ? T[K]
-    : never;
+      ? T[K]
+      : never;
+};
+
+export type PartialNullableFormDataType<T extends FormDataType = FormDataType> = {
+  [K in keyof T]?: NonNullable<T[K]> extends (infer U extends ArrayFieldsetValue)[]
+    ?
+        | {
+            [P in keyof U]?: U[P] | null | undefined;
+          }[]
+        | null
+        | undefined
+    : NonNullable<T[K]> extends FormFieldValue
+      ? T[K] | null | undefined
+      : never;
 };
 
 /** The basic properties common to all field kinds */
@@ -130,12 +143,12 @@ export type PrimitiveFormField<TValue extends RequiredPrimitiveFieldValue = Requ
   TValue extends Date
     ? DateFormField
     : TValue extends string
-    ? OptionsFormField<TValue> | TextFormField
-    : TValue extends number
-    ? NumericFormField
-    : TValue extends boolean
-    ? BinaryFormField
-    : BinaryFormField | DateFormField | NumericFormField | OptionsFormField;
+      ? OptionsFormField<TValue> | TextFormField
+      : TValue extends number
+        ? NumericFormField
+        : TValue extends boolean
+          ? BinaryFormField
+          : BinaryFormField | DateFormField | NumericFormField | OptionsFormField;
 
 export type DynamicFieldsetField<T extends ArrayFieldsetValue, TValue extends RequiredPrimitiveFieldValue> = {
   kind: 'dynamic-fieldset';
@@ -154,8 +167,8 @@ export type ArrayFormField<TValue extends RequiredArrayFieldValue = RequiredArra
 export type StaticFormField<TValue extends RequiredFormFieldValue> = TValue extends RequiredPrimitiveFieldValue
   ? PrimitiveFormField<TValue>
   : TValue extends RequiredArrayFieldValue
-  ? ArrayFormField<TValue>
-  : ArrayFormField | PrimitiveFormField;
+    ? ArrayFormField<TValue>
+    : ArrayFormField | PrimitiveFormField;
 
 export type StaticFormFields<
   TData extends FormDataType,

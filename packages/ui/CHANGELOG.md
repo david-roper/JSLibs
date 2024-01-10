@@ -1,5 +1,16 @@
 # @douglasneuroinformatics/ui
 
+## 5.2.0
+
+### Minor Changes
+
+- Allow null for initial values in form
+
+### Patch Changes
+
+- Updated dependencies
+  - @douglasneuroinformatics/form-types@5.2.0
+
 ## 5.1.0
 
 ### Minor Changes
