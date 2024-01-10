@@ -27,7 +27,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     gradations.push(i);
   }
   //console.log(gradations);
-  let sliderMaxX = Math.round(47.73 * gradations.length);
+  let sliderMaxX = Math.round(47.74 * gradations.length);
   const commonMoving = (pageX: number) => {
     if (isDragging) {
       const dragAmount = pageX - initialMouseX;
@@ -136,7 +136,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           <label className="relative field-label left-2" htmlFor={name}>
             {label}
           </label>
-          <div className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
+          <div id="tickbar" className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
             {gradations.map((val, i) => (
               <div
                 className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
