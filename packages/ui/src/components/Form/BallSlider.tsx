@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 //import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
@@ -20,14 +20,26 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const gradations: number[] = [];
   const [initialMouseX, setInitialMouseX] = useState(0);
   const [initialSliderX, setInitialSliderX] = useState(0);
+  const guide = useRef<HTMLDivElement>(null);
+  const helpBox = useRef<HTMLDivElement>(null);
+  const displayVal = useRef<HTMLDivElement>(null);
 
   const sliderMinX = 5;
+  let sliderMaxX = 0;
 
   for (let i = min; i <= max; i++) {
     gradations.push(i);
   }
-  //console.log(gradations);
-  let sliderMaxX = Math.round(47.74 * gradations.length);
+  if (guide.current && helpBox.current && displayVal.current) {
+    const guideRect = guide.current.getBoundingClientRect();
+    const helpBoxRect = helpBox.current.getBoundingClientRect();
+    const displayValRect = displayVal.current.getBoundingClientRect();
+    sliderMaxX = guideRect.width - helpBoxRect.width * 2 - displayValRect.width * 2;
+  } else {
+    sliderMaxX = Math.round(47.74 * gradations.length);
+  }
+
+  //let sliderMaxX = Math.round(47.74 * gradations.length);
   const commonMoving = (pageX: number) => {
     if (isDragging) {
       const dragAmount = pageX - initialMouseX;
@@ -132,11 +144,11 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   return (
     <FormFieldContainer error={error}>
       <div className="grid grid-cols-[1fr] grid-rows-[3fr_1fr] overflow-x-hidden" id="app">
-        <div className="relative bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300">
+        <div className="relative bg-slate-100 dark:border-slate-600 dark:bg-slate-700 border">
           <label className="relative field-label left-2" htmlFor={name}>
             {label}
           </label>
-          <div id="tickbar" className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
+          <div id="tickbar" ref={guide} className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
             {gradations.map((val, i) => (
               <div
                 className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
@@ -148,10 +160,13 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
                 <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
               </div>
             ))}
-            <div className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]">
+            <div
+              ref={displayVal}
+              className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]"
+            >
               {Math.round(currentValue())}
             </div>
-            <div className="relative text-center inline-block my-0-number left-8">
+            <div ref={helpBox} className="relative text-center inline-block my-0-number left-8">
               <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description!} />
             </div>
           </div>

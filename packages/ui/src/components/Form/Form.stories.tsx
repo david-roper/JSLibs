@@ -40,7 +40,7 @@ export const BasicForm: StoryObj<typeof Form<BasicFormValues>> = {
         label: 'Ball numeric (Slider)',
         max: 10,
         min: 0,
-        variant: 'slider'
+        variant: 'ballslider'
       },
       binaryCheck: {
         kind: 'binary',
