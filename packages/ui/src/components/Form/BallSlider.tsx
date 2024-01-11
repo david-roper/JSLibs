@@ -34,7 +34,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     const guideRect = guide.current.getBoundingClientRect();
     const helpBoxRect = helpBox.current.getBoundingClientRect();
     const displayValRect = displayVal.current.getBoundingClientRect();
-    sliderMaxX = guideRect.width - helpBoxRect.width * 2 - displayValRect.width * 2;
+    sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.1 - displayValRect.width * 2.1);
   } else {
     sliderMaxX = Math.round(47.74 * gradations.length);
   }
