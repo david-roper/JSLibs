@@ -35,10 +35,9 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     const helpBoxRect = helpBox.current.getBoundingClientRect();
     const displayValRect = displayVal.current.getBoundingClientRect();
 
-    
     sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 1.6 - displayValRect.width * 1.6);
     if (guideRect.width > 1000) {
-      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.7 - displayValRect.width * 2.7);
+      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.75 - displayValRect.width * 2.75) - 15;
     }
   } else {
     sliderMaxX = Math.round(47.74 * gradations.length);
@@ -156,20 +155,16 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           <label className="relative field-label left-2" htmlFor={name}>
             {label}
           </label>
-          <div id="tickbar" ref={guide} className="absolute select-none bottom-[25px]">
+          <div id="tickbar" ref={guide} className="absolute justify-between select-none bottom-[25px]">
             {gradations.map((val, i) => (
               <div
-                className="relative text-center inline-block sm:w-24 opacity-70 mx-1.5 my-0"
+                className="relative text-center inline-block 2xl:w-24 sm:w-8 opacity-70 mx-1.5 my-0"
                 key={i}
                 style={gradationElementStyle(val)}
               >
-                <span className="relative text-center inline-block sm:w-20 md:w-10 w-5 opacity-70 mx-1.5 my-0-number ">
-                  {val}
-                </span>
+                <span className="relative text-center inline-block  opacity-70 mx-1.5 my-0-number ">{val}</span>
                 <br />
-                <span className="relative text-center inline-block sm:w-20 md:w-10 w-5 opacity-70 mx-1.5 my-0-line ">
-                  |
-                </span>
+                <span className="relative text-center inline-block opacity-70 mx-1.5 my-0-line ">|</span>
               </div>
             ))}
             <div
