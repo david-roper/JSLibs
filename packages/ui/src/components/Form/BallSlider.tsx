@@ -158,7 +158,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           <div id="tickbar" ref={guide} className="absolute justify-between select-none bottom-[25px]">
             {gradations.map((val, i) => (
               <div
-                className="relative text-center inline-block 2xl:w-24 sm:w-8 opacity-70 mx-1.5 my-0"
+                className="relative text-center inline-block 2xl:w-24 xl:w-20 lg:w-18 sm:w-8 opacity-70 mx-1.5 my-0"
                 key={i}
                 style={gradationElementStyle(val)}
               >
@@ -204,7 +204,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
 
               <div
                 className={cn(
-                  'absolute focus:border-2 sm:w-[47px] sm:h-[47px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
+                  'absolute focus:border-2 xl:w-[47px] xl:h-[47px] sm:w-[37px] sm:h-[37px] w-[20px] h-[20px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
                   isDragging && 'cursor-grabbing'
                 )}
                 tabIndex={0}
