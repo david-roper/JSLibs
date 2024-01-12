@@ -34,7 +34,12 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     const guideRect = guide.current.getBoundingClientRect();
     const helpBoxRect = helpBox.current.getBoundingClientRect();
     const displayValRect = displayVal.current.getBoundingClientRect();
-    sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.1 - displayValRect.width * 2.1);
+
+    
+    sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 1.6 - displayValRect.width * 1.6);
+    if (guideRect.width > 1000) {
+      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.7 - displayValRect.width * 2.7);
+    }
   } else {
     sliderMaxX = Math.round(47.74 * gradations.length);
   }
@@ -151,21 +156,25 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           <label className="relative field-label left-2" htmlFor={name}>
             {label}
           </label>
-          <div id="tickbar" ref={guide} className="left-[calc(50%_-_300px)] absolute select-none bottom-[25px]">
+          <div id="tickbar" ref={guide} className="absolute select-none bottom-[25px]">
             {gradations.map((val, i) => (
               <div
-                className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0"
+                className="relative text-center inline-block sm:w-24 opacity-70 mx-1.5 my-0"
                 key={i}
                 style={gradationElementStyle(val)}
               >
-                <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number">{val}</span>
+                <span className="relative text-center inline-block sm:w-20 md:w-10 w-5 opacity-70 mx-1.5 my-0-number ">
+                  {val}
+                </span>
                 <br />
-                <span className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-line">|</span>
+                <span className="relative text-center inline-block sm:w-20 md:w-10 w-5 opacity-70 mx-1.5 my-0-line ">
+                  |
+                </span>
               </div>
             ))}
             <div
               ref={displayVal}
-              className="relative text-center inline-block w-10 opacity-70 mx-1.5 my-0-number left-4 text-[4vh]"
+              className="relative text-center inline-block w-6 opacity-70 mx-1.5 my-0-number left-2 sm:text-[4vh] text-[2vh]"
             >
               {Math.round(currentValue())}
             </div>
@@ -179,7 +188,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           <div>
             <div
               className={
-                'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
+                'w-[600px] h-20 mt-[-30px] ml-[-45px] sm:ml-[-35px] relative touch-none select-none ' +
                 (isDragging ? 'cursor-grabbing ' : '')
               }
               style={{ left: sliderX }}
@@ -200,7 +209,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
 
               <div
                 className={cn(
-                  'absolute focus:border-2 w-[47px] h-[47px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
+                  'absolute focus:border-2 sm:w-[47px] sm:h-[47px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
                   isDragging && 'cursor-grabbing'
                 )}
                 tabIndex={0}
