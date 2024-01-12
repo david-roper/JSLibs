@@ -39,7 +39,6 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     sliderMaxX = Math.round(47.74 * gradations.length);
   }
 
-  //let sliderMaxX = Math.round(47.74 * gradations.length);
   const commonMoving = (pageX: number) => {
     if (isDragging) {
       const dragAmount = pageX - initialMouseX;
@@ -123,7 +122,6 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const currentValue = () => {
     const valueRangeStart = min;
     const valueRange = max - min;
-    setValue((sliderX / sliderMaxX) * valueRange + valueRangeStart);
     return (sliderX / sliderMaxX) * valueRange + valueRangeStart;
   };
 
@@ -140,6 +138,11 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
 
     return lift;
   };
+
+  useEffect(() => {
+    const newValue = Math.round(currentValue());
+    setValue(newValue);
+  }, [sliderX, setValue]);
 
   return (
     <FormFieldContainer error={error}>
@@ -173,39 +176,41 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
         </div>
         {/*bg-[#ccc] */}
         <div className="bg-slate-100 h-1/2">
-          <div
-            className={
-              'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
-              (isDragging ? 'cursor-grabbing ' : '')
-            }
-            style={{ left: sliderX }}
-            onMouseMove={mouseMoving}
-            onMouseUp={stopDrag}
-            onTouchEnd={stopDrag}
-            onTouchMove={touchMoving}
-          >
-            {/*fill="#ccc" */}
-            <svg fill="none" height="30" viewBox="0 0 150 30" width="150" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M74.3132 0C47.0043 2.44032e-05 50.175 30 
-              7.9179 30H144.27C99.4571 30 101.622 -2.44032e-05 74.3132 0Z"
-                fill="bg-slate-100"
-                transform="translate(-7.38794 0.5)"
-              />
-            </svg>
-
+          <div>
             <div
-              className={cn(
-                'absolute focus:border-2 w-[47px] h-[47px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
-                isDragging && 'cursor-grabbing'
-              )}
-              tabIndex={0}
-              onFocus={() => setIsFocused(true)}
-              onKeyDown={handleKeyDown}
-              onMouseDown={startDrag}
-              onTouchStart={startTouchDrag}
+              className={
+                'w-[600px] h-20 mt-[-30px] ml-[calc(50%_-_340px)] relative touch-none select-none ' +
+                (isDragging ? 'cursor-grabbing ' : '')
+              }
+              style={{ left: sliderX }}
+              onMouseMove={mouseMoving}
+              onMouseUp={stopDrag}
+              onTouchEnd={stopDrag}
+              onTouchMove={touchMoving}
             >
-              <i className="text-[white] ml-[21px] mt-4"></i>
+              {/*fill="#ccc" */}
+              <svg fill="none" height="30" viewBox="0 0 150 30" width="150" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M74.3132 0C47.0043 2.44032e-05 50.175 30 
+              7.9179 30H144.27C99.4571 30 101.622 -2.44032e-05 74.3132 0Z"
+                  fill="bg-slate-100"
+                  transform="translate(-7.38794 0.5)"
+                />
+              </svg>
+
+              <div
+                className={cn(
+                  'absolute focus:border-2 w-[47px] h-[47px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
+                  isDragging && 'cursor-grabbing'
+                )}
+                tabIndex={0}
+                onFocus={() => setIsFocused(true)}
+                onKeyDown={handleKeyDown}
+                onMouseDown={startDrag}
+                onTouchStart={startTouchDrag}
+              >
+                <i className="text-[white] ml-[21px] mt-4"></i>
+              </div>
             </div>
           </div>
         </div>
