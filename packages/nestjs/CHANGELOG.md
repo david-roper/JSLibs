@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 1.16.0
+
+### Minor Changes
+
+- Add LoggingModule
+
 ## 1.13.0
 
 ### Minor Changes
