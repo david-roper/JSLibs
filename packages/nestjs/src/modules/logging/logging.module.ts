@@ -28,6 +28,9 @@ export class LoggingModule {
     }
     return [
       {
+        customLogLevel: (_, res) => {
+          return res.statusCode >= 500 ? 'error' : 'info';
+        },
         serializers: {
           req: (req: Request) => {
             return `${req.method} ${req.url}`;
