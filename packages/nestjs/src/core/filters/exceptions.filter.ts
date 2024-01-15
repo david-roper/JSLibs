@@ -8,6 +8,7 @@ const httpExceptionSchema: ZodType<Pick<HttpException, 'getResponse' | 'getStatu
   getStatus: z.function().returns(z.number())
 });
 
+/**  @deprecated - Use `LoggingModule` */
 @Catch()
 export class ExceptionsFilter implements ExceptionFilter {
   private readonly logger = new Logger(ExceptionsFilter.name);
