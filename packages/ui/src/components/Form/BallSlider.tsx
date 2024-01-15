@@ -24,7 +24,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const helpBox = useRef<HTMLDivElement>(null);
   const displayVal = useRef<HTMLDivElement>(null);
 
-  const sliderMinX = 5;
+  const sliderMinX = 15;
   let sliderMaxX = 0;
 
   for (let i = min; i <= max; i++) {
@@ -37,7 +37,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
 
     sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 1.6 - displayValRect.width * 1.6);
     if (guideRect.width > 1000) {
-      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.75 - displayValRect.width * 2.75) - 15;
+      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 3 - displayValRect.width * 3) -15;
     }
   } else {
     sliderMaxX = Math.round(47.74 * gradations.length);
@@ -169,11 +169,11 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
             ))}
             <div
               ref={displayVal}
-              className="relative text-center inline-block w-6 opacity-70 mx-1.5 my-0-number left-2 sm:text-[4vh] text-[2vh]"
+              className="relative text-center inline-block xl:w-6 md:w-4 w-2 opacity-70 mx-1.5 my-0-number left-2 sm:text-[4vh] text-[3vh]"
             >
               {Math.round(currentValue())}
             </div>
-            <div ref={helpBox} className="relative text-center inline-block my-0-number left-8">
+            <div ref={helpBox} className="relative text-center inline-block my-0-number xl:left-8 left-6">
               <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description!} />
             </div>
           </div>
