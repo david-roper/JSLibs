@@ -23,21 +23,23 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const guide = useRef<HTMLDivElement>(null);
   const helpBox = useRef<HTMLDivElement>(null);
   const displayVal = useRef<HTMLDivElement>(null);
-
-  const sliderMinX = 15;
+  let sliderMinX = 0;
   let sliderMaxX = 0;
 
   for (let i = min; i <= max; i++) {
     gradations.push(i);
   }
+
   if (guide.current && helpBox.current && displayVal.current) {
     const guideRect = guide.current.getBoundingClientRect();
     const helpBoxRect = helpBox.current.getBoundingClientRect();
     const displayValRect = displayVal.current.getBoundingClientRect();
 
-    sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 1.6 - displayValRect.width * 1.6);
-    if (guideRect.width > 1000) {
-      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 3 - displayValRect.width * 3) -15;
+    sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 1.6 - displayValRect.width * 1.6) - 15;
+    if (guideRect.width > 1200) {
+      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 3 - displayValRect.width * 3) - 15;
+    } else if (guideRect.width > 960) {
+      sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.7 - displayValRect.width * 2.7) - 15;
     }
   } else {
     sliderMaxX = Math.round(47.74 * gradations.length);
@@ -158,22 +160,22 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
           <div id="tickbar" ref={guide} className="absolute justify-between select-none bottom-[25px]">
             {gradations.map((val, i) => (
               <div
-                className="relative text-center inline-block 2xl:w-24 xl:w-20 lg:w-18 sm:w-8 opacity-70 mx-1.5 my-0"
+                className="relative text-center inline-block 2xl:w-28 xl:w-20 lg:w-18 sm:w-8 opacity-70 mx-1.5 my-0"
                 key={i}
                 style={gradationElementStyle(val)}
               >
-                <span className="relative text-center inline-block  opacity-70 mx-1.5 my-0-number ">{val}</span>
+                <span className="relative text-center inline-block opacity-70 mx-1.5 my-0-number ">{val}</span>
                 <br />
                 <span className="relative text-center inline-block opacity-70 mx-1.5 my-0-line ">|</span>
               </div>
             ))}
             <div
               ref={displayVal}
-              className="relative text-center inline-block xl:w-6 md:w-4 w-2 opacity-70 mx-1.5 my-0-number left-2 sm:text-[4vh] text-[3vh]"
+              className="relative text-right inline-block 2xl:w-2 xl:w-6 md:w-4 w-2 opacity-70 mx-1.5 my-0-number left-2 sm:text-[4vh] text-[3vh] end-0"
             >
               {Math.round(currentValue())}
             </div>
-            <div ref={helpBox} className="relative text-center inline-block my-0-number xl:left-8 left-6">
+            <div ref={helpBox} className="relative text-center inline-block my-0-number xl:left-9 left-8">
               <PopoverIcon icon={QuestionMarkCircleIcon} position="left" text={description!} />
             </div>
           </div>
