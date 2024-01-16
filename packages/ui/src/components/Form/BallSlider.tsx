@@ -16,7 +16,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   //const [height, setHeight] = useState(window.innerHeight);
   const [isFocused, setIsFocused] = useState(false);
   const [sliderX, setSliderX] = useState(0);
-  // const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState(window.innerWidth);
   const gradations: number[] = [];
   const [initialMouseX, setInitialMouseX] = useState(0);
   const [initialSliderX, setInitialSliderX] = useState(0);
@@ -149,6 +149,22 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     const newValue = Math.round(currentValue());
     setValue(newValue);
   }, [sliderX, setValue]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+      // set initial slider pos back to zero after resize
+      setInitialSliderX(0);
+      setSliderX(0);
+    };
+
+    // Attach the event listener
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <FormFieldContainer error={error}>
