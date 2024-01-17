@@ -44,7 +44,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   } else {
     sliderMaxX = Math.round(47.74 * gradations.length);
   }
-
+  console.log(sliderMaxX);
   const commonMoving = (pageX: number) => {
     if (isDragging) {
       const dragAmount = pageX - initialMouseX;
@@ -154,8 +154,10 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     const handleResize = () => {
       setWidth(window.innerWidth);
       // set initial slider pos back to zero after resize
-      setInitialSliderX(0);
+  
+      setInitialSliderX((sliderX*(sliderX/sliderMaxX)));
       setSliderX(0);
+      
     };
 
     // Attach the event listener
