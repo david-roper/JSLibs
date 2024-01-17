@@ -18,7 +18,6 @@
     "lint": "tsc && eslint --fix src"
   },
   "dependencies": {
-    "@douglasneuroinformatics/ajv": "^1.1.0",
     "lodash": "^4.17.21",
     "nestjs-pino": "^4.0.0",
     "pino": "^8.17.2",
