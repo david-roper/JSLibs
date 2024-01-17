@@ -1,5 +1,19 @@
 # @douglasneuroinformatics/nestjs
 
+## 2.0.0
+
+### Breaking Changes
+
+- Remove `AjvModule`
+- Remove `DatabaseModule`
+- Remove `EntityRepository`
+- Remove `EntitySchema`
+- Remove `ExceptionsFilter`
+- Remove `DocumentInterceptor`
+- Remove `LoggerMiddleware`
+- Rename `ParseIdPipe` to `ParseObjectIdPipe`
+- Remove type `EntityClass`
+
 ## 1.16.0
 
 ### Minor Changes
