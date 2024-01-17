@@ -2,7 +2,7 @@ import { BadRequestException, Injectable, Optional, type PipeTransform } from '@
 import { ObjectId } from 'mongodb';
 
 @Injectable()
-export class ParseIdPipe implements PipeTransform {
+export class ParseObjectIdPipe implements PipeTransform {
   coerce: boolean;
   isOptional: boolean;
 
