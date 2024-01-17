@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/nestjs",
-  "version": "1.16.0",
+  "version": "2.0.0",
   "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",
@@ -14,11 +14,9 @@
   ],
   "scripts": {
     "format": "prettier --write src",
-    "postinstall": "bun scripts/postinstall.js",
     "lint": "tsc && eslint --fix src"
   },
   "dependencies": {
-    "@douglasneuroinformatics/ajv": "^1.1.0",
     "lodash": "^4.17.21",
     "nestjs-pino": "^4.0.0",
     "pino": "^8.17.2",
@@ -26,16 +24,16 @@
     "type-fest": "^4.8.2",
     "zod": "^3.22.4"
   },
+  "devDependencies": {
+    "@types/lodash": "^4.14.202",
+    "pino-pretty": "^10.3.1"
+  },
   "peerDependencies": {
-    "@nestjs/common": "10.2.3",
+    "@nestjs/common": "^10.2.3",
     "@nestjs/core": "^10.2.3",
-    "@nestjs/mongoose": "^10.0.1",
     "@nestjs/platform-express": "^10.2.5",
     "@nestjs/testing": "^10.2.5",
-    "@types/lodash": "^4.14.202",
     "mongodb": "^6.3.0",
-    "mongoose": "^8.0.2",
-    "pino-pretty": "^10.3.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },

@@ -26,7 +26,7 @@ export const SearchBar = withI18nProvider(function SearchBar({
         size === 'lg' && 'p-3',
         className
       )}
-      placeholder={placeholder ?? t('searchBar.placeholder')!}
+      placeholder={placeholder ?? t('searchBar.placeholder')}
       type="search"
       {...props}
     />
