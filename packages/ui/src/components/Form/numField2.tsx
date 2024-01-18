@@ -1,11 +1,10 @@
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, useState } from 'react';
 
 import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
-import { motion } from 'framer-motion';
 import type { Simplify } from 'type-fest';
 
-import { PopoverIcon } from '../..';
+import { PopoverIcon, cn } from '../..';
 import { FormFieldContainer } from './FormFieldContainer';
 
 import type { NumericFieldProps } from './NumericField';
@@ -24,6 +23,7 @@ export const NumericFieldSlider = ({
 }: NumericFieldSliderProps) => {
   const guide = useRef<HTMLDivElement>(null);
   const point = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const values = useMemo(() => range(min, max + 1), [min, max]);
 
@@ -40,7 +40,7 @@ export const NumericFieldSlider = ({
   };
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    if (!(guide.current && point.current)) {
+    if (!(guide.current && point.current) || !isFocused) {
       return;
     }
 
@@ -77,36 +77,25 @@ export const NumericFieldSlider = ({
       <label className="field-label" htmlFor={name}>
         {label}
       </label>
-      <div className="flex gap-3 relative">
-        {' '}
-        {/* Add relative positioning to the container */}
-        {values.map((val, i) => (
-          <div
-            className="absolute text-center opacity-70 bottom-10"
-            style={{ left: `${(i / (values.length - 1)) * 100}%`, transform: 'translateX(-50%)', zIndex: 2 }} // Position absolutely, calculate left based on index
-            key={i}
-          >
-            <span className="inline-block opacity-70 my-0-number">{val}</span>
-            <br />
-            <span className="inline-block opacity-70 my-0-line">|</span>
-          </div>
-        ))}
-        <div className="field-input-base flex items-center">
+      <div className="flex gap-3">
+        <div
+          className={cn('field-input-base flex items-center', isFocused && 'border')}
+          // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
+          tabIndex={0}
+          onClick={() => setIsFocused(!isFocused)}
+          onKeyDown={handleKeyDown}
+        >
           <div
             className="h-1.5 items-center w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
           >
-            <motion.div
+            <div
               className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400"
-              drag="x"
-              dragConstraints={guide}
-              dragElastic={false}
-              dragMomentum={false}
+              draggable={true}
+              id="slider-div"
               ref={point}
-              tabIndex={0}
               onDrag={handleDrag}
-              onKeyDown={handleKeyDown}
-            />
+            ></div>
           </div>
         </div>
         <div className="flex items-center justify-center text-slate-600 dark:text-slate-300">{value ?? 'NA'}</div>

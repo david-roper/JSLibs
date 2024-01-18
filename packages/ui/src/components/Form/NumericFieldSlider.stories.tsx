@@ -17,8 +17,8 @@ export const Default: Story = {
           args={{
             description: 'This is a slider',
             label: 'Slider',
-            max: 100,
-            min: -100,
+            max: 10,
+            min: 0,
             name: 'slider',
             setValue,
             value
