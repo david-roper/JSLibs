@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useRef, useState } from 'react';
 
 //import { range } from '@douglasneuroinformatics/utils';
@@ -23,6 +24,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   const guide = useRef<HTMLDivElement>(null);
   const helpBox = useRef<HTMLDivElement>(null);
   const displayVal = useRef<HTMLDivElement>(null);
+  const sliderBall = useRef<HTMLDivElement>(null);
   let sliderMinX = 0;
   let sliderMaxX = 0;
 
@@ -44,7 +46,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
   } else {
     sliderMaxX = Math.round(47.74 * gradations.length);
   }
-  console.log(sliderMaxX);
+
   const commonMoving = (pageX: number) => {
     if (isDragging) {
       const dragAmount = pageX - initialMouseX;
@@ -154,10 +156,43 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
     const handleResize = () => {
       setWidth(window.innerWidth);
       // set initial slider pos back to zero after resize
-  
-      setInitialSliderX((sliderX*(sliderX/sliderMaxX)));
-      setSliderX(0);
-      
+
+      //setInitialSliderX(sliderX * (sliderX / sliderMaxX));
+      if (guide.current && sliderBall.current && helpBox.current && displayVal.current) {
+        const guideRect = guide.current.getBoundingClientRect();
+        const pointRect = sliderBall.current.getBoundingClientRect();
+        const helpBoxRect = helpBox.current.getBoundingClientRect();
+        const displayValRect = displayVal.current.getBoundingClientRect();
+
+        let ballPos = 0;
+
+        //reset slider maxX
+
+        sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 1.6 - displayValRect.width * 1.6) - 15;
+        if (guideRect.width > 1200) {
+          sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 3 - displayValRect.width * 3) - 15;
+        } else if (guideRect.width > 960) {
+          sliderMaxX = Math.round(guideRect.width - helpBoxRect.width * 2.7 - displayValRect.width * 2.7) - 15;
+        }
+
+        console.log('bar max ' + guideRect.width);
+        console.log('sliderMax ' + sliderMaxX);
+        if (pointRect.left >= guideRect.right - pointRect.width) {
+          ballPos = guideRect.width - pointRect.width;
+        } else {
+          ballPos = pointRect.left - guideRect.left;
+        }
+
+        console.log('ball pos ' + ballPos);
+        let ratio = Math.abs(ballPos / (guideRect.width - pointRect.width));
+        
+        console.log(ratio);
+        setInitialSliderX(0);
+        setSliderX(sliderMaxX * ratio);
+      } else {
+        setInitialSliderX(0);
+        setSliderX(0);
+      }
     };
 
     // Attach the event listener
@@ -227,6 +262,7 @@ export const BallSlider = ({ description, error, label, max, min, name, setValue
                   'absolute focus:border-2 xl:w-[47px] xl:h-[47px] sm:w-[37px] sm:h-[37px] w-[20px] h-[20px] bg-slate-500 dark:bg-slate-400 cursor-grab touch-none select-none rounded-[50%] left-[47px] top-[5px]',
                   isDragging && 'cursor-grabbing'
                 )}
+                ref={sliderBall}
                 tabIndex={0}
                 onFocus={() => setIsFocused(true)}
                 onKeyDown={handleKeyDown}
