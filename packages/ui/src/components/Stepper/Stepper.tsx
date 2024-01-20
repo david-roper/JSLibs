@@ -12,10 +12,11 @@ type Step = {
 };
 
 type StepperProps = {
+  className?: string;
   steps: Step[];
 };
 
-const Stepper = ({ steps }: StepperProps) => {
+const Stepper = ({ className, steps }: StepperProps) => {
   const icons = useRef<HTMLDivElement[]>([]);
   const [divideStyles, setDivideStyles] = useState<React.CSSProperties[]>([]);
   const { height, width } = useWindowSize();
@@ -80,7 +81,7 @@ const Stepper = ({ steps }: StepperProps) => {
           );
         })}
       </div>
-      <div>{steps[index]?.element}</div>
+      <div className={className}>{steps[index]?.element}</div>
     </StepperContext.Provider>
   );
 };
