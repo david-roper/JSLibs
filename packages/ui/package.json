@@ -6,25 +6,21 @@
   "type": "module",
   "exports": {
     ".": {
-      "bun": "./src/index.ts",
       "import": "./dist/index.js",
-      "types": "./src/index.ts"
+      "types": "./dist/index.d.ts"
     },
-    "./tailwind.config": "./tailwind.config.js"
+    "./tailwind.config.cjs": "./tailwind.config.cjs"
   },
   "files": [
     "dist",
     "src/**/!(*.stories.tsx)",
-    "tailwind.config.js"
+    "tailwind.config.cjs"
   ],
   "scripts": {
-    "build": "bun build:dist",
-    "build:dist": "bun build.js && tsc -b tsconfig.build.json",
+    "build": "rm -rf dist && tsc -b tsconfig.build.json",
     "build:storybook": "storybook build",
-    "dev": "bun build.js --watch",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
-    "push": "bun build:dist && npm publish",
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {

@@ -26,4 +26,10 @@ const uiConfig = createConfig({
 });
 
 /** @type {import('eslint').Linter.FlatConfig[]} */
-export default [...baseConfig, ...uiConfig];
+export default [
+  {
+    ignores: ['**/build/*', '**/dist/*', '**/node_modules/*', '**/*.d.ts']
+  },
+  ...baseConfig,
+  ...uiConfig
+];
