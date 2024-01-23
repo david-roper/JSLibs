@@ -1,12 +1,13 @@
 {
-  "extends": "./tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "jsx": "preserve",
     "noEmit": false,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "sourceMap": true
   },
-  "include": ["src"],
-  "exclude": ["**/*.stories.tsx"]
+  "exclude": ["**/*.stories.tsx"],
+  "extends": "./tsconfig.json",
+  "include": ["src"]
 }

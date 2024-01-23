@@ -1,32 +1,43 @@
 {
   "name": "@douglasneuroinformatics/nestjs",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",
   "exports": {
-    "./core": "./src/core/index.ts",
-    "./modules": "./src/modules/index.ts",
-    "./testing": "./src/testing/index.ts"
+    "./core": {
+      "import": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./modules": {
+      "import": "./dist/modules/index.js",
+      "types": "./dist/modules/index.d.ts"
+    },
+    "./testing": {
+      "import": "./dist/testing/index.js",
+      "types": "./dist/testing/index.d.ts"
+    }
   },
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
+    "build": "rm -rf dist && tsc -b tsconfig.build.json",
     "format": "prettier --write src",
-    "lint": "tsc && eslint --fix src"
+    "lint": "tsc && eslint --fix src",
+    "push": "bun run lint && bun test && bun run build && npm publish"
   },
   "dependencies": {
     "lodash": "^4.17.21",
     "nestjs-pino": "^4.0.0",
     "pino": "^8.17.2",
     "pino-http": "^9.0.0",
+    "pino-pretty": "^10.3.1",
     "type-fest": "^4.8.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.202",
-    "pino-pretty": "^10.3.1"
+    "@types/lodash": "^4.14.202"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.2.3",

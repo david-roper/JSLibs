@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 2.0.1
+
+### Patch Changes
+
+- Move `pino-pretty` to production dependencies
+
 ## 2.0.0
 
 ### Breaking Changes

@@ -1,10 +1,8 @@
-// @ts-check
+const path = require('path');
 
-import path from 'path';
-
-import tailwindcss from '@headlessui/tailwindcss';
-import containerQueries from '@tailwindcss/container-queries';
-import plugin from 'tailwindcss/plugin';
+const tailwindcss = require('@headlessui/tailwindcss');
+const containerQueries = require('@tailwindcss/container-queries');
+const plugin = require('tailwindcss/plugin');
 
 /**
  * Note, using `__dirname` is a hack which will work when run with bun (e.g., vite dev server)
@@ -13,7 +11,7 @@ import plugin from 'tailwindcss/plugin';
  */
 
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   // eslint-disable-next-line no-undef
   content: [path.resolve(__dirname, './src/**/*.{js,jsx,ts,tsx}')],
   darkMode: ['class', '[data-mode="dark"]'],
