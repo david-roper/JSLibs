@@ -1,3 +1,5 @@
+
+
 import { useMemo, useRef } from 'react';
 
 import { range } from '@douglasneuroinformatics/utils';
@@ -25,7 +27,14 @@ export const NumericFieldSlider = ({
   const guide = useRef<HTMLDivElement>(null);
   const point = useRef<HTMLDivElement>(null);
 
+
   const values = useMemo(() => range(min, max + 1), [min, max]);
+  const calculateVal = (guidePos: number, pointPos: number, guideWidth: number, pointWidth: number) => {
+    const offsetLeft = pointPos - guidePos;
+    const offsetPercentage = offsetLeft / (guideWidth - pointWidth);
+    const valueIndex = Math.round((values.length - 1) * offsetPercentage);
+    return valueIndex;
+  };
 
   const handleDrag = () => {
     if (!(guide.current && point.current)) {
@@ -33,44 +42,55 @@ export const NumericFieldSlider = ({
     }
     const guideRect = guide.current.getBoundingClientRect();
     const pointRect = point.current.getBoundingClientRect();
-    const offsetLeft = pointRect.left - guideRect.left;
-    const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
-    const valueIndex = Math.round((values.length - 1) * offsetPercentage);
-    setValue(values[valueIndex] ?? undefined);
+
+    // const offsetLeft = pointRect.left - guideRect.left;
+    // const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
+    // const valueIndex = Math.round((values.length - 1) * offsetPercentage);
+    // console.log('new value ' + valueIndex);
+    setValue(values[calculateVal(guideRect.left, pointRect.left, guideRect.width, pointRect.width)] ?? undefined);
   };
 
-  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
-    if (!(guide.current && point.current)) {
-      return;
-    }
+  const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
+    console.log('Will handle key down')
+    dragControls.start(event, { snapToCursor: true })
+  }
 
-    const pointRect = point.current.getBoundingClientRect();
-    const guideRect = guide.current.getBoundingClientRect();
+  // const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
+  //   if (!(guide.current && point.current)) {
+  //     return;
+  //   }
 
-    //move to the right
-    if (e.key === 'ArrowRight') {
-      if (guideRect.right > pointRect.right + 10) {
-        //point.current.clientLeft = pointRect.left + 10;
+  //   const pointRect = point.current.getBoundingClientRect();
+  //   const guideRect = guide.current.getBoundingClientRect();
 
-        point.current.style.transform = 'translateX(' + (pointRect.left + 10) + 'px)';
-        handleDrag();
-      } else {
-        point.current.style.transform = 'translateX(' + 0 + 'px)';
-        handleDrag();
-      }
-    }
-    //move to the left
-    else if (e.key === 'ArrowLeft') {
-      let newPos = pointRect.left - 40;
-      if (newPos > guideRect.left) {
-        point.current.style.transform = 'translateX(' + newPos + 'px)';
-        handleDrag();
-      } else {
-        point.current.style.transform = 'translateX(' + (guideRect.right - pointRect.right) + 'px)';
-        handleDrag();
-      }
-    }
-  };
+  //   //move to the right
+  //   if (e.key === 'ArrowRight') {
+  //     // console.log('guide rect right ' + guideRect.right);
+  //     console.log('pt rect right ' + pointRect.right);
+  //     if (guideRect.right > pointRect.right + 10) {
+  //       //point.current.clientLeft = pointRect.left + 10;
+  //       point.current.style.transform = 'translateX(' + (pointRect.left + 10) + 'px)';
+  //       console.log(point.current.style.transform )
+  //     } else {
+  //       console.log('reset');
+  //       point.current.style.transform = 'translateX(' + 0 + 'px)';
+  //     }
+  //     setValue(values[calculateVal(guideRect.left, pointRect.left, guideRect.width, pointRect.width)] ?? undefined);
+  //   }
+  //   //move to the left
+  //   else if (e.key === 'ArrowLeft') {
+  //     console.log('guide rect right ' + guideRect.left);
+  //     console.log('pt rect right ' + pointRect.left);
+  //     let newPos = pointRect.left - 40;
+  //     if (newPos > guideRect.left) {
+  //       point.current.style.transform = 'translateX(' + newPos + 'px)';
+  //       setValue(values[calculateVal(guideRect.left, pointRect.left, guideRect.width, pointRect.width)] ?? undefined);
+  //     } else {
+  //       point.current.style.transform = 'translateX(' + (guideRect.right - pointRect.right) + 'px)';
+  //       setValue(values[calculateVal(guideRect.left, pointRect.left, guideRect.width, pointRect.width)] ?? undefined);
+  //     }
+  //   }
+  // };
 
   return (
     <FormFieldContainer error={error}>
@@ -83,8 +103,8 @@ export const NumericFieldSlider = ({
         {values.map((val, i) => (
           <div
             className="absolute text-center opacity-70 bottom-10"
-            style={{ left: `${(i / (values.length - 1)) * 100}%`, transform: 'translateX(-50%)', zIndex: 2 }} // Position absolutely, calculate left based on index
             key={i}
+            style={{ left: `${(i / (values.length - 1)) * 100}%`, transform: 'translateX(-50%)', zIndex: 2 }} // Position absolutely, calculate left based on index
           >
             <span className="inline-block opacity-70 my-0-number">{val}</span>
             <br />
@@ -100,6 +120,7 @@ export const NumericFieldSlider = ({
               className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400"
               drag="x"
               dragConstraints={guide}
+              dragControls={dragControls}
               dragElastic={false}
               dragMomentum={false}
               ref={point}
