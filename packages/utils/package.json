@@ -6,19 +6,17 @@
   "type": "module",
   "exports": {
     ".": {
-      "bun": "./src/index.ts",
       "import": "./dist/index.js",
-      "types": "./src/index.ts"
+      "types": "./dist/index.d.ts"
     }
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
-    "build": "bun build src/index.ts --outdir dist --target=browser --sourcemap=external",
+    "build": "tsc",
     "format": "prettier --write src",
-    "lint": "tsc && eslint --fix src"
+    "lint": "tsc --noEmit && eslint --fix src"
   },
   "dependencies": {
     "type-fest": "^4.6.0"
