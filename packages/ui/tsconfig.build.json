@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "jsx": "preserve",
+    "emitDeclarationOnly": true,
     "noEmit": false,
     "outDir": "dist",
-    "rootDir": "src",
-    "sourceMap": true
+    "rootDir": "src"
   },
   "exclude": ["**/*.stories.tsx"],
   "extends": "./tsconfig.json",
