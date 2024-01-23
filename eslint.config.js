@@ -4,6 +4,7 @@ import path from 'node:path';
 import url from 'node:url';
 
 import { createConfig } from '@douglasneuroinformatics/eslint-config';
+import globals from 'globals';
 
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,6 +30,14 @@ const uiConfig = createConfig({
 export default [
   {
     ignores: ['**/build/*', '**/dist/*', '**/node_modules/*', '**/*.d.ts']
+  },
+  {
+    files: ['**/*.config.js', '**/*.cjs', 'scripts/**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node
+      }
+    }
   },
   ...baseConfig,
   ...uiConfig
