@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/utils",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A collection of zero dependency JavaScript utility functions for Node.js and the browser",
   "license": "LGPL-3.0",
   "type": "module",
@@ -14,7 +14,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -b tsconfig.build.json",
+    "build": "rm -rf dist && bun build:js && bun build:ts",
+    "build:js": "esbuild --bundle --format=esm --outdir=dist --packages=external --platform=neutral --sourcemap=external  src/index.ts",
+    "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
     "push": "bun run lint && bun test && bun run build && npm publish"

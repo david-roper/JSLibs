@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/ui",
-  "version": "5.3.0",
+  "version": "5.3.1",
   "description": "Common React components and tailwind config for DNP projects",
   "license": "LGPL-3.0",
   "type": "module",
@@ -16,8 +16,9 @@
     "tailwind.config.cjs"
   ],
   "scripts": {
-    "build": "rm -rf dist && tsc -b tsconfig.build.json",
-    "build:storybook": "storybook build",
+    "build": "rm -rf dist && bun build:js && bun build:ts",
+    "build:js": "esbuild --bundle --format=esm --outdir=dist --packages=external --platform=browser --sourcemap=external  src/index.ts",
+    "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
     "push": "bun run lint && bun run build && npm publish",
