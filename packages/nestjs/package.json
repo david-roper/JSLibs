@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/nestjs",
-  "version": "2.1.0",
+  "version": "2.1.2",
   "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",
@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "build": "rm -rf dist && bun build:js && bun build:ts",
-    "build:js": "esbuild --bundle --format=esm --outdir=dist --packages=external --platform=node --sourcemap=external  src/index.ts",
+    "build:js": "bunx esbuild --bundle --format=esm --outdir=dist --packages=external --platform=node --sourcemap=external  src/core/index.ts src/modules/index.ts src/testing/index.ts",
     "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
