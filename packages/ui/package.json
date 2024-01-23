@@ -13,7 +13,8 @@
   },
   "files": [
     "dist",
-    "tailwind.config.cjs"
+    "tailwind.config.cjs",
+    "tailwind.config.d.cts"
   ],
   "scripts": {
     "build": "rm -rf dist && bun build:js && bun build:ts",

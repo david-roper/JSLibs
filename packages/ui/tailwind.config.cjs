@@ -4,12 +4,6 @@ const tailwindcss = require('@headlessui/tailwindcss');
 const containerQueries = require('@tailwindcss/container-queries');
 const plugin = require('tailwindcss/plugin');
 
-/**
- * Note, using `__dirname` is a hack which will work when run with bun (e.g., vite dev server)
- * and also when resolved as a CommonJS module by storybook. Once Bun has implemented the
- * necessary Node libraries, this can be replaced by `import.meta.dir`.
- */
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // eslint-disable-next-line no-undef
