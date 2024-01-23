@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/nestjs",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "NestJS Core",
   "license": "LGPL-3.0",
   "type": "module",
@@ -24,7 +24,8 @@
   "scripts": {
     "build": "rm -rf dist && tsc -b tsconfig.build.json",
     "format": "prettier --write src",
-    "lint": "tsc && eslint --fix src"
+    "lint": "tsc && eslint --fix src",
+    "push": "bun run lint && bun test && bun run build && npm publish"
   },
   "dependencies": {
     "lodash": "^4.17.21",
