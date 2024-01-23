@@ -1,13 +1,15 @@
+const fs = require('fs');
 const path = require('path');
 
 const tailwindcss = require('@headlessui/tailwindcss');
 const containerQueries = require('@tailwindcss/container-queries');
 const plugin = require('tailwindcss/plugin');
 
+const isDev = fs.existsSync(path.resolve(__dirname, 'src'));
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  // eslint-disable-next-line no-undef
-  content: [path.resolve(__dirname, './src/**/*.{js,jsx,ts,tsx}')],
+  content: [isDev ? path.resolve(__dirname, 'src/**/*.{js,jsx,ts,tsx}') : path.resolve(__dirname, 'dist/index.js')],
   darkMode: ['class', '[data-mode="dark"]'],
   plugins: [
     containerQueries,
