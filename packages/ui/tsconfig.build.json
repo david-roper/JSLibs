@@ -4,7 +4,8 @@
     "jsx": "preserve",
     "noEmit": false,
     "outDir": "dist",
-    "rootDir": "src"
+    "rootDir": "src",
+    "sourceMap": true
   },
   "exclude": ["**/*.stories.tsx"],
   "extends": "./tsconfig.json",

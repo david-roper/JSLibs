@@ -5,14 +5,24 @@
   "license": "LGPL-3.0",
   "type": "module",
   "exports": {
-    "./core": "./src/core/index.ts",
-    "./modules": "./src/modules/index.ts",
-    "./testing": "./src/testing/index.ts"
+    "./core": {
+      "import": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./modules": {
+      "import": "./dist/modules/index.js",
+      "types": "./dist/modules/index.d.ts"
+    },
+    "./testing": {
+      "import": "./dist/testing/index.js",
+      "types": "./dist/testing/index.d.ts"
+    }
   },
   "files": [
-    "src"
+    "dist"
   ],
   "scripts": {
+    "build": "rm -rf dist && tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src"
   },
