@@ -13,7 +13,6 @@
   },
   "files": [
     "dist",
-    "src/**/!(*.stories.tsx)",
     "tailwind.config.cjs"
   ],
   "scripts": {
