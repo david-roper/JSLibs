@@ -73,7 +73,7 @@ const Stepper = ({ className, steps }: StepperProps) => {
                 {i !== steps.length - 1 && (
                   <div
                     className={clsx(
-                      'flex-auto absolute top-6 border-t-2 transition duration-500 ease-in-out -z-10',
+                      'flex-auto absolute top-6 border-t-2 transition duration-500 ease-in-out',
                       i >= index ? 'border-slate-200 dark:border-slate-700' : 'border-sky-700'
                     )}
                     style={divideStyles[i]}
