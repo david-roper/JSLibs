@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/nestjs
 
+## 2.2.0
+
+### Minor Changes
+
+- Added encryption methods to `CryptoService`
+
 ## 2.0.1
 
 ### Patch Changes

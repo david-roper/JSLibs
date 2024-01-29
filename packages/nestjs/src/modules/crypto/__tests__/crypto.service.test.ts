@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'bun:test';
 
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from '..';
+import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions, EncryptedData } from '..';
 import { CryptoService } from '../crypto.service';
 
 describe('CryptoService', () => {
@@ -53,6 +53,44 @@ describe('CryptoService', () => {
     it('should return false when comparing a hash with an incorrect value', async () => {
       const hash = await cryptoService.hashPassword('foo');
       expect(cryptoService.comparePassword('bar', hash)).resolves.toBeFalse();
+    });
+  });
+
+  describe('generateKeyPair', () => {
+    it('should generate a key pair with private and public keys', async () => {
+      const keyPair = await cryptoService.generateKeyPair();
+      expect(keyPair).toHaveProperty('privateKey');
+      expect(keyPair).toHaveProperty('publicKey');
+      expect(keyPair.privateKey).toBeInstanceOf(CryptoKey);
+      expect(keyPair.publicKey).toBeInstanceOf(CryptoKey);
+    });
+  });
+
+  describe('encrypt and decrypt', () => {
+    const originalText = 'Cela devrait fonctionner avec les caractères unicode 😃';
+    let publicKey: CryptoKey, privateKey: CryptoKey;
+
+    beforeEach(async () => {
+      const keyPair = await cryptoService.generateKeyPair();
+      publicKey = keyPair.publicKey;
+      privateKey = keyPair.privateKey;
+    });
+
+    it('encrypt should return an instance of EncryptedData', async () => {
+      const encrypted = await cryptoService.encrypt(originalText, publicKey);
+      expect(encrypted).toBeInstanceOf(EncryptedData);
+    });
+
+    it('decrypt should return original text', async () => {
+      const encrypted = await cryptoService.encrypt(originalText, publicKey);
+      const decrypted = await cryptoService.decrypt(encrypted, privateKey);
+      expect(decrypted).toBe(originalText);
+    });
+
+    it('decrypt with incorrect private key should fail', async () => {
+      const encrypted = await cryptoService.encrypt(originalText, publicKey);
+      const keyPair = await cryptoService.generateKeyPair();
+      expect(cryptoService.decrypt(encrypted, keyPair.privateKey)).rejects.toThrow();
     });
   });
 });
