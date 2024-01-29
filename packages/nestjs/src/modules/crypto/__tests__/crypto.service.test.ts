@@ -67,7 +67,7 @@ describe('CryptoService', () => {
   });
 
   describe('encrypt and decrypt', () => {
-    const originalText = 'Hello World';
+    const originalText = 'Cela devrait fonctionner avec les caractères unicode 😃';
     let publicKey: CryptoKey, privateKey: CryptoKey;
 
     beforeEach(async () => {
