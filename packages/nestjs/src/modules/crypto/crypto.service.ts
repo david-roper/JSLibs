@@ -4,6 +4,7 @@ import crypto from 'node:crypto';
 import { Inject, Injectable } from '@nestjs/common';
 
 import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from './crypto.config';
+import { EncryptedData } from './crypto.utils';
 
 @Injectable()
 export class CryptoService {
@@ -17,31 +18,31 @@ export class CryptoService {
   }
 
   /**
-   * Decrypts an Buffer using the provided private key.
+   * Decrypts the encrypted data using the provided private key.
    *
-   * @param buffer - The data to be decrypted.
+   * @param data - The data to be decrypted.
    * @param privateKey - The private key to be used for decryption.
    * @returns A promise that resolves to the decrypted string.
    */
-  async decrypt(buffer: Buffer, privateKey: CryptoKey): Promise<string> {
+  async decrypt(data: EncryptedData, privateKey: CryptoKey): Promise<string> {
     const decrypted = await crypto.webcrypto.subtle.decrypt(
       {
         name: 'RSA-OAEP'
       },
       privateKey,
-      buffer
+      data
     );
     return this.textDecoder.decode(decrypted);
   }
 
   /**
-   * Encrypts a string using the provided public key.
+   * Encrypts a string using the provided public key
    *
    * @param text - The text to be encrypted.
    * @param publicKey - The public key to be used for encryption.
-   * @return A promise that resolves to the encrypted data in Buffer format.
+   * @return A promise that resolves to the encrypted data
    */
-  async encrypt(text: string, publicKey: CryptoKey): Promise<Buffer> {
+  async encrypt(text: string, publicKey: CryptoKey): Promise<EncryptedData> {
     const encoded = this.textEncoder.encode(text);
     const arrayBuffer = await crypto.webcrypto.subtle.encrypt(
       {
@@ -50,7 +51,7 @@ export class CryptoService {
       publicKey,
       encoded
     );
-    return Buffer.from(arrayBuffer);
+    return new EncryptedData(arrayBuffer);
   }
 
   /**

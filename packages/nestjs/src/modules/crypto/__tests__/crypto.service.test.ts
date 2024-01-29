@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'bun:test';
 
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from '..';
+import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions, EncryptedData } from '..';
 import { CryptoService } from '../crypto.service';
 
 describe('CryptoService', () => {
@@ -76,9 +76,9 @@ describe('CryptoService', () => {
       privateKey = keyPair.privateKey;
     });
 
-    it('encrypt should return Buffer', async () => {
+    it('encrypt should return an instance of EncryptedData', async () => {
       const encrypted = await cryptoService.encrypt(originalText, publicKey);
-      expect(encrypted).toBeInstanceOf(Buffer);
+      expect(encrypted).toBeInstanceOf(EncryptedData);
     });
 
     it('decrypt should return original text', async () => {
