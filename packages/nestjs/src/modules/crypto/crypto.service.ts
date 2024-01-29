@@ -17,13 +17,13 @@ export class CryptoService {
   }
 
   /**
-   * Decrypts an ArrayBuffer using the provided private key.
+   * Decrypts an Buffer using the provided private key.
    *
    * @param buffer - The data to be decrypted.
    * @param privateKey - The private key to be used for decryption.
    * @returns A promise that resolves to the decrypted string.
    */
-  async decrypt(buffer: ArrayBuffer, privateKey: CryptoKey): Promise<string> {
+  async decrypt(buffer: Buffer, privateKey: CryptoKey): Promise<string> {
     const decrypted = await crypto.webcrypto.subtle.decrypt(
       {
         name: 'RSA-OAEP'
@@ -35,21 +35,22 @@ export class CryptoService {
   }
 
   /**
-   * Encrypts a text string using the provided public key.
+   * Encrypts a string using the provided public key.
    *
    * @param text - The text to be encrypted.
    * @param publicKey - The public key to be used for encryption.
-   * @return A promise that resolves to the encrypted data in ArrayBuffer format.
+   * @return A promise that resolves to the encrypted data in Buffer format.
    */
-  async encrypt(text: string, publicKey: CryptoKey): Promise<ArrayBuffer> {
+  async encrypt(text: string, publicKey: CryptoKey): Promise<Buffer> {
     const encoded = this.textEncoder.encode(text);
-    return crypto.webcrypto.subtle.encrypt(
+    const arrayBuffer = await crypto.webcrypto.subtle.encrypt(
       {
         name: 'RSA-OAEP'
       },
       publicKey,
       encoded
     );
+    return Buffer.from(arrayBuffer);
   }
 
   /**

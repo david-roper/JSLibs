@@ -76,9 +76,9 @@ describe('CryptoService', () => {
       privateKey = keyPair.privateKey;
     });
 
-    it('encrypt should return ArrayBuffer', async () => {
+    it('encrypt should return Buffer', async () => {
       const encrypted = await cryptoService.encrypt(originalText, publicKey);
-      expect(encrypted).toBeInstanceOf(ArrayBuffer);
+      expect(encrypted).toBeInstanceOf(Buffer);
     });
 
     it('decrypt should return original text', async () => {
