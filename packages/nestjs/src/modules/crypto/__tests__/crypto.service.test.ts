@@ -55,4 +55,42 @@ describe('CryptoService', () => {
       expect(cryptoService.comparePassword('bar', hash)).resolves.toBeFalse();
     });
   });
+
+  describe('generateKeyPair', () => {
+    it('should generate a key pair with private and public keys', async () => {
+      const keyPair = await cryptoService.generateKeyPair();
+      expect(keyPair).toHaveProperty('privateKey');
+      expect(keyPair).toHaveProperty('publicKey');
+      expect(keyPair.privateKey).toBeInstanceOf(CryptoKey);
+      expect(keyPair.publicKey).toBeInstanceOf(CryptoKey);
+    });
+  });
+
+  describe('encrypt and decrypt', () => {
+    const originalText = 'Hello World';
+    let publicKey: CryptoKey, privateKey: CryptoKey;
+
+    beforeEach(async () => {
+      const keyPair = await cryptoService.generateKeyPair();
+      publicKey = keyPair.publicKey;
+      privateKey = keyPair.privateKey;
+    });
+
+    it('encrypt should return ArrayBuffer', async () => {
+      const encrypted = await cryptoService.encrypt(originalText, publicKey);
+      expect(encrypted).toBeInstanceOf(ArrayBuffer);
+    });
+
+    it('decrypt should return original text', async () => {
+      const encrypted = await cryptoService.encrypt(originalText, publicKey);
+      const decrypted = await cryptoService.decrypt(encrypted, privateKey);
+      expect(decrypted).toBe(originalText);
+    });
+
+    it('decrypt with incorrect private key should fail', async () => {
+      const encrypted = await cryptoService.encrypt(originalText, publicKey);
+      const keyPair = await cryptoService.generateKeyPair();
+      expect(cryptoService.decrypt(encrypted, keyPair.privateKey)).rejects.toThrow();
+    });
+  });
 });
