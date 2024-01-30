@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/crypto",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Wrappers for the Web Crypto API",
   "license": "LGPL-3.0",
   "type": "module",
