@@ -61,17 +61,7 @@ export class CryptoService {
    * used for encryption and decryption.
    */
   async generateKeyPair(): Promise<AsymmetricEncryptionKeyPair> {
-    const { privateKey, publicKey } = await crypto.webcrypto.subtle.generateKey(
-      {
-        hash: 'SHA-512',
-        modulusLength: 4096,
-        name: 'RSA-OAEP',
-        publicExponent: new Uint8Array([1, 0, 1])
-      },
-      true,
-      ['encrypt', 'decrypt']
-    );
-    return new AsymmetricEncryptionKeyPair({ privateKey, publicKey });
+    return AsymmetricEncryptionKeyPair.generate();
   }
 
   hash(source: string) {
