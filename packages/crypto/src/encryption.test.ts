@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'bun:test';
 
-import { AsymmetricEncryptionKeyPair, PrivateKey, PublicKey } from './encryption';
+import { AsymmetricEncryptionKeyPair, Decrypter, Encrypter, PrivateKey, PublicKey } from './encryption';
 import { SerializableUint8Array } from './utils';
 
 describe('AsymmetricEncryptionKeyPair', () => {
@@ -46,6 +46,58 @@ describe('AsymmetricEncryptionKeyPair', () => {
       const importedKeys = await AsymmetricEncryptionKeyPair.fromRaw(exportedKeys);
       const reexportedKeys = await importedKeys.toRaw();
       expect(exportedKeys).toMatchObject(reexportedKeys);
+    });
+  });
+});
+
+describe('Encrypter and Decrypter', () => {
+  describe('encrypt and decrypt', () => {
+    const originalText = 'Cela devrait fonctionner avec les caractères unicode 😃';
+    let decrypter: Decrypter;
+    let encrypter: Encrypter;
+
+    beforeAll(async () => {
+      const { privateKey, publicKey } = await AsymmetricEncryptionKeyPair.generate();
+      decrypter = new Decrypter(privateKey);
+      encrypter = new Encrypter(publicKey);
+    });
+
+    it('encrypt should return an instance of SerializableUint8Array', async () => {
+      const encrypted = await encrypter.encrypt(originalText);
+      expect(encrypted).toBeInstanceOf(SerializableUint8Array);
+    });
+
+    it('decrypt should return original text', async () => {
+      const encrypted = await encrypter.encrypt(originalText);
+      const decrypted = await decrypter.decrypt(encrypted);
+      expect(decrypted).toBe(originalText);
+    });
+  });
+
+  describe('integration with AsymmetricEncryptionKeyPair', () => {
+    const originalText = 'Cela devrait fonctionner avec les caractères unicode 😃';
+    let keyPair: AsymmetricEncryptionKeyPair;
+
+    beforeAll(async () => {
+      keyPair = await AsymmetricEncryptionKeyPair.generate();
+    });
+
+    it('should fail decrypting with a different private key', async () => {
+      const encrypter = new Encrypter(keyPair.publicKey);
+      const encrypted = await encrypter.encrypt(originalText);
+      const newKeyPair = await AsymmetricEncryptionKeyPair.generate();
+      const newDecrypter = new Decrypter(newKeyPair.privateKey);
+      expect(newDecrypter.decrypt(encrypted)).rejects.toThrow();
+    });
+
+    it('should be able to encrypt data, export the key, import the key, and decode the data', async () => {
+      const encrypter = new Encrypter(keyPair.publicKey);
+      const encrypted = await encrypter.encrypt(originalText);
+      const rawKeyPair = await keyPair.toRaw();
+      const importedKeyPair = await AsymmetricEncryptionKeyPair.fromRaw(rawKeyPair);
+      const decrypter = new Decrypter(importedKeyPair.privateKey);
+      const decrypted = await decrypter.decrypt(encrypted);
+      expect(decrypted).toBe(originalText);
     });
   });
 });

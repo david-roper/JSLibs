@@ -1,10 +1,12 @@
 import { SerializableUint8Array } from './utils';
 
+const ALGORITHM_NAME = 'RSA-OAEP';
+
 abstract class EncryptionKey<T extends string> {
   static algorithm = {
     hash: 'SHA-512',
     modulusLength: 4096,
-    name: 'RSA-OAEP',
+    name: ALGORITHM_NAME,
     publicExponent: new Uint8Array([1, 0, 1])
   };
 
@@ -72,5 +74,50 @@ export class AsymmetricEncryptionKeyPair {
       privateKey: await this.privateKey.toRaw(),
       publicKey: await this.publicKey.toRaw()
     };
+  }
+}
+
+export class Encrypter {
+  private textEncoder = new TextEncoder();
+
+  constructor(private publicKey: EncryptionKey<'PUBLIC'>) {}
+
+  /**
+   * Encrypts a string using the public key
+   *
+   * @param text - The text to be encrypted.
+   * @return A promise that resolves to the encrypted data
+   */
+  async encrypt(text: string): Promise<SerializableUint8Array> {
+    const encoded = this.textEncoder.encode(text);
+    const arrayBuffer = await globalThis.crypto.subtle.encrypt(
+      { name: ALGORITHM_NAME },
+      this.publicKey.cryptoKey,
+      encoded
+    );
+    return new SerializableUint8Array(arrayBuffer);
+  }
+}
+
+export class Decrypter {
+  private textDecoder = new TextDecoder();
+
+  constructor(private privateKey: EncryptionKey<'PRIVATE'>) {}
+
+  /**
+   * Decrypts the encrypted data using the private key.
+   *
+   * @param data - The data to be decrypted.
+   * @returns A promise that resolves to the decrypted string.
+   */
+  async decrypt(data: Uint8Array): Promise<string> {
+    const decrypted = await globalThis.crypto.subtle.decrypt(
+      {
+        name: ALGORITHM_NAME
+      },
+      this.privateKey.cryptoKey,
+      data
+    );
+    return this.textDecoder.decode(decrypted);
   }
 }
