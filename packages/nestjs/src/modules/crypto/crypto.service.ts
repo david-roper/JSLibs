@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import { Inject, Injectable } from '@nestjs/common';
 
 import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from './crypto.config';
-import { EncryptedData } from './crypto.utils';
+import { AsymmetricEncryptionKeyPair, SerializableUint8Array } from './crypto.utils';
 
 @Injectable()
 export class CryptoService {
@@ -24,7 +24,7 @@ export class CryptoService {
    * @param privateKey - The private key to be used for decryption.
    * @returns A promise that resolves to the decrypted string.
    */
-  async decrypt(data: EncryptedData, privateKey: CryptoKey): Promise<string> {
+  async decrypt(data: Uint8Array, privateKey: CryptoKey): Promise<string> {
     const decrypted = await crypto.webcrypto.subtle.decrypt(
       {
         name: 'RSA-OAEP'
@@ -42,7 +42,7 @@ export class CryptoService {
    * @param publicKey - The public key to be used for encryption.
    * @return A promise that resolves to the encrypted data
    */
-  async encrypt(text: string, publicKey: CryptoKey): Promise<EncryptedData> {
+  async encrypt(text: string, publicKey: CryptoKey): Promise<SerializableUint8Array> {
     const encoded = this.textEncoder.encode(text);
     const arrayBuffer = await crypto.webcrypto.subtle.encrypt(
       {
@@ -51,7 +51,7 @@ export class CryptoService {
       publicKey,
       encoded
     );
-    return new EncryptedData(arrayBuffer);
+    return new SerializableUint8Array(arrayBuffer);
   }
 
   /**
@@ -60,18 +60,8 @@ export class CryptoService {
    * is 0x010001 (65537). The generated keys are extractable and can be
    * used for encryption and decryption.
    */
-  async generateKeyPair(): Promise<{ privateKey: CryptoKey; publicKey: CryptoKey }> {
-    const { privateKey, publicKey } = await crypto.webcrypto.subtle.generateKey(
-      {
-        hash: 'SHA-512',
-        modulusLength: 4096,
-        name: 'RSA-OAEP',
-        publicExponent: new Uint8Array([1, 0, 1])
-      },
-      true,
-      ['encrypt', 'decrypt']
-    );
-    return { privateKey, publicKey };
+  async generateKeyPair(): Promise<AsymmetricEncryptionKeyPair> {
+    return AsymmetricEncryptionKeyPair.generate();
   }
 
   hash(source: string) {
