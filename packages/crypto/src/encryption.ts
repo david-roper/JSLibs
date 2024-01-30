@@ -103,6 +103,10 @@ export class Encrypter {
 
   constructor(private publicKey: PublicEncryptionKey) {}
 
+  static async fromRaw(publicKey: Uint8Array) {
+    return new this(await PublicKey.fromRaw(publicKey));
+  }
+
   /**
    * Encrypts a string using the public key
    *
@@ -124,6 +128,10 @@ export class Decrypter {
   private textDecoder = new TextDecoder();
 
   constructor(private privateKey: PrivateEncryptionKey) {}
+
+  static async fromRaw(privateKey: Uint8Array) {
+    return new this(await PrivateKey.fromRaw(privateKey));
+  }
 
   /**
    * Decrypts the encrypted data using the private key.
