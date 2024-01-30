@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'bun:test';
 
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions, EncryptedData } from '..';
+import { AsymmetricEncryptionKeyPair, CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions, EncryptedData } from '..';
 import { CryptoService } from '../crypto.service';
 
 describe('CryptoService', () => {
@@ -57,12 +57,22 @@ describe('CryptoService', () => {
   });
 
   describe('generateKeyPair', () => {
-    it('should generate a key pair with private and public keys', async () => {
-      const keyPair = await cryptoService.generateKeyPair();
+    let keyPair: AsymmetricEncryptionKeyPair;
+
+    beforeEach(async () => {
+      keyPair = await cryptoService.generateKeyPair();
+    });
+
+    it('should generate a key pair with private and public keys', () => {
       expect(keyPair).toHaveProperty('privateKey');
       expect(keyPair).toHaveProperty('publicKey');
+    });
+    it('should have private and public keys that are instances of CryptoKey', () => {
       expect(keyPair.privateKey).toBeInstanceOf(CryptoKey);
       expect(keyPair.publicKey).toBeInstanceOf(CryptoKey);
+    });
+    it('should return an instance of AsymmetricEncryptionKeyPair', () => {
+      expect(keyPair).toBeInstanceOf(AsymmetricEncryptionKeyPair);
     });
   });
 

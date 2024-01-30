@@ -1,39 +1,39 @@
 import crypto from 'node:crypto';
 
-type EncryptionKey = {
-  export(): Promise<Uint8Array>;
+export type RawAsymmetricEncryptionKeyPair = {
+  privateKey: Uint8Array;
+  publicKey: Uint8Array;
 };
 
-type EncryptionKeyConstructor = {
-  import: (data: Uint8Array) => Promise<EncryptionKey>;
-  new (nativeKey: CryptoKey): EncryptionKey;
-};
+export class AsymmetricEncryptionKeyPair {
+  privateKey: CryptoKey;
+  publicKey: CryptoKey;
 
-export const PublicKey: EncryptionKeyConstructor = class implements EncryptionKey {
-  constructor(public nativeKey: CryptoKey) {}
+  constructor({ privateKey, publicKey }: { privateKey: CryptoKey; publicKey: CryptoKey }) {
+    this.privateKey = privateKey;
+    this.publicKey = publicKey;
+  }
 
-  static async import(data: Uint8Array): Promise<EncryptionKey> {
-    return new this(
-      await crypto.webcrypto.subtle.importKey('spki', data, { name: 'RSA-OAEP' }, true, ['encrypt', 'decrypt'])
-    );
+  static async import({ privateKey, publicKey }: RawAsymmetricEncryptionKeyPair) {
+    return new this({
+      privateKey: await crypto.webcrypto.subtle.importKey('pkcs8', privateKey, { name: 'RSA-OAEP' }, true, [
+        'encrypt',
+        'decrypt'
+      ]),
+      publicKey: await crypto.webcrypto.subtle.importKey('spki', publicKey, { name: 'RSA-OAEP' }, true, [
+        'encrypt',
+        'decrypt'
+      ])
+    });
   }
-  async export(): Promise<Uint8Array> {
-    return new Uint8Array(await crypto.webcrypto.subtle.exportKey('spki', this.nativeKey));
-  }
-};
 
-export const PrivateKey: EncryptionKeyConstructor = class implements EncryptionKey {
-  constructor(public nativeKey: CryptoKey) {}
-
-  static async import(data: Uint8Array): Promise<EncryptionKey> {
-    return new this(
-      await crypto.webcrypto.subtle.importKey('pkcs8', data, { name: 'RSA-OAEP' }, true, ['encrypt', 'decrypt'])
-    );
+  async export(): Promise<RawAsymmetricEncryptionKeyPair> {
+    return {
+      privateKey: new Uint8Array(await crypto.webcrypto.subtle.exportKey('pkcs8', this.privateKey)),
+      publicKey: new Uint8Array(await crypto.webcrypto.subtle.exportKey('spki', this.publicKey))
+    };
   }
-  async export(): Promise<Uint8Array> {
-    return new Uint8Array(await crypto.webcrypto.subtle.exportKey('pkcs8', this.nativeKey));
-  }
-};
+}
 
 export class EncryptedData extends Uint8Array {
   constructor(buffer: ArrayBufferLike) {

@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import { Inject, Injectable } from '@nestjs/common';
 
 import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from './crypto.config';
-import { EncryptedData } from './crypto.utils';
+import { AsymmetricEncryptionKeyPair, EncryptedData } from './crypto.utils';
 
 @Injectable()
 export class CryptoService {
@@ -60,7 +60,7 @@ export class CryptoService {
    * is 0x010001 (65537). The generated keys are extractable and can be
    * used for encryption and decryption.
    */
-  async generateKeyPair(): Promise<{ privateKey: CryptoKey; publicKey: CryptoKey }> {
+  async generateKeyPair(): Promise<AsymmetricEncryptionKeyPair> {
     const { privateKey, publicKey } = await crypto.webcrypto.subtle.generateKey(
       {
         hash: 'SHA-512',
@@ -71,7 +71,7 @@ export class CryptoService {
       true,
       ['encrypt', 'decrypt']
     );
-    return { privateKey, publicKey };
+    return new AsymmetricEncryptionKeyPair({ privateKey, publicKey });
   }
 
   hash(source: string) {
