@@ -12,6 +12,10 @@ abstract class EncryptionKey<T extends string> {
 
   constructor(public cryptoKey: CryptoKey) {}
 
+  async toJSON() {
+    return (await this.toRaw()).toJSON();
+  }
+
   abstract __type: T;
 
   abstract toRaw(): Promise<SerializableUint8Array>;
@@ -67,6 +71,13 @@ export class AsymmetricEncryptionKeyPair {
       privateKey: new PrivateKey(cryptoKeys.privateKey),
       publicKey: new PublicKey(cryptoKeys.publicKey)
     });
+  }
+
+  async toJSON() {
+    return {
+      privateKey: await this.privateKey.toJSON(),
+      publicKey: await this.publicKey.toJSON()
+    };
   }
 
   async toRaw() {
