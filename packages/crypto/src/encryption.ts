@@ -26,7 +26,12 @@ type EncryptionKeyConstructor<T extends string> = {
   new (cryptoKey: CryptoKey): EncryptionKey<T>;
 };
 
-export const PublicKey: EncryptionKeyConstructor<'PUBLIC'> = class extends EncryptionKey<'PUBLIC'> {
+export type PublicEncryptionKey = EncryptionKey<'PUBLIC'>;
+
+export const PublicKey: EncryptionKeyConstructor<'PUBLIC'> = class
+  extends EncryptionKey<'PUBLIC'>
+  implements PublicEncryptionKey
+{
   __type = 'PUBLIC' as const;
   static async fromRaw(key: Uint8Array) {
     return new this(await globalThis.crypto.subtle.importKey('spki', key, this.algorithm, true, ['encrypt']));
@@ -36,7 +41,12 @@ export const PublicKey: EncryptionKeyConstructor<'PUBLIC'> = class extends Encry
   }
 };
 
-export const PrivateKey: EncryptionKeyConstructor<'PRIVATE'> = class extends EncryptionKey<'PRIVATE'> {
+export type PrivateEncryptionKey = EncryptionKey<'PRIVATE'>;
+
+export const PrivateKey: EncryptionKeyConstructor<'PRIVATE'> = class
+  extends EncryptionKey<'PRIVATE'>
+  implements PrivateEncryptionKey
+{
   __type = 'PRIVATE' as const;
   static async fromRaw(key: Uint8Array) {
     return new this(await globalThis.crypto.subtle.importKey('pkcs8', key, this.algorithm, true, ['decrypt']));
@@ -47,10 +57,10 @@ export const PrivateKey: EncryptionKeyConstructor<'PRIVATE'> = class extends Enc
 };
 
 export class AsymmetricEncryptionKeyPair {
-  privateKey: EncryptionKey<'PRIVATE'>;
-  publicKey: EncryptionKey<'PUBLIC'>;
+  privateKey: PrivateEncryptionKey;
+  publicKey: PublicEncryptionKey;
 
-  constructor({ privateKey, publicKey }: { privateKey: EncryptionKey<'PRIVATE'>; publicKey: EncryptionKey<'PUBLIC'> }) {
+  constructor({ privateKey, publicKey }: { privateKey: PrivateEncryptionKey; publicKey: PublicEncryptionKey }) {
     this.privateKey = privateKey;
     this.publicKey = publicKey;
   }
@@ -91,7 +101,7 @@ export class AsymmetricEncryptionKeyPair {
 export class Encrypter {
   private textEncoder = new TextEncoder();
 
-  constructor(private publicKey: EncryptionKey<'PUBLIC'>) {}
+  constructor(private publicKey: PublicEncryptionKey) {}
 
   /**
    * Encrypts a string using the public key
@@ -113,7 +123,7 @@ export class Encrypter {
 export class Decrypter {
   private textDecoder = new TextDecoder();
 
-  constructor(private privateKey: EncryptionKey<'PRIVATE'>) {}
+  constructor(private privateKey: PrivateEncryptionKey) {}
 
   /**
    * Decrypts the encrypted data using the private key.
