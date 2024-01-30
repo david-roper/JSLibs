@@ -1,6 +1,6 @@
 import { SerializableUint8Array } from './utils';
 
-export abstract class EncryptionKey {
+abstract class EncryptionKey<T extends string> {
   static algorithm = {
     hash: 'SHA-512',
     modulusLength: 4096,
@@ -8,20 +8,20 @@ export abstract class EncryptionKey {
     publicExponent: new Uint8Array([1, 0, 1])
   };
 
-  abstract cryptoKey: CryptoKey;
+  constructor(public cryptoKey: CryptoKey) {}
+
+  abstract __type: T;
+
   abstract toRaw(): Promise<SerializableUint8Array>;
 }
 
-export type EncryptionKeyConstructor = {
-  fromRaw: (key: Uint8Array) => Promise<EncryptionKey>;
-  new (cryptoKey: CryptoKey): EncryptionKey;
+type EncryptionKeyConstructor<T extends string> = {
+  fromRaw: (key: Uint8Array) => Promise<EncryptionKey<T>>;
+  new (cryptoKey: CryptoKey): EncryptionKey<T>;
 };
 
-export const PublicKey: EncryptionKeyConstructor = class extends EncryptionKey {
-  constructor(public cryptoKey: CryptoKey) {
-    super();
-  }
-
+export const PublicKey: EncryptionKeyConstructor<'PUBLIC'> = class extends EncryptionKey<'PUBLIC'> {
+  __type = 'PUBLIC' as const;
   static async fromRaw(key: Uint8Array) {
     return new this(await globalThis.crypto.subtle.importKey('spki', key, this.algorithm, true, ['encrypt']));
   }
@@ -30,11 +30,8 @@ export const PublicKey: EncryptionKeyConstructor = class extends EncryptionKey {
   }
 };
 
-export const PrivateKey: EncryptionKeyConstructor = class extends EncryptionKey {
-  constructor(public cryptoKey: CryptoKey) {
-    super();
-  }
-
+export const PrivateKey: EncryptionKeyConstructor<'PRIVATE'> = class extends EncryptionKey<'PRIVATE'> {
+  __type = 'PRIVATE' as const;
   static async fromRaw(key: Uint8Array) {
     return new this(await globalThis.crypto.subtle.importKey('pkcs8', key, this.algorithm, true, ['decrypt']));
   }
@@ -44,10 +41,10 @@ export const PrivateKey: EncryptionKeyConstructor = class extends EncryptionKey 
 };
 
 export class AsymmetricEncryptionKeyPair {
-  privateKey: EncryptionKey;
-  publicKey: EncryptionKey;
+  privateKey: EncryptionKey<'PRIVATE'>;
+  publicKey: EncryptionKey<'PUBLIC'>;
 
-  constructor({ privateKey, publicKey }: { privateKey: EncryptionKey; publicKey: EncryptionKey }) {
+  constructor({ privateKey, publicKey }: { privateKey: EncryptionKey<'PRIVATE'>; publicKey: EncryptionKey<'PUBLIC'> }) {
     this.privateKey = privateKey;
     this.publicKey = publicKey;
   }
