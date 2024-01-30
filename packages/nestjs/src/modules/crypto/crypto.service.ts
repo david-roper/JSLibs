@@ -43,6 +43,7 @@ export class CryptoService {
    * @return A promise that resolves to the encrypted data
    */
   async encrypt(text: string, publicKey: CryptoKey): Promise<SerializableUint8Array> {
+    new 
     const encoded = this.textEncoder.encode(text);
     const arrayBuffer = await crypto.webcrypto.subtle.encrypt(
       {
