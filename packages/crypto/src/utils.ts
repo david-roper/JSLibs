@@ -7,6 +7,10 @@ export class SerializableUint8Array extends Uint8Array {
     return Array.from(this);
   }
 
+  toBuffer() {
+    return Buffer.from(this);
+  }
+
   toJSON() {
     return this.toArray();
   }
