@@ -1,4 +1,4 @@
-import { SerializableUint8Array } from './utils';
+import { SerializableUint8Array } from './utils.js';
 
 const ALGORITHM_NAME = 'RSA-OAEP';
 
