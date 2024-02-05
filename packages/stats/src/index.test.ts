@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
 
-import * as stats from './index';
+import * as stats from './index.js';
 
 describe('Stats', () => {
   describe('mean', () => {
