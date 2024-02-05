@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
 
-import { toBasicISOString, yearsPassed } from './datetime';
+import { toBasicISOString, yearsPassed } from './datetime.js';
 
 describe('toBasicISOString', () => {
   it('should return a string of the format yyyy-mm-dd', () => {
