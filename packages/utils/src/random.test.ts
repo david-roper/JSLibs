@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
 
-import { randomDate, randomInt } from './random';
+import { randomDate, randomInt } from './random.js';
 
 describe('randomInt', () => {
   it('should return an integer value within the range', () => {

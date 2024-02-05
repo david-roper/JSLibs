@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
 
-import { SerializableUint8Array } from './utils';
+import { SerializableUint8Array } from './utils.js';
 
 describe('SerializableUint8Array', () => {
   it('should correctly wrap an ArrayBufferLike object', () => {

@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, it } from 'bun:test';
 
-import { AsymmetricEncryptionKeyPair, Decrypter, Encrypter, PrivateKey, PublicKey } from './encryption';
-import { SerializableUint8Array } from './utils';
+import { AsymmetricEncryptionKeyPair, Decrypter, Encrypter, PrivateKey, PublicKey } from './encryption.js';
+import { SerializableUint8Array } from './utils.js';
 
 describe('AsymmetricEncryptionKeyPair', () => {
   let keyPair: AsymmetricEncryptionKeyPair;

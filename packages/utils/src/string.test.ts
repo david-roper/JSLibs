@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'bun:test';
 
-import { camelToSnakeCase, snakeToCamelCase } from './string';
+import { camelToSnakeCase, snakeToCamelCase } from './string.js';
 
 describe('camelToSnakeCase', () => {
   it('should convert from camel to snake case ', () => {
