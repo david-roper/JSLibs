@@ -65,9 +65,7 @@ const Stepper = ({ className, steps }: StepperProps) => {
                     >
                       {step.icon}
                     </div>
-                    <span className="text-xs mt-2 font-medium uppercase text-slate-600 dark:text-slate-300">
-                      {step.label}
-                    </span>
+                    <span className="text-xs mt-2 font-medium uppercase text-default">{step.label}</span>
                   </div>
                 </div>
                 {i !== steps.length - 1 && (

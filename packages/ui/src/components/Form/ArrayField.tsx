@@ -45,7 +45,7 @@ export const ArrayField = memo(function ArrayField({
     <div>
       {arrayValue.map((fields, i) => (
         <div key={i}>
-          <span className="font-medium text-slate-600 dark:text-slate-300">{label + ' ' + (i + 1)}</span>
+          <span className="font-medium text-default">{label + ' ' + (i + 1)}</span>
           {Object.keys(fields).map((name) => {
             const field = fieldset[name];
             const fieldProps = field?.kind === 'dynamic-fieldset' ? field.render(fields) : field;

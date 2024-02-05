@@ -18,16 +18,16 @@ module.exports = {
       addBase({
         'html.dark': {
           backgroundColor: theme('colors.slate.900'),
-          color: theme('colors.slate.100')
+          color: theme('colors.slate.300')
         },
         'html.light': {
           backgroundColor: theme('colors.slate.100'),
-          color: theme('colors.slate.900')
+          color: theme('colors.slate.700')
         }
       });
       addComponents({
         '.field-input': {
-          '@apply field-input-base border-b-2 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-500':
+          '@apply field-input-base border-b-2 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-500':
             {}
         },
         '.field-input-base': {
@@ -36,7 +36,7 @@ module.exports = {
           minHeight: '42px'
         },
         '.field-label': {
-          '@apply first-letter:capitalize pointer-events-none text-slate-600 dark:text-slate-300': {}
+          '@apply first-letter:capitalize pointer-events-none text-slate-700 dark:text-slate-300': {}
         },
         '.field-label-floating': {
           '@apply field-label absolute left-0 transition-all': {}
@@ -52,6 +52,12 @@ module.exports = {
           },
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none'
+        },
+        '.text-default': {
+          '@apply text-slate-700 dark:text-slate-300': {}
+        },
+        '.text-strong': {
+          '@apply text-slate-900 dark:text-slate-100': {}
         }
       });
     })
