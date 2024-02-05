@@ -35,9 +35,9 @@ const PasswordInput = ({ description, name, onChange, value }: PasswordInputProp
             }}
           >
             {show ? (
-              <EyeSlashIcon className="text-slate-600 dark:text-slate-300" height={16} width={16} />
+              <EyeSlashIcon className="text-default" height={16} width={16} />
             ) : (
-              <EyeIcon className="text-slate-600 dark:text-slate-300" height={16} width={16} />
+              <EyeIcon className="text-default" height={16} width={16} />
             )}
           </button>
         </div>

@@ -47,7 +47,7 @@ const NotificationHubComponent = ({ timeout = 5000 }: NotificationHubProps) => {
                       <XMarkIcon aria-hidden="true" className="h-5 w-5" />
                     </button>
                   </div>
-                  <p className="my-2 text-slate-600 dark:text-slate-300">{item.message}</p>
+                  <p className="my-2 text-default">{item.message}</p>
                 </div>
                 <motion.div
                   animate={{ width: '100%' }}
