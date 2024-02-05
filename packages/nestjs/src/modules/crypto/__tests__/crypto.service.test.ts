@@ -2,8 +2,8 @@ import { beforeEach, describe, expect, it } from 'bun:test';
 
 import { Test, TestingModule } from '@nestjs/testing';
 
-import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from '../crypto.config';
-import { CryptoService } from '../crypto.service';
+import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from '../crypto.config.js';
+import { CryptoService } from '../crypto.service.js';
 
 describe('CryptoService', () => {
   let cryptoService: CryptoService;

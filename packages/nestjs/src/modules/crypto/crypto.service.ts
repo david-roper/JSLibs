@@ -2,7 +2,7 @@ import crypto from 'node:crypto';
 
 import { Inject, Injectable } from '@nestjs/common';
 
-import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from './crypto.config';
+import { CRYPTO_MODULE_OPTIONS_TOKEN, type CryptoModuleOptions } from './crypto.config.js';
 
 @Injectable()
 export class CryptoService {

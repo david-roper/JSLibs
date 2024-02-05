@@ -1,7 +1,7 @@
 import { createParamDecorator } from '@nestjs/common';
 import type { ExecutionContext } from '@nestjs/common';
 
-import type { AppRequest } from '../types';
+import type { AppRequest } from '../types.js';
 
 type CurrentUserDecorator = (key: Extract<keyof AppRequest['user'], string>) => ParameterDecorator;
 

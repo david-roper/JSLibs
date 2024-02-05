@@ -1,8 +1,8 @@
-export * from './abstract/entity.controller';
-export * from './abstract/entity.service';
+export * from './abstract/entity.controller.js';
+export * from './abstract/entity.service.js';
 
-export * from './decorators/current-user.decorator';
-export * from './decorators/validation-schema.decorator';
+export * from './decorators/current-user.decorator.js';
+export * from './decorators/validation-schema.decorator.js';
 
-export * from './pipes/parse-schema.pipe';
-export * from './pipes/validation.pipe';
+export * from './pipes/parse-schema.pipe.js';
+export * from './pipes/validation.pipe.js';
