@@ -1,1 +1,1 @@
-export * from './utils/create-mock';
+export * from './utils/create-mock.js';

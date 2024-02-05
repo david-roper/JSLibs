@@ -5,7 +5,7 @@ import { LoggerModule } from 'nestjs-pino';
 import { LoggerErrorInterceptor } from 'nestjs-pino';
 import type { DestinationStream } from 'pino';
 import type { Options as PinoHttpOptions } from 'pino-http';
-import PinoPretty from 'pino-pretty';
+import { PinoPretty } from 'pino-pretty';
 
 @Module({})
 export class LoggingModule {
