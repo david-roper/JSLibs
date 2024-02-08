@@ -1,9 +1,10 @@
 import { Listbox, Transition } from '@headlessui/react';
-import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
+import { CheckIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';
 
 import { Button, type ButtonProps } from '../Button/Button';
 import { Card } from '../Card/Card';
+import { DropdownIcon } from '../Dropdown/DropdownIcon';
 
 export type SelectOption = {
   key: string;
@@ -43,7 +44,7 @@ export const SelectDropdown = <T extends SelectOption>({
       <Listbox.Button
         as={Button}
         className="h-full w-full"
-        icon={<ChevronDownIcon height={ICON_SIZE[size ?? 'md']} width={ICON_SIZE[size ?? 'md']} />}
+        icon={<DropdownIcon />}
         iconPosition="right"
         label={title}
         variant={variant}
