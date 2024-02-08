@@ -9,12 +9,12 @@ import { build as PinoPretty } from 'pino-pretty';
 
 @Module({})
 export class LoggingModule {
-  static forRoot(): DynamicModule {
+  static forRoot(options: { debug: boolean }): DynamicModule {
     return {
       global: true,
       imports: [
         LoggerModule.forRoot({
-          pinoHttp: this.getPinoHttpOptions()
+          pinoHttp: options.debug ? this.getPinoHttpOptions() : undefined
         })
       ],
       module: LoggingModule,
@@ -23,9 +23,6 @@ export class LoggingModule {
   }
 
   private static getPinoHttpOptions(): [PinoHttpOptions, DestinationStream] | undefined {
-    if (process.env.NODE_ENV === 'production') {
-      return;
-    }
     return [
       {
         customLogLevel: (_, res) => {
