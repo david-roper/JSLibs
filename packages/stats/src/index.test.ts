@@ -24,3 +24,29 @@ describe('Stats', () => {
     });
   });
 });
+
+describe('linearRegression', () => {
+  it('should compute a very simple model', () => {
+    expect(
+      stats.linearRegression([
+        [1, 2],
+        [2, 3],
+        [3, 4]
+      ])
+    ).toMatchObject({
+      intercept: 1,
+      slope: 1,
+      stdErr: 0
+    });
+  });
+  it('should compute a model where the fit is imperfect', () => {
+    const result = stats.linearRegression([
+      [1, 2],
+      [2, 3],
+      [3, 5]
+    ]);
+    expect(result.intercept).toBeCloseTo(0.333);
+    expect(result.slope).toBeCloseTo(1.5);
+    expect(result.stdErr).toBeCloseTo(0.288);
+  });
+});
