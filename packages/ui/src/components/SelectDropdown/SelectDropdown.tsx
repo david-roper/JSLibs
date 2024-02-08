@@ -3,6 +3,7 @@ import { CheckIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 import { clsx } from 'clsx';
 
 import { Button, type ButtonProps } from '../Button/Button';
+import { Card } from '../Card/Card';
 
 export type SelectOption = {
   key: string;
@@ -21,7 +22,7 @@ export type SelectDropdownProps<T extends SelectOption> = {
 };
 
 export const SelectDropdown = <T extends SelectOption>({
-  checkPosition = 'left',
+  checkPosition = 'right',
   className,
   options,
   selected,
@@ -42,7 +43,7 @@ export const SelectDropdown = <T extends SelectOption>({
       <Listbox.Button
         as={Button}
         className="h-full w-full"
-        icon={<ChevronDownIcon />}
+        icon={<ChevronDownIcon height={ICON_SIZE[size ?? 'md']} width={ICON_SIZE[size ?? 'md']} />}
         iconPosition="right"
         label={title}
         variant={variant}
@@ -57,7 +58,10 @@ export const SelectDropdown = <T extends SelectOption>({
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Listbox.Options className="scrollbar-none absolute z-10 mt-2 flex max-h-80 min-w-full flex-col overflow-scroll border border-slate-200 dark:border-slate-700">
+        <Listbox.Options
+          as={Card}
+          className="scrollbar-none absolute z-10 mt-2 flex max-h-80 min-w-full flex-col overflow-scroll"
+        >
           {options.map((option) => (
             <Listbox.Option
               className="flex w-full items-center whitespace-nowrap bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 p-2 hover:bg-slate-200 "
