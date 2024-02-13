@@ -1,23 +1,17 @@
 import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import { twMerge } from 'tailwind-merge';
 
-import { Button, type ButtonProps } from '../Button/Button';
+import { Button, type ButtonProps } from '../Button';
 import { Card } from '../Card/Card';
+import { DropdownIcon } from './DropdownIcon';
 
 type DropdownOptions = Record<string, string> | readonly string[];
 
 type DropdownOptionKey<T> = T extends readonly string[]
   ? T[number]
   : T extends Record<string, string>
-  ? Extract<keyof T, string>
-  : never;
-
-const ICON_SIZE = {
-  lg: 18,
-  md: 16,
-  sm: 14
-};
+    ? Extract<keyof T, string>
+    : never;
 
 export type DropdownProps<T extends DropdownOptions> = {
   className?: string;
@@ -53,7 +47,7 @@ export function Dropdown<const T extends DropdownOptions>({
         as={Button}
         className="h-full w-full"
         disabled={options.length === 0}
-        icon={<ChevronDownIcon height={ICON_SIZE[size ?? 'md']} width={ICON_SIZE[size ?? 'md']} />}
+        icon={<DropdownIcon size={size} />}
         iconPosition="right"
         label={title}
         size={size}
