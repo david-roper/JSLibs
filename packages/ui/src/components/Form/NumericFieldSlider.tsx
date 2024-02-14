@@ -1,13 +1,10 @@
-
-
-import { useMemo, useRef } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 
 import { range } from '@douglasneuroinformatics/utils';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
-import { motion } from 'framer-motion';
 import type { Simplify } from 'type-fest';
 
-import { PopoverIcon } from '../..';
+import { PopoverIcon, cn } from '../..';
 import { FormFieldContainer } from './FormFieldContainer';
 
 import type { NumericFieldProps } from './NumericField';
@@ -24,11 +21,13 @@ export const NumericFieldSlider = ({
   setValue,
   value
 }: NumericFieldSliderProps) => {
-  const guide = useRef<HTMLDivElement>(null);
-  const point = useRef<HTMLDivElement>(null);
+  const [isDragActive, setIsDragActive] = useState(false);
 
+  const guide = useRef<HTMLDivElement>(null);
+  const point = useRef<HTMLButtonElement>(null);
 
   const values = useMemo(() => range(min, max + 1), [min, max]);
+
   const calculateVal = (guidePos: number, pointPos: number, guideWidth: number, pointWidth: number) => {
     const offsetLeft = pointPos - guidePos;
     const offsetPercentage = offsetLeft / (guideWidth - pointWidth);
@@ -36,24 +35,26 @@ export const NumericFieldSlider = ({
     return valueIndex;
   };
 
-  const handleDrag = () => {
+  const handleDrag: React.DragEventHandler<HTMLButtonElement> = useCallback((event) => {
     if (!(guide.current && point.current)) {
       return;
     }
     const guideRect = guide.current.getBoundingClientRect();
     const pointRect = point.current.getBoundingClientRect();
 
+    console.log(event)
+
     // const offsetLeft = pointRect.left - guideRect.left;
     // const offsetPercentage = offsetLeft / (guideRect.width - pointRect.width);
     // const valueIndex = Math.round((values.length - 1) * offsetPercentage);
     // console.log('new value ' + valueIndex);
     setValue(values[calculateVal(guideRect.left, pointRect.left, guideRect.width, pointRect.width)] ?? undefined);
-  };
+  }, []);
 
   const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (event) => {
-    console.log('Will handle key down')
-    dragControls.start(event, { snapToCursor: true })
-  }
+    console.log('Will handle key down');
+    dragControls.start(event, { snapToCursor: true });
+  };
 
   // const handleKeyDown: React.KeyboardEventHandler<HTMLDivElement> = (e) => {
   //   if (!(guide.current && point.current)) {
@@ -95,10 +96,9 @@ export const NumericFieldSlider = ({
   return (
     <FormFieldContainer error={error}>
       <label className="field-label" htmlFor={name}>
-        {label}
+        {`${label} `}
       </label>
       <div className="flex gap-3 relative">
-        {' '}
         {/* Add relative positioning to the container */}
         {values.map((val, i) => (
           <div
@@ -116,18 +116,7 @@ export const NumericFieldSlider = ({
             className="h-1.5 items-center w-full box-content flex pr-2 rounded bg-slate-200 dark:border-slate-600 dark:bg-slate-700 border border-slate-300"
             ref={guide}
           >
-            <motion.div
-              className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400"
-              drag="x"
-              dragConstraints={guide}
-              dragControls={dragControls}
-              dragElastic={false}
-              dragMomentum={false}
-              ref={point}
-              tabIndex={0}
-              onDrag={handleDrag}
-              onKeyDown={handleKeyDown}
-            />
+            <button className={cn("h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400", isDragActive && 'cursor-grabbing')} ref={point} tabIndex={0} onClick={() => setIsDragActive(true)} />
           </div>
         </div>
         <div className="flex items-center justify-center text-slate-600 dark:text-slate-300">{value ?? 'NA'}</div>
