@@ -1,9 +1,9 @@
 import { Slider } from "@/components/ui/slider"
-import { cn } from "@/lib/utils"
+import { cn } from '../..';
 
-type SliderProps = React.ComponentProps<typeof Slider>
+export type SliderProps = React.ComponentProps<typeof Slider>
 
-export const SliderDemo = ({ className, ...props }: SliderProps) => {
+export const shadSlider = ({ className, ...props }: SliderProps) => {
   return (
     <Slider
       className={cn("w-[60%]", className)}
