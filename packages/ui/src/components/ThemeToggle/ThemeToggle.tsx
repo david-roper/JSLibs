@@ -24,7 +24,8 @@ export const ThemeToggle = ({ className, size = 24 }: ThemeToggleProps) => {
       type="button"
       onClick={toggleTheme}
     >
-      {theme === 'dark' ? <SunIcon height={size} width={size} /> : <MoonIcon height={size} width={size} />}
+      <SunIcon className="hidden dark:block" height={size} width={size} />
+      <MoonIcon className="dark:hidden" height={size} width={size} />
     </button>
   );
 };
