@@ -1,5 +1,6 @@
-import { Slider } from "@/components/ui/slider"
+import { Slider } from "@radix-ui/react-slider"
 import { cn } from '../..';
+
 
 export type SliderProps = React.ComponentProps<typeof Slider>
 
@@ -13,4 +14,4 @@ export const shadSlider = ({ className, ...props }: SliderProps) => {
       {...props}
     />
   )
-}
+  }
