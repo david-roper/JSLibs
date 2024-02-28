@@ -36,3 +36,16 @@ i18n.on('languageChanged', (lang) => {
 
 export default i18n;
 ```
+
+## Editor Setup
+
+For better intellisense in VSCode, we recommend adding the following to your user settings:
+
+```json
+{
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ]
+}
+```
