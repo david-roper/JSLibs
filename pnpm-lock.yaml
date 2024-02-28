@@ -140,10 +140,10 @@ importers:
   packages/ui:
     dependencies:
       '@douglasneuroinformatics/form-types':
-        specifier: workspace:^5.2.0
+        specifier: ^5.2.0
         version: link:../form-types
       '@douglasneuroinformatics/utils':
-        specifier: workspace:^1.0.4
+        specifier: ^1.2.2
         version: link:../utils
       '@headlessui/react':
         specifier: ^1.7.17
