@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { useNotificationsStore } from '@/stores/notifications-store';
+import { useNotificationsStore } from '@/hooks/useNotificationsStore';
 
 import { Button } from '../Button/Button';
 import { NotificationHub } from './NotificationHub';

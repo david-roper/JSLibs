@@ -4,6 +4,7 @@ export * from './useEventListener';
 export * from './useInterval';
 export * from './useIsomorphicLayoutEffect';
 export * from './useMediaQuery';
+export * from './useNotificationsStore';
 export * from './useOnClickOutside';
 export * from './useSessionStorage';
 export * from './useTheme';

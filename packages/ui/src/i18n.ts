@@ -89,4 +89,6 @@ const i18n = createInstance({
 
 void i18n.use(initReactI18next).init();
 
-export { defaultNS, i18n as default, resources };
+export { defaultNS, resources };
+
+export default i18n;

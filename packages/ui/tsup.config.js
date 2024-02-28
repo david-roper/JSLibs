@@ -10,11 +10,11 @@ export default defineConfig({
   clean: true,
   dts: true,
   entry: [
-    path.resolve(__dirname, 'src/index.ts'),
+    path.resolve(__dirname, 'src/i18n.ts'),
+    path.resolve(__dirname, 'src/utils.ts'),
     path.resolve(__dirname, 'src/components/index.ts'),
     path.resolve(__dirname, 'src/hooks/index.ts'),
-    path.resolve(__dirname, 'src/legacy/index.ts'),
-    path.resolve(__dirname, 'src/utils.ts')
+    path.resolve(__dirname, 'src/legacy/index.ts')
   ],
   format: 'esm',
   outDir: path.resolve(__dirname, 'dist'),

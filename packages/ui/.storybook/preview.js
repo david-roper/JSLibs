@@ -1,6 +1,6 @@
 import { withThemeByDataAttribute } from '@storybook/addon-styling';
 
-import i18n from '../src/services/i18n';
+import i18n from '../src/i18n';
 
 import '../src/globals.css';
 
