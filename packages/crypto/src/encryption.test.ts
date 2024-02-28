@@ -87,7 +87,7 @@ describe('Encrypter and Decrypter', () => {
       const encrypted = await encrypter.encrypt(originalText);
       const newKeyPair = await AsymmetricEncryptionKeyPair.generate();
       const newDecrypter = new Decrypter(newKeyPair.privateKey);
-      expect(newDecrypter.decrypt(encrypted)).rejects.toThrow();
+      await expect(newDecrypter.decrypt(encrypted)).rejects.toThrow();
     });
 
     it('should be able to encrypt data, export the key, import the key, and decode the data', async () => {

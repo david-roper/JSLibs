@@ -1,7 +1,6 @@
-import { type Mock, vi } from 'vitest';
-
 import _ from 'lodash';
 import type { Class } from 'type-fest';
+import { type Mock, vi } from 'vitest';
 
 type AnyFunction = (...args: any[]) => any;
 
