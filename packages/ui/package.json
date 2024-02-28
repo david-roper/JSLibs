@@ -1,6 +1,6 @@
 {
   "name": "@douglasneuroinformatics/ui",
-  "version": "5.3.11",
+  "version": "6.0.0-beta.0",
   "description": "Common React components and tailwind config for DNP projects",
   "license": "LGPL-3.0",
   "type": "module",
@@ -8,6 +8,14 @@
     ".": {
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components/index.js",
+      "types": "./dist/components/index.d.ts"
+    },
+    "./legacy": {
+      "import": "./dist/legacy/index.js",
+      "types": "./dist/legacy/index.d.ts"
     },
     "./tailwind.config.cjs": "./tailwind.config.cjs"
   },
