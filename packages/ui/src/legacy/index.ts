@@ -14,7 +14,6 @@ export * from './components/PopoverIcon';
 export * from './components/SearchBar';
 export * from './components/SelectDropdown';
 export * from './components/Slider';
-export * from './components/Spinner';
 export * from './components/Stepper';
 export * from './components/Table';
 export * from './components/ThemeToggle';
