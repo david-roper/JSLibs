@@ -5,6 +5,7 @@
 ### BREAKING CHANGES
 
 - Remove `transformTranslations`
+- Remove `LoadingFallback`
 
 ## 5.2.0
 

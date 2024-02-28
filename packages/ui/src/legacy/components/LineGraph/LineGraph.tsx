@@ -17,7 +17,8 @@ import {
 } from 'recharts';
 import type { ConditionalKeys } from 'type-fest';
 
-import { type Theme, useTheme } from '../../hooks/useTheme';
+import { type Theme, useTheme } from '@/hooks/useTheme';
+
 import { Card } from '../Card/Card';
 
 /** An array of arbitrary objects with data to graph  */

@@ -2,7 +2,8 @@ import { XMarkIcon } from '@heroicons/react/24/solid';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-import { useNotificationsStore } from '../../stores/notifications-store';
+import { useNotificationsStore } from '@/stores/notifications-store';
+
 import { Card } from '../Card/Card';
 import { NotificationIcon } from './NotificationIcon';
 

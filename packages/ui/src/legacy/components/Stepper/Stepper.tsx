@@ -2,9 +2,9 @@ import React, { useEffect, useReducer, useRef, useState } from 'react';
 
 import clsx from 'clsx';
 
-import { StepperContext } from '../../context/StepperContext';
-import { useWindowSize } from '../../hooks/useWindowSize';
-import { cn } from '../../utils/cn';
+import { useWindowSize } from '@/hooks/useWindowSize';
+import { StepperContext } from '@/legacy/context/StepperContext';
+import { cn } from '@/utils/cn';
 
 type Step = {
   element: React.ReactElement;
