@@ -1,18 +1,19 @@
 import { withThemeByDataAttribute } from '@storybook/addon-styling';
-import type { Preview } from '@storybook/react';
 
-import './tailwind.css';
 import i18n from '../src/services/i18n';
 
-const preview: Preview = {
+import '../src/globals.css';
+
+/** @type {import('@storybook/react').Preview} */
+const preview = {
   decorators: [
     withThemeByDataAttribute({
-      themes: {
-        light: 'light',
-        dark: 'dark'
-      },
+      attributeName: 'data-mode',
       defaultTheme: 'light',
-      attributeName: 'data-mode'
+      themes: {
+        dark: 'dark',
+        light: 'light'
+      }
     })
   ],
   globals: {
@@ -23,14 +24,14 @@ const preview: Preview = {
     }
   },
   parameters: {
-    i18n,
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/
       }
-    }
+    },
+    i18n
   }
 };
 
