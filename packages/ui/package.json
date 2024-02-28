@@ -13,19 +13,20 @@
       "import": "./dist/hooks/index.js",
       "types": "./dist/hooks/index.d.ts"
     },
-    "./legacy": {
-      "import": "./dist/legacy/index.js",
-      "types": "./dist/legacy/index.d.ts"
-    },
     "./i18n": {
       "import": "./dist/i18n.js",
       "types": "./dist/i18n.d.ts"
     },
+    "./legacy": {
+      "import": "./dist/legacy/index.js",
+      "types": "./dist/legacy/index.d.ts"
+    },
+    "./styles/*": "./dist/styles/*",
+    "./tailwind.config.cjs": "./tailwind.config.cjs",
     "./utils": {
       "import": "./dist/utils.js",
       "types": "./dist/utils.d.ts"
-    },
-    "./tailwind.config.cjs": "./tailwind.config.cjs"
+    }
   },
   "files": [
     "dist",
@@ -33,7 +34,7 @@
     "tailwind.config.d.cts"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && cp src/styles/* dist/",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
     "push": "pnpm lint && pnpm build && npm publish",

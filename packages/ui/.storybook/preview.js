@@ -2,7 +2,7 @@ import { withThemeByDataAttribute } from '@storybook/addon-styling';
 
 import i18n from '../src/i18n';
 
-import '../src/globals.css';
+import '../src/styles/globals.css';
 
 /** @type {import('@storybook/react').Preview} */
 const preview = {
