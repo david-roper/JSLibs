@@ -51,7 +51,7 @@ describe('CryptoService', () => {
 
     it('should return false when comparing a hash with an incorrect value', async () => {
       const hash = await cryptoService.hashPassword('foo');
-      await expect(cryptoService.comparePassword('bar', hash)).resolves.toBe(true);
+      await expect(cryptoService.comparePassword('bar', hash)).resolves.toBe(false);
     });
   });
 });

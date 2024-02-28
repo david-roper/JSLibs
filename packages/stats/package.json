@@ -19,7 +19,8 @@
     "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
-    "push": "pnpm lint && pnpm test && pnpm build && npm publish"
+    "push": "pnpm lint && pnpm test && pnpm build && npm publish",
+    "test": "vitest run"
   },
   "devDependencies": {
     "typedoc": "^0.25.2"

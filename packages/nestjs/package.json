@@ -27,7 +27,8 @@
     "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
-    "push": "pnpm lint && pnpm test && pnpm build && npm publish"
+    "push": "pnpm lint && pnpm test && pnpm build && npm publish",
+    "test": "vitest run"
   },
   "dependencies": {
     "lodash": "^4.17.21",
@@ -39,8 +40,11 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@swc/core": "^1.4.2",
+    "@swc/helpers": "^0.5.6",
     "@types/express": "^4.17.21",
-    "@types/lodash": "^4.14.202"
+    "@types/lodash": "^4.14.202",
+    "unplugin-swc": "^1.4.4"
   },
   "peerDependencies": {
     "@nestjs/common": "^10.2.3",

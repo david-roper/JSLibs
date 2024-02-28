@@ -9,4 +9,3 @@ export function snakeToCamelCase<T extends string>(s: T) {
     .toLowerCase()
     .replace(/([-_][a-z])/g, (group) => group.toUpperCase().replace('-', '').replace('_', '')) as CamelCase<T>;
 }
-

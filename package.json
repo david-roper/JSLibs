@@ -10,7 +10,8 @@
     "format": "turbo run format",
     "lint": "turbo run lint",
     "prepare": "husky install",
-    "push": "turbo run build lint test && changeset version && changeset publish"
+    "push": "turbo run build lint test && changeset version && changeset publish",
+    "test": "turbo run test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
