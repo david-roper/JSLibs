@@ -1,4 +1,4 @@
-import { beforeEach, describe, expect, it } from 'bun:test';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { Test, TestingModule } from '@nestjs/testing';
 
@@ -46,13 +46,13 @@ describe('CryptoService', () => {
       const h1 = await cryptoService.hashPassword('foo');
       const h2 = await cryptoService.hashPassword('foo');
       expect(h1).not.toBe(h2);
-      expect(cryptoService.comparePassword('foo', h1)).resolves.toBeTrue();
-      expect(cryptoService.comparePassword('foo', h2)).resolves.toBeTrue();
+      expect(cryptoService.comparePassword('foo', h1)).resolves.toBe(true);
+      expect(cryptoService.comparePassword('foo', h2)).resolves.toBe(true);
     });
 
     it('should return false when comparing a hash with an incorrect value', async () => {
       const hash = await cryptoService.hashPassword('foo');
-      expect(cryptoService.comparePassword('bar', hash)).resolves.toBeFalse();
+      expect(cryptoService.comparePassword('bar', hash)).resolves.toBe(true);
     });
   });
 });

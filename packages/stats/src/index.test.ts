@@ -1,11 +1,11 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it } from 'vitest';
 
 import * as stats from './index.js';
 
 describe('Stats', () => {
   describe('mean', () => {
     it('should return NaN for an empty array', () => {
-      expect(Number.isNaN(stats.mean([]))).toBeTrue();
+      expect(Number.isNaN(stats.mean([]))).toBe(true);
     });
     it('should return the correct mean for a non-empty array', () => {
       expect(stats.mean([1, 2, 3, 4, 5])).toBe(3);
@@ -14,7 +14,7 @@ describe('Stats', () => {
 
   describe('std', () => {
     it('should return NaN for an array of only one number', () => {
-      expect(Number.isNaN(stats.std([1]))).toBeTrue();
+      expect(Number.isNaN(stats.std([1]))).toBe(true);
     });
     it('should return the correct sample standard deviation for a non-empty array', () => {
       expect(stats.std([1, 2, 3, 4, 5]).toFixed(5)).toBe((1.5811388).toFixed(5));

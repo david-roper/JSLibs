@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it } from 'bun:test';
+import { beforeAll, describe, expect, it } from 'vitest';
 
 import { AsymmetricEncryptionKeyPair, Decrypter, Encrypter, PrivateKey, PublicKey } from './encryption.js';
 import { SerializableUint8Array } from './utils.js';
