@@ -6,7 +6,6 @@ export * from './components/Divide';
 export * from './components/DownloadButton';
 export * from './components/Dropdown';
 export * from './components/Form';
-export * from './components/FormPageWrapper';
 export * from './components/LanguageToggle';
 export * from './components/LineGraph';
 export * from './components/Modal';
