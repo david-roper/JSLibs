@@ -3,9 +3,6 @@
   "private": true,
   "license": "LGPL-3.0",
   "type": "module",
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "build": "turbo run build",
     "clean": "find . -type d '(' -name '.turbo' -o -name 'dist' -o -name 'node_modules' ')' -prune -exec rm -rf {} \\;",
@@ -25,5 +22,6 @@
     "turbo": "^1.10.16",
     "typescript": "^5.2.2",
     "husky": "^8.0.3"
-  }
+  },
+  "packageManager": "pnpm@8.15.3"
 }
