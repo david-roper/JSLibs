@@ -6,6 +6,7 @@
 
 - Remove `transformTranslations`
 - Remove `LoadingFallback`, `FormPageWrapper`
+- Remove `text-strong` and `text-default` css classes
 
 ## 5.2.0
 
