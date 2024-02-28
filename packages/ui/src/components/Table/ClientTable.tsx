@@ -2,10 +2,9 @@ import { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Table, type TableEntry, type TableProps } from './Table';
 
-const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TableProps<T>) => {
+export const ClientTable = <T extends TableEntry>({ data, ...props }: TableProps<T>) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [entriesPerPage] = useState(10);
   const { t } = useTranslation();
@@ -53,5 +52,3 @@ const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TablePro
     </div>
   );
 };
-
-export const ClientTable = withI18nProvider(ClientTableComponent) as typeof ClientTableComponent;

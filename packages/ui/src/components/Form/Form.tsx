@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import { twMerge } from 'tailwind-merge';
 import { ZodError, type ZodType } from 'zod';
 
-import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Button } from '../Button/Button';
 import { FormErrorMessage } from './FormErrorMessage';
 import { FormFieldsComponent } from './FormFieldsComponent';
@@ -28,7 +27,7 @@ type FormProps<T extends Types.FormDataType> = {
   validationSchema: ZodType<T>;
 };
 
-const FormComponent = <T extends Types.FormDataType>({
+const Form = <T extends Types.FormDataType>({
   className,
   content,
   id,
@@ -135,7 +134,5 @@ const FormComponent = <T extends Types.FormDataType>({
     </form>
   );
 };
-
-const Form = withI18nProvider(FormComponent) as typeof FormComponent;
 
 export { Form, type FormProps };

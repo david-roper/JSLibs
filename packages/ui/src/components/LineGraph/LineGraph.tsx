@@ -18,7 +18,6 @@ import {
 import type { ConditionalKeys } from 'type-fest';
 
 import { type Theme, useTheme } from '../../hooks/useTheme';
-import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Card } from '../Card/Card';
 
 /** An array of arbitrary objects with data to graph  */
@@ -132,6 +131,6 @@ function LineGraphComponent<const T extends LineGraphData>({
   );
 }
 
-export const LineGraph = React.memo(withI18nProvider(LineGraphComponent)) as unknown as typeof LineGraphComponent;
+export const LineGraph = React.memo(LineGraphComponent) as typeof LineGraphComponent;
 
 export { type LineGraphLine };

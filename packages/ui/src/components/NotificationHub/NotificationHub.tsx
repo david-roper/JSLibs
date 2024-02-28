@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 import { useNotificationsStore } from '../../stores/notifications-store';
-import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { Card } from '../Card/Card';
 import { NotificationIcon } from './NotificationIcon';
 
@@ -12,7 +11,7 @@ type NotificationHubProps = {
   timeout?: number;
 };
 
-const NotificationHubComponent = ({ timeout = 5000 }: NotificationHubProps) => {
+const NotificationHub = ({ timeout = 5000 }: NotificationHubProps) => {
   const { t } = useTranslation();
   const { dismissNotification, notifications } = useNotificationsStore();
 
@@ -66,7 +65,5 @@ const NotificationHubComponent = ({ timeout = 5000 }: NotificationHubProps) => {
     </div>
   );
 };
-
-const NotificationHub = withI18nProvider(NotificationHubComponent) as typeof NotificationHubComponent;
 
 export { NotificationHub, type NotificationHubProps };

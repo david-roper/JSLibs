@@ -4,7 +4,6 @@ import { clsx } from 'clsx';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
-import { withI18nProvider } from '../../utils/with-i18n-provider';
 import { ArrowToggle } from '../ArrowToggle/ArrowToggle';
 import { Card } from '../Card/Card';
 import { CALENDAR_ANIMATION_DURATION, Calendar } from './Calendar';
@@ -46,7 +45,7 @@ export type DatePickerProps = {
   onSelection: (value: Date) => void;
 };
 
-export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ...props }: DatePickerProps) {
+export const DatePicker = ({ onSelection, ...props }: DatePickerProps) => {
   const [date, dispatch] = useReducer(reducer, new Date());
   const [showYearSelector, setShowYearSelector] = useState(false);
   const { t } = useTranslation();
@@ -137,4 +136,4 @@ export const DatePicker = withI18nProvider(function DatePicker({ onSelection, ..
       </div>
     </Card>
   );
-});
+};
