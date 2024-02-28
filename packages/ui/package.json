@@ -17,9 +17,7 @@
     "tailwind.config.d.cts"
   ],
   "scripts": {
-    "build": "rm -rf dist && pnpm build:js && pnpm build:ts",
-    "build:js": "esbuild --bundle --format=esm --outdir=dist --packages=external --platform=browser --sourcemap=external  src/index.ts",
-    "build:ts": "tsc -b tsconfig.build.json",
+    "build": "tsup",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
     "push": "pnpm lint && pnpm build && npm publish",
