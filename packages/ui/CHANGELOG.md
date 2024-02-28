@@ -1,5 +1,11 @@
 # @douglasneuroinformatics/ui
 
+## 6.0.0
+
+### BREAKING CHANGES
+
+- Remove `transformTranslations`
+
 ## 5.2.0
 
 ### Minor Changes

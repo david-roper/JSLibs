@@ -31,7 +31,6 @@ export * from './hooks/useSessionStorage';
 export * from './hooks/useTheme';
 export * from './hooks/useWindowSize';
 export * from './utils/cn';
-export * from './utils/i18n-utils';
 
 export { default as i18n } from './services/i18n';
 export * from './stores/notifications-store';
