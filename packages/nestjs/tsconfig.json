@@ -4,8 +4,7 @@
     "experimentalDecorators": true,
     "module": "Node16",
     "moduleResolution": "Node16",
-    "strictPropertyInitialization": false,
-    "types": ["bun-types"]
+    "strictPropertyInitialization": false
   },
   "extends": "../../tsconfig.base.json",
   "include": ["src"]
