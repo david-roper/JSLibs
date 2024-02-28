@@ -5,7 +5,7 @@
 ### BREAKING CHANGES
 
 - Remove `transformTranslations`
-- Remove `LoadingFallback`
+- Remove `LoadingFallback`, `FormPageWrapper`
 
 ## 5.2.0
 
