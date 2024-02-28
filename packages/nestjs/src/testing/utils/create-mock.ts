@@ -1,11 +1,11 @@
-import type { AnyFunction } from 'bun';
-import { type Mock, jest } from 'bun:test';
-
 import _ from 'lodash';
 import type { Class } from 'type-fest';
+import { type Mock, vi } from 'vitest';
+
+type AnyFunction = (...args: any[]) => any;
 
 export type MockedInstance<T extends object> = {
-  [K in keyof T as T[K] extends AnyFunction ? K : never]: Mock<AnyFunction>;
+  [K in keyof T as T[K] extends AnyFunction ? K : never]: Mock;
 };
 
 function getAllPropertyNames(object: object): string[] {
@@ -25,7 +25,7 @@ export function createMock<T extends object>(constructor: Class<T>) {
     .forEach((prop) => {
       const value = prototype[prop];
       if (typeof value === 'function') {
-        obj[prop] = jest.fn();
+        obj[prop] = vi.fn();
       } else {
         throw new Error(`Unexpected type for property '${prop}': ${typeof prototype[prop]}`);
       }
@@ -40,7 +40,7 @@ export function createMockObject<T extends object>(target: T) {
       if (value !== undefined) {
         return value;
       }
-      return jest.fn();
+      return vi.fn();
     }
   });
 }

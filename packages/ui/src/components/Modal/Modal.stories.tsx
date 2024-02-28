@@ -24,9 +24,7 @@ export const Default: Story = {
     children: (
       <>
         <div>
-          <p className="text-sm text-default">
-            Please indicate whether you accept our terms and conditions
-          </p>
+          <p className="text-sm text-default">Please indicate whether you accept our terms and conditions</p>
         </div>
 
         <div className="mt-4 flex">

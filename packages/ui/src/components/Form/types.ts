@@ -4,8 +4,8 @@ export type FieldError<T extends Types.FormFieldValue = Types.FormFieldValue> =
   T extends NonNullable<Types.ArrayFieldValue>
     ? Record<string, string>[]
     : T extends NonNullable<Types.PrimitiveFieldValue>
-    ? string
-    : never;
+      ? string
+      : never;
 
 /** Common props for all field components */
 export type BaseFieldComponentProps<T extends Types.FormFieldValue = Types.FormFieldValue> = {
@@ -21,6 +21,6 @@ export type FormErrors<T extends Types.FormDataType = Types.FormDataType> = {
   [K in keyof T]?: T[K] extends NonNullable<Types.PrimitiveFieldValue>
     ? string
     : T[K] extends NonNullable<Types.PrimitiveFieldValue>
-    ? Record<string, string>[]
-    : never;
+      ? Record<string, string>[]
+      : never;
 };

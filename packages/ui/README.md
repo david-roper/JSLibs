@@ -5,7 +5,7 @@ This repository houses generic, reusable React components for DNP projects.
 ## Install
 
 ```shell
-bun add @douglasneuroinformatics/ui
+pnpm add @douglasneuroinformatics/ui
 ```
 
 ## Usage
@@ -15,16 +15,15 @@ bun add @douglasneuroinformatics/ui
 ```javascript
 import config from '@douglasneuroinformatics/ui/tailwind.config';
 
-
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [...config.content, './src/**/*.{js,ts,jsx,tsx}'],
   presets: [config]
 };
-
 ```
 
 **i18n.ts**
+
 ```typescript
 import { i18n as i18nLib } from '@douglasneuroinformatics/ui';
 import i18n from 'i18next';
@@ -36,5 +35,4 @@ i18n.on('languageChanged', (lang) => {
 });
 
 export default i18n;
-
 ```

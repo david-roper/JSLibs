@@ -2,7 +2,7 @@ import { ConfigurableModuleBuilder } from '@nestjs/common';
 
 type CryptoModuleOptions = {
   secretKey: string;
-}
+};
 
 const { ConfigurableModuleClass, MODULE_OPTIONS_TOKEN } = new ConfigurableModuleBuilder<CryptoModuleOptions>()
   .setExtras({ isGlobal: false }, (definition, extras) => ({

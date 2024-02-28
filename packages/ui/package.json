@@ -17,17 +17,17 @@
     "tailwind.config.d.cts"
   ],
   "scripts": {
-    "build": "rm -rf dist && bun build:js && bun build:ts",
+    "build": "rm -rf dist && pnpm build:js && pnpm build:ts",
     "build:js": "esbuild --bundle --format=esm --outdir=dist --packages=external --platform=browser --sourcemap=external  src/index.ts",
     "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
-    "push": "bun run lint && bun run build && npm publish",
+    "push": "pnpm lint && pnpm build && npm publish",
     "storybook": "storybook dev -p 6006"
   },
   "dependencies": {
-    "@douglasneuroinformatics/form-types": "^5.2.0",
-    "@douglasneuroinformatics/utils": "^1.0.4",
+    "@douglasneuroinformatics/form-types": "workspace:^5.2.0",
+    "@douglasneuroinformatics/utils": "workspace:^1.0.4",
     "@headlessui/react": "^1.7.17",
     "@headlessui/tailwindcss": "^0.2.0",
     "@heroicons/react": "^2.0.18",
@@ -59,7 +59,6 @@
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
     "autoprefixer": "^10.4.16",
-    "esbuild": "^0.19.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.33.2",
     "postcss": "^8.4.31",

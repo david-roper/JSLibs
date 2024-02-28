@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test';
+import { describe, expect, it } from 'vitest';
 
 import { randomDate, randomInt } from './random.js';
 
@@ -9,7 +9,7 @@ describe('randomInt', () => {
     const result = randomInt(min, max);
     expect(result).toBeGreaterThanOrEqual(min);
     expect(result).toBeLessThan(8);
-    expect(Number.isInteger(result)).toBeTrue();
+    expect(Number.isInteger(result)).toBe(true);
   });
   it('should throw if the min value is larger than the max', () => {
     expect(() => randomInt(10, 5)).toThrow();
@@ -23,7 +23,7 @@ describe('randomInt', () => {
     const result = randomInt(min, max);
     expect(result).toBeGreaterThanOrEqual(min);
     expect(result).toBeLessThan(8);
-    expect(Number.isInteger(result)).toBeTrue();
+    expect(Number.isInteger(result)).toBe(true);
     expect(() => randomInt(max, min)).toThrow();
   });
 });
@@ -33,8 +33,8 @@ describe('randomDate', () => {
     const start = new Date(2000, 0, 1);
     const end = new Date();
     const random = randomDate(start, end);
-    expect(random.getTime() >= start.getTime()).toBeTrue();
-    expect(random.getTime() <= end.getTime()).toBeTrue();
+    expect(random.getTime() >= start.getTime()).toBe(true);
+    expect(random.getTime() <= end.getTime()).toBe(true);
   });
   it('should throw if the end is before the start', () => {
     expect(() => randomDate(new Date(), new Date(2000, 0, 1))).toThrow();
