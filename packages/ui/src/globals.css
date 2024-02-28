@@ -22,7 +22,7 @@
     --card: theme(colors.white);
     --card-foreground: theme(colors.slate.900);
 
-    --primary: theme(colors.slate.900);
+    --primary: theme(colors.slate.800);
     --primary-foreground: theme(colors.slate.100);
 
     --secondary: theme(colors.slate.300);
@@ -55,8 +55,8 @@
     --card: theme(colors.slate.800);
     --card-foreground: theme(colors.slate.100);
 
-    --primary: theme(colors.slate.100);
-    --primary-foreground: theme(colors.slate.900);
+    --primary: theme(colors.sky.700);
+    --primary-foreground: theme(colors.slate.100);
 
     --secondary: theme(colors.slate.900);
     --secondary-foreground: theme(colors.slate.100);
