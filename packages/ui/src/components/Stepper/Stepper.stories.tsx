@@ -17,7 +17,7 @@ const MockStep: React.FC<{ step: number }> = ({ step }) => {
   return (
     <div>
       <h1 className="text-lg font-medium">Step {step}</h1>
-      <p className="text-sm my-3 text-default">
+      <p className="text-sm my-3 text-muted-foreground">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde necessitatibus accusantium mollitia, odit
         voluptates veritatis cupiditate eum quod dolore culpa enim reprehenderit et, suscipit aut possimus placeat
         laudantium. Earum dicta totam laudantium, sed voluptate labore neque hic sit molestiae quia soluta consectetur

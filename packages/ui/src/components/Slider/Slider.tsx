@@ -42,7 +42,7 @@ export const Slider = ({ children, isOpen, setIsOpen, title }: SliderProps) => {
                     <div className="flex items-center justify-between">
                       <Dialog.Title className="text-slate-900 dark:text-slate-100 font-semibold">{title}</Dialog.Title>
                       <button
-                        className="hover:text-slate-500 text-default"
+                        className="hover:text-slate-500 text-muted-foreground"
                         type="button"
                         onClick={() => {
                           setIsOpen(false);

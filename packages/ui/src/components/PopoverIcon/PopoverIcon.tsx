@@ -17,7 +17,7 @@ export const PopoverIcon = ({ icon, iconClassName, position, text }: PopoverIcon
   return (
     <Popover className="relative">
       <Popover.Button className="flex items-center justify-center" tabIndex={-1}>
-        <Icon className={cn('text-default h-4 w-4', iconClassName)} />
+        <Icon className={cn('text-muted-foreground h-4 w-4', iconClassName)} />
       </Popover.Button>
       <Transition
         as={React.Fragment}
@@ -30,7 +30,7 @@ export const PopoverIcon = ({ icon, iconClassName, position, text }: PopoverIcon
       >
         <Popover.Panel
           className={cn(
-            'absolute z-10 mt-2 w-max max-w-xs rounded-md border border-slate-300 bg-slate-100 p-2 text-sm text-default shadow-sm dark:border-slate-600 dark:bg-slate-800',
+            'absolute z-10 mt-2 w-max max-w-xs rounded-md border border-slate-300 bg-slate-100 p-2 text-sm text-muted-foreground shadow-sm dark:border-slate-600 dark:bg-slate-800',
             {
               'left-0': position === 'left',
               'right-0': position === 'right'

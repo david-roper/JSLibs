@@ -61,7 +61,7 @@ export const NumericFieldSlider = ({
             />
           </div>
         </div>
-        <div className="flex items-center justify-center text-default">{value ?? 'NA'}</div>
+        <div className="flex items-center justify-center text-muted-foreground">{value ?? 'NA'}</div>
         {description && (
           <div className="flex items-center justify-center">
             <PopoverIcon icon={QuestionMarkCircleIcon} position="right" text={description} />

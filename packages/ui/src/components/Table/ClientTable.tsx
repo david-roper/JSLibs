@@ -21,7 +21,7 @@ const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TablePro
       <Table data={currentEntries} {...props} />
       <div className="py-3 px-1 flex items-center justify-between">
         <div className="hidden sm:block">
-          <p className="text-sm font-medium text-default">
+          <p className="text-sm font-medium text-muted-foreground">
             {t('table.pagination.info', {
               first: firstEntry,
               last: lastEntry,
@@ -31,7 +31,7 @@ const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TablePro
         </div>
         <div className="flex-1 flex justify-between sm:justify-end">
           <button
-            className="relative disabled:opacity-75 inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 text-sm font-medium rounded-md text-default bg-slate-50 dark:bg-slate-800"
+            className="relative disabled:opacity-75 inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 text-sm font-medium rounded-md text-muted-foreground bg-slate-50 dark:bg-slate-800"
             disabled={currentPage === 1}
             onClick={() => {
               setCurrentPage(currentPage - 1);
@@ -40,7 +40,7 @@ const ClientTableComponent = <T extends TableEntry>({ data, ...props }: TablePro
             {t('table.pagination.previous')}
           </button>
           <button
-            className="ml-3 disabled:opacity-75 relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 text-sm font-medium rounded-md text-default bg-slate-50 dark:bg-slate-800"
+            className="ml-3 disabled:opacity-75 relative inline-flex items-center px-4 py-2 border border-slate-300 dark:border-slate-600 text-sm font-medium rounded-md text-muted-foreground bg-slate-50 dark:bg-slate-800"
             disabled={currentPage === pageCount}
             onClick={() => {
               setCurrentPage(currentPage + 1);

@@ -21,7 +21,7 @@ const Checkbox = (props: InnerProps) => (
         className="flex h-6 w-6 items-center justify-center bg-white ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-xl dark:bg-slate-800 dark:ring-slate-500 dark:hover:bg-slate-700 rounded"
         onChange={props.setValue}
       >
-        <CheckIcon className="ui-checked:visible invisible p-0.5 text-default" />
+        <CheckIcon className="ui-checked:visible invisible p-0.5 text-muted-foreground" />
       </Switch>
     </div>
   </>
@@ -30,7 +30,7 @@ const Checkbox = (props: InnerProps) => (
 const RadioOption = ({ label, value }: { label?: string; value: false | true }) => {
   const { t } = useTranslation();
   return (
-    <RadioGroup.Option className="flex items-center text-default" value={value}>
+    <RadioGroup.Option className="flex items-center text-muted-foreground" value={value}>
       <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-xl dark:bg-slate-800 dark:ring-slate-500 dark:hover:bg-slate-700">
         <CheckIcon className="duration-400 ui-checked:opacity-100 p-0.5 opacity-0 transition-opacity ease-in-out" />
       </div>

@@ -89,7 +89,7 @@ const FormComponent = <T extends Types.FormDataType>({
               <div className="my-5">
                 <h3 className="mb-2 font-semibold">{fieldGroup.title}</h3>
                 {fieldGroup.description && (
-                  <small className="text-sm italic text-default">{fieldGroup.description}</small>
+                  <small className="text-sm italic text-muted-foreground">{fieldGroup.description}</small>
                 )}
               </div>
               <FormFieldsComponent

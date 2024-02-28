@@ -75,7 +75,7 @@ export const Table = <T extends TableEntry>({
                 const entry = data[i];
                 return (
                   <tr
-                    className={clsx('whitespace-nowrap p-4 text-sm text-default', {
+                    className={clsx('whitespace-nowrap p-4 text-sm text-muted-foreground', {
                       'cursor-pointer hover:backdrop-brightness-95': entry && typeof onEntryClick === 'function'
                     })}
                     key={i}
