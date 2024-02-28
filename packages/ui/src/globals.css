@@ -25,7 +25,7 @@
     --primary: theme(colors.slate.800);
     --primary-foreground: theme(colors.slate.100);
 
-    --secondary: theme(colors.slate.300);
+    --secondary: theme(colors.slate.50);
     --secondary-foreground: theme(colors.slate.900);
 
     --destructive: theme(colors.red.600);
@@ -58,7 +58,7 @@
     --primary: theme(colors.sky.700);
     --primary-foreground: theme(colors.slate.100);
 
-    --secondary: theme(colors.slate.900);
+    --secondary: theme(colors.slate.800);
     --secondary-foreground: theme(colors.slate.100);
 
     --ring: theme(colors.slate.800);
