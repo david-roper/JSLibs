@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { useWindowSize } from '@/hooks/useWindowSize';
 import { StepperContext } from '@/legacy/context/StepperContext';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 type Step = {
   element: React.ReactElement;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Popover, Transition } from '@headlessui/react';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 export type PopoverIconProps = {
   icon: React.ComponentType<Omit<React.SVGProps<SVGSVGElement>, 'ref'>>;

@@ -4,7 +4,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
 import type { Promisable } from 'type-fest';
 
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils';
 
 export type BaseLanguageToggleProps<T extends string> = {
   className?: string;
