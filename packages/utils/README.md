@@ -3,5 +3,5 @@
 ## Install
 
 ```shell
-bun add @douglasneuroinformatics/utils
+pnpm add @douglasneuroinformatics/utils
 ```

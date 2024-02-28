@@ -3,5 +3,5 @@
 ## Install
 
 ```shell
-bun add @douglasneuroinformatics/stats
+pnpm add @douglasneuroinformatics/stats
 ```

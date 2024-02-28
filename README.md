@@ -3,6 +3,7 @@
 ## Included Packages
 
 This repository contains the source code for the following NPM packages:
+
 - [@douglasneuroinformatics/eslint-config](https://www.npmjs.com/package/@douglasneuroinformatics/eslint-config)
 - [@douglasneuroinformatics/form-types](https://www.npmjs.com/package/@douglasneuroinformatics/form-types)
 - [@douglasneuroinformatics/stats](https://www.npmjs.com/package/@douglasneuroinformatics/stats)
@@ -14,7 +15,7 @@ This repository contains the source code for the following NPM packages:
 ### Install Dependencies
 
 ```shell
-bun install
+pnpm install
 ```
 
 ### Update Package(s)
@@ -22,11 +23,11 @@ bun install
 #### Create Changelogs
 
 ```shell
-bunx changeset
+pnpm exec changeset
 ```
 
 #### Push Changes to NPM (Admin Only)
 
 ```shell
-bun push
+pnpm push
 ```

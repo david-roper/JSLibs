@@ -22,12 +22,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && bun build:js && bun build:ts",
-    "build:js": "bunx esbuild --bundle --format=esm --outdir=dist --packages=external --platform=node --sourcemap=external  src/core/index.ts src/modules/index.ts src/testing/index.ts",
+    "build": "rm -rf dist && pnpm build:js && pnpm build:ts",
+    "build:js": "pnpm exec esbuild --bundle --format=esm --outdir=dist --packages=external --platform=node --sourcemap=external  src/core/index.ts src/modules/index.ts src/testing/index.ts",
     "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
-    "push": "bun run lint && bun test && bun run build && npm publish"
+    "push": "pnpm lint && pnpm test && pnpm build && npm publish"
   },
   "dependencies": {
     "lodash": "^4.17.21",

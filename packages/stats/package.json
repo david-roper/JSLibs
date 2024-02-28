@@ -14,12 +14,12 @@
     "dist"
   ],
   "scripts": {
-    "build": "rm -rf dist && bun build:js && bun build:ts",
+    "build": "rm -rf dist && pnpm build:js && pnpm build:ts",
     "build:js": "esbuild --bundle --format=esm --outdir=dist --packages=external --platform=neutral --sourcemap=external  src/index.ts",
     "build:ts": "tsc -b tsconfig.build.json",
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
-    "push": "bun run lint && bun test && bun run build && npm publish"
+    "push": "pnpm lint && pnpm test && pnpm build && npm publish"
   },
   "devDependencies": {
     "typedoc": "^0.25.2"

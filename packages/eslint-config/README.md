@@ -5,7 +5,7 @@ This repository contains linting configurations for DNP projects written in Type
 ## Install
 
 ```
-bun add --dev @douglasneuroinformatics/eslint-config eslint
+pnpm add -D @douglasneuroinformatics/eslint-config eslint
 ```
 
 ## Usage
