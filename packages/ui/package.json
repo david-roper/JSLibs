@@ -23,7 +23,8 @@
     "format": "prettier --write src",
     "lint": "tsc && eslint --fix src",
     "push": "pnpm lint && pnpm build && npm publish",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "test": "vitest --run"
   },
   "dependencies": {
     "@douglasneuroinformatics/form-types": "workspace:^5.2.0",
