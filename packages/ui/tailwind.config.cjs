@@ -10,7 +10,7 @@ const isDev = fs.existsSync(path.resolve(__dirname, 'src'));
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [isDev ? path.resolve(__dirname, 'src/**/*.{js,jsx,ts,tsx}') : path.resolve(__dirname, 'dist/index.js')],
+  content: [isDev ? path.resolve(__dirname, 'src/**/*.{js,jsx,ts,tsx}') : path.resolve(__dirname, 'dist/**/*.js')],
   darkMode: ['class', '[data-mode="dark"]'],
   plugins: [
     animate,
