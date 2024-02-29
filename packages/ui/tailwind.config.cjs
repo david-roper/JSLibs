@@ -1,7 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const tailwindcss = require('@headlessui/tailwindcss');
+const animate = require('tailwindcss-animate');
+const headlessui = require('@headlessui/tailwindcss');
 const containerQueries = require('@tailwindcss/container-queries');
 const plugin = require('tailwindcss/plugin');
 
@@ -9,22 +10,13 @@ const isDev = fs.existsSync(path.resolve(__dirname, 'src'));
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [isDev ? path.resolve(__dirname, 'src/**/*.{js,jsx,ts,tsx}') : path.resolve(__dirname, 'dist/index.js')],
+  content: [isDev ? path.resolve(__dirname, 'src/**/*.{js,jsx,ts,tsx}') : path.resolve(__dirname, 'dist/**/*.js')],
   darkMode: ['class', '[data-mode="dark"]'],
   plugins: [
+    animate,
     containerQueries,
-    tailwindcss,
-    plugin(({ addBase, addComponents, addUtilities, theme }) => {
-      addBase({
-        'html.dark': {
-          backgroundColor: theme('colors.slate.900'),
-          color: theme('colors.slate.300')
-        },
-        'html.light': {
-          backgroundColor: theme('colors.slate.100'),
-          color: theme('colors.slate.700')
-        }
-      });
+    headlessui,
+    plugin(({ addComponents, addUtilities }) => {
       addComponents({
         '.field-input': {
           '@apply field-input-base border-b-2 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-500':
@@ -52,31 +44,73 @@ module.exports = {
           },
           '-ms-overflow-style': 'none',
           'scrollbar-width': 'none'
-        },
-        '.text-default': {
-          '@apply text-slate-700 dark:text-slate-300': {}
-        },
-        '.text-strong': {
-          '@apply text-slate-900 dark:text-slate-100': {}
         }
       });
     })
   ],
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px'
+      }
+    },
     extend: {
       animation: {
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
         spinner: 'spinner-spin 1.7s infinite ease, round 1.7s infinite ease'
       },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: '1rem',
-          lg: '4rem',
-          sm: '2rem',
-          xl: '5rem'
+      borderRadius: {
+        lg: `var(--radius)`,
+        md: `calc(var(--radius) - 2px)`,
+        sm: 'calc(var(--radius) - 4px)'
+      },
+      colors: {
+        accent: {
+          DEFAULT: 'var(--accent)',
+          foreground: 'var(--accent-foreground)'
+        },
+        background: 'var(--background)',
+        border: 'var(--border)',
+        card: {
+          DEFAULT: 'var(--card)',
+          foreground: 'var(--card-foreground)'
+        },
+        destructive: {
+          DEFAULT: 'var(--destructive)',
+          foreground: 'var(--destructive-foreground)'
+        },
+        foreground: 'var(--foreground)',
+        input: 'var(--input)',
+        muted: {
+          DEFAULT: 'var(--muted)',
+          foreground: 'var(--muted-foreground)'
+        },
+        popover: {
+          DEFAULT: 'var(--popover)',
+          foreground: 'var(--popover-foreground)'
+        },
+        primary: {
+          DEFAULT: 'var(--primary)',
+          foreground: 'var(--primary-foreground)'
+        },
+        ring: 'var(--ring)',
+        secondary: {
+          DEFAULT: 'var(--secondary)',
+          foreground: 'var(--secondary-foreground)'
         }
       },
       keyframes: {
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' }
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' }
+        },
         round: {
           '0%': {
             transform: 'rotate(0deg)'

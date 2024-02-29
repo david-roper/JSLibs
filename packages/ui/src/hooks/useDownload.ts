@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import type { Promisable } from 'type-fest';
 
-import { useNotificationsStore } from '../stores/notifications-store';
+import { useNotificationsStore } from './useNotificationsStore';
 
 /**
  * Used to trigger downloads of arbitrary data to the client

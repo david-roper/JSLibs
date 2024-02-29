@@ -1,6 +1,10 @@
-export const Spinner = () => {
+import type { HTMLProps } from 'react';
+
+import { cn } from '@/utils';
+
+export const Spinner = ({ className, ...props }: HTMLProps<HTMLDivElement>) => {
   return (
-    <div className="flex h-full w-full items-center justify-center">
+    <div className={cn('flex h-full w-full items-center justify-center', className)} {...props}>
       <span
         className="text-slate-900 animate-spinner dark:text-slate-100 overflow-hidden relative"
         style={{

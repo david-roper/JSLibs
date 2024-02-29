@@ -8,28 +8,21 @@ export default { component: Button } satisfies Meta<typeof Button>;
 
 export const Primary: Story = {
   args: {
-    children: 'Primary Button',
+    label: 'Primary Button',
     variant: 'primary'
   }
 };
 
 export const Secondary: Story = {
   args: {
-    children: 'Secondary Button',
+    label: 'Secondary Button',
     variant: 'secondary'
   }
 };
 
 export const Danger: Story = {
   args: {
-    children: 'Danger Button',
+    label: 'Danger Button',
     variant: 'danger'
-  }
-};
-
-export const Outline: Story = {
-  args: {
-    children: 'Outline Button',
-    variant: 'outline'
   }
 };
