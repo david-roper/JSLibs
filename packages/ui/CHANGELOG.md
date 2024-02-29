@@ -7,6 +7,7 @@
 - Remove `transformTranslations`
 - Remove `LoadingFallback`, `FormPageWrapper`
 - Remove `text-strong` and `text-default` css classes
+- Import of `@douglasneuroinformatics/ui` has been removed. Instead, import from `@douglasneuroinformatics/ui/components`, `@douglasneuroinformatics/ui/hooks`, `@douglasneuroinformatics/ui/legacy`, `@douglasneuroinformatics/ui/i18n`, or `@douglasneuroinformatics/ui/utils`
 
 ## 5.2.0
 
