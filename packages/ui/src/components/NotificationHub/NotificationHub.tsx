@@ -3,8 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 import { useNotificationsStore } from '@/hooks/useNotificationsStore';
+import { Card } from '@/legacy/components/Card';
 
-import { Card } from '../Card/Card';
 import { NotificationIcon } from './NotificationIcon';
 
 type NotificationHubProps = {

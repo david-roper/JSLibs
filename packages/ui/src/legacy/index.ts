@@ -9,7 +9,6 @@ export * from './components/Form';
 export * from './components/LanguageToggle';
 export * from './components/LineGraph';
 export * from './components/Modal';
-export * from './components/NotificationHub';
 export * from './components/PopoverIcon';
 export * from './components/SearchBar';
 export * from './components/SelectDropdown';
