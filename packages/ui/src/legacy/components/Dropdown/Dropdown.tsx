@@ -68,7 +68,7 @@ export function Dropdown<const T extends DropdownOptions>({
           {optionKeys.map((option) => (
             <Menu.Item key={option}>
               <button
-                className="p-2 text-left hover:bg-slate-200 dark:hover:bg-slate-700"
+                className="p-2 text-left text-sm hover:bg-slate-200 dark:hover:bg-slate-700"
                 style={{ minWidth: 100 }}
                 onClick={() => {
                   onSelection(option as DropdownOptionKey<T>);
