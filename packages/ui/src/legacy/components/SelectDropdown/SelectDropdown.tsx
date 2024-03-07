@@ -66,6 +66,7 @@ export const SelectDropdown = <T extends SelectOption>({
           {options.map((option) => (
             <Listbox.Option
               className="flex w-full items-center whitespace-nowrap bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 p-2 hover:bg-slate-200 "
+              data-cy="select-dropdown-option"
               key={option.key}
               value={option}
             >
