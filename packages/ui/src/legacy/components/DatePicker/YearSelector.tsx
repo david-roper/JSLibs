@@ -31,6 +31,7 @@ export const YearSelector = (props: YearSelectorProps) => {
                 'bg-slate-700 dark:bg-slate-600 text-white hover:bg-slate-600': year === props.selected.getFullYear()
               }
             )}
+            data-cy="year-option"
             ref={year === props.selected.getFullYear() ? selectedRef : null}
             tabIndex={-1}
             type="button"
