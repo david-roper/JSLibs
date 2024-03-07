@@ -78,6 +78,7 @@ export const Table = <T extends TableEntry>({
                     className={clsx('whitespace-nowrap p-4 text-sm text-muted-foreground', {
                       'cursor-pointer hover:backdrop-brightness-95': entry && typeof onEntryClick === 'function'
                     })}
+                    data-cy="table-row"
                     key={i}
                     onClick={() => {
                       entry && onEntryClick && onEntryClick(entry);
@@ -94,7 +95,7 @@ export const Table = <T extends TableEntry>({
                       }
                       const formattedValue = entry && formatter ? formatter(value) : defaultFormatter(value);
                       return (
-                        <td className="whitespace-nowrap px-6" key={j} style={{ height: 42 }}>
+                        <td className="whitespace-nowrap px-6" data-cy="table-data-item" key={j} style={{ height: 42 }}>
                           <span className="text-ellipsis block leading-none">{formattedValue}</span>
                         </td>
                       );

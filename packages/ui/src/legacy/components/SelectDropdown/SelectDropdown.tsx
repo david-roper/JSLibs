@@ -66,13 +66,16 @@ export const SelectDropdown = <T extends SelectOption>({
           {options.map((option) => (
             <Listbox.Option
               className="flex w-full items-center whitespace-nowrap bg-slate-50 dark:bg-slate-800 dark:hover:bg-slate-700 p-2 hover:bg-slate-200 "
+              data-cy="select-dropdown-option"
               key={option.key}
               value={option}
             >
               {checkPosition === 'left' && (
                 <CheckIcon className="ui-selected:visible invisible mr-2 h-6" height={16} width={16} />
               )}
-              <span className="ui-selected:font-medium">{option.label}</span>
+              <span className="ui-selected:font-medium" data-cy="select-dropdown-option-label">
+                {option.label}
+              </span>
               {checkPosition === 'right' && (
                 <CheckIcon className="ui-selected:visible invisible ml-2" height={16} width={16} />
               )}

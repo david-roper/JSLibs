@@ -40,6 +40,7 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(function
           {days.map((day) => (
             <button
               className="flex h-9 w-9 items-center justify-center rounded-full text-sm hover:bg-slate-200 dark:hover:bg-slate-700"
+              data-cy="day-option"
               key={day}
               tabIndex={-1}
               type="button"

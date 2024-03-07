@@ -68,6 +68,7 @@ export const DatePicker = ({ onSelection, ...props }: DatePickerProps) => {
           <span className="font-semibold">{`${monthName} ${date.getFullYear()}`}</span>
           <ArrowToggle
             className="mx-1 flex items-center justify-center rounded-full p-1.5 hover:bg-slate-200 dark:hover:bg-slate-700"
+            data-cy="year-select"
             position="up"
             rotation={180}
             tabIndex={-1}
