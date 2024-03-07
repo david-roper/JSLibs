@@ -208,6 +208,9 @@ importers:
       tailwind-merge:
         specifier: ^1.14.0
         version: 1.14.0
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@3.4.1)
       ts-pattern:
         specifier: ^5.0.5
         version: 5.0.8
@@ -293,9 +296,6 @@ importers:
       tailwindcss:
         specifier: ^3.3.5
         version: 3.4.1
-      tailwindcss-animate:
-        specifier: ^1.0.7
-        version: 1.0.7(tailwindcss@3.4.1)
       vite:
         specifier: ^4.5.0
         version: 4.5.2(@types/node@20.11.21)(less@4.2.0)
@@ -13221,7 +13221,7 @@ packages:
       tailwindcss: '>=3.0.0 || insiders'
     dependencies:
       tailwindcss: 3.4.1
-    dev: true
+    dev: false
 
   /tailwindcss@3.4.1:
     resolution:
