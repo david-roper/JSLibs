@@ -15,6 +15,16 @@ const baseConfig = createConfig({
   }
 });
 
+const cryptoConfig = createConfig({
+  base: {
+    env: 'browser',
+    fileRoots: ['packages/crypto/src']
+  },
+  ts: {
+    project: path.resolve(__dirname, 'packages', 'crypto', 'tsconfig.json')
+  }
+});
+
 const uiConfig = createConfig({
   base: {
     env: 'browser',
@@ -40,5 +50,6 @@ export default [
     }
   },
   ...baseConfig,
+  ...cryptoConfig,
   ...uiConfig
 ];
