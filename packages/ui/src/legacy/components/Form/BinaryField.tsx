@@ -31,7 +31,10 @@ const RadioOption = ({ label, value }: { label?: string; value: false | true }) 
   const { t } = useTranslation();
   return (
     <RadioGroup.Option className="flex items-center text-muted-foreground" value={value}>
-      <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-xl dark:bg-slate-800 dark:ring-slate-500 dark:hover:bg-slate-700">
+      <div
+        data-cy="radio-option"
+        className="flex h-6 w-6 items-center justify-center rounded-full bg-white ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-xl dark:bg-slate-800 dark:ring-slate-500 dark:hover:bg-slate-700"
+      >
         <CheckIcon className="duration-400 ui-checked:opacity-100 p-0.5 opacity-0 transition-opacity ease-in-out" />
       </div>
       <span className="ms-2">{label ?? t(`form.radio.labels.${value}`)}</span>
