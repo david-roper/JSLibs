@@ -117,6 +117,7 @@ const Form = <T extends Types.FormDataType>({
           className="block w-full first-letter:capitalize"
           label={submitBtnLabel ?? t('form.submit')}
           type="submit"
+          data-cy="submit-form"
           variant="primary"
         />
         {resetBtn && (

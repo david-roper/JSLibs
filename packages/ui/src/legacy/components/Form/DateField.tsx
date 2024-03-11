@@ -36,6 +36,7 @@ export const DateField = ({ description, error, label, name, setValue, value }: 
       <input
         autoComplete="off"
         className="field-input"
+        data-cy="date-input"
         value={value ? toBasicISOString(value) : ''}
         onBlur={() => {
           setInputFocused(false);
