@@ -43,6 +43,7 @@ export const OptionsField = <T extends string = string>({
                 {Object.keys(options).map((option) => (
                   <Listbox.Option
                     className="p-2 capitalize hover:bg-slate-200 dark:hover:bg-slate-700"
+                    data-cy="form-list-option"
                     key={option}
                     value={option}
                   >
