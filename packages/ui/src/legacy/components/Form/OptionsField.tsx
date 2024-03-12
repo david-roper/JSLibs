@@ -21,10 +21,12 @@ export const OptionsField = <T extends string = string>({
 }: OptionsFieldProps<T>) => {
   return (
     <FormFieldContainer description={description} error={error}>
-      <Listbox data-cy="form-list" as={React.Fragment} name={name} value={value ?? null} onChange={setValue}>
+      <Listbox as={React.Fragment} name={name} value={value ?? null} onChange={setValue}>
         {({ open }) => (
           <>
-            <Listbox.Button className="field-input capitalize">{value ? options[value] : ''}</Listbox.Button>
+            <Listbox.Button data-cy="form-list" className="field-input capitalize">
+              {value ? options[value] : ''}
+            </Listbox.Button>
             <Listbox.Label
               className={clsx('field-label-floating', {
                 'field-label-floating--active': value ?? open
