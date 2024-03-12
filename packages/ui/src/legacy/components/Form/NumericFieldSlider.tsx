@@ -52,6 +52,7 @@ export const NumericFieldSlider = ({
           >
             <motion.div
               className="h-5 w-5 rounded-full bg-slate-500 dark:bg-slate-400"
+              data-cy="ball-slider"
               drag="x"
               dragConstraints={guide}
               dragElastic={false}
