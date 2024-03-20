@@ -74,7 +74,7 @@ function LineGraphComponent<const T extends LineGraphData>({
   const [theme] = useTheme();
 
   return (
-    <Card className="rounded-md p-3 [&_.recharts-legend-wrapper]:pl-[75%]" onClick={() => print()}>
+    <Card className="rounded-md p-3 print:[&_.recharts-legend-wrapper]:pl-[75%]" onClick={() => print()}>
       <ResponsiveContainer height={400} width="100%">
         <LineChart data={[...data]} margin={{ bottom: 5, left: 15, right: 15, top: 5 }}>
           <CartesianGrid stroke="#64748b" strokeDasharray="5 5" />
